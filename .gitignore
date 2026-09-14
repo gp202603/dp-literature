@@ -14,3 +14,6 @@ teaching-plans/
 
 # Never publish course textbooks or other third-party PDFs
 *.pdf
+
+# Local helper, not part of the site
+push-to-github.command
