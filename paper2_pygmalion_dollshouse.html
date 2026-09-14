@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paper 2 Revision: Pygmalion &amp; A Doll's House</title>
+  <style>
+    :root {
+      --navy: #0d1b2a;
+      --midnight: #1b2a3b;
+      --ink: #243447;
+      --gold: #c9a84c;
+      --gold-light: #e8d5a3;
+      --cream: #f5f0e8;
+      --white: #ffffff;
+      --text: #e8e4dc;
+      --muted: #8fa3b1;
+      --accent: #4a8fa8;
+      --red: #a83244;
+      --green: #3a7d5c;
+      --purple: #7a5a9a;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Georgia', serif; background: var(--navy); color: var(--text); line-height: 1.7; }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(13,27,42,0.97);
+      border-bottom: 2px solid var(--gold);
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.6rem 3rem;
+      backdrop-filter: blur(8px);
+    }
+    .nav-logo a { color: var(--gold); text-decoration: none; font-size: 0.9rem; font-family: 'Helvetica Neue', sans-serif; letter-spacing: 0.05em; }
+    .nav-logo a:hover { color: var(--gold-light); }
+    .nav-links { display: flex; gap: 1.6rem; list-style: none; flex-wrap: wrap; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.82rem; letter-spacing: 0.03em; transition: color 0.2s; font-family: 'Helvetica Neue', sans-serif; }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* HERO */
+    .hero {
+      min-height: 68vh;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 5rem 3rem 4rem;
+      background: linear-gradient(135deg, #07111c 0%, #0d1b2a 60%, #111e30 100%);
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: 0; right: 0; width: 55%; height: 100%;
+      background: radial-gradient(ellipse at top right, rgba(201,168,76,0.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero-breadcrumb { font-family: 'Helvetica Neue', sans-serif; font-size: 0.75rem; color: var(--muted); margin-bottom: 2rem; letter-spacing: 0.05em; }
+    .hero-breadcrumb a { color: var(--gold); text-decoration: none; }
+    .hero-tag {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.7rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem;
+      border: 1px solid rgba(201,168,76,0.3); display: inline-block;
+      padding: 0.3rem 1rem; border-radius: 2px;
+    }
+    .hero h1 { font-size: clamp(2rem, 4.5vw, 3.8rem); font-weight: normal; line-height: 1.15; color: var(--white); margin-bottom: 0.4rem; }
+    .hero h1 em { color: var(--gold); font-style: normal; }
+    .hero-sub { font-family: 'Helvetica Neue', sans-serif; font-size: 0.88rem; color: var(--muted); margin-bottom: 2rem; letter-spacing: 0.03em; max-width: 600px; }
+    .hero-pills { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-top: 0.5rem; }
+    .hero-pill {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.72rem; letter-spacing: 0.08em;
+      padding: 0.3rem 0.9rem; border-radius: 2px; border: 1px solid;
+    }
+    .pill-shaw { border-color: rgba(74,143,168,0.5); color: #7dbdd6; background: rgba(74,143,168,0.1); }
+    .pill-ibsen { border-color: rgba(168,50,68,0.5); color: #d4758a; background: rgba(168,50,68,0.1); }
+    .pill-paper2 { border-color: rgba(201,168,76,0.4); color: var(--gold); background: rgba(201,168,76,0.08); }
+
+    /* PAGE TOC */
+    .page-toc {
+      background: var(--midnight); border-bottom: 1px solid rgba(201,168,76,0.15);
+      padding: 0.75rem 3rem; display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center;
+    }
+    .page-toc a {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.75rem; color: var(--muted);
+      text-decoration: none; padding: 0.25rem 0.75rem; border-radius: 2px;
+      border: 1px solid transparent; transition: all 0.2s; letter-spacing: 0.03em;
+    }
+    .page-toc a:hover { color: var(--gold); border-color: rgba(201,168,76,0.3); }
+
+    /* SECTIONS */
+    section { padding: 4.5rem 3rem; }
+    section:nth-child(even) { background: rgba(27,42,59,0.5); }
+    .section-label { font-family: 'Helvetica Neue', sans-serif; font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+    h2 { font-size: 1.9rem; font-weight: normal; color: var(--white); margin-bottom: 1rem; line-height: 1.3; }
+    h3 { font-size: 1.15rem; font-weight: normal; color: var(--gold-light); margin-bottom: 0.6rem; margin-top: 1.8rem; }
+    h4 { font-size: 0.95rem; font-weight: normal; color: var(--gold-light); margin-bottom: 0.4rem; }
+    p { color: var(--muted); margin-bottom: 0.9rem; font-size: 0.95rem; max-width: 720px; line-height: 1.75; }
+    .divider { height: 1px; background: linear-gradient(to right, transparent, var(--gold), transparent); opacity: 0.2; margin: 2.5rem 0; }
+
+    /* PLAY LABELS */
+    .play-shaw { color: #7dbdd6; }
+    .play-ibsen { color: #d4758a; }
+    .badge-shaw { font-family: 'Helvetica Neue', sans-serif; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.12rem 0.5rem; border-radius: 2px; background: rgba(74,143,168,0.15); color: #7dbdd6; border: 1px solid rgba(74,143,168,0.3); margin-right: 0.4rem; }
+    .badge-ibsen { font-family: 'Helvetica Neue', sans-serif; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.12rem 0.5rem; border-radius: 2px; background: rgba(168,50,68,0.15); color: #d4758a; border: 1px solid rgba(168,50,68,0.3); margin-right: 0.4rem; }
+
+    /* COMPARE GRID */
+    .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-top: 1.5rem; max-width: 900px; }
+    @media (max-width: 700px) { .compare-grid { grid-template-columns: 1fr; } }
+    .compare-col { background: var(--midnight); border-radius: 4px; padding: 1.5rem; }
+    .compare-col.pyg { border-top: 3px solid #4a8fa8; }
+    .compare-col.adh { border-top: 3px solid #a83244; }
+    .compare-header { font-family: 'Helvetica Neue', sans-serif; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1rem; padding-bottom: 0.6rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
+    .compare-col.pyg .compare-header { color: #7dbdd6; }
+    .compare-col.adh .compare-header { color: #d4758a; }
+    .compare-col ul { list-style: none; }
+    .compare-col li { padding: 0.28rem 0; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 0.83rem; color: var(--muted); display: flex; gap: 0.5rem; align-items: flex-start; }
+    .compare-col li::before { content: '▸'; color: var(--gold); flex-shrink: 0; font-size: 0.7rem; padding-top: 0.15rem; }
+    .compare-col li:last-child { border-bottom: none; }
+
+    /* CONTEXT BOXES */
+    .context-two { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; max-width: 900px; margin-top: 1.5rem; }
+    @media (max-width: 650px) { .context-two { grid-template-columns: 1fr; } }
+    .context-box { background: var(--midnight); border-radius: 4px; padding: 1.4rem; }
+    .context-box h4 { font-family: 'Helvetica Neue', sans-serif; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.9rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(201,168,76,0.15); }
+    .context-box ul { list-style: none; }
+    .context-box li { padding: 0.3rem 0; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 0.82rem; color: var(--muted); display: flex; gap: 0.5rem; align-items: flex-start; }
+    .context-box li::before { content: '▸'; color: var(--gold); flex-shrink: 0; font-size: 0.7rem; padding-top: 0.1rem; }
+    .context-box li:last-child { border-bottom: none; }
+
+    /* CHARACTER CARDS */
+    .char-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1rem; margin-top: 1.8rem; max-width: 1000px; }
+    .char-card { background: var(--midnight); border-radius: 4px; padding: 1.5rem; border: 1px solid rgba(255,255,255,0.05); }
+    .char-names { font-size: 1rem; color: var(--white); margin-bottom: 0.4rem; }
+    .char-names em { font-style: normal; color: var(--gold); }
+    .char-role { font-family: 'Helvetica Neue', sans-serif; font-size: 0.72rem; color: var(--muted); letter-spacing: 0.05em; margin-bottom: 0.8rem; }
+    .char-body { color: var(--muted); font-size: 0.82rem; line-height: 1.65; margin: 0; max-width: none; }
+    .char-key { margin-top: 0.8rem; padding-top: 0.6rem; border-top: 1px solid rgba(255,255,255,0.06); font-family: 'Helvetica Neue', sans-serif; font-size: 0.72rem; color: rgba(201,168,76,0.7); font-style: italic; }
+
+    /* THEMES GRID */
+    .themes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.85rem; margin-top: 1.5rem; }
+    .theme-card { background: var(--midnight); border-radius: 4px; padding: 1.3rem 1.5rem; border: 1px solid rgba(255,255,255,0.05); }
+    .theme-name { font-size: 1rem; color: var(--white); margin-bottom: 0.5rem; }
+    .theme-body { color: var(--muted); font-size: 0.82rem; line-height: 1.65; margin-bottom: 0.7rem; max-width: none; }
+    .theme-compare { font-size: 0.8rem; color: var(--muted); line-height: 1.6; margin: 0; max-width: none; }
+    .theme-compare span.pyg { color: #7dbdd6; font-style: normal; }
+    .theme-compare span.adh { color: #d4758a; font-style: normal; }
+
+    /* TECHNIQUES */
+    .tech-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.75rem; margin-top: 1.5rem; }
+    .tech-card { background: var(--midnight); border-radius: 4px; border: 1px solid rgba(255,255,255,0.06); overflow: hidden; }
+    .tech-header { display: flex; justify-content: space-between; align-items: center; padding: 0.85rem 1.1rem; cursor: pointer; user-select: none; }
+    .tech-header:hover { background: rgba(201,168,76,0.05); }
+    .tech-name { color: var(--gold-light); font-size: 0.9rem; }
+    .tech-toggle { color: var(--gold); font-size: 0.65rem; font-family: 'Helvetica Neue', sans-serif; }
+    .tech-body { display: none; padding: 0 1.1rem 1rem; border-top: 1px solid rgba(255,255,255,0.05); }
+    .tech-body.open { display: block; }
+    .tech-def { color: var(--muted); font-size: 0.83rem; margin: 0.65rem 0 0.5rem; max-width: none; }
+    .tech-example { font-style: italic; color: rgba(201,168,76,0.75); font-size: 0.8rem; border-left: 2px solid rgba(201,168,76,0.25); padding-left: 0.75rem; margin: 0.3rem 0; max-width: none; }
+
+    /* CRITICAL LENSES */
+    .lenses-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1rem; margin-top: 1.8rem; }
+    .lens-card { background: var(--ink); border-radius: 4px; padding: 1.5rem; border-left: 3px solid var(--gold); }
+    .lens-card.feminist { border-left-color: #a83244; }
+    .lens-card.marxist { border-left-color: #4a8fa8; }
+    .lens-card.psycho { border-left-color: #7a5a9a; }
+    .lens-card.postcolonial { border-left-color: #3a7d5c; }
+    .lens-card.historicist { border-left-color: #c9a84c; }
+    .lens-label { font-family: 'Helvetica Neue', sans-serif; font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 0.5rem; }
+    .lens-card.feminist .lens-label { color: #d4758a; }
+    .lens-card.marxist .lens-label { color: #7dbdd6; }
+    .lens-card.psycho .lens-label { color: #b090d0; }
+    .lens-card.postcolonial .lens-label { color: #7ac49a; }
+    .lens-card.historicist .lens-label { color: var(--gold); }
+    .lens-title { color: var(--white); font-size: 1rem; margin-bottom: 0.6rem; }
+    .lens-body { color: var(--muted); font-size: 0.83rem; line-height: 1.65; margin-bottom: 0.7rem; max-width: none; }
+    .lens-qs { margin-top: 0.8rem; }
+    .lens-q { font-style: italic; color: rgba(201,168,76,0.65); font-size: 0.78rem; padding: 0.25rem 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .lens-q:last-child { border-bottom: none; }
+
+    /* SCHOLARS */
+    .scholars-list { max-width: 860px; margin-top: 1.5rem; }
+    .scholar-item { background: var(--midnight); border-radius: 4px; padding: 1.4rem 1.6rem; margin-bottom: 0.75rem; border: 1px solid rgba(255,255,255,0.05); border-left: 3px solid rgba(201,168,76,0.4); }
+    .scholar-item.shaw { border-left-color: rgba(74,143,168,0.6); }
+    .scholar-item.ibsen { border-left-color: rgba(168,50,68,0.6); }
+    .scholar-item.both { border-left-color: rgba(201,168,76,0.6); }
+    .scholar-name { color: var(--white); font-size: 0.95rem; margin-bottom: 0.2rem; }
+    .scholar-work { font-family: 'Helvetica Neue', sans-serif; font-size: 0.75rem; color: var(--accent); margin-bottom: 0.6rem; font-style: italic; }
+    .scholar-item.ibsen .scholar-work { color: #d4758a; }
+    .scholar-item.both .scholar-work { color: var(--gold); }
+    .scholar-arg { color: var(--muted); font-size: 0.83rem; line-height: 1.65; margin: 0; max-width: none; }
+
+    /* QUOTATIONS */
+    .quotes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 0.9rem; margin-top: 1.5rem; }
+    .quote-card { background: var(--midnight); border-radius: 4px; padding: 1.3rem 1.5rem; border-top: 2px solid rgba(201,168,76,0.3); }
+    .quote-card.pyg { border-top-color: rgba(74,143,168,0.5); }
+    .quote-card.adh { border-top-color: rgba(168,50,68,0.5); }
+    .quote-text { font-style: italic; color: var(--gold-light); font-size: 0.9rem; line-height: 1.65; margin-bottom: 0.6rem; }
+    .quote-source { font-family: 'Helvetica Neue', sans-serif; font-size: 0.72rem; color: var(--muted); letter-spacing: 0.03em; }
+    .quote-tags { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.6rem; }
+    .quote-tag { font-family: 'Helvetica Neue', sans-serif; font-size: 0.63rem; padding: 0.12rem 0.5rem; border-radius: 2px; background: rgba(201,168,76,0.08); color: rgba(201,168,76,0.65); border: 1px solid rgba(201,168,76,0.15); }
+
+    /* READING LIST */
+    .reading-list { max-width: 860px; margin-top: 1.5rem; }
+    .reading-card { background: var(--midnight); border-radius: 4px; padding: 1.4rem 1.6rem; margin-bottom: 0.75rem; border: 1px solid rgba(255,255,255,0.05); border-left: 3px solid rgba(74,143,168,0.5); }
+    .reading-type { font-family: 'Helvetica Neue', sans-serif; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.3rem; }
+    .reading-title { color: var(--white); font-size: 0.95rem; margin-bottom: 0.15rem; }
+    .reading-author { font-family: 'Helvetica Neue', sans-serif; font-size: 0.78rem; color: var(--gold); margin-bottom: 0.5rem; }
+    .reading-desc { color: var(--muted); font-size: 0.82rem; line-height: 1.65; margin: 0; max-width: none; }
+    .reading-meta { font-family: 'Helvetica Neue', sans-serif; font-size: 0.72rem; color: rgba(122,200,158,0.8); margin-top: 0.5rem; }
+
+    /* EXAM PREP */
+    .criteria-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.75rem; margin-top: 1.5rem; max-width: 900px; }
+    .criterion-card { background: var(--ink); border-radius: 4px; padding: 1.2rem; border-top: 3px solid var(--gold); }
+    .crit-letter { font-size: 2rem; color: var(--gold); font-weight: normal; line-height: 1; margin-bottom: 0.3rem; }
+    .crit-name { color: var(--white); font-size: 0.88rem; margin-bottom: 0.3rem; }
+    .crit-marks { font-family: 'Helvetica Neue', sans-serif; font-size: 0.72rem; color: var(--muted); margin-bottom: 0.5rem; }
+    .crit-desc { color: var(--muted); font-size: 0.78rem; line-height: 1.6; margin: 0; max-width: none; }
+
+    .exam-tabs { display: flex; flex-wrap: wrap; gap: 0; margin: 2rem 0 0; border-bottom: 2px solid rgba(201,168,76,0.15); }
+    .exam-tab { background: none; border: none; border-bottom: 2px solid transparent; cursor: pointer; font-family: 'Helvetica Neue', sans-serif; font-size: 0.82rem; color: var(--muted); padding: 0.7rem 1.4rem; letter-spacing: 0.04em; transition: all 0.2s; margin-bottom: -2px; }
+    .exam-tab:hover { color: var(--gold-light); }
+    .exam-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+    .exam-panel { padding-top: 2rem; display: none; }
+    .exam-panel.active { display: block; }
+
+    .prompts-list { max-width: 820px; margin-top: 1rem; display: flex; flex-direction: column; gap: 0.7rem; }
+    .prompt-card { background: var(--midnight); border-radius: 4px; padding: 1.1rem 1.4rem; border-left: 3px solid rgba(74,143,168,0.4); }
+    .prompt-text { color: var(--text); font-size: 0.88rem; font-style: italic; margin-bottom: 0.4rem; }
+    .prompt-lens { font-family: 'Helvetica Neue', sans-serif; font-size: 0.72rem; color: var(--accent); }
+
+    .framework-step { background: var(--midnight); border-radius: 4px; padding: 1.2rem 1.5rem; margin-bottom: 0.7rem; max-width: 820px; display: flex; gap: 1.2rem; align-items: flex-start; }
+    .step-num { font-family: 'Helvetica Neue', sans-serif; font-size: 1.5rem; color: var(--gold); opacity: 0.4; flex-shrink: 0; line-height: 1; }
+    .step-content h4 { color: var(--white); font-size: 0.9rem; margin-bottom: 0.3rem; }
+    .step-content p { color: var(--muted); font-size: 0.82rem; margin: 0; max-width: none; line-height: 1.6; }
+
+    .model-block { background: var(--ink); border-radius: 4px; padding: 1.5rem 1.8rem; max-width: 820px; margin-bottom: 0.8rem; }
+    .model-block h4 { color: var(--gold-light); font-size: 0.85rem; margin-bottom: 0.7rem; font-family: 'Helvetica Neue', sans-serif; letter-spacing: 0.05em; text-transform: uppercase; font-size: 0.65rem; }
+    .model-block p { color: var(--muted); font-size: 0.85rem; line-height: 1.75; margin: 0; max-width: none; }
+    .model-block p em { color: var(--gold-light); font-style: normal; font-weight: bold; }
+
+    .connectives-grid { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.2rem; max-width: 820px; }
+    .connective { font-family: 'Helvetica Neue', sans-serif; font-size: 0.78rem; padding: 0.3rem 0.8rem; border-radius: 2px; background: rgba(201,168,76,0.08); color: var(--gold-light); border: 1px solid rgba(201,168,76,0.2); }
+
+    /* TIMELINE */
+    .timeline { max-width: 720px; margin-top: 2rem; }
+    .tl-item { display: flex; gap: 1.5rem; margin-bottom: 1.5rem; align-items: flex-start; }
+    .tl-year { font-family: 'Helvetica Neue', sans-serif; font-size: 0.78rem; color: var(--gold); min-width: 52px; padding-top: 0.1rem; letter-spacing: 0.05em; }
+    .tl-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); opacity: 0.5; flex-shrink: 0; margin-top: 0.45rem; }
+    .tl-content h4 { color: var(--white); font-size: 0.88rem; margin-bottom: 0.2rem; }
+    .tl-content p { color: var(--muted); font-size: 0.82rem; margin: 0; max-width: none; }
+
+    /* FOOTER */
+    footer { background: #07111c; border-top: 1px solid rgba(201,168,76,0.15); padding: 2rem 3rem; text-align: center; }
+    footer p { color: var(--muted); font-size: 0.82rem; font-family: 'Helvetica Neue', sans-serif; max-width: none; margin: 0 0 0.3rem; }
+    footer span { color: var(--gold); }
+
+    @media (max-width: 700px) {
+      nav, .page-toc, section, .hero { padding-left: 1.2rem; padding-right: 1.2rem; }
+      .hero { padding-top: 3rem; padding-bottom: 2.5rem; }
+      nav { flex-direction: column; gap: 0.5rem; padding: 0.8rem 1.2rem; }
+      .nav-links { gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <a href="index.html">← DP English A Literature HL</a>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#context">Context</a></li>
+    <li><a href="#characters">Characters</a></li>
+    <li><a href="#themes">Themes</a></li>
+    <li><a href="#form">Form &amp; Structure</a></li>
+    <li><a href="#language">Language</a></li>
+    <li><a href="#lenses">Lenses</a></li>
+    <li><a href="#scholars">Scholars</a></li>
+    <li><a href="#quotations">Quotations</a></li>
+    <li><a href="#reading">Reading List</a></li>
+    <li><a href="#exam">Exam Prep</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-breadcrumb"><a href="index.html">Home</a> / Paper 2 Comparative Revision</div>
+  <div class="hero-tag">IB English A · Paper 2 · Comparative Essay</div>
+  <h1><em>Pygmalion</em> &amp; A Doll's <em>House</em></h1>
+  <div class="hero-sub">George Bernard Shaw (1913) · Henrik Ibsen (1879) · Comparative Revision Handout</div>
+  <div class="hero-pills">
+    <span class="hero-pill pill-shaw">Shaw · Social Comedy</span>
+    <span class="hero-pill pill-ibsen">Ibsen · Naturalist Drama</span>
+    <span class="hero-pill pill-paper2">Paper 2 · 1 hr 45 min · 20 marks</span>
+  </div>
+</div>
+
+<!-- PAGE TOC -->
+<div class="page-toc">
+  <a href="#context">01 · Context</a>
+  <a href="#characters">02 · Characters</a>
+  <a href="#themes">03 · Themes</a>
+  <a href="#form">04 · Form &amp; Structure</a>
+  <a href="#language">05 · Language &amp; Style</a>
+  <a href="#lenses">06 · Critical Lenses</a>
+  <a href="#scholars">07 · Scholars</a>
+  <a href="#quotations">08 · Quotations</a>
+  <a href="#reading">09 · Pygmalion Reading List</a>
+  <a href="#exam">10 · Exam Prep</a>
+</div>
+
+<!-- ═══════════════════════════════════════════════ 01 CONTEXT -->
+<section id="context">
+  <div class="section-label">01 · Biographical &amp; Historical Context</div>
+  <h2>The World Behind Each Play</h2>
+  <p>Both plays emerge from moments of acute social transition. Ibsen's Norway was grappling with the legal and moral constraints placed on women within bourgeois marriage; Shaw's Edwardian England was navigating the collapse of rigid class boundaries, suffragette activism, and the rise of empirical social science. Understanding these contexts is essential for Paper 2: examiners reward essays that show how literary choices are shaped by and respond to historical forces.</p>
+
+  <div class="context-two">
+    <div class="context-box">
+      <h4>Pygmalion · Shaw (1913)</h4>
+      <ul>
+        <li>First performed in Vienna (1913); London premiere 1914 with Mrs Patrick Campbell as Eliza</li>
+        <li>Edwardian England: rigid class stratification disguised by shifting economic conditions</li>
+        <li>Women's suffrage movement at its height; the suffragettes were regularly imprisoned</li>
+        <li>Henry Sweet (Oxford phonetician) was the partial model for Higgins; phonetics was a social science promising class-transcendence</li>
+        <li>Shaw had witnessed Ibsen's plays performed in London (1889) and wrote <em>The Quintessence of Ibsenism</em> (1891). Pygmalion is a Shavian answer to the Ibsen "problem play"</li>
+        <li>Shaw's Irish Protestant background gave him the perspective of an outsider on English class: Eliza mirrors Shaw's own linguistic displacement</li>
+        <li>The Pygmalion myth (Ovid, <em>Metamorphoses</em>): the sculptor who falls in love with his own creation, which Shaw deliberately subverts by refusing the romantic ending</li>
+        <li>Shaw attached a lengthy Preface and Epilogue insisting Eliza marries Freddy Eynsford-Hill, not Higgins, and so rejecting audience expectation</li>
+      </ul>
+    </div>
+    <div class="context-box">
+      <h4>A Doll's House · Ibsen (1879)</h4>
+      <ul>
+        <li>Premiered in Copenhagen, December 1879; caused immediate scandal across Europe</li>
+        <li>Norway: married women had no legal right to borrow money, sign contracts, or own property without a husband's consent (changed 1888)</li>
+        <li>Ibsen denied writing feminist propaganda ("I am not a women's rights advocate; I am a poet"), but the play was received as a feminist manifesto</li>
+        <li>Camilla Collett (Norwegian feminist novelist) and Ibsen's wife Suzannah influenced his understanding of female subjectivity</li>
+        <li>The "alternative ending" (Nora stays, for a German production 1880) was written against Ibsen's will; he called it "a barbarous outrage"</li>
+        <li>Eleanor Marx performed Nora in the famous 1886 Bloomsbury reading, with George Bernard Shaw as Krogstad, a theatrical link between the two playwrights</li>
+        <li>The play belongs to Ibsen's "social realist" cycle (alongside <em>Ghosts</em>, <em>An Enemy of the People</em>), all of which deploy retrospective revelation</li>
+        <li>The three acts follow a single Aristotelian domestic space; the action spans a few days over Christmas, and the festive setting ironically underscores domestic imprisonment</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Shared Historical Thread</h3>
+  <p>Both plays are products of the "New Woman" debate (1880s–1910s): the cultural anxiety around women's education, economic independence, and refusal of domestic roles. Ibsen's Nora enacts this by leaving; Shaw's Eliza enacts it by insisting on economic self-sufficiency and refusing to be Higgins's "creation." Both dramatists use the theatre itself as a laboratory for social experiment.</p>
+
+  <div class="divider"></div>
+
+  <div class="section-label" style="margin-top:2rem;">Chronological Context</div>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-year">1879</div><div class="tl-dot"></div>
+      <div class="tl-content"><h4>A Doll's House premieres (Copenhagen)</h4><p>Ibsen's "problem play" scandalizes bourgeois Europe; the slamming door becomes one of theatre history's most debated stage directions.</p></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1886</div><div class="tl-dot"></div>
+      <div class="tl-content"><h4>Bloomsbury reading: Eleanor Marx as Nora, Shaw as Krogstad</h4><p>Shaw's direct experience of performing in ADH shapes his understanding of Ibsen's dramatic method, which he theorizes in <em>The Quintessence of Ibsenism</em> (1891).</p></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1891</div><div class="tl-dot"></div>
+      <div class="tl-content"><h4>Shaw publishes <em>The Quintessence of Ibsenism</em></h4><p>Shaw champions Ibsen as the originator of the "discussion play": drama in which characters argue about ideas rather than simply enact plot. Pygmalion is Shaw's own contribution to this tradition.</p></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1913</div><div class="tl-dot"></div>
+      <div class="tl-content"><h4>Pygmalion premieres (Vienna Burgtheater)</h4><p>The play's London run the following year makes Mrs Patrick Campbell a star and transforms the debate about class mobility, language, and female autonomy.</p></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1938</div><div class="tl-dot"></div>
+      <div class="tl-content"><h4>Pygmalion film adaptation (Oscar for Best Screenplay)</h4><p>Shaw co-writes the screenplay; the romantic ending imposed by the film studio contradicts his epilogue. Shaw's fury reaffirms his insistence on Eliza's independence.</p></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1956</div><div class="tl-dot"></div>
+      <div class="tl-content"><h4><em>My Fair Lady</em> (Lerner &amp; Loewe musical)</h4><p>Romanticizes the Higgins/Eliza relationship and erases Shaw's feminist epilogue, a cultural counter-reading that testifies to the play's interpretive instability.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ 02 CHARACTERS -->
+<section id="characters">
+  <div class="section-label">02 · Character Analysis &amp; Comparison</div>
+  <h2>Parallel Characters Across Both Plays</h2>
+  <p>One of Paper 2's most powerful comparative moves is identifying structural parallels between characters in different works. The pairings below are deliberate: both plays operate within the genre of the "problem play" and use similar dramatic architectures to explore gender, class, and power.</p>
+
+  <div class="char-grid">
+
+    <div class="char-card">
+      <div class="char-names"><span class="badge-shaw">Pygmalion</span><em>Eliza Doolittle</em> ↔ <span class="badge-ibsen">ADH</span><em>Nora Helmer</em></div>
+      <div class="char-role">The Awakening Woman · Central Protagonist</div>
+      <p class="char-body">Both begin the play as figures who have mastered a kind of social performance (Eliza's street-cry, Nora's "skylark" domesticity), and both undergo transformation that ends in a claim for selfhood. <strong>Eliza</strong> is externally transformed (speech, dress, manner) but achieves internal independence, refusing to be Higgins's "creation." <strong>Nora</strong> undergoes an internal transformation, stripped of illusion, and ultimately refuses the domestic role she has performed for eight years. Crucially, both assert their right to educate themselves: "I must try to educate myself — you can't help me there; I must do it alone" (Nora); "I shall always be a flower girl to Professor Higgins... but I know I can be a lady to you" (Eliza to Pickering).</p>
+      <div class="char-key">Key contrast: Eliza moves from poverty into bourgeois language; Nora moves from bourgeois comfort into existential self-knowledge. Both journeys resist the romantic resolution the genre seems to promise.</div>
+    </div>
+
+    <div class="char-card">
+      <div class="char-names"><span class="badge-shaw">Pygmalion</span><em>Henry Higgins</em> ↔ <span class="badge-ibsen">ADH</span><em>Torvald Helmer</em></div>
+      <div class="char-role">The Male Authority · Architect of the Female Character</div>
+      <p class="char-body"><strong>Higgins</strong> and <strong>Torvald</strong> are both men who define women through their own desires: Higgins as a scientific experiment ("I have created this thing out of the squashed cabbage leaves of Covent Garden"), Torvald as a decorative doll ("my little squirrel," "my little lark"). Both are revealed, by the play's end, to have fundamentally misunderstood the women they thought they controlled. <strong>Higgins</strong> is at least honest about his self-absorption: he treats everyone with the same indifference. <strong>Torvald</strong> is more dangerous because his condescension is wrapped in the language of love and protection.</p>
+      <div class="char-key">Key contrast: Higgins is comically self-aware of his misanthropy; Torvald is tragically unself-aware of his paternalism. Shaw uses comedy; Ibsen uses pathos.</div>
+    </div>
+
+    <div class="char-card">
+      <div class="char-names"><span class="badge-shaw">Pygmalion</span><em>Colonel Pickering</em> ↔ <span class="badge-ibsen">ADH</span><em>Dr. Rank</em></div>
+      <div class="char-role">The Decent Male · Alternative Model of Masculinity</div>
+      <p class="char-body"><strong>Pickering</strong> consistently treats Eliza with respect, and Eliza explicitly credits him: "It was from you that I learnt really nice manners... you always treated me as a lady." <strong>Dr. Rank</strong> offers Nora genuine friendship and confesses his love, but he is dying: his decency literally cannot survive the world of the play. Both characters represent a form of humane masculinity that the dominant male figure (Higgins/Torvald) cannot embody. Their function is partly structural: they show that the female protagonist's problem is a specific model of patriarchal authority.</p>
+      <div class="char-key">Key contrast: Pickering is a living corrective to Higgins; Rank's death removes the only ethical male presence from Nora's life, precipitating her departure.</div>
+    </div>
+
+    <div class="char-card">
+      <div class="char-names"><span class="badge-shaw">Pygmalion</span><em>Alfred Doolittle</em> ↔ <span class="badge-ibsen">ADH</span><em>Nils Krogstad</em></div>
+      <div class="char-role">The Social Outsider · Comic / Moral Complication</div>
+      <p class="char-body"><strong>Alfred Doolittle</strong>, Eliza's father and a dustman, provides Shaw's most explicit Marxist critique: "I'm one of the undeserving poor... up agen middle class morality all the time." His transformation into a "gentleman" (via Higgins's ill-considered recommendation) is comic but pointed: bourgeois respectability is a trap. <strong>Krogstad</strong> is the play's apparent villain but is revealed as a man destroyed by a society that never allowed him redemption from a youthful moral lapse. Both characters expose the hypocrisy of bourgeois moral respectability: society condemns and creates its own outcasts.</p>
+      <div class="char-key">Key contrast: Doolittle refuses middle-class morality (comedic); Krogstad is redeemed by Kristine's love (melodramatic resolution Shaw would have satirized).</div>
+    </div>
+
+    <div class="char-card">
+      <div class="char-names"><span class="badge-shaw">Pygmalion</span><em>Mrs. Higgins</em> ↔ <span class="badge-ibsen">ADH</span><em>Kristine Linde</em></div>
+      <div class="char-role">The Lucid Woman · Voice of Experienced Female Realism</div>
+      <p class="char-body"><strong>Mrs. Higgins</strong> sees through her son's experiment from the start: "You certainly are a pretty pair of babies playing with your live doll." She is the only character who correctly predicts that Eliza will need to be provided for after the experiment ends. <strong>Kristine Linde</strong> has achieved something Nora has not: genuine economic self-reliance, through sacrifice. Her return to the play serves as a structural mirror: she has lived Nora's potential future, working and surviving alone.</p>
+      <div class="char-key">Key contrast: Mrs. Higgins is an observer-corrective; Kristine is a parallel-life mirror. Both illuminate the protagonist's situation from a position of earned wisdom.</div>
+    </div>
+
+    <div class="char-card">
+      <div class="char-names"><span class="badge-shaw">Pygmalion</span><em>Freddy Eynsford-Hill</em> ↔ <span class="badge-ibsen">ADH</span><em>Torvald (re-imagined)</em></div>
+      <div class="char-role">The Romantic Option · The "Weak" Man</div>
+      <p class="char-body"><strong>Freddy</strong> is Shaw's deliberate anti-romantic hero: financially incompetent, emotionally devoted to Eliza, content to be guided by her. Shaw's epilogue insists Eliza marries Freddy because he will not dominate her. The romantic audience finds this unsatisfying; Shaw finds it honest. This parallels the question ADH raises: what would a marriage of equals look like? Ibsen leaves the question open (Nora leaves); Shaw answers it with Freddy, and the answer is deliberately anti-climactic.</p>
+      <div class="char-key">Key comparative point: Both plays refuse the "strong man" romantic resolution. Ibsen's refusal is tragic; Shaw's is satiric.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ 03 THEMES -->
+<section id="themes">
+  <div class="section-label">03 · Comparative Themes</div>
+  <h2>Ten Themes for Comparative Analysis</h2>
+  <p>Organising your Paper 2 essay around a shared theme, rather than moving through one play and then the other, is the mark of a top-band response. Each theme below offers a comparative angle with textual anchors for both plays.</p>
+
+  <div class="themes-grid">
+
+    <div class="theme-card">
+      <div class="theme-name">1 · Female Identity &amp; Self-Authorship</div>
+      <p class="theme-body">Both plays dramatise women who must construct a self that social structures have denied them. The question in each case is: who has the right to define a woman's identity?</p>
+      <p class="theme-compare"><span class="pyg">Shaw:</span> Eliza's identity is literally manufactured by Higgins's linguistic project, but she insists, "I won't be passed over as if I were no account." The epilogue confirms she becomes a shopkeeper: an economic self. <span class="adh">Ibsen:</span> Nora's final speech ("I must find out for myself") is the canonical statement of female self-authorship in Western drama. She rejects the identities imposed by father and husband alike.</p>
+    </div>
+
+    <div class="theme-card">
+      <div class="theme-name">2 · Language as Power &amp; Class</div>
+      <p class="theme-body">Language is a site of social control in both plays, though each dramatist explores this differently: Shaw through phonetics as overt class marker; Ibsen through the pet names and registers that infantilise Nora.</p>
+      <p class="theme-compare"><span class="pyg">Shaw:</span> Cockney dialect marks Eliza as "undeserving poor"; acquiring Received Pronunciation grants social access but also alienates her from her origin ("I have forgotten my own people"). Higgins weaponises linguistic expertise. <span class="adh">Ibsen:</span> Torvald's pet names ("skylark," "squirrel," "little featherhead") function as a grammar of control: they reduce Nora to the diminutive. When she refuses these names in Act 3, she enacts linguistic liberation.</p>
+    </div>
+
+    <div class="theme-card">
+      <div class="theme-name">3 · Social Performance &amp; the Mask</div>
+      <p class="theme-body">Both plays explore the theatricality of social identity, the idea that gender and class are performed rather than innate.</p>
+      <p class="theme-compare"><span class="pyg">Shaw:</span> The entire premise of Pygmalion is that a "lady" is made through performance. The Ascot scene and the Ambassador's party are theatrical tests; the audience watches a performance within a performance. <span class="adh">Ibsen:</span> The tarantella sequence is the play's most explicit theatrical metaphor: Nora dances "as if her life depended on it," performing abandon while internally disintegrating. The whole marriage is a theatrical façade: "We have been acting." Johnston (1991) argues the three acts themselves enact three theatrical registers: melodrama, recognition, metaphysical revelation.</p>
+    </div>
+
+    <div class="theme-card">
+      <div class="theme-name">4 · Education &amp; Transformation</div>
+      <p class="theme-body">What does it mean to educate a woman? Both plays interrogate the politics of female education: who controls it, what it produces, and who benefits.</p>
+      <p class="theme-compare"><span class="pyg">Shaw:</span> Higgins's "education" of Eliza is an act of appropriation disguised as benevolence; he takes the credit. Eliza rejects this: "I know that I shall always be a flower girl to Professor Higgins because he always treats me as a flower girl." Pickering's respectful treatment is the true education. <span class="adh">Ibsen:</span> Nora resolves to educate herself: "I must try to educate myself — you can't help me there." Her self-education is moral and philosophical, a discovery of her own ignorance of "the world and of herself."</p>
+    </div>
+
+    <div class="theme-card">
+      <div class="theme-name">5 · Marriage, Domesticity &amp; the Doll's House</div>
+      <p class="theme-body">Both plays examine marriage as an institution that deforms the women within it through economic dependency, infantilisation, and the performance of happiness.</p>
+      <p class="theme-compare"><span class="pyg">Shaw:</span> Shaw refuses to end his play in marriage (despite audience pressure for a Higgins-Eliza union), insisting in the Epilogue that such a marriage would recreate the power imbalance the play critiques. Eliza's marriage to Freddy is Shaw's version of an egalitarian alternative. <span class="adh">Ibsen:</span> "Our home has been nothing but a playroom. I have been your doll-wife, just as at home I was Papa's doll-child." Nora's metaphor of the "doll's house" gives the play its title and its central image of bourgeois marriage as a beautiful cage.</p>
+    </div>
+
+    <div class="theme-card">
+      <div class="theme-name">6 · Class Mobility &amp; Social Hypocrisy</div>
+      <p class="theme-body">Both plays expose the gap between bourgeois ideology (merit, virtue, respectability) and bourgeois practice (money, inheritance, social reputation).</p>
+      <p class="theme-compare"><span class="pyg">Shaw:</span> Alfred Doolittle's comic transformation into "a prisoner of middle class morality" after Higgins's legacy satirises the idea that class is a moral rather than economic category. Eliza's transformation reveals that "ladyhood" is simply performance backed by money. <span class="adh">Ibsen:</span> Torvald's obsession with reputation ("No man can be expected to sacrifice his honour for his wife") reveals bourgeois morality as self-interest masquerading as principle. Krogstad is destroyed for threatening Torvald's social image.</p>
+    </div>
+
+    <div class="theme-card">
+      <div class="theme-name">7 · Money, Debt &amp; Economic Subjugation</div>
+      <p class="theme-body">Economic structures enable and constrain both protagonists; money drives each plot.</p>
+      <p class="theme-compare"><span class="pyg">Shaw:</span> Eliza's situation is entirely economic from the start: she pays Higgins five shillings, is funded by Pickering, and the experiment's success leaves her economically stranded ("What's to become of me?"). Her independence is achieved when she sets up a flower shop. <span class="adh">Ibsen:</span> Nora's secret loan, forged to save Torvald's life, is the dramatic engine of the play. Ibsen shows how women's legal exclusion from financial life forced them into deceit. The money plot strips away the romantic surface of the Helmer marriage.</p>
+    </div>
+
+    <div class="theme-card">
+      <div class="theme-name">8 · The Myth of the Creator &amp; the Created</div>
+      <p class="theme-body">Both plays engage explicitly with the myth of Pygmalion: the (male) artist who creates a (female) object and mistakes creation for relationship.</p>
+      <p class="theme-compare"><span class="pyg">Shaw:</span> Higgins openly claims his Pygmalion role: "I have created this thing." Shaw's Epilogue directly references the myth, noting that "Galatea never does quite like Pygmalion: his relation to her is too godlike to be altogether agreeable." The play is Shaw's deliberate deconstruction of the male-creator fantasy. <span class="adh">Ibsen:</span> Torvald has been Nora's Pygmalion too, shaping her into his ideal doll-wife. Nora's recognition is the Galatea who realises she was always alive: "I believe that before all else I am a reasonable human being."</p>
+    </div>
+
+    <div class="theme-card">
+      <div class="theme-name">9 · The Problem of the Ending</div>
+      <p class="theme-body">Both plays are famous for their controversial, anti-romantic endings, which refuse resolution and demand that the audience engage with an uncomfortable question.</p>
+      <p class="theme-compare"><span class="pyg">Shaw:</span> The stage ending leaves ambiguous whether Eliza will return; Shaw's Epilogue insists she does not. Audiences and directors routinely defy Shaw, staging a romantic reunion; this reception history illustrates how powerfully the play's own social critique is resisted. <span class="adh">Ibsen:</span> The slamming door is one of theatre's most famous exits. The German alternative ending (Nora stays) was demanded by a producer who found Nora's departure immoral, which reveals how radical Ibsen's original choice was. The ending refuses to resolve the "woman question" it raises.</p>
+    </div>
+
+    <div class="theme-card">
+      <div class="theme-name">10 · Genre Conventions &amp; their Subversion</div>
+      <p class="theme-body">Both playwrights use and simultaneously undermine theatrical genre conventions (the "well-made play," romantic comedy, melodrama) to produce their critique.</p>
+      <p class="theme-compare"><span class="pyg">Shaw:</span> Pygmalion's five-act structure resembles a romantic comedy (mismatched pair + transformation + resolution), but Shaw refuses the expected marriage. The preface and epilogue, unusual formal additions, allow Shaw to argue with his own play's reception. <span class="adh">Ibsen:</span> Johnston (1991) argues ADH deploys three theatrical registers across its three acts: Act 1 as melodrama (villain threatens heroine), Act 2 as theatrical self-consciousness, Act 3 as metaphysical discussion, deliberately breaking the "well-made play" form from within.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ 04 FORM & STRUCTURE -->
+<section id="form">
+  <div class="section-label">04 · Form, Structure &amp; Genre</div>
+  <h2>How Each Play is Built</h2>
+  <p>Paper 2 Criterion B specifically rewards analysis of how authors' choices of <strong>form, structure, and language</strong> shape meaning. The structural differences between Pygmalion and A Doll's House enact different philosophies of drama.</p>
+
+  <div class="compare-grid">
+    <div class="compare-col pyg">
+      <div class="compare-header">Pygmalion · Shaw</div>
+      <ul>
+        <li><strong>Five acts</strong>, expansive and episodic; they cover months of transformation (Act 1: street; Act 2: Wimpole St.; Acts 3–4: social tests; Act 5: confrontation)</li>
+        <li><strong>Prose comedy</strong> with Shavian wit: rapid repartee, rhetorical speeches, comic reversals</li>
+        <li><strong>Preface + Epilogue</strong>, a paratextual apparatus of unusual extent; Shaw uses these to control interpretation and argue with his audience</li>
+        <li><strong>Stage directions as essays</strong>. Shaw's elaborate stage directions describe character psychology, social context, and authorial intention in prose equivalent to a novel</li>
+        <li><strong>Open structure</strong>: time passes between acts; the play moves forward (prospective: what will Eliza become?)</li>
+        <li><strong>Genre subversion:</strong> adopts romantic comedy arc but refuses romantic resolution; uses mythic frame (Pygmalion/Galatea) ironically</li>
+        <li><strong>The "discussion play"</strong> (Shaw's term, derived from Ibsen): Act 5 is largely dialectical debate between Eliza and Higgins about the nature of their relationship</li>
+        <li><strong>Multiple public/private spaces</strong> (the street, drawing room, garden party, Embassy), each registering a different social register and test of Eliza's performance</li>
+      </ul>
+    </div>
+    <div class="compare-col adh">
+      <div class="compare-header">A Doll's House · Ibsen</div>
+      <ul>
+        <li><strong>Three acts</strong>, tight and compressed; the entire action takes place over three days at Christmas (unity of time approximated)</li>
+        <li><strong>Single domestic setting</strong>: the Helmer living room, whose confinement of space enacts Nora's confinement of life</li>
+        <li><strong>Unity of action</strong>. One central crisis (the bond/letter) drives all three acts, and no subplots distract from the main confrontation</li>
+        <li><strong>Retrospective revelation</strong>: the audience progressively discovers what has already happened (Nora's loan, the forgery) rather than watching events unfold; this is Ibsen's signature structural innovation</li>
+        <li><strong>Johnston's "Three Stages"</strong> (1991): Act 1 = melodrama (Krogstad as villain, Nora as threatened heroine); Act 2 = theatrical self-consciousness (the tarantella, Nora as performer); Act 3 = metaphysical discussion (the departure)</li>
+        <li><strong>The "well-made play" (pièce bien faite)</strong>. Ibsen inherits Scribe's tight plotting but uses it to expose bourgeois illusion rather than confirm it</li>
+        <li><strong>Prose naturalism</strong>: dialogue mimics natural speech; characters talk across each other, leave sentences unfinished, change subject under emotional pressure</li>
+        <li><strong>Symbolic objects</strong> all carry structural weight: the Christmas tree (domestic ideal decaying), the letter box (the intrusion of the outside world), the tarantella costume</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Key Structural Comparative Point</h3>
+  <p>Where Ibsen's structure works <em>backwards</em> (excavating the past to reveal the foundation of the present), Shaw's structure works <em>forwards</em> (following a transformation through time). This difference enacts their respective philosophies: Ibsen believes truth is buried beneath social surfaces; Shaw believes truth is constructed through social argument.</p>
+</section>
+
+<!-- ═══════════════════════════════════════════════ 05 LANGUAGE & STYLE -->
+<section id="language">
+  <div class="section-label">05 · Language, Style &amp; Dramatic Devices</div>
+  <h2>The Craft of Each Playwright</h2>
+  <p>In Paper 2, "analysis" means showing <em>how</em> specific language choices create meaning, rather than reporting <em>what</em> happens. The following devices are particularly productive for comparative analysis, as both playwrights employ them but to distinctly different effects.</p>
+
+  <div class="tech-grid">
+
+    <div class="tech-card">
+      <div class="tech-header" onclick="toggleTech(this)">
+        <span class="tech-name">Dialect &amp; Register</span>
+        <span class="tech-toggle">▸ expand</span>
+      </div>
+      <div class="tech-body">
+        <p class="tech-def"><strong>Shaw</strong> uses phonetic spelling (Cockney dialect) in Eliza's early speech as a visual and sonic marker of class difference, a theatrical device that makes the audience hear inequality. As Eliza acquires RP, her language transforms but so does her access to social spaces. Language is literally the play's subject matter.</p>
+        <p class="tech-example">"I'm a good girl, I am." / "The rain in Spain stays mainly in the plain." The pivot runs from self-protective assertion to phonetic exercise to, finally, authentic self-expression.</p>
+        <p class="tech-def"><strong>Ibsen</strong> uses register shifts more subtly. Torvald's pet-name register ("my little skylark," "little featherhead") is contrasted with Nora's own register in Act 3, when she speaks in full sentences, without diminutives: "I have been greatly wronged, Torvald." The shift in register is the linguistic enactment of her awakening.</p>
+        <p class="tech-example">"Now you must go": Nora's dismissal of Torvald in Act 3. The syntax is reversed; it is she who now directs him.</p>
+      </div>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-header" onclick="toggleTech(this)">
+        <span class="tech-name">Dramatic Irony</span>
+        <span class="tech-toggle">▸ expand</span>
+      </div>
+      <div class="tech-body">
+        <p class="tech-def"><strong>Shaw</strong> uses dramatic irony throughout the social performance scenes: the audience, unlike the party guests, knows Eliza is a Cockney flower girl. This creates a satirical comedy: what does it say about class if Eliza can "pass" simply by speaking differently? The irony is directed at the arbitrariness of class distinction.</p>
+        <p class="tech-example">At Ascot, Eliza's grammatically perfect but semantically inappropriate remarks about a relative's death ("She had a drop, and it was her downfall") are comic precisely because the audience understands the gap between form and content.</p>
+        <p class="tech-def"><strong>Ibsen</strong> deploys retrospective dramatic irony; we know, before Torvald does, the nature of the letter. The audience watches Torvald perform his heroic self-image ("If the crisis comes, you will find I am man enough to take everything upon myself") knowing the letter will expose this as hollow posturing.</p>
+        <p class="tech-example">Nora's preparations for suicide while playing with her children; the audience understands what Torvald cannot see.</p>
+      </div>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-header" onclick="toggleTech(this)">
+        <span class="tech-name">Symbolic Objects &amp; Stage Properties</span>
+        <span class="tech-toggle">▸ expand</span>
+      </div>
+      <div class="tech-body">
+        <p class="tech-def">Both playwrights invest physical objects with symbolic weight, converting the material surface of realism into metaphor.</p>
+        <p class="tech-example"><strong>Pygmalion:</strong> Eliza's flower basket (her original identity and livelihood); her dress transformation (the body as class text); Higgins's phonograph and recording equipment (the reduction of a human voice to data). The final image of the play, Eliza's absence, is itself a kind of symbolic object: the shape of what she has refused to be.</p>
+        <p class="tech-example"><strong>A Doll's House:</strong> The Christmas tree (domestic ideal; it is stripped and decaying by Act 3, Ibsen's most explicit symbolic stage direction); the letter box (the intrusion of the external, legal world into the sealed domestic sphere); Nora's tarantella costume (the performance of femininity literally worn on her body); the bond/promissory note (the material document of women's legal non-existence).</p>
+      </div>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-header" onclick="toggleTech(this)">
+        <span class="tech-name">The "Discussion" / Argument Scene</span>
+        <span class="tech-toggle">▸ expand</span>
+      </div>
+      <div class="tech-body">
+        <p class="tech-def">Both plays culminate in a long argumentative confrontation between the central characters, a "discussion" in Shaw's technical sense, where the audience witnesses a debate about ideas rather than a plot resolution.</p>
+        <p class="tech-example"><strong>Pygmalion Act 5:</strong> Eliza and Higgins's extended argument about what she owes him; she refuses his terms; he refuses to acknowledge her independence. The scene ends without resolution: Higgins calls out his shopping list, and Eliza may or may not comply. Shaw refuses to resolve the debate theatrically.</p>
+        <p class="tech-example"><strong>ADH Act 3:</strong> Nora and Torvald's "serious conversation" is the longest discussion scene in Ibsen. Nora methodically dismantles Torvald's self-understanding and her own. Shaw was directly influenced by this scene when theorizing the "discussion play" in his 1891 essay on Ibsen.</p>
+      </div>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-header" onclick="toggleTech(this)">
+        <span class="tech-name">Tone &amp; Comic vs. Tragic Register</span>
+        <span class="tech-toggle">▸ expand</span>
+      </div>
+      <div class="tech-body">
+        <p class="tech-def">This is a crucial formal difference. Shaw deploys wit and satire to deliver social critique; Ibsen uses pathos and emotional realism. Both modes are politically purposeful.</p>
+        <p class="tech-example"><strong>Shaw:</strong> Higgins's self-congratulatory speeches are funny, and the comedy is the critique. The audience laughs at Higgins's obliviousness, which makes the laughter complicit in the system he represents. Shaw's comedy makes the audience uncomfortable about its own amusement.</p>
+        <p class="tech-example"><strong>Ibsen:</strong> The emotional realism of Nora's final exit makes the audience feel the weight of what she is doing. Unlike Shaw's satire, Ibsen's pathos refuses the audience a comfortable distance; the "slamming door" is designed to reverberate in the auditorium and in the audience's conscience.</p>
+        <p class="tech-def">Comparative angle: <em>Both playwrights use their chosen register, comedy and pathos respectively, to deny the audience comfortable resolution.</em></p>
+      </div>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-header" onclick="toggleTech(this)">
+        <span class="tech-name">Stage Directions &amp; Authorial Voice</span>
+        <span class="tech-toggle">▸ expand</span>
+      </div>
+      <div class="tech-body">
+        <p class="tech-def">Both playwrights use stage directions as a literary genre in their own right, but in strikingly different ways.</p>
+        <p class="tech-example"><strong>Shaw:</strong> His stage directions are quasi-novelistic essays, full of irony, social commentary, and direct address to the reader/director. The introduction of Higgins ("a professor of phonetics... He is of the energetic, scientific type, heartily, even violently interested in everything that can be studied as a scientific subject...") is a character analysis. Shaw uses stage directions to control interpretation.</p>
+        <p class="tech-example"><strong>Ibsen:</strong> Stage directions are spare and precise; they indicate exactly what needs to be visible. "She takes off her hat and coat." The minimalism forces the actor and director to fill the silences. The famous final direction "A door is heard shutting" is all that marks the most famous exit in theatre history.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ 06 CRITICAL LENSES -->
+<section id="lenses">
+  <div class="section-label">06 · Critical Lenses</div>
+  <h2>Reading Both Plays Through Theory</h2>
+  <p>A top Paper 2 response demonstrates an understanding of how different critical frameworks illuminate different aspects of the texts. Use these lenses to generate comparative arguments of your own.</p>
+
+  <div class="lenses-grid">
+
+    <div class="lens-card feminist">
+      <div class="lens-label">Feminist Criticism</div>
+      <div class="lens-title">Female Awakening &amp; Patriarchal Constraint</div>
+      <p class="lens-body">Both plays are foundational feminist texts, though both playwrights complicated this reading. Ibsen denied writing feminist propaganda; Shaw's feminism is mediated through satire rather than earnest advocacy. Gail Finney (in the <em>Cambridge Companion to Ibsen</em>) documents the enthusiastic feminist reception of ADH across Europe: it was performed in radical and suffragette circles, with Eleanor Marx as the first notable English Nora. J. Ellen Gainor argues in <em>Shaw's Daughters</em> (1991) that Shaw constructed female characters as intellectual equals whose ultimate freedom he championed, while through the Higgins figure he replicated the male-mentor pattern he was critiquing. The plays thus offer a feminist reading AND a critique of the limits of male-authored feminism.</p>
+      <div class="lens-qs">
+        <div class="lens-q">How does each playwright use female characters to challenge the ideology of "separate spheres"?</div>
+        <div class="lens-q">To what extent can a play written by a man enact a genuinely feminist vision?</div>
+        <div class="lens-q">Compare the moments of female "awakening" in each play: what triggers them, and what do they cost?</div>
+      </div>
+    </div>
+
+    <div class="lens-card marxist">
+      <div class="lens-label">Marxist / Materialist Criticism</div>
+      <div class="lens-title">Class, Money &amp; Bourgeois Ideology</div>
+      <p class="lens-body">Both plays expose how bourgeois ideology (respectability, moral virtue, the sanctity of marriage) serves economic interests. In Pygmalion, Alfred Doolittle's complaint against "middle class morality" is Shaw at his most explicitly Marxist: virtue is the luxury of those who do not need money. Eliza's transformation shows that "class" is produced by access to capital and education. In ADH, Nora's crime, forging a bond to save her husband's life, reveals how women's legal exclusion from financial life forced dishonesty upon them. Torvald's horror at Krogstad's letter is economic fear: "My career, my reputation."</p>
+      <div class="lens-qs">
+        <div class="lens-q">How does each play show that "morality" is a function of economic position?</div>
+        <div class="lens-q">Compare the role of money and debt in driving each plot: what does this reveal about the characters' "freedom"?</div>
+        <div class="lens-q">How does Shaw's satire of class differ from Ibsen's critique of bourgeois domestic ideology?</div>
+      </div>
+    </div>
+
+    <div class="lens-card psycho">
+      <div class="lens-label">Psychoanalytic Criticism</div>
+      <div class="lens-title">Narcissism, Repression &amp; the Unconscious</div>
+      <p class="lens-body">Carol Strongin Tufts ("Recasting A Doll House: Narcissism as Character Motivation," <em>Comparative Drama</em>, 1986) argues that Nora's behaviour displays DSM criteria for Narcissistic Personality Disorder: grandiosity (her secret heroism narrative), exhibitionism (the tarantella), lack of empathy (her use of Kristine and Rank), and entitlement. This reading complicates the purely sympathetic feminist Nora and enriches her as a psychologically complex figure shaped by a society that channelled women's intelligence into manipulation. Similarly, Higgins in Pygmalion can be read as a narcissist who cannot distinguish between Eliza as a person and Eliza as his project; his inability to understand her anger is the mark of classic narcissistic non-empathy.</p>
+      <div class="lens-qs">
+        <div class="lens-q">How does the concept of narcissism (Tufts) complicate a straightforwardly feminist reading of Nora?</div>
+        <div class="lens-q">Compare Higgins and Torvald as variants of male narcissism: what differs in how each playwright renders this psychologically?</div>
+        <div class="lens-q">What does the tarantella reveal about the relationship between repression and performance?</div>
+      </div>
+    </div>
+
+    <div class="lens-card postcolonial">
+      <div class="lens-label">Postcolonial Criticism</div>
+      <div class="lens-title">Language, Otherness &amp; the Colonised Voice</div>
+      <p class="lens-body">Declan Kiberd (<em>Inventing Ireland</em>, 1995) reads Shaw through the lens of Irish colonial experience: as an Irishman writing in England, Shaw understood linguistic "otherness" from the inside. Eliza Doolittle, whose Cockney accent marks her as socially "other," mirrors the position of the Irish or colonial subject whose native speech is treated as inferior. Higgins, the English phonetician who "corrects" Eliza's speech, becomes a figure of linguistic colonialism. This lens opens a productive comparative question: in ADH, Norwegian provincial society similarly imposes on Nora a discourse of femininity that functions as a colonial discourse, defining the "native" (woman) by the norms of the coloniser (bourgeois patriarchy).</p>
+      <div class="lens-qs">
+        <div class="lens-q">How does Kiberd's postcolonial reading of Shaw enrich or complicate Eliza's story?</div>
+        <div class="lens-q">In what ways does each play stage the experience of having one's "native" identity overwritten by a dominant discourse?</div>
+        <div class="lens-q">Compare the ending of each play as an act of "decolonisation": is this a useful metaphor?</div>
+      </div>
+    </div>
+
+    <div class="lens-card historicist">
+      <div class="lens-label">New Historicism</div>
+      <div class="lens-title">Plays as Historical Documents</div>
+      <p class="lens-body">New historicism insists that literary texts are embedded in history: they are produced by, and in turn produce, the cultural conditions of their moment. Pygmalion (1913) is a document of the pre-First World War moment when class was still rigid enough to be satirised but also permeable enough to be "performed"; the social anxiety about upward mobility is legible in the play's central experiment. ADH (1879) is a document of the specifically Norwegian legal moment (married women's property rights were achieved in Norway in 1888) and of the pan-European feminist movement. Reading both plays historicistically recovers the radical provocation they represented when first performed.</p>
+      <div class="lens-qs">
+        <div class="lens-q">What specific historical conditions does each play respond to, and how are these encoded in its form?</div>
+        <div class="lens-q">How does knowing the historical context of each play's first performance change your understanding of its "radical" quality?</div>
+        <div class="lens-q">Compare the different ways in which each play was censored, altered, or resisted in its reception history.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ 07 SCHOLARS -->
+<section id="scholars">
+  <div class="section-label">07 · Key Scholars &amp; Critics</div>
+  <h2>Critical Voices to Deploy in Paper 2</h2>
+  <p>Integrating scholarly perspectives is expected at HL. Deploy these critics to support, nuance, or argue against your own interpretations, never simply to summarise. The most impressive essays use critics to generate tension.</p>
+
+  <div class="scholars-list">
+
+    <div class="scholar-item ibsen">
+      <div class="scholar-name">Brian Johnston</div>
+      <div class="scholar-work">"Three Stages of A Doll House," <em>Comparative Drama</em> 25.4 (Winter 1991–92), pp. 311–328</div>
+      <p class="scholar-arg">Johnston argues that the three acts of ADH represent three progressive theatrical stages, situating Ibsen within a post-Kantian German dramatic-philosophic tradition (from Lessing to Brecht). Act 1 operates as melodrama: conventional theatrical pleasure, the sympathetic heroine threatened by the unscrupulous villain (Krogstad). Act 2 introduces self-consciousness about theatrical illusion; the tarantella is Nora performing performance. Act 3 achieves what Johnston calls metaphysical self-knowledge, in which the "discussion" breaks the conventions of realist drama and stages a philosophical confrontation. Johnston draws on Benjamin Bennett's <em>Modern Drama and German Classicism</em> to argue that Ibsen's theatrical devices are meant to be recognised as devices, creating a "theater of truth" beyond social realism. This is a powerful framework for discussing ADH's form and for comparative analysis with Pygmalion, which Shaw himself described in terms of three theatrical traditions: comedy, romance, and "discussion."</p>
+    </div>
+
+    <div class="scholar-item ibsen">
+      <div class="scholar-name">Carol Strongin Tufts</div>
+      <div class="scholar-work">"Recasting A Doll House: Narcissism as Character Motivation in Ibsen's Play," <em>Comparative Drama</em> 20.2 (Summer 1986), pp. 140–159</div>
+      <p class="scholar-arg">Tufts opens by citing Ibsen's own disavowal of feminist propaganda and argues that a contemporary production of ADH might productively reframe the play through the clinical lens of narcissistic personality disorder (using DSM criteria: grandiosity, preoccupation with fantasies of unlimited success, exhibitionism, lack of empathy, sense of entitlement, exploitativeness). She applies this to Nora's relationships with Kristine Linde (whom she uses instrumentally), Dr. Rank (whom she manipulates with exhibitionistic flirtation), and Torvald (toward whom she displays entitlement and lack of empathy). This reading is valuable for Paper 2 because it opens an alternative to the purely sympathetic feminist Nora and produces a more psychologically complex character, one who has been shaped by a society that channelled women's intelligence into manipulation. It also complicates the Higgins/Nora comparison: both may be narcissists, but they are produced by different social conditions.</p>
+    </div>
+
+    <div class="scholar-item ibsen">
+      <div class="scholar-name">Gail Finney</div>
+      <div class="scholar-work">"Ibsen and Feminism," in <em>The Cambridge Companion to Ibsen</em>, ed. James McFarlane (Cambridge UP)</div>
+      <p class="scholar-arg">Finney documents the enthusiastic feminist reception of ADH across Europe, noting that the 1886 Bloomsbury reading (Eleanor Marx as Nora, George Bernard Shaw as Krogstad) directly linked the two playwrights in the feminist tradition. She covers Ibsen's own complex relationship to feminism (he denied writing propaganda, but supported married women's property rights and was influenced by Camilla Collett), and traces the alternative-ending controversy (Nora stays for the German production, Ibsen's "barbarous outrage"). The essay establishes ADH as culturally foundational for what Finney calls the feminist drama of awakening, while resisting a simple equation of Ibsen with feminist doctrine. A useful scholarly counterweight to purely biographical or theatrical readings.</p>
+    </div>
+
+    <div class="scholar-item shaw">
+      <div class="scholar-name">J. Ellen Gainor</div>
+      <div class="scholar-work"><em>Shaw's Daughters: Dramatic and Narrative Constructions of Gender</em> (University of Michigan Press, 1991)</div>
+      <p class="scholar-arg">Gainor's feminist study is the essential scholarly text on gender in Shaw. She argues that Shaw constructed female characters, including Eliza, as "daughters": figures he educated, shaped, and intellectually championed, but who remained trapped within a male-created narrative. The Higgins-Eliza relationship replicates, within the play, the very paternalism the play appears to critique. Gainor uses psychoanalytic and gender theory alongside close dramatic analysis. Her reading of Pygmalion's ending is particularly relevant: she argues that Eliza's independence is genuine, but that Shaw's own narrative authority (the Epilogue) continues to control and define her: the author as Pygmalion of his own creation. This is a direct parallel to Torvald's relationship with Nora.</p>
+    </div>
+
+    <div class="scholar-item shaw">
+      <div class="scholar-name">Raymond Williams</div>
+      <div class="scholar-work"><em>Drama from Ibsen to Brecht</em> (Oxford University Press, 1968)</div>
+      <p class="scholar-arg">Williams's comparative study is uniquely valuable for Paper 2 because it discusses both Ibsen and Shaw within the same critical framework. Williams argues that Shaw's drama transforms the Ibsenite "problem play" through comedy and wit but shares Ibsen's fundamental critique of bourgeois society. Where Ibsen uses emotional realism and pathos to expose social contradiction, Shaw uses intellectual comedy; both, Williams argues, refuse to offer resolution. Williams's concept of the drama of "social naturalism" (plays that use realistic surfaces to expose the structures beneath) applies to both ADH and Pygmalion. His analysis of how Shaw adapted Ibsen's "discussion" technique is directly relevant to comparing the Act 3 scenes of each play.</p>
+    </div>
+
+    <div class="scholar-item shaw">
+      <div class="scholar-name">Declan Kiberd</div>
+      <div class="scholar-work"><em>Inventing Ireland: The Literature of the Modern Nation</em> (Harvard University Press, 1995)</div>
+      <p class="scholar-arg">Kiberd's postcolonial reading of Shaw argues that as an Irishman writing in and about England, Shaw understood linguistic "otherness" from the inside. Eliza Doolittle, whose Cockney accent marks her as socially inferior, mirrors the colonial subject whose native speech is deemed defective by the colonising culture. Higgins, the English phonetician, becomes a figure of linguistic authority whose "correction" of Eliza's speech is an act of cultural colonisation. Kiberd's framework opens the postcolonial angle in Pygmalion and provides a rich comparative lens alongside the class and gender readings. The chapter on Shaw runs to approximately 40 pages and is one of the most sophisticated available analyses of Shaw's Irish identity and its impact on his drama.</p>
+    </div>
+
+    <div class="scholar-item shaw">
+      <div class="scholar-name">Margery Morgan</div>
+      <div class="scholar-work"><em>The Shavian Playground: An Exploration of the Art of George Bernard Shaw</em> (Methuen, 1972)</div>
+      <p class="scholar-arg">Morgan's study of Shaw's dramatic art contains a substantial chapter on Pygmalion that analyses the play across three dimensions: the mythic (the Pygmalion/Galatea story and its deliberate subversion), the social (class and phonetics as a critique of Edwardian society), and the linguistic (Shaw's use of dialect and register as dramatic and comic devices). Morgan is attentive to Shaw's ambivalence about his own heroine: his epilogue simultaneously liberates and controls Eliza. Her analysis of how Shaw's comic tone both enables and limits his social critique is directly applicable to comparison with Ibsen's more straightforwardly earnest approach.</p>
+    </div>
+
+    <div class="scholar-item both">
+      <div class="scholar-name">Michael Holroyd</div>
+      <div class="scholar-work"><em>Bernard Shaw, Vol. 2: The Pursuit of Power, 1898–1918</em> (Chatto &amp; Windus, 1989)</div>
+      <p class="scholar-arg">Holroyd's definitive four-volume biography covers Pygmalion's genesis in considerable depth, including Shaw's relationship with Mrs Patrick Campbell (who created Eliza), his deliberate resistance to the romantic ending, and his fury at the film adaptation's imposed resolution. Holroyd situates Pygmalion within Shaw's extended engagement with Ibsen and the "New Woman" debate. Biographical context from Holroyd should be used carefully in Paper 2, to illuminate specific authorial choices (such as the Epilogue's insistence on Eliza's independence). Holroyd also discusses how Shaw's Irish background shaped his outsider perspective on English class, which is useful alongside Kiberd.</p>
+    </div>
+
+    <div class="scholar-item ibsen">
+      <div class="scholar-name">Joan Templeton</div>
+      <div class="scholar-work"><em>Ibsen's Women</em> (Cambridge University Press, 1997)</div>
+      <p class="scholar-arg">Templeton's study argues against critics who have minimised the feminist dimension of Ibsen's work. She reads Nora as a paradigm of female awakening that transcends its historical moment, a character whose "discovery" of her own selfhood is the central drama of bourgeois modernity. Templeton directly engages with critics (including those who see Nora as narcissistic or psychologically unstable) and argues that these readings are symptomatic of the very patriarchal culture the play critiques: the woman who insists on selfhood is diagnosed as disordered. This debate between Templeton and Tufts is ideal material for a Paper 2 essay on the "ambiguity" of Nora's awakening.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ 08 QUOTATIONS -->
+<section id="quotations">
+  <div class="section-label">08 · Quotations Bank</div>
+  <h2>Essential Textual Evidence</h2>
+  <p>In Paper 2 you write without the texts. These quotations should be memorised and understood analytically, as literary objects: consider what specific words, syntax, or imagery make each quotation significant beyond its content.</p>
+
+  <div class="quotes-grid">
+
+    <div class="quote-card pyg">
+      <div class="quote-text">"The difference between a lady and a flower girl is not how she behaves, but how she's treated."</div>
+      <div class="quote-source">Eliza Doolittle, Act 5 · Pygmalion</div>
+      <div class="quote-tags"><span class="quote-tag">class</span><span class="quote-tag">identity</span><span class="quote-tag">treatment vs. behaviour</span></div>
+    </div>
+
+    <div class="quote-card pyg">
+      <div class="quote-text">"I have created this thing out of the squashed cabbage leaves of Covent Garden."</div>
+      <div class="quote-source">Henry Higgins, Act 5 · Pygmalion</div>
+      <div class="quote-tags"><span class="quote-tag">Pygmalion myth</span><span class="quote-tag">male creation</span><span class="quote-tag">objectification</span></div>
+    </div>
+
+    <div class="quote-card pyg">
+      <div class="quote-text">"I sold flowers. I didn't sell myself. Now you've made a lady of me I'm not fit to sell anything else."</div>
+      <div class="quote-source">Eliza Doolittle, Act 5 · Pygmalion</div>
+      <div class="quote-tags"><span class="quote-tag">economic anxiety</span><span class="quote-tag">transformation's cost</span><span class="quote-tag">class</span></div>
+    </div>
+
+    <div class="quote-card pyg">
+      <div class="quote-text">"I shall always be a flower girl to Professor Higgins, because he always treats me as a flower girl, and always will: but I know I can be a lady to you, because you always treat me as a lady, and always will."</div>
+      <div class="quote-source">Eliza to Pickering, Act 5 · Pygmalion</div>
+      <div class="quote-tags"><span class="quote-tag">identity</span><span class="quote-tag">treatment</span><span class="quote-tag">respect</span><span class="quote-tag">compare Pickering/Higgins</span></div>
+    </div>
+
+    <div class="quote-card pyg">
+      <div class="quote-text">"I'm one of the undeserving poor, and I mean to go on being one. I like it."</div>
+      <div class="quote-source">Alfred Doolittle, Act 2 · Pygmalion</div>
+      <div class="quote-tags"><span class="quote-tag">class satire</span><span class="quote-tag">Marxist</span><span class="quote-tag">middle-class morality</span></div>
+    </div>
+
+    <div class="quote-card pyg">
+      <div class="quote-text">"Galatea never does quite like Pygmalion: his relation to her is too godlike to be altogether agreeable."</div>
+      <div class="quote-source">Shaw's Epilogue · Pygmalion</div>
+      <div class="quote-tags"><span class="quote-tag">myth</span><span class="quote-tag">female autonomy</span><span class="quote-tag">power</span><span class="quote-tag">Gainor</span></div>
+    </div>
+
+    <div class="quote-card pyg">
+      <div class="quote-text">"You certainly are a pretty pair of babies playing with your live doll."</div>
+      <div class="quote-source">Mrs. Higgins, Act 3 · Pygmalion</div>
+      <div class="quote-tags"><span class="quote-tag">doll motif</span><span class="quote-tag">compare ADH</span><span class="quote-tag">female wisdom</span></div>
+    </div>
+
+    <div class="quote-card adh">
+      <div class="quote-text">"Our home has been nothing but a playroom. I have been your doll-wife, just as at home I was Papa's doll-child."</div>
+      <div class="quote-source">Nora Helmer, Act 3 · A Doll's House</div>
+      <div class="quote-tags"><span class="quote-tag">doll metaphor</span><span class="quote-tag">patriarchy</span><span class="quote-tag">self-knowledge</span></div>
+    </div>
+
+    <div class="quote-card adh">
+      <div class="quote-text">"Before all else, you are a wife and a mother." / "Before all else, I am a human being, just as you are."</div>
+      <div class="quote-source">Torvald / Nora, Act 3 · A Doll's House</div>
+      <div class="quote-tags"><span class="quote-tag">female identity</span><span class="quote-tag">feminist</span><span class="quote-tag">debate</span></div>
+    </div>
+
+    <div class="quote-card adh">
+      <div class="quote-text">"I must try to educate myself — you can't help me there; I must do it alone. That's why I'm leaving you."</div>
+      <div class="quote-source">Nora Helmer, Act 3 · A Doll's House</div>
+      <div class="quote-tags"><span class="quote-tag">self-education</span><span class="quote-tag">independence</span><span class="quote-tag">compare Eliza</span></div>
+    </div>
+
+    <div class="quote-card adh">
+      <div class="quote-text">"No man can be expected to sacrifice his honour for his wife." / "Hundreds of thousands of women have done so."</div>
+      <div class="quote-source">Torvald / Nora, Act 3 · A Doll's House</div>
+      <div class="quote-tags"><span class="quote-tag">gender double standard</span><span class="quote-tag">irony</span><span class="quote-tag">feminist</span></div>
+    </div>
+
+    <div class="quote-card adh">
+      <div class="quote-text">"I have been greatly wronged, Torvald. First by Papa and then by you."</div>
+      <div class="quote-source">Nora Helmer, Act 3 · A Doll's House</div>
+      <div class="quote-tags"><span class="quote-tag">patriarchal oppression</span><span class="quote-tag">awakening</span><span class="quote-tag">Finney</span></div>
+    </div>
+
+    <div class="quote-card adh">
+      <div class="quote-text">"We have been acting, both of us."</div>
+      <div class="quote-source">Nora Helmer, Act 3 · A Doll's House</div>
+      <div class="quote-tags"><span class="quote-tag">performance</span><span class="quote-tag">theatre</span><span class="quote-tag">Johnston</span></div>
+    </div>
+
+    <div class="quote-card adh">
+      <div class="quote-text">"A door is heard shutting." [The play's final stage direction]</div>
+      <div class="quote-source">Stage direction, Act 3 · A Doll's House</div>
+      <div class="quote-tags"><span class="quote-tag">silence as language</span><span class="quote-tag">form</span><span class="quote-tag">structure</span><span class="quote-tag">open ending</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ 09 READING LIST -->
+<section id="reading">
+  <div class="section-label">09 · Pygmalion Academic Reading List</div>
+  <h2>Scholarly Sources for Pygmalion (25+ pages)</h2>
+  <p>The following are peer-reviewed, academically credible sources on Pygmalion and George Bernard Shaw, each offering sustained analysis of at least 25 pages. These extend well beyond study guides and are appropriate for citing in extended essays, IAs, or enriched Paper 2 preparation. Prioritise Williams and Gainor for comparative work with Ibsen.</p>
+
+  <div class="reading-list">
+
+    <div class="reading-card">
+      <div class="reading-type">Book · Feminist Criticism · Essential</div>
+      <div class="reading-title">Shaw's Daughters: Dramatic and Narrative Constructions of Gender</div>
+      <div class="reading-author">J. Ellen Gainor · University of Michigan Press, 1991</div>
+      <p class="reading-desc">The essential feminist study of Shaw's female characters, including a full chapter on Eliza Doolittle and the Pygmalion/Galatea myth. Gainor argues that Shaw constructs female characters as intellectual equals while simultaneously placing them within male-authored narratives of education and transformation: the "daughter" trapped inside the author's Pygmalion fantasy. Uses gender theory, psychoanalysis, and close dramatic reading. Essential for the comparative ADH/Pygmalion axis of female self-authorship.</p>
+      <div class="reading-meta">~300 pp. · Feminist · Psychoanalytic · Directly comparable with Finney on Ibsen and feminism</div>
+    </div>
+
+    <div class="reading-card">
+      <div class="reading-type">Comparative Study · Drama History · Essential for Paper 2</div>
+      <div class="reading-title">Drama from Ibsen to Brecht</div>
+      <div class="reading-author">Raymond Williams · Oxford University Press, 1968</div>
+      <p class="reading-desc">Williams discusses both Ibsen and Shaw within the same critical framework of "social naturalism", which makes this study uniquely valuable for Paper 2 comparative work. The chapters on Ibsen and Shaw (each c. 30–40 pages) analyse how both playwrights use the realistic surface of drama to expose social structures, and how Shaw adapts Ibsen's "discussion play" technique through comedy and wit. Williams argues that both playwrights refuse comfortable resolution, a key comparative point for Paper 2 essays on form and endings.</p>
+      <div class="reading-meta">Relevant chapters: ~80 pp. on Ibsen + Shaw · Marxist · Directly comparative between both set texts</div>
+    </div>
+
+    <div class="reading-card">
+      <div class="reading-type">Book Chapter · Shaw Scholarship · Class &amp; Myth</div>
+      <div class="reading-title">The Shavian Playground: An Exploration of the Art of George Bernard Shaw</div>
+      <div class="reading-author">Margery Morgan · Methuen, 1972</div>
+      <p class="reading-desc">Morgan's study of Shaw's art contains a substantial chapter on Pygmalion (~30 pages) analysing the play across three dimensions: the mythic (Pygmalion/Galatea subverted), the social (class and phonetics as an Edwardian critique), and the linguistic (dialect and register as comic and dramatic devices). Particularly useful for analysis of Shaw's comic tone and its relationship to social critique, and directly comparable with Ibsen's more earnest mode.</p>
+      <div class="reading-meta">Pygmalion chapter: ~30 pp. · Mythic · Social · Linguistic analysis</div>
+    </div>
+
+    <div class="reading-card">
+      <div class="reading-type">Book · Postcolonial · Irish Studies</div>
+      <div class="reading-title">Inventing Ireland: The Literature of the Modern Nation</div>
+      <div class="reading-author">Declan Kiberd · Harvard University Press, 1995</div>
+      <p class="reading-desc">The chapter on Shaw (~40 pages) reads Pygmalion through Shaw's Irish Protestant background and the experience of linguistic "otherness" in England. Eliza Doolittle's Cockney accent functions as a marker of colonial inferiority; Higgins's phonetic authority is a form of linguistic colonialism. Kiberd situates Shaw within the tradition of Irish writers who used English literature to critique English cultural hegemony from within, a reading that opens a postcolonial angle rarely explored in Paper 2 essays.</p>
+      <div class="reading-meta">Shaw chapter: ~40 pp. · Postcolonial · Irish identity · Language as power</div>
+    </div>
+
+    <div class="reading-card">
+      <div class="reading-type">Biography · Definitive Shaw Scholarship</div>
+      <div class="reading-title">Bernard Shaw, Vol. 2: The Pursuit of Power, 1898–1918</div>
+      <div class="reading-author">Michael Holroyd · Chatto &amp; Windus / Random House, 1989</div>
+      <p class="reading-desc">Holroyd's definitive four-volume biography covers Pygmalion's genesis, Shaw's relationship with Mrs Patrick Campbell (the original Eliza), his deliberate refusal of the romantic ending, and his fury at the 1938 film adaptation's imposed resolution. Holroyd situates Pygmalion within Shaw's sustained engagement with Ibsen and the New Woman debate. Use biographical context selectively, to illuminate specific authorial choices.</p>
+      <div class="reading-meta">Pygmalion sections: ~35 pp. · Biographical · Historical context</div>
+    </div>
+
+    <div class="reading-card">
+      <div class="reading-type">Critical Study · Shaw's Dramatic Art</div>
+      <div class="reading-title">Shaw the Dramatist: A Study of the Intellectual Background of the Major Plays</div>
+      <div class="reading-author">Louis Crompton · University of Nebraska Press, 1969</div>
+      <p class="reading-desc">Crompton's study analyses each of Shaw's major plays in relation to its ideological sources. The Pygmalion chapter (~30 pages) argues it is Shaw's most perfectly crafted social comedy, a play where the comic and the social-critical are inseparable. Crompton traces Shaw's debt to Ibsen (the "discussion play") and his transformation of it through wit, and provides a close reading of the class critique embedded in the play's structure. Useful for analysis of how Shaw's comic form carries ideological content.</p>
+      <div class="reading-meta">Pygmalion chapter: ~30 pp. · Ideological analysis · Shaw's dramatic technique</div>
+    </div>
+
+    <div class="reading-card">
+      <div class="reading-type">Critical Study · Shaw's Art</div>
+      <div class="reading-title">Bernard Shaw: A Critical View</div>
+      <div class="reading-author">Nicholas Grene · Macmillan / St Martin's Press, 1984</div>
+      <p class="reading-desc">Grene's critical reassessment of Shaw challenges both over-sympathetic and dismissive readings. His chapter on Pygmalion examines the problem of the play's ending, asking why audiences resist Shaw's epilogue and insist on a Higgins-Eliza romance, and reads this resistance as culturally significant: the romantic ending is the patriarchal ending, and audiences' preference for it reveals the ideological work the play's comic form is doing. Grene also analyses the mythic frame (Pygmalion/Galatea) with close attention to how Shaw subverts it.</p>
+      <div class="reading-meta">Pygmalion chapter: ~25 pp. · Critical reassessment · Myth · Reception history</div>
+    </div>
+
+    <div class="reading-card">
+      <div class="reading-type">Essay Collection · Multiple Angles · Cambridge Companion</div>
+      <div class="reading-title">The Cambridge Companion to George Bernard Shaw</div>
+      <div class="reading-author">Ed. Christopher Innes · Cambridge University Press, 1998</div>
+      <p class="reading-desc">The essential scholarly collection on Shaw, containing multiple chapters directly relevant to Pygmalion: J. Ellen Gainor on gender and Shaw's female characters; Tracy C. Davis on "Shaw's Interstices of Empire: Decolonizing at Home and Abroad" (postcolonial reading); chapters on Shaw's relationship to Ibsen, his comic technique, and his reception history. The volume as a whole constitutes a comprehensive scholarly engagement with Shaw across multiple critical frameworks (feminist, postcolonial, Marxist, theatrical), making it ideal for Paper 2 revision.</p>
+      <div class="reading-meta">Relevant chapters: ~80 pp. total · Multiple critical frameworks · Includes feminist + postcolonial + comparative Ibsen</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ 10 EXAM PREP -->
+<section id="exam">
+  <div class="section-label">10 · Paper 2 Exam Preparation</div>
+  <h2>Writing the Comparative Essay</h2>
+  <p>Paper 2 is a <strong>1 hour 45 minute</strong> comparative essay (HL). You write on two works studied in the course. You have NO access to the texts. The exam is marked out of <strong>20</strong> across four criteria.</p>
+
+  <div class="criteria-grid">
+    <div class="criterion-card">
+      <div class="crit-letter">A</div>
+      <div class="crit-name">Knowledge, Understanding &amp; Interpretation</div>
+      <div class="crit-marks">5 marks</div>
+      <p class="crit-desc">Show deep, accurate knowledge of BOTH works. Interpret them perceptively and go beyond plot summary. Connect textual detail to thematic significance.</p>
+    </div>
+    <div class="criterion-card">
+      <div class="crit-letter">B</div>
+      <div class="crit-name">Analysis &amp; Evaluation</div>
+      <div class="crit-marks">5 marks</div>
+      <p class="crit-desc">Analyse HOW literary choices (form, structure, language) create meaning. Evaluate the effect of specific techniques. Cite briefly but precisely. Analyse the function of every device you identify.</p>
+    </div>
+    <div class="criterion-card">
+      <div class="crit-letter">C</div>
+      <div class="crit-name">Focus &amp; Organisation</div>
+      <div class="crit-marks">5 marks</div>
+      <p class="crit-desc">Sustain a coherent comparative argument. Organise by idea/theme, not by play. Each paragraph should move between both texts. Use comparative connectives purposefully.</p>
+    </div>
+    <div class="criterion-card">
+      <div class="crit-letter">D</div>
+      <div class="crit-name">Language</div>
+      <div class="crit-marks">5 marks</div>
+      <p class="crit-desc">Precise literary vocabulary, formal register, varied syntax. Avoid colloquialisms. Use terms like: dramatic irony, retrospective revelation, naturalism, social critique, patriarchal, bourgeois, register, genre subversion.</p>
+    </div>
+  </div>
+
+  <div class="exam-tabs">
+    <button class="exam-tab active" onclick="showPanel('questions', this)">Sample Questions</button>
+    <button class="exam-tab" onclick="showPanel('framework', this)">Essay Framework</button>
+    <button class="exam-tab" onclick="showPanel('paragraph', this)">Model Paragraph</button>
+    <button class="exam-tab" onclick="showPanel('connectives', this)">Comparative Language</button>
+  </div>
+
+  <!-- PANEL: QUESTIONS -->
+  <div class="exam-panel active" id="panel-questions">
+    <p style="color:var(--muted);font-size:0.85rem;margin-bottom:1rem;max-width:720px;">Practice with these Paper 2-style questions. For each, identify: the <strong>key debate</strong> the question sets up, the <strong>three themes</strong> you would organise around, and one scholar for each work you would deploy.</p>
+    <div class="prompts-list">
+      <div class="prompt-card">
+        <div class="prompt-text">"Writers use dramatic conventions to both reinforce and challenge social norms." Compare the ways in which Shaw and Ibsen use theatrical form to challenge social expectations in Pygmalion and A Doll's House.</div>
+        <div class="prompt-lens">Themes to address: genre subversion · the "well-made play" · the discussion play · endings</div>
+      </div>
+      <div class="prompt-card">
+        <div class="prompt-text">"In drama, the conflict between authentic selfhood and social performance is the central dramatic tension." Discuss with reference to Pygmalion and A Doll's House.</div>
+        <div class="prompt-lens">Themes to address: performance/mask · transformation · language and identity · Johnston's "three stages"</div>
+      </div>
+      <div class="prompt-card">
+        <div class="prompt-text">"Writers present female characters as defined by their relationships to male authority, but also as capable of resisting it." To what extent do Shaw and Ibsen confirm or challenge this view?</div>
+        <div class="prompt-lens">Scholars: Gainor (Shaw) · Finney / Templeton (Ibsen) · Tufts for complexity of Nora</div>
+      </div>
+      <div class="prompt-card">
+        <div class="prompt-text">"Language is never neutral: it is always an instrument of power." Compare the ways in which Shaw and Ibsen use language to explore power relationships between characters.</div>
+        <div class="prompt-lens">Themes: dialect (Shaw) · pet names (Ibsen) · the "discussion" · Kiberd on linguistic colonialism</div>
+      </div>
+      <div class="prompt-card">
+        <div class="prompt-text">"The ending of a play is its most revealing dramatic moment." Compare how Shaw and Ibsen use their endings to generate meaning in Pygmalion and A Doll's House.</div>
+        <div class="prompt-lens">Themes: anti-romantic resolution · Shaw's epilogue · the slamming door · reception controversy · Grene</div>
+      </div>
+      <div class="prompt-card">
+        <div class="prompt-text">"Writers use comedy and irony to make their social critiques either more or less effective." Compare the use of tone and register in Pygmalion and A Doll's House.</div>
+        <div class="prompt-lens">Themes: Shavian wit vs. Ibsen's pathos · dramatic irony · comic distancing · Williams on both</div>
+      </div>
+      <div class="prompt-card">
+        <div class="prompt-text">"The most powerful moments in drama are those in which characters recognise the truth about themselves." Compare such moments in Pygmalion and A Doll's House.</div>
+        <div class="prompt-lens">Moments: Eliza's Act 5 confrontation · Nora's Act 3 "serious conversation" · Johnston's "metaphysical revelation"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANEL: FRAMEWORK -->
+  <div class="exam-panel" id="panel-framework">
+    <p style="color:var(--muted);font-size:0.85rem;margin-bottom:1.5rem;max-width:720px;">Organise your essay by <strong>idea</strong>, not by play. Avoid the "tennis-match" structure (three paragraphs on Shaw, then three on Ibsen). Instead, move between both texts within every paragraph, unified by a single comparative argument.</p>
+
+    <div class="framework-step">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h4>Introduction (10 minutes writing)</h4>
+        <p>Open with the central comparative tension. State your thesis: what is the key similarity AND key difference between how the two plays handle the topic the question raises? Name both works, authors, dates, and genres. Establish your critical framework (e.g., feminist, Marxist) if relevant. End with a roadmap sentence indicating your three main comparative points.</p>
+      </div>
+    </div>
+    <div class="framework-step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h4>Body Paragraph 1: Comparative Point A (16 minutes)</h4>
+        <p>Open with a topic sentence that makes a comparative claim covering BOTH plays. Develop your argument with textual evidence from Play 1 → analysis → connection to Play 2 → evidence from Play 2 → analysis → synthesis of the comparison. Include one scholar reference. End with a sentence that advances your overall thesis.</p>
+      </div>
+    </div>
+    <div class="framework-step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h4>Body Paragraph 2: Comparative Point B (16 minutes)</h4>
+        <p>Introduce a new comparative angle, ideally one that complicates or nuances the argument of Paragraph 1. You might introduce an alternative critical reading here (e.g., use Tufts's narcissism reading to complicate the feminist reading of Nora). Maintain the comparative structure: both plays in every paragraph.</p>
+      </div>
+    </div>
+    <div class="framework-step">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <h4>Body Paragraph 3: Form, Structure, or Language Focus (16 minutes)</h4>
+        <p>Paper 2 Criterion B specifically rewards analysis of literary form. Devote at least one paragraph to comparing HOW each playwright constructs meaning (structure, genre choices, dramatic technique, use of stage directions, symbolic objects) rather than WHAT the plays say. This is where Johnston's "three stages" argument or Shaw's preface/epilogue apparatus are most useful.</p>
+      </div>
+    </div>
+    <div class="framework-step">
+      <div class="step-num">5</div>
+      <div class="step-content">
+        <h4>Conclusion (8 minutes)</h4>
+        <p>Synthesise rather than summarise. Return to the question's exact phrasing. State your overall comparative judgement: in what sense are the two plays similar in their handling of the question's concern, and in what sense does each playwright's distinct formal and tonal choices produce a different relationship to that concern? End with a sentence that gestures toward the plays' ongoing relevance, without being vague or clichéd.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANEL: MODEL PARAGRAPH -->
+  <div class="exam-panel" id="panel-paragraph">
+    <p style="color:var(--muted);font-size:0.85rem;margin-bottom:1.5rem;max-width:720px;">The following is a model comparative paragraph in response to the question: <em>"Writers present female characters as defined by their relationships to male authority, but also as capable of resisting it."</em></p>
+
+    <div class="model-block">
+      <h4>Topic Sentence: Comparative Claim</h4>
+      <p>Both Shaw and Ibsen construct female protagonists who are initially defined entirely by male authority (Eliza through Higgins's linguistic experiment, Nora through Torvald's system of pet names and domestic management), yet both playwrights ensure that the female characters ultimately expose, and reject, the male epistemology that has confined them.</p>
+    </div>
+
+    <div class="model-block">
+      <h4>Evidence + Analysis (Shaw → Ibsen → Synthesis)</h4>
+      <p>In Pygmalion, Higgins's claim that <em>"I have created this thing out of the squashed cabbage leaves of Covent Garden"</em> frames Eliza as raw material rather than person: the Pygmalion myth literalised. Shaw's use of the dehumanising demonstrative <em>"this thing"</em> encodes in syntax the violence of the male-creation fantasy. Yet this is precisely the construction Eliza dismantles in Act 5: <em>"The difference between a lady and a flower girl is not how she behaves, but how she's treated"</em>. The formulation relocates the origin of identity from the creator to the social relationship, and implicitly prosecutes Higgins for the identity he claims to have conferred. Ibsen enacts a parallel but tonally contrasting movement in A Doll's House: Torvald's register of diminutives ("my little skylark," "little featherhead") grammatically miniaturises Nora throughout the first two acts, reducing her to a domestic ornament. Nora's resistance is registered, as Finney (in the Cambridge Companion to Ibsen) observes, in the progressive withdrawal of performed femininity: the tarantella (in which she dances "as if her life depended on it") is simultaneously the last performance of the doll-wife and the first expression of a self that can no longer contain itself within the role. Where Shaw's critique of male authority is filtered through comedy (Higgins's obliviousness is funny, which makes it bearable), Ibsen's is delivered through the pathos of a woman discovering she has been "greatly wronged" by every man who claimed to love her. Both strategies deny the audience comfortable resolution: Shaw refuses romantic closure; Ibsen stages an exit that cannot be aestheticised.</p>
+    </div>
+
+    <div class="model-block">
+      <h4>Synthesis Sentence</h4>
+      <p>The formal difference between Shaw's satiric comedy and Ibsen's emotional realism reinforces the shared ideological argument: that the structures of male authority are systemic formations, legible in the grammar of daily life, and dismantlable only through the female character's willingness to step outside the genre the play appears to inhabit.</p>
+    </div>
+  </div>
+
+  <!-- PANEL: CONNECTIVES -->
+  <div class="exam-panel" id="panel-connectives">
+    <p style="color:var(--muted);font-size:0.85rem;margin-bottom:1.2rem;max-width:720px;">Using varied and precise comparative language is a Criterion C and D requirement. Avoid repeating "similarly" and "in contrast." The following connectives and formulations create sophisticated, nuanced comparison.</p>
+
+    <h3 style="margin-top:0.5rem;">Similarity &amp; Parallel</h3>
+    <div class="connectives-grid">
+      <span class="connective">Both playwrights...</span>
+      <span class="connective">Similarly, Ibsen / Shaw...</span>
+      <span class="connective">In both plays, the effect of...</span>
+      <span class="connective">This mirrors the moment in which...</span>
+      <span class="connective">Shaw, like Ibsen, deploys...</span>
+      <span class="connective">A comparable function is served by...</span>
+      <span class="connective">The parallel is instructive: both...</span>
+    </div>
+
+    <h3>Contrast &amp; Difference</h3>
+    <div class="connectives-grid">
+      <span class="connective">Whereas Shaw..., Ibsen...</span>
+      <span class="connective">In contrast to Ibsen's earnest naturalism, Shaw...</span>
+      <span class="connective">Where Pygmalion deploys satire..., ADH relies on...</span>
+      <span class="connective">The distinction, however, is significant...</span>
+      <span class="connective">Unlike Nora, Eliza...</span>
+      <span class="connective">This divergence enacts...</span>
+      <span class="connective">The tonal gulf between the two plays is itself meaningful...</span>
+    </div>
+
+    <h3>Nuance &amp; Complication</h3>
+    <div class="connectives-grid">
+      <span class="connective">This reading is complicated, however, by...</span>
+      <span class="connective">Tufts's reading of Nora as narcissistic complicates...</span>
+      <span class="connective">Shaw's own Epilogue partially undermines...</span>
+      <span class="connective">The tension between... and... is not resolved but...</span>
+      <span class="connective">What unites the two plays is not similarity of conclusion but...</span>
+      <span class="connective">Both plays resist, though differently...</span>
+    </div>
+
+    <h3>Literary Vocabulary to Deploy</h3>
+    <div class="connectives-grid">
+      <span class="connective">naturalist drama</span>
+      <span class="connective">retrospective revelation</span>
+      <span class="connective">the discussion play</span>
+      <span class="connective">genre subversion</span>
+      <span class="connective">dramatic irony</span>
+      <span class="connective">bourgeois ideology</span>
+      <span class="connective">social performativity</span>
+      <span class="connective">patriarchal discourse</span>
+      <span class="connective">register</span>
+      <span class="connective">symbolic objects</span>
+      <span class="connective">paratextual apparatus</span>
+      <span class="connective">the Pygmalion myth</span>
+      <span class="connective">tonal register</span>
+      <span class="connective">female awakening</span>
+      <span class="connective">comic distancing</span>
+      <span class="connective">linguistic colonialism</span>
+      <span class="connective">the well-made play</span>
+      <span class="connective">anti-romantic closure</span>
+    </div>
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>DP English A Literature · Higher Level · <span>Paper 2 Comparative Revision</span></p>
+  <p><em>Pygmalion</em> (G.B. Shaw, 1913) &amp; <em>A Doll's House</em> (H. Ibsen, 1879)</p>
+  <p style="margin-top:0.6rem;font-size:0.75rem;">Scholars referenced: Johnston (1991) · Tufts (1986) · Finney (Cambridge Companion) · Gainor (1991) · Williams (1968) · Kiberd (1995) · Morgan (1972) · Holroyd (1989) · Crompton (1969) · Grene (1984) · Templeton (1997)</p>
+</footer>
+
+<script>
+  function toggleTech(header) {
+    const body = header.nextElementSibling;
+    const toggle = header.querySelector('.tech-toggle');
+    if (body.classList.contains('open')) {
+      body.classList.remove('open');
+      toggle.textContent = '▸ expand';
+    } else {
+      body.classList.add('open');
+      toggle.textContent = '▾ collapse';
+    }
+  }
+
+  function showPanel(id, btn) {
+    document.querySelectorAll('.exam-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.exam-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('panel-' + id).classList.add('active');
+    btn.classList.add('active');
+  }
+</script>
+</body>
+</html>

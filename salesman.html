@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Death of a Salesman · Arthur Miller | DP Literature Year 1</title>
+  <style>
+    :root {
+      --navy: #0d1b2a;
+      --midnight: #1b2a3b;
+      --ink: #243447;
+      --deep: #0a1220;
+      --gold: #c9a84c;
+      --gold-light: #e8d5a3;
+      --cream: #f5f0e8;
+      --white: #ffffff;
+      --text: #e8e4dc;
+      --muted: #8fa3b1;
+      --accent: #4a8fa8;
+      --red: #a83244;
+      --red-light: #d4758a;
+      --green: #3a7d5c;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Georgia', serif;
+      background: var(--navy);
+      color: var(--text);
+      line-height: 1.75;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(13,27,42,0.97);
+      border-bottom: 2px solid var(--gold);
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.6rem 3rem;
+      backdrop-filter: blur(8px);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 0.75rem; }
+    .nav-logo img { height: 38px; width: auto; object-fit: contain; }
+    .nav-logo a { color: var(--muted); text-decoration: none; font-size: 0.8rem; font-family: 'Helvetica Neue', sans-serif; }
+    .nav-logo em { color: var(--gold); font-size: 0.9rem; font-style: italic; }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; flex-wrap: wrap; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none; font-size: 0.82rem;
+      letter-spacing: 0.03em; transition: color 0.2s;
+      font-family: 'Helvetica Neue', sans-serif;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* HERO */
+    .hero {
+      padding: 6rem 3rem 5rem;
+      background: linear-gradient(160deg, #0a1220 0%, #0d1b2a 40%, #111e30 100%);
+      position: relative; overflow: hidden;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      opacity: 0.4;
+    }
+    .hero-tag {
+      font-family: 'Helvetica Neue', sans-serif;
+      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1.5rem;
+      border: 1px solid rgba(201,168,76,0.3);
+      display: inline-block; padding: 0.3rem 1rem; border-radius: 2px;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 4.5vw, 3.8rem);
+      font-weight: normal; line-height: 1.25; color: var(--white);
+      margin-bottom: 0.4rem;
+    }
+    .hero h1 em { font-style: italic; color: var(--gold); }
+    .hero-author { color: var(--muted); font-size: 1rem; margin: 0.5rem 0 0.3rem; }
+    .hero-year { color: rgba(201,168,76,0.6); font-size: 0.85rem; font-family: 'Helvetica Neue', sans-serif; }
+    .hero-tagline {
+      margin-top: 2rem; font-size: 1rem; color: var(--gold-light);
+      font-style: italic; max-width: 600px; border-left: 3px solid var(--gold);
+      padding-left: 1.2rem;
+    }
+    .hero-nav-pills {
+      display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2.5rem;
+    }
+    .pill {
+      font-family: 'Helvetica Neue', sans-serif;
+      font-size: 0.78rem; padding: 0.4rem 1rem; border-radius: 20px;
+      border: 1px solid rgba(201,168,76,0.35); color: var(--muted);
+      text-decoration: none; transition: all 0.2s;
+    }
+    .pill:hover { background: rgba(201,168,76,0.1); color: var(--gold); border-color: var(--gold); }
+
+    /* PAGE LAYOUT */
+    .page-wrap { display: flex; min-height: 100vh; }
+    .sidebar {
+      width: 240px; min-width: 240px;
+      position: sticky; top: 3.5rem; height: calc(100vh - 3.5rem);
+      overflow-y: auto; padding: 2rem 1.5rem;
+      background: var(--deep); border-right: 1px solid rgba(201,168,76,0.1);
+    }
+    .sidebar-title {
+      font-family: 'Helvetica Neue', sans-serif;
+      font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1rem; padding-bottom: 0.5rem;
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+    }
+    .sidebar ul { list-style: none; }
+    .sidebar li { margin-bottom: 0.1rem; }
+    .sidebar a {
+      display: block; padding: 0.4rem 0.6rem; border-radius: 3px;
+      text-decoration: none; font-size: 0.82rem; color: var(--muted);
+      font-family: 'Helvetica Neue', sans-serif; transition: all 0.15s;
+    }
+    .sidebar a:hover { color: var(--gold-light); background: rgba(201,168,76,0.07); }
+    .sidebar li.sub a { padding-left: 1.2rem; font-size: 0.78rem; }
+
+    .main-content { flex: 1; padding: 3rem; max-width: 900px; }
+
+    /* SECTIONS */
+    .content-section { margin-bottom: 4rem; scroll-margin-top: 5rem; }
+    .section-number {
+      font-family: 'Helvetica Neue', sans-serif;
+      font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); display: block; margin-bottom: 0.5rem;
+    }
+    h2.section-title {
+      font-size: 1.7rem; font-weight: normal; color: var(--white);
+      margin-bottom: 1.5rem; padding-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+    }
+    h3.sub-title {
+      font-size: 1.05rem; color: var(--gold-light); margin: 1.5rem 0 0.6rem;
+      font-weight: normal;
+    }
+    p { color: var(--muted); font-size: 0.95rem; margin-bottom: 0.9rem; max-width: 700px; }
+
+    /* TWO-COL */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1.5rem 0; }
+    .two-col.three { grid-template-columns: 1fr 1fr 1fr; }
+
+    /* CONTEXT BOXES */
+    .context-box {
+      background: var(--midnight); border-radius: 4px; padding: 1.5rem;
+      border: 1px solid rgba(201,168,76,0.15);
+    }
+    .context-box h4 {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.72rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.8rem;
+    }
+    .context-box p { font-size: 0.88rem; margin: 0; }
+
+    /* PLOT TABLE */
+    .plot-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+    .plot-table th {
+      background: rgba(201,168,76,0.15); color: var(--gold);
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.75rem;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      padding: 0.6rem 1rem; text-align: left;
+    }
+    .plot-table td {
+      padding: 0.7rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.05);
+      font-size: 0.88rem; color: var(--muted); vertical-align: top;
+    }
+    .plot-table td:first-child { color: var(--gold-light); font-weight: normal; white-space: nowrap; }
+    .plot-table td:last-child { color: rgba(255,255,255,0.45); font-size: 0.82rem; }
+    .plot-table tr:hover td { background: rgba(201,168,76,0.04); }
+
+    /* CHARACTERS */
+    .char-card {
+      background: var(--midnight); border-radius: 4px; padding: 1.8rem;
+      border-top: 3px solid var(--gold); margin-bottom: 1.5rem;
+    }
+    .char-card.hally { border-top-color: var(--red); }
+    .char-card.willie { border-top-color: var(--accent); }
+    .char-name {
+      font-size: 1.1rem; color: var(--white); margin-bottom: 0.2rem;
+    }
+    .char-role { color: var(--muted); font-size: 0.82rem; font-family: 'Helvetica Neue', sans-serif; margin-bottom: 1rem; }
+    .char-traits { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+    .trait {
+      font-family: 'Helvetica Neue', sans-serif;
+      font-size: 0.72rem; padding: 0.2rem 0.7rem; border-radius: 12px;
+      background: rgba(201,168,76,0.12); color: var(--gold);
+    }
+    .trait.red { background: rgba(168,50,68,0.15); color: var(--red-light); }
+    .trait.blue { background: rgba(74,143,168,0.15); color: #7dbdd6; }
+
+    /* THEMES */
+    .theme-item {
+      background: var(--ink); border-radius: 4px; padding: 1.5rem;
+      border-left: 4px solid var(--gold); margin-bottom: 1rem;
+    }
+    .theme-item.red { border-left-color: var(--red); }
+    .theme-item.blue { border-left-color: var(--accent); }
+    .theme-item.green { border-left-color: #3a9e72; }
+    .theme-name { color: var(--white); font-size: 1rem; margin-bottom: 0.5rem; }
+    .theme-item p { max-width: none; margin: 0; font-size: 0.88rem; }
+
+    /* SYMBOLS TABLE */
+    .symbol-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+    .symbol-card {
+      background: var(--midnight); border-radius: 4px; padding: 1.5rem;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .symbol-name {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.7rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.6rem;
+    }
+    .symbol-surface { color: var(--text); font-size: 0.88rem; margin-bottom: 0.5rem; }
+    .symbol-deep { color: var(--muted); font-size: 0.83rem; }
+
+    /* CRITICAL PERSPECTIVES */
+    .critic-card {
+      background: var(--midnight); border-radius: 4px; padding: 2rem;
+      margin-bottom: 1.5rem; border: 1px solid rgba(201,168,76,0.12);
+    }
+    .critic-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.2rem; }
+    .critic-name { font-size: 1.05rem; color: var(--white); margin-bottom: 0.2rem; }
+    .critic-work { color: var(--muted); font-size: 0.82rem; font-family: 'Helvetica Neue', sans-serif; }
+    .critic-badge {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.65rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.25rem 0.7rem; border-radius: 2px;
+      background: rgba(201,168,76,0.15); color: var(--gold);
+    }
+    .concept-table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+    .concept-table th {
+      background: rgba(201,168,76,0.1); color: var(--gold);
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.7rem;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      padding: 0.5rem 0.8rem; text-align: left;
+    }
+    .concept-table td {
+      padding: 0.65rem 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.04);
+      font-size: 0.83rem; color: var(--muted); vertical-align: top;
+    }
+    .concept-table td:first-child { color: var(--gold-light); font-size: 0.8rem; font-family: 'Helvetica Neue', sans-serif; white-space: nowrap; }
+    .concept-table tr:hover td { background: rgba(201,168,76,0.04); }
+
+    /* QUOTATIONS */
+    .quote-block {
+      background: var(--midnight); border-radius: 4px; padding: 2rem;
+      margin-bottom: 1.5rem; border-left: 4px solid var(--gold);
+    }
+    .quote-text {
+      font-size: 1.1rem; font-style: italic; color: var(--gold-light);
+      margin-bottom: 0.8rem; line-height: 1.6;
+    }
+    .quote-speaker {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.78rem;
+      color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+    }
+    .quote-analysis {
+      background: rgba(0,0,0,0.2); border-radius: 3px; padding: 1rem 1.2rem;
+      font-size: 0.88rem; color: var(--muted); border-left: 2px solid rgba(201,168,76,0.2);
+    }
+    .quote-analysis strong { color: var(--gold); font-weight: normal; }
+
+    /* ESSAY SECTION */
+    .essay-q {
+      background: var(--ink); border-radius: 4px; padding: 1.5rem;
+      margin-bottom: 1.5rem; border: 1px solid rgba(201,168,76,0.2);
+    }
+    .essay-q .q-text { font-size: 1rem; color: var(--white); margin-bottom: 1rem; }
+    .essay-step {
+      display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 0.6rem;
+    }
+    .step-num {
+      background: rgba(201,168,76,0.15); color: var(--gold);
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.7rem;
+      min-width: 1.5rem; height: 1.5rem; border-radius: 2px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .essay-step p { margin: 0; font-size: 0.85rem; }
+
+    .lens-table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+    .lens-table th {
+      background: rgba(201,168,76,0.1); color: var(--gold);
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.7rem;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      padding: 0.5rem 0.8rem; text-align: left;
+    }
+    .lens-table td {
+      padding: 0.65rem 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.04);
+      font-size: 0.83rem; color: var(--muted); vertical-align: top;
+    }
+    .lens-table td:first-child { color: var(--gold-light); white-space: nowrap; font-family: 'Helvetica Neue', sans-serif; font-size: 0.8rem; }
+
+    .checklist {
+      background: var(--ink); border-radius: 4px; padding: 1.5rem;
+      margin-top: 1rem;
+    }
+    .checklist h4 {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.72rem;
+      text-transform: uppercase; letter-spacing: 0.15em;
+      color: var(--gold); margin-bottom: 1rem;
+    }
+    .checklist ul { list-style: none; }
+    .checklist li {
+      padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+      font-size: 0.88rem; color: var(--muted);
+      display: flex; align-items: flex-start; gap: 0.7rem;
+    }
+    .checklist li::before { content: '✓'; color: var(--gold); flex-shrink: 0; margin-top: 0.05rem; }
+
+    /* FOOTER */
+    footer {
+      text-align: center; padding: 3rem;
+      border-top: 1px solid rgba(201,168,76,0.15);
+      color: var(--muted); font-size: 0.8rem;
+      font-family: 'Helvetica Neue', sans-serif;
+    }
+    footer a { color: var(--gold); text-decoration: none; }
+
+    @media (max-width: 900px) {
+      .sidebar { display: none; }
+      nav { padding: 0.8rem 1.5rem; }
+      .main-content { padding: 2rem 1.5rem; }
+      .two-col, .two-col.three { grid-template-columns: 1fr; }
+    }
+
+    /* ============================================================
+       ANTIGONE-SPECIFIC COMPONENTS
+       Extends the shared house style above. Same palette, no new colours.
+       ============================================================ */
+
+    /* Verse passages from the Taylor translation */
+    .passage {
+      background: var(--midnight); border-radius: 4px;
+      border-left: 4px solid var(--gold);
+      padding: 1.5rem 1.8rem; margin: 1.5rem 0;
+    }
+    .passage-ref {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.68rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1rem;
+    }
+    .verse {
+      white-space: pre-line; font-size: 0.95rem; line-height: 1.75;
+      color: var(--gold-light); margin: 0; max-width: none;
+    }
+    .verse .sp {
+      font-variant: small-caps; letter-spacing: 0.05em;
+      color: var(--muted); font-style: normal;
+    }
+    .passage-note {
+      margin-top: 1.1rem; padding-top: 0.9rem;
+      border-top: 1px solid rgba(201,168,76,0.15);
+      font-size: 0.83rem; color: var(--muted); max-width: none;
+    }
+
+    /* Investigation prompts: "what to investigate" */
+    .investigate { margin: 1.2rem 0; }
+    .investigate .inv-item {
+      padding: 0.9rem 0 0.9rem 1.2rem;
+      border-left: 2px solid rgba(201,168,76,0.25);
+      margin-bottom: 0.6rem;
+    }
+    .investigate .inv-item strong { color: var(--gold-light); font-weight: normal; }
+    .investigate .inv-item p { margin: 0; font-size: 0.9rem; max-width: none; }
+
+    /* Student tasks */
+    .task-box {
+      background: rgba(168,50,68,0.08); border-radius: 4px;
+      border: 1px solid rgba(168,50,68,0.28);
+      padding: 1.5rem; margin: 1.8rem 0;
+    }
+    .task-box h4 {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.72rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--red-light); margin-bottom: 1rem;
+    }
+    .task-box ol { margin: 0; padding-left: 1.3rem; }
+    .task-box li {
+      color: var(--muted); font-size: 0.9rem; margin-bottom: 0.7rem;
+      padding-left: 0.3rem;
+    }
+    .task-box li::marker { color: var(--red-light); }
+    .task-box li.stretch { color: var(--gold-light); font-style: italic; }
+    .task-box p { font-size: 0.9rem; }
+
+    /* Examiner's-eye callout */
+    .examiner-box {
+      background: rgba(74,143,168,0.08); border-radius: 4px;
+      border: 1px solid rgba(74,143,168,0.28);
+      padding: 1.5rem; margin: 1.8rem 0;
+    }
+    .examiner-box h4 {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.72rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: #7dbdd6; margin-bottom: 1rem;
+    }
+    .examiner-box p, .examiner-box li { font-size: 0.9rem; max-width: none; }
+    .examiner-box ol { padding-left: 1.3rem; margin-bottom: 0.6rem; }
+    .examiner-box li { color: var(--muted); margin-bottom: 0.45rem; }
+    .examiner-box li strong { color: var(--gold-light); font-weight: normal; }
+
+    /* Traps / warnings */
+    .trap-box {
+      background: rgba(201,168,76,0.06); border-radius: 4px;
+      border: 1px dashed rgba(201,168,76,0.35);
+      padding: 1.5rem; margin: 1.8rem 0;
+    }
+    .trap-box h4 {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.72rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1rem;
+    }
+    .trap-box ul { list-style: none; }
+    .trap-box li {
+      color: var(--muted); font-size: 0.89rem; padding: 0.45rem 0 0.45rem 1.5rem;
+      position: relative; border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .trap-box li:last-child { border-bottom: 0; }
+    .trap-box li::before {
+      content: '✕'; position: absolute; left: 0; color: var(--red-light); font-size: 0.8rem;
+    }
+    .trap-box li strong { color: var(--gold-light); font-weight: normal; }
+
+    /* Greek key terms */
+    .greek { font-style: italic; color: var(--gold-light); }
+
+    /* Structural map of the play */
+    .map { border-radius: 4px; overflow: hidden; margin: 1.5rem 0; }
+    .map-row {
+      display: grid; grid-template-columns: 8rem 1fr;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .map-row .k {
+      background: rgba(201,168,76,0.08); padding: 0.65rem 0.9rem;
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.72rem;
+      letter-spacing: 0.08em; color: var(--gold);
+    }
+    .map-row .v { padding: 0.65rem 1rem; font-size: 0.87rem; color: var(--muted); }
+    .map-row.ode .k { background: rgba(74,143,168,0.1); color: #7dbdd6; }
+    .map-row.ode .v { color: rgba(232,213,163,0.75); font-style: italic; }
+    .map-row .v strong { color: var(--white); font-weight: normal; }
+
+    /* Diagnostic ladder: weak → better → strong */
+    .rung {
+      background: var(--midnight); border-radius: 4px;
+      padding: 1.3rem 1.5rem; margin-bottom: 1rem;
+      border-left: 4px solid var(--muted);
+    }
+    .rung.mid { border-left-color: var(--gold); }
+    .rung.good { border-left-color: var(--green); }
+    .rung .grade {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.68rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 0.7rem;
+    }
+    .rung.mid .grade { color: var(--gold); }
+    .rung.good .grade { color: #5cb98c; }
+    .rung .sample { color: var(--text); font-size: 0.9rem; margin-bottom: 0; max-width: none; }
+    .rung .why {
+      margin-top: 0.9rem; padding-top: 0.8rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.82rem;
+      color: var(--muted); max-width: none;
+    }
+    .rung .why strong { color: var(--gold-light); font-weight: normal; }
+
+    /* Annotated model paragraph */
+    .model-para {
+      background: var(--midnight); border-radius: 4px;
+      padding: 1.8rem; margin: 1.5rem 0;
+      border: 1px solid rgba(201,168,76,0.15);
+    }
+    .model-para .sample { color: var(--text); font-size: 0.95rem; max-width: none; }
+    .mk {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.6rem;
+      background: rgba(201,168,76,0.2); color: var(--gold);
+      border-radius: 2px; padding: 0.05rem 0.3rem;
+      vertical-align: 0.4em; margin: 0 0.1rem; letter-spacing: 0.05em;
+    }
+    .model-para .notes { list-style: none; margin-top: 1.3rem; padding-top: 1rem;
+      border-top: 1px solid rgba(255,255,255,0.06); }
+    .model-para .notes li {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.82rem;
+      color: var(--muted); margin-bottom: 0.5rem; display: flex; gap: 0.6rem;
+      align-items: flex-start;
+    }
+
+    /* Reveal-after-attempting */
+    details {
+      background: var(--ink); border-radius: 4px; margin: 1.2rem 0;
+      border: 1px solid rgba(201,168,76,0.15); padding: 0 1.4rem;
+    }
+    details summary {
+      cursor: pointer; list-style: none; padding: 0.9rem 0;
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.8rem;
+      color: var(--gold); letter-spacing: 0.03em;
+    }
+    details summary::-webkit-details-marker { display: none; }
+    details summary::before { content: '▸ '; }
+    details[open] summary::before { content: '▾ '; }
+    details[open] summary {
+      border-bottom: 1px solid rgba(201,168,76,0.15); margin-bottom: 1rem;
+    }
+    details .inner { padding-bottom: 1.2rem; }
+    details .inner p:last-child { margin-bottom: 0; }
+
+    /* Pairing cards for Paper 2 */
+    .pair-card {
+      background: var(--midnight); border-radius: 4px; padding: 1.6rem;
+      border-top: 3px solid var(--accent); margin-bottom: 1.2rem;
+    }
+    .pair-card.second { border-top-color: var(--green); }
+    .pair-card.third { border-top-color: var(--red); }
+    .pair-card h4 {
+      font-family: 'Georgia', serif; font-size: 1.05rem; color: var(--white);
+      margin-bottom: 0.2rem; letter-spacing: 0;
+      text-transform: none;
+    }
+    .pair-card .pairing-sub {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.75rem;
+      color: var(--muted); margin-bottom: 1rem;
+    }
+    .pair-card p, .pair-card li { font-size: 0.88rem; max-width: none; }
+    .pair-card ul { padding-left: 1.1rem; margin-top: 0.5rem; }
+    .pair-card li { color: var(--muted); margin-bottom: 0.35rem; }
+    .pair-card li strong { color: var(--gold-light); font-weight: normal; }
+
+    /* References */
+    .refs { list-style: none; }
+    .refs li {
+      color: var(--muted); font-size: 0.86rem; padding: 0.6rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      padding-left: 1.6rem; text-indent: -1.6rem;
+    }
+    .refs li em { color: var(--gold-light); }
+
+    @media (max-width: 900px) {
+      .map-row { grid-template-columns: 1fr; }
+    }
+    @media print {
+      nav, .sidebar, .hero-nav-pills { display: none; }
+      body { background: #fff; color: #000; }
+      details summary { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <img src="books.svg" alt="Books" />
+    <a href="index.html">← DP Lit</a>
+    <em>Death of a Salesman</em>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#stage1">1 Drama</a></li>
+    <li><a href="#stage2">2 America</a></li>
+    <li><a href="#stage3">3 Modernism</a></li>
+    <li><a href="#stage4">4 Capitalism</a></li>
+    <li><a href="#stage5">5 Characters</a></li>
+    <li><a href="#stage6">6 Symbols</a></li>
+    <li><a href="#stage7">7 Expressionism</a></li>
+    <li><a href="#stage8">8 Tragedy</a></li>
+    <li><a href="#stage9">9 Paper 1</a></li>
+  </ul>
+</nav>
+
+<header class="hero">
+  <div class="hero-tag">IB DP Literature · Year 1 · Nine-Stage Teaching Unit</div>
+  <h1><em>Death of a Salesman</em></h1>
+  <p class="hero-author">Arthur Miller</p>
+  <p class="hero-year">Premiered New York, 10 February 1949 · Certain Private Conversations in Two Acts and a Requiem</p>
+  <p class="hero-tagline">
+    Charley, in the Requiem: "He's man way out there in the blue, riding on a smile and a shoeshine."
+  </p>
+  <div class="hero-nav-pills">
+    <a href="#overview" class="pill">How the unit works</a>
+    <a href="#stage1" class="pill">1 · Reading a Play</a>
+    <a href="#stage2" class="pill">2 · Modern American Life</a>
+    <a href="#stage3" class="pill">3 · Modernism</a>
+    <a href="#stage4" class="pill">4 · Capitalism</a>
+    <a href="#stage5" class="pill">5 · Characters</a>
+    <a href="#stage6" class="pill">6 · Symbols</a>
+    <a href="#stage7" class="pill">7 · Expressionism</a>
+    <a href="#stage8" class="pill">8 · Tragedy</a>
+    <a href="#stage9" class="pill">9 · Paper 1</a>
+  </div>
+</header>
+
+<div class="page-wrap">
+  <aside class="sidebar">
+    <div class="sidebar-title">The Unit</div>
+    <ul>
+      <li><a href="#overview">How the unit works</a></li>
+      <li><a href="#stage1">1 · Reading a Play</a></li>
+      <li><a href="#stage2">2 · Modern American Life</a></li>
+      <li><a href="#stage3">3 · Modernism and the Stage</a></li>
+      <li><a href="#stage4">4 · Capitalism and Work</a></li>
+      <li><a href="#stage5">5 · Characters</a></li>
+      <li class="sub"><a href="#willy">Willy</a></li>
+      <li class="sub"><a href="#linda">Linda</a></li>
+      <li class="sub"><a href="#biff">Biff and Happy</a></li>
+      <li class="sub"><a href="#others">Ben, Charley, Bernard, Howard</a></li>
+      <li><a href="#stage6">6 · Symbols and Motifs</a></li>
+      <li><a href="#stage7">7 · Expressionism</a></li>
+      <li><a href="#stage8">8 · Is This a Tragedy?</a></li>
+      <li><a href="#stage9">9 · Paper 1</a></li>
+      <li><a href="#bank">Quotation Bank</a></li>
+      <li><a href="#ahead">Looking Ahead to Paper 2</a></li>
+      <li><a href="#refs">References</a></li>
+    </ul>
+  </aside>
+
+  <main class="main-content">
+
+    <div class="context-box" style="margin-bottom:2.5rem;">
+      <h4>Text and sources</h4>
+      <p>Quotations are from the play, cited by act (Act One, Act Two, Requiem) rather than by page, so they work with whichever edition you are holding. Miller's full title is <em>Death of a Salesman: Certain Private Conversations in Two Acts and a Requiem</em>. Critical material comes from three sources: Amy Sickels's survey of the play's critical reception, the essay on capitalism in the play by J. I. Guijarro-González and R. Espejo, and Miller's own 1949 newspaper essay "Tragedy and the Common Man". Full details in <a href="#refs" style="color:var(--gold)">References</a>.</p>
+    </div>
+
+    <!-- OVERVIEW -->
+    <section class="content-section" id="overview">
+      <span class="section-number">How the unit works</span>
+      <h2 class="section-title">Nine Stages, in This Order</h2>
+
+      <p>This is the first play many of you will study on the course, and the order below is deliberate. You learn to read a play as a designed event before you are asked what it means. You meet the history only once you can see what the play is doing with it. Criticism arrives last, when you have something of your own for it to argue with.</p>
+
+      <p>Work through the stages in sequence. Each one closes with tasks, and each assumes the one before it.</p>
+
+      <div class="map">
+        <div class="map-row"><div class="k">Stage 1</div><div class="v"><strong>Reading a play.</strong> Features of drama and theatre. What a stage direction is for, and why the opening of this one tells you the whole play.</div></div>
+        <div class="map-row"><div class="k">Stage 2</div><div class="v"><strong>Modern American life.</strong> 1949, the Depression behind it and the boom around it. Context that changes what a line means.</div></div>
+        <div class="map-row"><div class="k">Stage 3</div><div class="v"><strong>Modernism and the stage.</strong> Why a play written in 1948 could not be built like a nineteenth-century one.</div></div>
+        <div class="map-row"><div class="k">Stage 4</div><div class="v"><strong>Capitalism and work.</strong> The play's argument about selling, and the strongest case against the reading you will reach for first.</div></div>
+        <div class="map-row"><div class="k">Stage 5</div><div class="v"><strong>Characters.</strong> Built from what they say, what they repeat, and what the play refuses to let them say.</div></div>
+        <div class="map-row"><div class="k">Stage 6</div><div class="v"><strong>Symbols and motifs.</strong> Objects that accumulate meaning through repetition: stockings, seeds, the rubber pipe, the flute.</div></div>
+        <div class="map-row"><div class="k">Stage 7</div><div class="v"><strong>Expressionism.</strong> How the set, sound and lighting put Willy's mind on stage, and why "flashback" is the wrong word.</div></div>
+        <div class="map-row"><div class="k">Stage 8</div><div class="v"><strong>Is this a tragedy?</strong> Miller's claim, the critics who rejected it, and your own verdict.</div></div>
+        <div class="map-row"><div class="k">Stage 9</div><div class="v"><strong>Paper 1.</strong> Guided analysis of a drama extract, practised on a play you now know well.</div></div>
+      </div>
+
+      <div class="examiner-box">
+        <h4>One habit to build now</h4>
+        <p>Every observation you make about this play should end by answering the question "so what?" A device you can name is worth nothing on its own. A device whose effect you can describe, and whose effect you can connect to what the play is arguing, is worth everything. If you build that habit in Year 1 on a play you enjoy, Year 2 becomes a matter of applying it under time pressure.</p>
+      </div>
+    </section>
+
+    <!-- STAGE 1 -->
+    <section class="content-section" id="stage1">
+      <span class="section-number">Stage 01</span>
+      <h2 class="section-title">Reading a Play: Features of Drama and Theatre</h2>
+
+      <p>A play is not a novel with the descriptions removed. It is a set of instructions for an event that happens in a room, in front of people, in real time. Everything you analyse has to be something an audience could see, hear or feel happening. That is the discipline this stage teaches.</p>
+
+      <h3 class="sub-title">The parts of a play, and what each one gives you</h3>
+      <table class="concept-table">
+        <thead><tr><th>Feature</th><th>What it is</th><th>What to ask of it</th></tr></thead>
+        <tbody>
+          <tr><td>Stage direction</td><td>The dramatist's instruction about set, movement, light, sound or manner.</td><td>Is it practical or is it interpretive? Miller's are often the second kind, and they carry argument.</td></tr>
+          <tr><td>Dialogue</td><td>What characters say to each other.</td><td>Who controls the exchange? Who interrupts? Who is not answered?</td></tr>
+          <tr><td>Monologue</td><td>An extended speech to other characters on stage.</td><td>Why is this character allowed to speak at length here, and what does the silence around them do?</td></tr>
+          <tr><td>Subtext</td><td>What is meant but not said.</td><td>Where does the surface of a line fail to account for the emotion in the scene?</td></tr>
+          <tr><td>Setting and set</td><td>The physical world the audience looks at for two hours.</td><td>What does the set claim about the characters before anyone speaks?</td></tr>
+          <tr><td>Lighting and sound</td><td>Non-verbal signals to the audience.</td><td>What do they tell the audience that no character knows?</td></tr>
+          <tr><td>Entrances and exits</td><td>Who comes and goes, and by which route.</td><td>Who has the power to leave a scene, and who is left behind?</td></tr>
+          <tr><td>Act and scene structure</td><td>The shape of the whole event.</td><td>What has changed between the start of an act and its end?</td></tr>
+          <tr><td>Pace and rhythm</td><td>How fast the language and action move.</td><td>Where does the play accelerate, and what does it accelerate towards?</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="sub-title">The opening stage direction</h3>
+      <p>Read this before you read a word of dialogue. Miller gives the audience his entire argument in the first paragraph, and he gives it visually, before Willy has spoken.</p>
+
+      <div class="passage">
+        <div class="passage-ref">Opening stage direction · Act One</div>
+        <p class="verse">A melody is heard, played upon a flute. It is small and fine, telling of grass and trees and the horizon. The curtain rises.
+
+Before us is the Salesman's house. We are aware of towering, angular shapes behind it, surrounding it on all sides. Only the blue light of the sky falls upon the house and forestage; the surrounding area shows an angry glow of orange. As more light appears, we see a solid vault of apartment houses around the small, fragile-seeming home. An air of the dream clings to the place, a dream rising out of reality.</p>
+      </div>
+
+      <div class="investigate">
+        <div class="inv-item"><p><strong>The house is surrounded before anyone speaks.</strong> "Towering, angular shapes", "a solid vault of apartment houses", "surrounding it on all sides". The vocabulary is of enclosure and pressure. An audience feels the Loman house is under siege for two hours without being told so once.</p></div>
+        <div class="inv-item"><p><strong>Two light sources, two worlds.</strong> Blue on the house, "an angry glow of orange" outside it. Miller separates the family's world from the city's world by colour, and gives the city the anger.</p></div>
+        <div class="inv-item"><p><strong>The flute arrives before the curtain.</strong> The first thing the audience receives is a sound "telling of grass and trees and the horizon", which is to say a sound belonging to a world of open country. It is heard before we see a house hemmed in by apartments. The play opens with the gap between what a man wanted and what he got.</p></div>
+        <div class="inv-item"><p><strong>"A dream rising out of reality."</strong> Miller tells the designer that the set must be both real and not real. That instruction governs the whole production, and it is the seed of Stage 7.</p></div>
+      </div>
+
+      <p>Now notice what happens to Willy in the same opening. He enters carrying two sample cases, and Miller writes that "his exhaustion is apparent". His first line to Linda is "It's all right. I came back." His second, a moment later, is "I'm tired to the death." The play's first two facts about its central character are that he could not finish his journey and that he is exhausted. Everything else follows from those.</p>
+
+      <div class="task-box">
+        <h4>Task 1 · Reading like an audience</h4>
+        <ol>
+          <li>Cover the dialogue and read only the opening stage direction. Write down five things an audience knows about the Lomans before a word is spoken. Beside each one, write how they know it: through sight, through sound, or through both.</li>
+          <li>Miller writes that Willy "hears but is not aware of" the flute. Write two sentences on what it means for a character to be surrounded by a sound he cannot consciously register, and what that asks of the audience.</li>
+          <li>Design the set yourself, in words. You have a small house and a wall of apartment buildings. Where do you put the audience in relation to them, and why?</li>
+          <li class="stretch">Stretch: Miller's subtitle calls the play <em>Certain Private Conversations in Two Acts and a Requiem</em>. Both "private conversations" and "requiem" are odd words for a play performed to a thousand strangers. Write a sentence on what each one promises.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- STAGE 2 -->
+    <section class="content-section" id="stage2">
+      <span class="section-number">Stage 02</span>
+      <h2 class="section-title">Modern American Life</h2>
+
+      <p>The rule for context on this course: include it only when it changes what a line means. If your sentence still works with the historical clause deleted, delete the clause. Below is the small amount of history this play actually needs, and what each piece of it earns you.</p>
+
+      <div class="two-col">
+        <div class="context-box">
+          <h4>Written into a boom, haunted by a slump</h4>
+          <p>Miller wrote the play in about six weeks in 1948 and it opened in February 1949. Amy Sickels records that he was responding to the new postwar American affluence while feeling that the Depression was "still looming", and that Americans were living with the fear that everything might disappear again at any time.</p>
+        </div>
+        <div class="context-box">
+          <h4>What it earns you</h4>
+          <p>The play is not set in the Depression. It is set in prosperity, and it is about a man who cannot benefit from it. That is a sharper proposition, and it explains why Willy's terror feels disproportionate to his circumstances. Linda's accounting in Act One, the refrigerator, the car, the mortgage, is the arithmetic of a family who are just about managing and know how quickly that can end.</p>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="context-box">
+          <h4>Miller's own family</h4>
+          <p>Miller was born in New York City in 1915, the son of a manufacturer whose business failed in the Depression. He took work as a waiter, truck driver and factory worker to put himself through the University of Michigan, graduating in 1938.</p>
+        </div>
+        <div class="context-box">
+          <h4>What it earns you</h4>
+          <p>Use this once, or not at all. It is worth a clause when you are discussing how precisely the play renders the humiliation of a father who cannot provide, and worthless as biography for its own sake. An examiner has read a thousand paragraphs that begin "Miller's own father".</p>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="context-box">
+          <h4>Selling as a way of life</h4>
+          <p>Willy sells on commission for a firm he has worked at for thirty-four years. He is not paid a salary. When his commission is withdrawn he is, in Linda's words in Act One, "on straight commission, like a beginner, an unknown". The play never once tells us what Willy sells.</p>
+        </div>
+        <div class="context-box">
+          <h4>What it earns you</h4>
+          <p>The omission is the point, and it is one of the best single observations available to you on this play. A man has given thirty-four years to a product the audience is never allowed to see. What he actually sells, as Charley says in the Requiem, is himself: "riding on a smile and a shoeshine".</p>
+        </div>
+      </div>
+
+      <div class="trap-box">
+        <h4>Context that decorates rather than deepens</h4>
+        <ul>
+          <li>A paragraph on the history of the American Dream. The play dramatises it; you do not need to summarise it.</li>
+          <li>McCarthyism and Miller's later testimony before the House Un-American Activities Committee. Real, important, and four years after this play. It belongs in an essay on <em>The Crucible</em>.</li>
+          <li>Statistics about postwar consumer spending, unless a specific line depends on them.</li>
+          <li>"In 1949, society valued material success." This tells a reader nothing they did not know before reading your sentence.</li>
+        </ul>
+      </div>
+
+      <div class="task-box">
+        <h4>Task 2 · The deletion test</h4>
+        <ol>
+          <li>Write a paragraph on Willy's scene with Howard that includes one historical statement. Now delete the statement. If the paragraph still stands, the context was decoration. Rewrite so that it is load-bearing.</li>
+          <li>Find three moments where money is named as an exact figure. Write one sentence on why Miller is so precise about sums in a play so imprecise about what Willy sells.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- STAGE 3 -->
+    <section class="content-section" id="stage3">
+      <span class="section-number">Stage 03</span>
+      <h2 class="section-title">Modernism and the Modern Stage</h2>
+
+      <p>Modernism is a large and argued-over term. For your purposes on this play it means something narrow and usable: a body of work, roughly from the 1890s to the middle of the twentieth century, in which writers concluded that the inherited forms could no longer carry modern experience, and rebuilt them.</p>
+
+      <p>The nineteenth-century play the Lomans might have appeared in would have had a box set with three walls, events in chronological order, a plot driven by a secret that comes out, and characters who explain themselves. Miller keeps some of that and breaks the rest.</p>
+
+      <table class="concept-table">
+        <thead><tr><th>The older convention</th><th>What Miller does instead</th><th>Why it matters here</th></tr></thead>
+        <tbody>
+          <tr><td>Solid walls, a room that contains the action</td><td>A set that is "wholly or, in some places, partially transparent", with a one-dimensional roof-line and the apartment buildings visible through the house</td><td>The house cannot keep anything out, including the past. The audience sees the pressure on the family literally through the walls.</td></tr>
+          <tr><td>Actors observe the imaginary fourth wall and use doors</td><td>In present-time scenes actors observe the wall-lines and enter through the door; in scenes of the past "these boundaries are broken", and characters step through a wall</td><td>Miller gives the audience a rule and then breaks it in front of them. Once you know the rule, you always know which time you are in, without a single announcement.</td></tr>
+          <tr><td>Chronological plot</td><td>Present action interrupted by the past as Willy experiences it</td><td>The play's form imitates a mind rather than a calendar.</td></tr>
+          <tr><td>Characters who explain their motives</td><td>Characters who repeat themselves, contradict themselves and cannot say the thing that matters</td><td>Meaning has to be assembled by the audience from repetition and evasion.</td></tr>
+          <tr><td>A hero of high rank</td><td>A salesman with an unpaid mortgage</td><td>The subject of serious drama is relocated to the lower middle class. Stage 8 is the argument about whether that works.</td></tr>
+        </tbody>
+      </table>
+
+      <p>Two features of Miller's stagecraft are worth naming precisely, because candidates reach for the wrong words. The forestage apron, curving into the orchestra, "serves as the back yard as well as the locale of all Willy's imaginings and of his city scenes". So the same piece of floor is used for the yard, for memory and for the city. And the apartment houses are not scenery. They are the last image of the play: in the closing stage direction, "the hard towers of the apartment buildings rise into sharp focus" as the curtain falls.</p>
+
+      <div class="examiner-box">
+        <h4>Using the word "modernism" well</h4>
+        <p>Do not open a paragraph with a definition of modernism. Open with what the play does, then name the tradition if the name adds something. "Miller dissolves the walls of the house so that the past can walk through them" is analysis. "Death of a Salesman is a modernist play" is a label, and labels earn nothing.</p>
+      </div>
+
+      <div class="task-box">
+        <h4>Task 3 · Form and its reasons</h4>
+        <ol>
+          <li>Take the rule about wall-lines. Track it through one scene of your choice and mark the exact moment the boundary breaks. Write two sentences on what the audience understands at that moment.</li>
+          <li>The play ends on the apartment towers rising into focus over the house. Argue in three sentences that this is the right final image, then argue that the flute would have been better. Which do you believe?</li>
+          <li class="stretch">Stretch: a transparent set costs a production something. What does an audience lose when it can see through the walls of a family home?</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- STAGE 4 -->
+    <section class="content-section" id="stage4">
+      <span class="section-number">Stage 04</span>
+      <h2 class="section-title">Capitalism and Work</h2>
+
+      <p>This is the reading you will reach for first, and you should have it. It is also the reading in which the largest number of weak essays get stuck, so this stage gives you the case for it, and then the strongest case against it.</p>
+
+      <h3 class="sub-title">The case the play appears to make</h3>
+      <p>Willy has given thirty-four years to the Wagner company. In Act Two he goes to ask for a job in New York and is fired by a man younger than his own sons, who spends the first minutes of the scene playing him a recording of his children. Willy's protest is the clearest statement of the play's grievance:</p>
+
+      <div class="passage">
+        <div class="passage-ref">Willy to Howard · Act Two</div>
+        <p class="verse">I put thirty-four years into this firm, Howard, and now I can't pay my insurance! You can't eat the orange and throw the peel away. A man is not a piece of fruit!</p>
+      </div>
+
+      <p>Set beside this the story Willy tells in the same scene about Dave Singleman, the eighty-four-year-old salesman who could "pick up a phone, and be remembered and loved and helped by so many different people", and at whose funeral "hundreds of salesmen and buyers" appeared. Willy's complaint is not that selling is hard. It is that selling used to contain "respect, and comradeship, and gratitude", and that now "it's all cut and dried". The evidence that he is right arrives in the Requiem, when Linda asks "But where are all the people he knew?" and nobody comes.</p>
+
+      <div class="examiner-box">
+        <h4>The detail most candidates miss</h4>
+        <p>Howard does not attend the funeral. Guijarro-González and Espejo, citing Bernard Dukore, treat this absence as the play's final piece of evidence that under the newer form of business Howard represents, the personal and the professional have no relation to one another. It is a fact about who is <em>not</em> on stage, which is exactly the kind of evidence a strong essay uses and a weak one never notices.</p>
+      </div>
+
+      <h3 class="sub-title">The case against that reading</h3>
+      <p>Now the complication. In their essay on capitalism in the play, Guijarro-González and Espejo argue that although "Willy Loman seems destroyed by capitalism, in reality he is not". Their evidence is Charley and Bernard: two men from Willy's own background, neighbourhood and social class, who do well and are decent, and who are, in Willy's vocabulary, merely "liked" rather than "well liked". Their point about method is worth learning: a writer who wants to condemn a system does not usually populate his play with likeable people flourishing inside it.</p>
+
+      <p>The same essay notes that Willy's brother Ben is widely read as representing a ruthless capitalism that follows no ethical rules, a reading they attribute to Thomas E. Porter. So the play contains at least three versions of economic life: Ben's plunder, Howard's efficiency, and Charley's ordinary decency. If the play were a simple indictment of capitalism, Charley could not exist.</p>
+
+      <p>You are not required to agree with this. You are required to know it exists, because it turns a flat essay into an argument. The strongest position available to you is neither "capitalism destroys Willy" nor "capitalism is innocent", but something more precise about what Willy has actually believed and where he learned it.</p>
+
+      <div class="ladder">
+        <div class="rung">
+          <div class="grade">Level 1 · The default</div>
+          <p class="sample">Miller criticises capitalism. Willy works hard for thirty-four years and is thrown away by Howard, which shows how capitalism treats workers as disposable. This is shown through the metaphor "a man is not a piece of fruit", which emphasises the dehumanisation of the worker.</p>
+          <p class="why"><strong>Diagnosis.</strong> The quotation is well chosen and the reading is not wrong. But it treats the play as a pamphlet with one opinion, and it cannot explain Charley, Bernard, or the fact that Willy's ruin begins long before Howard fires him.</p>
+        </div>
+        <div class="rung good">
+          <div class="grade">Level 3 · An argument</div>
+          <p class="sample">The play's target is narrower and stranger than capitalism itself. Charley and Bernard prosper in the same system, from the same street, and Miller allows them to be likeable while they do it, which is not how a writer builds an indictment. What ruins Willy is a particular theory of success he has adopted and taught to his sons: that being "well liked" is the qualification, that personality is the asset, and that effort without charm is worthless. The play tests that theory to destruction against Bernard, who is merely liked, works, and ends up arguing a case before the Supreme Court. Willy is not destroyed by having to sell. He is destroyed by having believed a story about selling, and the cruelty of the Requiem is that the story does not even survive him: Happy, standing at the grave, announces that he will "win it for him", which is the same story starting again.</p>
+          <p class="why"><strong>Diagnosis.</strong> A claim that could be disagreed with. Evidence drawn from characters, not just from one quotation. It accounts for the counter-evidence rather than avoiding it, and it lands on a specific consequence in the text. This is what Criterion B rewards.</p>
+        </div>
+      </div>
+
+      <div class="task-box">
+        <h4>Task 4 · Holding two readings at once</h4>
+        <ol>
+          <li>Build the case that Charley is the play's moral centre, using only what he says and does. Then build the case that his decency is precisely what makes Willy's fate unbearable.</li>
+          <li>Willy tells Biff in Act One that stealing a football shows "initiative". Trace what happens to that idea by the end of the play. What has Miller done to it?</li>
+          <li>Bernard asks Willy in Act Two what happened after Biff's trip to Boston. Read the scene and write one sentence on why Miller puts the truth in the mouth of the character Willy has always dismissed.</li>
+          <li class="stretch">Stretch: Willy's suicide is a financial transaction, "twenty thousand dollars on the barrelhead". Write a paragraph on what it means for a play to make a man's death into a sales figure, and whether Miller intends us to find it moving, obscene, or both.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- STAGE 5 -->
+    <section class="content-section" id="stage5">
+      <span class="section-number">Stage 05</span>
+      <h2 class="section-title">Characters</h2>
+
+      <p>Build a character from evidence, not impression. Three questions do most of the work: what does this person repeat, what can they not say, and what does the play give them that they do not ask for?</p>
+
+      <div class="char-card" id="willy">
+        <div class="char-name">Willy Loman</div>
+        <div class="char-role">Sixty-three · Salesman on commission · Thirty-four years with the same firm</div>
+        <p>Willy talks in contradictions and does not hear them. Biff is "a lazy bum" and then, in the same conversation, "one of the greatest things about him" is that he is not lazy. He tells his sons the world is theirs and tells Linda he "couldn't make it". The contradictions are not carelessness on Miller's part. They are the method by which the play shows a man arguing with himself in public, using other people as the two sides.</p>
+        <p>What he repeats: being well liked, making an appearance, the names of cities, the promise that things will be different. What he cannot say: that Biff saw him in Boston. The play withholds that scene until Act Two, and every earlier evasion becomes legible in retrospect.</p>
+        <div class="char-traits"><span class="trait">self-deceiving</span><span class="trait">tender</span><span class="trait red">cruel to Linda</span><span class="trait">exhausted</span><span class="trait blue">good with his hands</span></div>
+      </div>
+
+      <div class="char-card" id="linda">
+        <div class="char-name">Linda Loman</div>
+        <div class="char-role">Wife · The play's accountant and its conscience</div>
+        <p>Miller's opening description of Linda is unusually exact: she "more than loves him, she admires him", and she has developed "an iron repression of her exceptions to Willy's behavior". She knows about the rubber pipe. She takes it away every day and puts it back, and says nothing. She is the only character who states the play's moral claim outright:</p>
+        <div class="quote-block">
+          <p class="quote-text">"He's not the finest character that ever lived. But he's a human being, and a terrible thing is happening to him. So attention must be paid. He's not to be allowed to fall into his grave like an old dog."</p>
+          <p class="quote-speaker">Linda to Biff and Happy · Act One</p>
+          <div class="quote-analysis"><strong>Note the grammar.</strong> "Attention must be paid" is passive and impersonal. Linda does not say "pay attention to him", which would be a request she has no power to enforce. She states it as a law, as though the obligation existed independently of anyone's willingness to meet it. It is the most quoted line in the play and it is quoted so often that candidates forget to look at how it is built.</div>
+        </div>
+        <p>Sickels records that from the 1980s feminist critics have focused on Linda, some arguing that Miller denies her a significant role of her own. Test that against the Requiem, where she is given the last words of the play and cannot cry.</p>
+        <div class="char-traits"><span class="trait">loyal</span><span class="trait red">complicit</span><span class="trait">clear-eyed about money</span><span class="trait blue">silenced</span></div>
+      </div>
+
+      <div class="char-card" id="biff">
+        <div class="char-name">Biff and Happy Loman</div>
+        <div class="char-role">Two sons, two responses to the same father</div>
+        <p>Biff is the only person in the play who arrives at the truth and says it: "Pop! I'm a dime a dozen, and so are you!" and, at the grave, "He had the wrong dreams. All, all, wrong. He never knew who he was." Whether that is liberation or defeat is one of the genuine questions the play leaves open, and a good essay does not settle it too quickly.</p>
+        <p>Happy is the more disturbing creation because he is the one who survives unchanged. He lies compulsively, he is ignored by his father throughout, and at the funeral he refuses the knowledge Biff has reached. His closing promise, that Willy "did not die in vain" and that he will "win it for him", tells the audience that the whole cycle is about to run again in the next generation.</p>
+        <div class="char-traits"><span class="trait blue">Biff: truth-telling</span><span class="trait blue">Biff: adrift</span><span class="trait red">Happy: unchanged</span><span class="trait red">Happy: unheard</span></div>
+      </div>
+
+      <div class="char-card" id="others">
+        <div class="char-name">Ben, Charley, Bernard, Howard</div>
+        <div class="char-role">Four versions of what a man might do with his life</div>
+        <p><strong>Ben</strong> exists only in Willy's mind and speaks in slogans: "when I walked into the jungle, I was seventeen. When I walked out I was twenty-one. And, by God, I was rich." His refrain, "The jungle is dark but full of diamonds", is the play's most seductive and least examined idea. Notice that Ben's diamonds are real and Willy's are not: Ben went into a jungle, Willy goes into a car.</p>
+        <p><strong>Charley</strong> lends Willy money every week and never mentions it, offers him a job repeatedly, and is refused every time. He is the answer to the question the play keeps asking, and Willy cannot accept the answer because accepting it would mean the theory was wrong.</p>
+        <p><strong>Bernard</strong> is mocked as "anemic" in Act One and turns up in Act Two on his way to argue a case before the Supreme Court, mentioning it only when his father asks. Miller gives Bernard's success the quietest possible staging.</p>
+        <p><strong>Howard Wagner</strong> is thirty-six, owns the firm his father built, and conducts Willy's dismissal while demonstrating a wire recorder. His absorption in his children's recorded voices while an old man begs in front of him is one of the cruellest pieces of staging in modern drama, and it is achieved entirely through what he is doing rather than what he says.</p>
+      </div>
+
+      <div class="task-box">
+        <h4>Task 5 · Evidence, not impression</h4>
+        <ol>
+          <li>Choose one character and find three things they repeat. Write a sentence on what the repetition reveals that a direct statement could not.</li>
+          <li>Willy never once asks Linda what she wants. Find the closest he comes, and write two sentences on what the near-miss achieves.</li>
+          <li>Ben appears only inside Willy's mind, yet he shapes every major decision Willy makes. Write a paragraph arguing that a character who is not really there can be the most powerful presence in a play.</li>
+          <li class="stretch">Stretch: rank the four men in the last card by how well the play thinks they have lived. Defend your order. There is no correct answer, only a better-argued one.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- STAGE 6 -->
+    <section class="content-section" id="stage6">
+      <span class="section-number">Stage 06</span>
+      <h2 class="section-title">Symbols and Motifs</h2>
+
+      <p>A symbol in this play is almost never announced. It is an ordinary object that appears, disappears and returns, gathering meaning by repetition until its final appearance carries everything the earlier ones deposited. Track the pattern, not the object.</p>
+
+      <div class="symbol-grid">
+        <div class="symbol-card">
+          <div class="symbol-name">The stockings</div>
+          <p class="symbol-surface">Linda mends her silk stockings at the kitchen table. Willy erupts: "I won't have you mending stockings in this house! Now throw them out!" In Act Two we learn he gave a new pair to The Woman in Boston.</p>
+          <p class="symbol-deep">The object works in two directions at once. New stockings are what Willy gives away; mended ones are what Linda is left with. His fury is guilt with nowhere to go, and it is aimed at his wife for the crime of economising. When Biff, in Boston, throws the stockings at his father, the audience understands the whole marriage in a single gesture.</p>
+        </div>
+        <div class="symbol-card">
+          <div class="symbol-name">Seeds and the garden</div>
+          <p class="symbol-surface">"I've got to get some seeds, right away. Nothing's planted. I don't have a thing in the ground." Willy plants at night, by torchlight, in a yard with no sun.</p>
+          <p class="symbol-deep">The seeds are the play's clearest image of a man wanting to leave something behind that will grow. Miller makes the attempt hopeless in the staging itself: there is no light and no soil worth planting in, because the apartment blocks took both. Note that Willy turns to the garden immediately after being abandoned in the restaurant. He reaches for growing things at the moment his sons have failed him.</p>
+        </div>
+        <div class="symbol-card">
+          <div class="symbol-name">The rubber pipe</div>
+          <p class="symbol-surface">Linda has found a length of rubber pipe connected to the gas heater. She takes it away each day and says nothing. Biff finds it and confronts her.</p>
+          <p class="symbol-deep">This is the play's most efficient piece of dramatic irony. Once the audience knows the pipe exists, every subsequent scene of ordinary family life is watched with dread. Notice too that the pipe is never used. Willy dies in the car, which means the object's function in the play is not to kill him but to tell us he intends to die, and to implicate everyone who knew.</p>
+        </div>
+        <div class="symbol-card">
+          <div class="symbol-name">The flute</div>
+          <p class="symbol-surface">Heard before the curtain rises, "telling of grass and trees and the horizon". It fades when Willy sits beside Linda, returns at intervals, and plays alone at the very end of the Requiem.</p>
+          <p class="symbol-deep">Willy's father made and sold flutes. The music is therefore an inheritance, and Miller writes that Willy "hears but is not aware of it". A man who cannot name what he actually wants is followed around the stage by the sound of it. The play gives the flute the last word before the apartment towers rise into focus.</p>
+        </div>
+        <div class="symbol-card">
+          <div class="symbol-name">Diamonds and the jungle</div>
+          <p class="symbol-surface">Ben's refrain: "The jungle is dark but full of diamonds", and "One must go in to fetch a diamond out."</p>
+          <p class="symbol-deep">A diamond is the opposite of everything else Willy owns. It is hard, portable and cannot be paid for in instalments. Willy's complaint that he is "always in a race with the junkyard" explains the appeal exactly. His suicide is his attempt to fetch a diamond out, and the tragedy is that the diamond is an insurance payment which the play gives us no reason to believe will be honoured.</p>
+        </div>
+        <div class="symbol-card">
+          <div class="symbol-name">The apartment houses</div>
+          <p class="symbol-surface">"Towering, angular shapes", "a solid vault", present from the first stage direction and rising "into sharp focus" as the curtain falls.</p>
+          <p class="symbol-deep">The one symbol the audience cannot look away from, because it is the set. It is also the reason the garden fails and the reason the neighbourhood Willy remembers is gone. Treat it as the play's antagonist and much of the staging makes sense.</p>
+        </div>
+      </div>
+
+      <div class="trap-box">
+        <h4>How symbol paragraphs go wrong</h4>
+        <ul>
+          <li><strong>Announcing the meaning and stopping.</strong> "The seeds symbolise Willy's desire for a legacy." Correct, and finished in nine words. Where does the play put the seeds, and what has just happened to Willy when he reaches for them?</li>
+          <li><strong>Treating one appearance as the whole pattern.</strong> These objects work by return. A paragraph on the stockings that mentions only Boston has analysed an incident, not a motif.</li>
+          <li><strong>Inventing a symbol.</strong> If you cannot show the object recurring, you are decoding rather than reading.</li>
+        </ul>
+      </div>
+
+      <div class="task-box">
+        <h4>Task 6 · Tracking a motif</h4>
+        <ol>
+          <li>Choose one object from the grid. Log every appearance with act and speaker. Then write a paragraph that argues from the pattern rather than from a single instance.</li>
+          <li>The flute belongs to Willy's father, whom we never see. Write two sentences on how a play can characterise someone who never appears.</li>
+          <li class="stretch">Stretch: find an object the play uses only once and argue that it should have been a motif. What would the play have gained, and what would it have lost?</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- STAGE 7 -->
+    <section class="content-section" id="stage7">
+      <span class="section-number">Stage 07</span>
+      <h2 class="section-title">Expressionism</h2>
+
+      <p>Expressionism, in the theatre, means staging the world as a character experiences it rather than as it objectively is. Sets distort, sound becomes subjective, time stops behaving. Miller does not write a fully expressionist play. He writes a realistic family drama and then lets Willy's mind take over the stage at intervals, which is a harder and more interesting thing to do.</p>
+
+      <div class="examiner-box">
+        <h4>The single most useful term on this page</h4>
+        <p>Sickels records that the critic Brenda Murphy calls Miller's technique <strong>subjective realism</strong>: a blend of realistic and expressionistic devices designed to create the impression of what is actually going on inside the protagonist. If you use one piece of critical vocabulary in an essay on this play, make it that one, because it names precisely what the play does and stops you reaching for "flashback".</p>
+      </div>
+
+      <h3 class="sub-title">Why "flashback" is the wrong word</h3>
+      <p>A flashback is a device of film and prose narrative: the story stops and shows the audience an earlier event. That is not what happens here. Willy does not remember the past. The past arrives, in the present, on the same stage, and he speaks to it while his family watches him talk to nobody. Biff and Happy are in the room while it happens. Linda calls it losing his balance.</p>
+      <p>This is why the wall-line rule matters so much. In present scenes actors use the door; in scenes of the past they walk through the walls. The audience is not being shown a memory in a frame. They are being shown a man for whom the walls no longer hold, and the set enacts that condition rather than illustrating it.</p>
+
+      <table class="lens-table">
+        <thead><tr><th>Device</th><th>Where</th><th>What it does to the audience</th></tr></thead>
+        <tbody>
+          <tr><td>Transparent set</td><td>Throughout</td><td>Removes the privacy a family drama normally depends on. Nothing in this house is contained.</td></tr>
+          <tr><td>Broken wall-lines</td><td>Scenes of the past</td><td>Signals the shift in time physically, so the audience always knows where it is without being told.</td></tr>
+          <tr><td>The flute</td><td>Opening, intervals, final moments</td><td>Attaches an emotional register to Willy that he cannot articulate himself.</td></tr>
+          <tr><td>Ben's music</td><td>Each time Ben appears</td><td>Gives a hallucination its own sound cue, so that the audience learns to feel Ben coming before he speaks.</td></tr>
+          <tr><td>Lighting shifts</td><td>Continuously</td><td>Carve areas of the stage in and out of existence, so that space itself becomes subjective.</td></tr>
+          <tr><td>The apron</td><td>Yard, memory and city scenes</td><td>One piece of floor serves three functions, so the audience cannot separate Willy's outdoor life from his imagined one.</td></tr>
+        </tbody>
+      </table>
+
+      <p>The original 1949 production made all of this concrete. Sickels notes that the set was designed by Jo Mielziner, and credits it with accentuating the play's symbolism and enabling the movement between time, memory and Willy's inner thoughts. When you write about staging, you are not speculating. You are describing a solved design problem.</p>
+
+      <div class="task-box">
+        <h4>Task 7 · Putting a mind on stage</h4>
+        <ol>
+          <li>Find a moment where the past intrudes. Write down exactly what the audience sees and hears in the ten seconds around the shift. Then write a paragraph on how Miller makes the transition legible without a single line of explanation.</li>
+          <li>Replace the word "flashback" everywhere in your own notes on this play. What word did you use instead, and what does the change force you to notice?</li>
+          <li>Ben has his own music. Write two sentences on what it means that a figure who exists only in Willy's head is given a sound the audience can hear.</li>
+          <li class="stretch">Stretch: argue that the play is not expressionist at all, but a realistic play about a man having a breakdown, and that everything unusual on stage is simply accurate. What is the strongest objection to your own argument?</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- STAGE 8 -->
+    <section class="content-section" id="stage8">
+      <span class="section-number">Stage 08</span>
+      <h2 class="section-title">Is This a Tragedy?</h2>
+
+      <p>This question has followed the play since it opened, and it is a genuine argument rather than a classroom exercise. You are going to take a side.</p>
+
+      <h3 class="sub-title">Miller's claim</h3>
+      <p>Miller answered his critics in a newspaper essay of 1949, "Tragedy and the Common Man", arguing, in Sickels's summary and quotation, that "the common man is as apt a subject for tragedy in its highest sense as kings were", and that tragic heroes are defined by their willingness to sacrifice everything to maintain their personal dignity. On that definition Willy qualifies: he refuses Charley's job to the end, and dies to leave his son a stake.</p>
+
+      <h3 class="sub-title">The critics who disagreed</h3>
+      <p>Sickels records that the debate began almost immediately and has never closed. Eleanor Clark, writing in the <em>Partisan Review</em> in 1949, called the play "straight from the party line literature of the Thirties" and dismissed it as clumsy and dull. Eric Bentley, reviewing it the same year, attacked what he saw as the play's conflicting aims of tragedy and social drama, which is the sharpest version of the objection: a play cannot indict a system and also insist that its hero's fall is his own doing. In 1961 Richard J. Foster argued that the play is not a tragedy at all, partly on the grounds that Willy is "a childish and stupid human being" whose job as a salesman is of minor consequence. Esther Merle Jackson took the opposite view in 1963, treating the play as tragic myth in the modern theatre.</p>
+
+      <h3 class="sub-title">Test it yourself</h3>
+      <p>Work through the classical criteria and record the evidence honestly, including the evidence that does not fit. The gaps are more interesting than the matches.</p>
+
+      <table class="plot-table">
+        <thead><tr><th>Feature of the tragic hero</th><th>Willy?</th><th>Evidence to weigh</th></tr></thead>
+        <tbody>
+          <tr><td>Born into nobility or high rank</td><td>No</td><td>A salesman on commission with an unpaid mortgage. This is the crux of Miller's argument, and of Foster's objection.</td></tr>
+          <tr><td>Responsible for his own fate</td><td>Contested</td><td>He refuses Charley's job repeatedly. He also loses his salary at sixty-three after thirty-four years.</td></tr>
+          <tr><td>Has a tragic flaw</td><td>Arguably</td><td>Not pride exactly, but a theory of success he cannot abandon without losing his account of his own life.</td></tr>
+          <tr><td>Makes a serious error of judgement</td><td>Yes</td><td>Boston, and what he teaches his sons.</td></tr>
+          <tr><td>Falls from a great height</td><td>No</td><td>He has no height to fall from. Ask whether the play needs one.</td></tr>
+          <tr><td>Recognises his mistake</td><td>Contested</td><td>"I am Willy Loman, and you are Biff Loman!" is an assertion of identity. Is it recognition, or its refusal?</td></tr>
+          <tr><td>Faces death with honour</td><td>Contested</td><td>He dies in secret, in a car, for money, believing he is providing.</td></tr>
+          <tr><td>Meets a tragic death</td><td>Yes</td><td>Though whether it is tragic or merely sad is exactly the question.</td></tr>
+          <tr><td>The audience feels pity</td><td>Yes</td><td>Test this against Charley's Requiem speech, which instructs the audience how to feel: "Nobody dast blame this man."</td></tr>
+        </tbody>
+      </table>
+
+      <div class="task-box">
+        <h4>Task 8 · Take a side</h4>
+        <ol>
+          <li>Complete the grid above with your own evidence, in your own words, including the rows where the fit is poor.</li>
+          <li>Write a paragraph answering: is <em>Death of a Salesman</em> a tragedy? Use one critic who agrees with you and one who does not, and do not resolve the disagreement by ignoring it.</li>
+          <li>Charley's speech tells the audience not to blame Willy. Write two sentences on whether a play is entitled to instruct its audience how to judge its hero, and what is gained or lost when it does.</li>
+          <li class="stretch">Stretch: Miller called the play <em>Certain Private Conversations</em>. Argue that this subtitle makes a stronger claim about the play's form than the word "tragedy" does.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- STAGE 9 -->
+    <section class="content-section" id="stage9">
+      <span class="section-number">Stage 09</span>
+      <h2 class="section-title">Paper 1: Guided Analysis</h2>
+
+      <p>Paper 1 gives you texts you have never seen and asks for a guided analysis of each. Your studied works never appear on it. So why practise on a play you now know well? Because the method is identical, and drilling it on familiar material removes the panic of unfamiliarity, leaving you free to concentrate on how you work.</p>
+
+      <div class="examiner-box">
+        <h4>What the guiding question is for</h4>
+        <p>Each extract comes with a guiding question. It is not a topic to cover. It is a hinge: a suggested way into the text that you may take or improve on. The best answers use it to build a single argument about the extract, then prove that argument line by line. The weakest answers treat it as a checklist and work through the extract from top to bottom, describing.</p>
+      </div>
+
+      <h3 class="sub-title">A method for a drama extract</h3>
+      <div class="essay-q">
+        <p class="q-text">Twenty minutes of reading and planning, then write. The planning is where the marks are made.</p>
+        <div class="essay-step"><div class="step-num">1</div><p><strong>Read once for the situation.</strong> Who wants what from whom, and what stands in the way? Everything in a drama extract is somebody trying to get something.</p></div>
+        <div class="essay-step"><div class="step-num">2</div><p><strong>Read again for shape.</strong> Where does the extract turn? Mark the exact line. Almost every extract has one, and finding it gives you a structure.</p></div>
+        <div class="essay-step"><div class="step-num">3</div><p><strong>Read the stage directions separately.</strong> They are the dramatist speaking directly to you. Candidates skip them and lose the easiest marks on the paper.</p></div>
+        <div class="essay-step"><div class="step-num">4</div><p><strong>Note who holds the floor.</strong> Count lines. Note interruptions, silences, questions left unanswered. Power in drama is visible in the distribution of speech.</p></div>
+        <div class="essay-step"><div class="step-num">5</div><p><strong>Write one sentence stating your argument</strong> about the extract. If you cannot, you are not ready to write the essay.</p></div>
+        <div class="essay-step"><div class="step-num">6</div><p><strong>Build three or four paragraphs that each advance that argument</strong>, in the order that best proves it, not in the order the lines happen to appear.</p></div>
+      </div>
+
+      <h3 class="sub-title">Practice extract</h3>
+      <p>Use the Howard scene in Act Two, from Willy's entrance to Howard's exit. It is an almost perfect Paper 1 extract: two people, one room, a clear want, an object doing thematic work, and a turn you can point to.</p>
+
+      <div class="essay-q">
+        <p class="q-text">Guiding question: how does Miller present the relationship between Willy and Howard in this extract?</p>
+        <div class="essay-step"><div class="step-num">A</div><p>Before you write, answer three questions in note form. What does Willy come in wanting? What is Howard doing with his hands for most of the scene? What has changed by the time Howard leaves?</p></div>
+        <div class="essay-step"><div class="step-num">B</div><p>Find the turn. There is a moment when Willy stops asking and starts insisting, and his register changes with it.</p></div>
+        <div class="essay-step"><div class="step-num">C</div><p>Write for fifty minutes. One argument, proved.</p></div>
+      </div>
+
+      <details>
+        <summary>Attempt the extract first, then open this for a worked opening paragraph</summary>
+        <div class="inner">
+          <p><strong>An opening that argues:</strong></p>
+          <p>Miller stages this scene so that the older man does all the speaking and the younger man does all the acting, and the imbalance is what makes it unbearable to watch. Willy arrives with a request that shrinks in front of us, from a job in New York to sixty-five dollars a week to forty, while Howard, who never raises his voice, is occupied throughout with a wire recorder and the recorded voices of his own children. The machine is doing several things at once: it demonstrates the new efficiency that has made Willy obsolete, it gives Howard something to attend to that is not the man in front of him, and it fills the room with the sound of a family being preserved at exactly the moment another family is being destroyed. When Willy finally abandons persuasion for assertion, "I put thirty-four years into this firm, Howard, and now I can't pay my insurance!", the appeal is to a relationship that the scene has already demonstrated does not exist. Howard's reply, that he has to see some people, is not cruelty. It is the absence of any category in which Willy's claim could register, and that is the more frightening proposition.</p>
+          <p><strong>Why it works:</strong> it makes a claim in the first sentence, it argues from staging rather than from theme, it reads the object rather than naming it, and its final judgement goes beyond "Howard is unsympathetic" to something more precise about how the scene is built.</p>
+        </div>
+      </details>
+
+      <div class="task-box">
+        <h4>Task 9 · Paper 1 practice</h4>
+        <ol>
+          <li>Write the full response to the Howard extract under timed conditions. Mark your own opening against the worked example: does yours make a claim, or announce a topic?</li>
+          <li>Repeat with the Requiem, guiding question: how does Miller use the final scene to shape the audience's judgement of Willy?</li>
+          <li>Repeat with the opening stage direction and Willy's entrance, guiding question: how does the opening of the play establish the world of the Lomans?</li>
+          <li class="stretch">Stretch: write a guiding question of your own for a passage of your choosing, then swap with a partner and answer theirs.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- QUOTATION BANK -->
+    <section class="content-section" id="bank">
+      <span class="section-number">Reference</span>
+      <h2 class="section-title">Quotation Bank</h2>
+
+      <p>Organised by the argument each quotation supports. Learn the short ones exactly. Three quotations you can reproduce precisely and analyse closely will always beat a dozen you half remember.</p>
+
+      <h3 class="sub-title">Work, selling and value</h3>
+      <table class="plot-table">
+        <thead><tr><th>Speaker</th><th>Quotation</th><th>Where</th></tr></thead>
+        <tbody>
+          <tr><td>Willy</td><td>"I put thirty-four years into this firm, Howard, and now I can't pay my insurance! You can't eat the orange and throw the peel away. A man is not a piece of fruit!"</td><td>Act Two</td></tr>
+          <tr><td>Willy</td><td>"In those days there was personality in it, Howard. There was respect, and comradeship, and gratitude in it. Today, it's all cut and dried."</td><td>Act Two</td></tr>
+          <tr><td>Willy</td><td>"They don't know me any more."</td><td>Act Two</td></tr>
+          <tr><td>Charley</td><td>"No man only needs a little salary."</td><td>Requiem</td></tr>
+          <tr><td>Charley</td><td>"A salesman is got to dream, boy. It comes with the territory."</td><td>Requiem</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="sub-title">Dreams, success and being well liked</h3>
+      <table class="plot-table">
+        <thead><tr><th>Speaker</th><th>Quotation</th><th>Where</th></tr></thead>
+        <tbody>
+          <tr><td>Ben</td><td>"The jungle is dark but full of diamonds, Willy."</td><td>Act Two</td></tr>
+          <tr><td>Ben</td><td>"One must go in to fetch a diamond out."</td><td>Act Two</td></tr>
+          <tr><td>Willy</td><td>"It's twenty thousand dollars on the barrelhead. Guaranteed, gilt-edged, you understand?"</td><td>Act Two</td></tr>
+          <tr><td>Biff</td><td>"Pop! I'm a dime a dozen, and so are you!"</td><td>Act Two</td></tr>
+          <tr><td>Willy</td><td>"I am not a dime a dozen! I am Willy Loman, and you are Biff Loman!"</td><td>Act Two</td></tr>
+          <tr><td>Happy</td><td>"He had a good dream. It's the only dream you can have, to come out number-one man."</td><td>Requiem</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="sub-title">Family, attention and blame</h3>
+      <table class="plot-table">
+        <thead><tr><th>Speaker</th><th>Quotation</th><th>Where</th></tr></thead>
+        <tbody>
+          <tr><td>Linda</td><td>"He's not the finest character that ever lived. But he's a human being, and a terrible thing is happening to him. So attention must be paid."</td><td>Act One</td></tr>
+          <tr><td>Linda</td><td>"A small man can be just as exhausted as a great man."</td><td>Act One</td></tr>
+          <tr><td>Willy</td><td>"I won't have you mending stockings in this house! Now throw them out!"</td><td>Act One</td></tr>
+          <tr><td>Biff</td><td>"He had the wrong dreams. All, all, wrong."</td><td>Requiem</td></tr>
+          <tr><td>Biff</td><td>"He never knew who he was."</td><td>Requiem</td></tr>
+          <tr><td>Charley</td><td>"Nobody dast blame this man. He's man way out there in the blue, riding on a smile and a shoeshine."</td><td>Requiem</td></tr>
+          <tr><td>Linda</td><td>"I made the last payment on the house today. Today, dear. And there'll be nobody home. We're free and clear."</td><td>Requiem</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="sub-title">Exhaustion, growth and the ending</h3>
+      <table class="plot-table">
+        <thead><tr><th>Speaker</th><th>Quotation</th><th>Where</th></tr></thead>
+        <tbody>
+          <tr><td>Willy</td><td>"I'm tired to the death."</td><td>Act One</td></tr>
+          <tr><td>Willy</td><td>"I've got to get some seeds, right away. Nothing's planted. I don't have a thing in the ground."</td><td>Act Two</td></tr>
+          <tr><td>Linda</td><td>"Why didn't anybody come?"</td><td>Requiem</td></tr>
+          <tr><td>Stage direction</td><td>"Only the music of the flute is left on the darkening stage as over the house the hard towers of the apartment buildings rise into sharp focus."</td><td>Requiem</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- LOOKING AHEAD -->
+    <section class="content-section" id="ahead">
+      <span class="section-number">Looking ahead</span>
+      <h2 class="section-title">Where This Play Goes Next</h2>
+
+      <p>You will meet Paper 2 in Year 2. It is a comparative essay on two works, written without the texts in front of you, and it carries twenty-five marks. Ten of those sit in Criterion B, and half of the ten depend on comparison rather than on either work alone, which is why the essay that treats one text and then the other loses so heavily.</p>
+
+      <p><em>Death of a Salesman</em> pairs particularly well with <em>Hamlet</em>, and it is worth starting the comparison now, while this play is fresh. Some lines of contact to keep in your notes:</p>
+
+      <table class="concept-table">
+        <thead><tr><th>Aspect</th><th>Death of a Salesman</th><th>Hamlet</th></tr></thead>
+        <tbody>
+          <tr><td>The protagonist's struggle</td><td>Willy seeks validation through worldly success</td><td>Hamlet seeks moral clarity and meaning</td></tr>
+          <tr><td>Being misunderstood</td><td>Misread by family and employer, and self-deceived as well</td><td>Misread by the court, and feigning madness on purpose</td></tr>
+          <tr><td>Time and memory</td><td>A non-linear structure in which past and present share a stage</td><td>Soliloquy and metatheatre open the interior to the audience</td></tr>
+          <tr><td>Form</td><td>Modern domestic tragedy with expressionist elements</td><td>Renaissance tragedy with a philosophical inheritance</td></tr>
+          <tr><td>Father figures</td><td>Ben the idealised, Charley the real</td><td>The Ghost, carrying obligation and command</td></tr>
+          <tr><td>Death and legacy</td><td>Death arranged as a financial transaction</td><td>Death as the condition the whole play thinks about</td></tr>
+          <tr><td>Symbols</td><td>Seeds, stockings, the rubber pipe, the flute</td><td>Yorick's skull, poison, the graveyard</td></tr>
+        </tbody>
+      </table>
+
+      <p>Keep this grid open as you read <em>Hamlet</em> and add to it. A comparison built over two years is worth more than one assembled the week before the exam.</p>
+    </section>
+
+    <!-- REFERENCES -->
+    <section class="content-section" id="refs">
+      <span class="section-number">References</span>
+      <h2 class="section-title">Sources</h2>
+
+      <h3 class="sub-title">Primary text</h3>
+      <ul class="refs">
+        <li>Miller, Arthur. <em>Death of a Salesman: Certain Private Conversations in Two Acts and a Requiem</em>. First performed at the Morosco Theatre, New York, 10 February 1949. All quotations in this unit are cited by act.</li>
+      </ul>
+
+      <h3 class="sub-title">Criticism and scholarship</h3>
+      <ul class="refs">
+        <li>Sickels, Amy. "Arthur Miller's <em>Death of a Salesman</em>: History of Criticism", in <em>Critical Insights</em>. The account in this unit of the play's first reviews, of the tragedy debate, of Jo Mielziner's set, of Brenda Murphy's term "subjective realism" and of feminist readings of Linda is drawn from this survey.</li>
+        <li>Guijarro-González, J. I., and R. Espejo. "Capitalist America in Arthur Miller's <em>Death of a Salesman</em>: A Re-consideration", in Eric J. Sterling (ed.), <em>Arthur Miller's Death of a Salesman</em>. Rodopi, 2008. The argument in Stage 4 that Willy is not in fact destroyed by capitalism, and the evidence of Charley and Bernard, come from this essay, which in turn cites Bernard Dukore on Howard's absence from the funeral and Thomas E. Porter on Ben as a figure of ruthless capitalism.</li>
+        <li>Miller, Arthur. "Tragedy and the Common Man". <em>The New York Times</em>, 1949. Quoted here as reported and quoted by Sickels.</li>
+        <li>Critics named in Stage 8, all as recorded by Sickels: Eleanor Clark, "Old Glamour, New Gloom", <em>Partisan Review</em>, 1949; Eric Bentley, review in <em>Theatre Arts</em>, 1949; Richard J. Foster, "Confusion and Tragedy: The Failure of Miller's Salesman", 1961; Esther Merle Jackson, "<em>Death of a Salesman</em>: Tragic Myth in the Modern Theater", 1963.</li>
+      </ul>
+
+      <h3 class="sub-title">A note on honest citation</h3>
+      <p style="font-size:0.88rem;">Where this unit quotes a critic, the quotation is marked and attributed. Where a critic is quoted inside another critic's work, that is stated, because it matters: several of the judgements above reach you through Sickels's survey rather than from the original articles. Do the same in your own writing. In coursework, cite every idea you have taken from a critic, even when you have put it in your own words. In an examination you cannot cite formally, so name the critic in the sentence and make clear which part of the thinking is yours. An examiner would always rather read a candidate who has read one critic honestly than one who has borrowed six.</p>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  <p><em>Death of a Salesman</em> · Arthur Miller · DP English A: Literature, Year 1 · <a href="index.html">← Back to course index</a></p>
+</footer>
+
+</body>
+</html>

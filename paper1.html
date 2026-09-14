@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paper 1: Unseen Literary Commentary · DP English A Literature</title>
+  <style>
+    :root {
+      --navy: #0d1b2a;
+      --midnight: #1b2a3b;
+      --ink: #243447;
+      --deep: #0a1220;
+      --gold: #c9a84c;
+      --gold-light: #e8d5a3;
+      --cream: #f5f0e8;
+      --white: #ffffff;
+      --text: #e8e4dc;
+      --muted: #8fa3b1;
+      --accent: #4a8fa8;
+      --red: #a83244;
+      --red-light: #d4758a;
+      --green: #3a7d5c;
+      --green-light: #6ab89a;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Georgia', serif;
+      background: var(--navy);
+      color: var(--text);
+      line-height: 1.75;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(13,27,42,0.97);
+      border-bottom: 2px solid var(--gold);
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.6rem 3rem;
+      backdrop-filter: blur(8px);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 0.75rem; }
+    .nav-logo img { height: 38px; width: auto; object-fit: contain; }
+    .nav-logo a { color: var(--muted); text-decoration: none; font-size: 0.8rem; font-family: 'Helvetica Neue', sans-serif; transition: color 0.2s; }
+    .nav-logo a:hover { color: var(--gold); }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; flex-wrap: wrap; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none; font-size: 0.82rem;
+      letter-spacing: 0.03em; transition: color 0.2s;
+      font-family: 'Helvetica Neue', sans-serif;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 6rem 3rem 5rem;
+      background: linear-gradient(160deg, #0a1220 0%, #0d1b2a 40%, #111e30 100%);
+      position: relative; overflow: hidden;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      opacity: 0.4;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: 0; right: 0; width: 45%; height: 100%;
+      background: radial-gradient(ellipse at top right, rgba(201,168,76,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-tag {
+      font-family: 'Helvetica Neue', sans-serif;
+      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1.5rem;
+      border: 1px solid rgba(201,168,76,0.3);
+      display: inline-block; padding: 0.3rem 1rem; border-radius: 2px;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 4.5vw, 3.8rem);
+      font-weight: normal; line-height: 1.25; color: var(--white);
+      margin-bottom: 0.4rem;
+    }
+    .hero h1 em { font-style: italic; color: var(--gold); }
+    .hero-sub {
+      font-family: 'Helvetica Neue', sans-serif;
+      font-size: 0.9rem; color: var(--muted); margin-top: 1rem;
+      max-width: 560px; letter-spacing: 0.02em; line-height: 1.6;
+    }
+    .hero-pills { display: flex; gap: 0.6rem; margin-top: 2.5rem; flex-wrap: wrap; }
+    .pill {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.75rem;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 0.35rem 0.9rem; border-radius: 2px;
+      border: 1px solid rgba(201,168,76,0.3); color: var(--gold);
+      text-decoration: none; transition: all 0.2s;
+    }
+    .pill:hover { background: rgba(201,168,76,0.12); border-color: var(--gold); }
+
+    /* ── SECTIONS ── */
+    section { padding: 5rem 3rem; }
+    .section-label {
+      font-family: 'Helvetica Neue', sans-serif;
+      font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.75rem;
+    }
+    h2 {
+      font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: normal;
+      color: var(--white); margin-bottom: 1rem; line-height: 1.3;
+    }
+    p { color: var(--muted); margin-bottom: 1rem; font-size: 0.97rem; max-width: 700px; }
+    .divider { height: 1px; background: linear-gradient(to right, transparent, var(--gold), transparent); margin: 0 3rem; opacity: 0.25; }
+    .alt-bg { background: var(--midnight); }
+
+    /* ── FORMAT OVERVIEW CARDS ── */
+    .format-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem; max-width: 860px;
+    }
+    @media (max-width: 640px) { .format-grid { grid-template-columns: 1fr; } }
+    .format-card {
+      background: var(--ink); border-radius: 4px; padding: 2rem;
+      border: 1px solid rgba(201,168,76,0.15);
+    }
+    .format-card.hl { border-top: 3px solid var(--gold); }
+    .format-card.sl { border-top: 3px solid var(--accent); }
+    .format-card h3 {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.75rem;
+      letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1.2rem;
+    }
+    .format-card.hl h3 { color: var(--gold); }
+    .format-card.sl h3 { color: var(--accent); }
+    .format-row {
+      display: flex; justify-content: space-between; align-items: baseline;
+      padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+      font-size: 0.85rem;
+    }
+    .format-row:last-child { border-bottom: none; }
+    .format-row .label { color: var(--muted); font-family: 'Helvetica Neue', sans-serif; }
+    .format-row .value { color: var(--text); font-size: 0.9rem; }
+    .format-row .value em { color: var(--gold); font-style: normal; }
+
+    /* Criteria cards */
+    .criteria-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem; margin-top: 2rem; max-width: 860px;
+    }
+    .criteria-card {
+      background: var(--ink); border-radius: 4px; padding: 1.4rem;
+      border-left: 3px solid var(--gold);
+    }
+    .criteria-letter {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 1.6rem;
+      color: rgba(201,168,76,0.35); line-height: 1; margin-bottom: 0.6rem;
+    }
+    .criteria-card h4 { color: var(--gold-light); font-size: 0.9rem; margin-bottom: 0.3rem; font-weight: normal; }
+    .criteria-card p { font-size: 0.82rem; color: var(--muted); margin: 0; max-width: none; }
+
+    /* Guiding question callout */
+    .callout {
+      margin-top: 2rem; max-width: 720px; padding: 1.4rem 1.8rem;
+      background: rgba(201,168,76,0.05); border: 1px solid rgba(201,168,76,0.25);
+      border-radius: 4px;
+    }
+    .callout-title {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.68rem;
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold);
+      margin-bottom: 0.6rem;
+    }
+    .callout p { color: var(--text); font-size: 0.88rem; margin: 0; max-width: none; }
+
+    /* ── TEXTS TABS ── */
+    .text-tabs { display: flex; gap: 0.5rem; margin-bottom: 0; flex-wrap: wrap; }
+    .text-tab {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.8rem;
+      padding: 0.5rem 1.4rem; border-radius: 3px 3px 0 0; cursor: pointer;
+      border: 1px solid rgba(201,168,76,0.25); border-bottom: none;
+      color: var(--muted); background: transparent; transition: all 0.2s;
+      letter-spacing: 0.05em;
+    }
+    .text-tab:hover { color: var(--gold); }
+    .text-tab.active { background: var(--ink); color: var(--gold); border-color: rgba(201,168,76,0.4); }
+    .text-panel { display: none; }
+    .text-panel.active { display: block; }
+    .text-container {
+      background: var(--ink); border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 0 4px 4px 4px; padding: 2.5rem 3rem;
+      max-width: 860px;
+    }
+    .text-meta {
+      display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;
+      margin-bottom: 1.8rem;
+    }
+    .text-badge {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.65rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      padding: 0.2rem 0.7rem; border-radius: 2px;
+    }
+    .text-badge.poetry { background: rgba(201,168,76,0.15); color: var(--gold); }
+    .text-badge.prose { background: rgba(74,143,168,0.15); color: var(--accent); }
+    .text-title { color: var(--white); font-size: 1.15rem; font-style: italic; }
+    .text-author { color: var(--muted); font-size: 0.85rem; font-family: 'Helvetica Neue', sans-serif; }
+    .text-body {
+      font-family: 'Georgia', serif; font-size: 1rem; color: var(--text);
+      line-height: 2; margin-bottom: 2rem;
+      border-left: 3px solid rgba(201,168,76,0.2);
+      padding-left: 1.8rem;
+    }
+    .text-body.prose-text { line-height: 1.9; }
+    .text-body .stanza { margin-bottom: 1.4rem; }
+    .text-body .stanza:last-child { margin-bottom: 0; }
+
+    /* Guiding question box */
+    .gq-box {
+      background: var(--midnight); border-radius: 4px; padding: 1.4rem 1.8rem;
+      border: 1px solid rgba(201,168,76,0.18); margin-bottom: 1.5rem;
+    }
+    .gq-label {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.65rem;
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+    .gq-box p { color: var(--text); font-size: 0.92rem; margin: 0; max-width: none; font-style: italic; }
+
+    /* Analysis hints */
+    .hints-title {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.65rem;
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted);
+      margin-bottom: 0.8rem;
+    }
+    .hints-list { display: flex; flex-direction: column; gap: 0.5rem; }
+    .hint {
+      background: var(--midnight); border-radius: 3px; padding: 0.7rem 1rem;
+      font-size: 0.83rem; color: var(--muted); display: flex; gap: 0.6rem;
+    }
+    .hint::before { content: '↳'; color: rgba(201,168,76,0.5); flex-shrink: 0; }
+
+    /* ── APPROACH STEPS ── */
+    .steps-list { display: flex; flex-direction: column; gap: 1rem; max-width: 780px; margin-top: 2rem; }
+    .step {
+      display: flex; gap: 1.5rem; align-items: flex-start;
+      padding: 1.4rem 1.8rem; background: var(--ink); border-radius: 4px;
+      border: 1px solid rgba(255,255,255,0.05);
+      transition: border-color 0.2s;
+    }
+    .step:hover { border-color: rgba(201,168,76,0.25); }
+    .step-left { flex-shrink: 0; text-align: center; min-width: 3rem; }
+    .step-num {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 1.4rem;
+      color: rgba(201,168,76,0.3); line-height: 1;
+    }
+    .step-time {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.65rem;
+      letter-spacing: 0.08em; color: rgba(201,168,76,0.55);
+      margin-top: 0.3rem; white-space: nowrap;
+    }
+    .step h3 { color: var(--gold-light); font-size: 0.98rem; margin-bottom: 0.35rem; font-weight: normal; }
+    .step p { color: var(--muted); font-size: 0.85rem; margin: 0 0 0.6rem; max-width: none; }
+    .step ul { color: var(--muted); font-size: 0.83rem; padding-left: 1.2rem; margin: 0; }
+    .step li { margin-bottom: 0.2rem; }
+
+    /* ── QUESTIONS BANK ── */
+    .q-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.2rem; margin-top: 2rem;
+    }
+    .q-group { background: var(--ink); border-radius: 4px; padding: 1.5rem; }
+    .q-group-title {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.68rem;
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold);
+      border-bottom: 1px solid rgba(201,168,76,0.18); padding-bottom: 0.6rem;
+      margin-bottom: 1rem;
+    }
+    .q-item {
+      font-size: 0.85rem; color: var(--muted); padding: 0.45rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      display: flex; gap: 0.6rem; line-height: 1.5;
+    }
+    .q-item::before { content: '▸'; color: rgba(201,168,76,0.4); flex-shrink: 0; margin-top: 0.1rem; }
+    .q-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+    /* ── SCAFFOLD SECTION ── */
+    .scaffold-banner {
+      background: linear-gradient(135deg, rgba(58,125,92,0.12), rgba(74,143,168,0.08));
+      border: 1px solid rgba(106,184,154,0.25); border-radius: 4px;
+      padding: 1.2rem 1.8rem; margin-bottom: 2.5rem; max-width: 780px;
+      display: flex; gap: 1rem; align-items: flex-start;
+    }
+    .scaffold-banner .icon { font-size: 1.3rem; flex-shrink: 0; }
+    .scaffold-banner p { color: var(--green-light); font-size: 0.88rem; margin: 0; max-width: none; }
+    .scaffold-banner strong { color: #a8dfc9; }
+
+    /* Sub-tabs for scaffold */
+    .sub-tabs { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 2rem; }
+    .sub-tab {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.78rem;
+      padding: 0.45rem 1.1rem; border-radius: 2px; cursor: pointer;
+      border: 1px solid rgba(201,168,76,0.22); color: var(--muted);
+      background: transparent; transition: all 0.2s; letter-spacing: 0.04em;
+    }
+    .sub-tab:hover { color: var(--gold); border-color: var(--gold); }
+    .sub-tab.active { background: var(--gold); color: var(--navy); font-weight: bold; border-color: var(--gold); }
+    .sub-panel { display: none; }
+    .sub-panel.active { display: block; }
+
+    /* Reading Frame */
+    .reading-frame {
+      max-width: 780px; background: var(--ink); border-radius: 4px;
+      padding: 2rem; border: 1px solid rgba(255,255,255,0.06);
+    }
+    .rf-title {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.68rem;
+      letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+    .rf-step {
+      display: flex; gap: 1.2rem; margin-bottom: 1.2rem; padding-bottom: 1.2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .rf-step:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .rf-num {
+      width: 2rem; height: 2rem; border-radius: 50%; background: rgba(201,168,76,0.1);
+      border: 1px solid rgba(201,168,76,0.3); display: flex; align-items: center;
+      justify-content: center; flex-shrink: 0;
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.8rem; color: var(--gold);
+    }
+    .rf-step h4 { color: var(--gold-light); font-size: 0.9rem; margin-bottom: 0.3rem; font-weight: normal; }
+    .rf-step p { font-size: 0.83rem; color: var(--muted); margin: 0; max-width: none; }
+
+    /* Paragraph Template */
+    .para-template { max-width: 780px; }
+    .pt-block {
+      margin-bottom: 1.2rem; border-radius: 4px; overflow: hidden;
+    }
+    .pt-label {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.65rem;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      padding: 0.4rem 1rem; display: block;
+    }
+    .pt-label.point { background: rgba(201,168,76,0.18); color: var(--gold); }
+    .pt-label.evidence { background: rgba(74,143,168,0.18); color: var(--accent); }
+    .pt-label.effect { background: rgba(168,50,68,0.15); color: var(--red-light); }
+    .pt-label.link { background: rgba(58,125,92,0.18); color: var(--green-light); }
+    .pt-content {
+      background: var(--ink); padding: 1rem 1.2rem;
+      font-size: 0.87rem; color: var(--text); line-height: 1.7;
+      border-left: 3px solid transparent;
+    }
+    .pt-content.point { border-left-color: var(--gold); }
+    .pt-content.evidence { border-left-color: var(--accent); }
+    .pt-content.effect { border-left-color: var(--red-light); }
+    .pt-content.link { border-left-color: var(--green-light); }
+    .pt-content .slot {
+      display: inline; background: rgba(255,255,255,0.07);
+      border-bottom: 1px dashed rgba(201,168,76,0.5); padding: 0 0.2rem;
+      color: var(--gold-light); font-style: italic;
+    }
+    .pt-connector {
+      text-align: center; padding: 0.3rem;
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.7rem;
+      color: rgba(201,168,76,0.3); letter-spacing: 0.1em;
+    }
+
+    /* Sentence Starters */
+    .starters-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1rem; }
+    .starter-group { background: var(--ink); border-radius: 4px; padding: 1.3rem; }
+    .starter-group-title {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.65rem;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.9rem;
+      border-bottom: 1px solid rgba(201,168,76,0.15); padding-bottom: 0.5rem;
+    }
+    .starter-item {
+      font-style: italic; font-size: 0.84rem; color: var(--gold-light);
+      padding: 0.4rem 0.7rem; margin-bottom: 0.4rem;
+      border-left: 2px solid rgba(201,168,76,0.25);
+      background: rgba(201,168,76,0.03); border-radius: 0 2px 2px 0;
+      line-height: 1.5;
+    }
+    .starter-item span {
+      color: rgba(201,168,76,0.5); font-style: normal;
+      font-size: 0.75rem; display: block; margin-top: 0.15rem;
+      font-family: 'Helvetica Neue', sans-serif;
+    }
+
+    /* Commentary Outline */
+    .outline-steps { display: flex; flex-direction: column; gap: 0; max-width: 780px; }
+    .outline-block {
+      display: flex; gap: 0;
+    }
+    .outline-spine {
+      display: flex; flex-direction: column; align-items: center;
+      width: 2.5rem; flex-shrink: 0;
+    }
+    .outline-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--gold); flex-shrink: 0; margin-top: 1.3rem;
+      border: 2px solid var(--navy);
+      box-shadow: 0 0 0 2px rgba(201,168,76,0.3);
+    }
+    .outline-line {
+      width: 2px; flex: 1; background: rgba(201,168,76,0.2);
+    }
+    .outline-content {
+      flex: 1; background: var(--ink); border-radius: 4px; padding: 1.2rem 1.5rem;
+      margin-bottom: 0.6rem; border: 1px solid rgba(255,255,255,0.05);
+    }
+    .outline-content h4 { color: var(--white); font-size: 0.9rem; margin-bottom: 0.4rem; font-weight: normal; }
+    .outline-content p { color: var(--muted); font-size: 0.82rem; margin: 0; max-width: none; line-height: 1.6; }
+    .outline-content .time-tag {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.65rem;
+      color: rgba(201,168,76,0.55); letter-spacing: 0.08em;
+      margin-top: 0.4rem; display: block;
+    }
+
+    /* Checklist */
+    .checklist-wrap { max-width: 780px; }
+    .checklist-section { margin-bottom: 1.5rem; }
+    .checklist-section-title {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.68rem;
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold);
+      margin-bottom: 0.6rem;
+    }
+    .check-item {
+      display: flex; align-items: flex-start; gap: 0.8rem;
+      background: var(--ink); border-radius: 4px; padding: 0.75rem 1rem;
+      cursor: pointer; transition: background 0.15s; margin-bottom: 0.35rem;
+      border: 1px solid rgba(255,255,255,0.04);
+    }
+    .check-item:hover { background: rgba(201,168,76,0.06); }
+    .check-item input[type=checkbox] { accent-color: var(--gold); width: 1rem; height: 1rem; flex-shrink: 0; margin-top: 0.2rem; cursor: pointer; }
+    .check-item label { color: var(--muted); font-size: 0.85rem; cursor: pointer; line-height: 1.5; }
+    .check-item input:checked + label { color: rgba(201,168,76,0.55); text-decoration: line-through; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      nav { padding: 0.6rem 1.2rem; }
+      section { padding: 3.5rem 1.4rem; }
+      .hero { padding: 4rem 1.4rem 3.5rem; }
+      .text-container { padding: 1.5rem 1.4rem; }
+      .divider { margin: 0 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════ NAV ═══════════════════════════════ -->
+<nav>
+  <div class="nav-logo">
+    <img src="logo.png" alt="logo" />
+    <a href="index.html">← DP Lit</a>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#texts">Practice Texts</a></li>
+    <li><a href="#approach">Approach</a></li>
+    <li><a href="#questions">Questions</a></li>
+    <li><a href="#scaffold" style="color:var(--green-light)">Scaffold ↗</a></li>
+  </ul>
+</nav>
+
+<!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
+<div class="hero">
+  <div class="hero-tag">DP English A · Literature HL / SL</div>
+  <h1>Paper 1<br><em>Unseen Literary Commentary</em></h1>
+  <p class="hero-sub">
+    Analyse an unseen literary text (poem or prose) and write a guided commentary.
+    This page contains practice texts, a step-by-step approach, analytical question banks,
+    and a full scaffold for students who need extra support.
+  </p>
+  <div class="hero-pills">
+    <a href="#overview" class="pill">Format &amp; Criteria</a>
+    <a href="#texts" class="pill">Practice Texts</a>
+    <a href="#approach" class="pill">How to Approach</a>
+    <a href="#questions" class="pill">Questions to Ask</a>
+    <a href="#scaffold" class="pill">Scaffold</a>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ OVERVIEW ═══════════════════════════════ -->
+<section id="overview">
+  <p class="section-label">Examination Format</p>
+  <h2>What is Paper 1?</h2>
+  <p>Paper 1 presents you with one or two previously unseen literary texts. You write a literary commentary guided by a question. The examiner wants to see how carefully and perceptively you read, and how well you write about literary choices.</p>
+
+  <div class="format-grid">
+    <div class="format-card hl">
+      <h3>Higher Level</h3>
+      <div class="format-row">
+        <span class="label">Duration</span>
+        <span class="value"><em>2 hours 15 minutes</em></span>
+      </div>
+      <div class="format-row">
+        <span class="label">Texts given</span>
+        <span class="value">Two unseen texts</span>
+      </div>
+      <div class="format-row">
+        <span class="label">You write</span>
+        <span class="value">Commentary on <em>one</em></span>
+      </div>
+      <div class="format-row">
+        <span class="label">Text types</span>
+        <span class="value">Poetry + Prose (or both prose)</span>
+      </div>
+      <div class="format-row">
+        <span class="label">Guiding question</span>
+        <span class="value">Provided for each text</span>
+      </div>
+      <div class="format-row">
+        <span class="label">Weighting</span>
+        <span class="value"><em>35%</em> of final grade</span>
+      </div>
+    </div>
+    <div class="format-card sl">
+      <h3>Standard Level</h3>
+      <div class="format-row">
+        <span class="label">Duration</span>
+        <span class="value"><em>1 hour 15 minutes</em></span>
+      </div>
+      <div class="format-row">
+        <span class="label">Texts given</span>
+        <span class="value">Two unseen texts</span>
+      </div>
+      <div class="format-row">
+        <span class="label">You write</span>
+        <span class="value">Commentary on <em>one</em></span>
+      </div>
+      <div class="format-row">
+        <span class="label">Text types</span>
+        <span class="value">Poetry + Prose (or both prose)</span>
+      </div>
+      <div class="format-row">
+        <span class="label">Guiding question</span>
+        <span class="value">Provided for each text</span>
+      </div>
+      <div class="format-row">
+        <span class="label">Weighting</span>
+        <span class="value"><em>35%</em> of final grade</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="criteria-grid" style="margin-top: 3rem;">
+    <div class="criteria-card">
+      <div class="criteria-letter">A</div>
+      <h4>Understanding &amp; Interpretation</h4>
+      <p>How well do you understand what the text is saying? Do you interpret meaning beyond the surface?</p>
+    </div>
+    <div class="criteria-card">
+      <div class="criteria-letter">B</div>
+      <h4>Appreciation of Writer's Choices</h4>
+      <p>Do you identify and analyse specific literary techniques, and explain their effect on meaning?</p>
+    </div>
+    <div class="criteria-card">
+      <div class="criteria-letter">C</div>
+      <h4>Organisation &amp; Development</h4>
+      <p>Is your commentary logically structured? Do ideas develop and connect across paragraphs?</p>
+    </div>
+    <div class="criteria-card">
+      <div class="criteria-letter">D</div>
+      <h4>Language</h4>
+      <p>Is your register formal, precise, and appropriate? Do you use literary terminology correctly?</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-title">About the Guiding Question</div>
+    <p>Each text comes with a guiding question, for example <em>"How does the poet use imagery to explore the theme of loss?"</em> Your commentary must address this question, but it should not be your only focus. A strong commentary explores the text as a whole and allows the guiding question to shape your analysis.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════ PRACTICE TEXTS ═══════════════════════════════ -->
+<section id="texts" class="alt-bg">
+  <p class="section-label">Practice Texts</p>
+  <h2>Read, Annotate, Respond</h2>
+  <p>Choose a text below and practice your commentary. Each text includes a guiding question and annotation hints. Work without notes first, then use the hints to deepen your analysis.</p>
+
+  <div class="text-tabs" style="margin-top: 2rem;">
+    <button class="text-tab active" onclick="showText('poetry')">Poem: Thomas Hardy</button>
+    <button class="text-tab" onclick="showText('prose')">Prose: Kate Chopin</button>
+    <button class="text-tab" onclick="showText('poem2')">Poem: Philip Larkin</button>
+  </div>
+
+  <!-- POETRY: Neutral Tones -->
+  <div id="text-poetry" class="text-panel active">
+    <div class="text-container">
+      <div class="text-meta">
+        <span class="text-badge poetry">Poetry</span>
+        <span class="text-title">"Neutral Tones"</span>
+        <span class="text-author">Thomas Hardy, 1867</span>
+      </div>
+      <div class="text-body">
+        <div class="stanza">
+          We stood by a pond that winter day,<br>
+          And the sun was white, as though chidden of God,<br>
+          And a few leaves lay on the starving sod;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;They had fallen from an ash, and were gray.
+        </div>
+        <div class="stanza">
+          Your eyes on me were as eyes that rove<br>
+          Over tedious riddles of years ago;<br>
+          And some words played between us to and fro<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;On which lost the more by our love.
+        </div>
+        <div class="stanza">
+          The smile on your mouth was the deadest thing<br>
+          Alive enough to have strength to die;<br>
+          And a grin of bitterness swept thereby<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;Like an ominous bird a-wing.
+        </div>
+        <div class="stanza">
+          Since then, keen lessons that love deceives,<br>
+          And wrings with wrong, have shaped to me<br>
+          Your face, and the God-curst sun, and a tree,<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;And a pond edged with grayish leaves.
+        </div>
+      </div>
+
+      <div class="gq-box">
+        <div class="gq-label">Guiding Question</div>
+        <p>How does Hardy use imagery and setting to explore the experience of a love that has faded?</p>
+      </div>
+
+      <div class="hints-title">Annotation Hints: What to Look For</div>
+      <div class="hints-list">
+        <div class="hint">Notice the colour palette throughout the poem. What does the repeated use of white, gray, and ashen tones suggest about the emotional atmosphere?</div>
+        <div class="hint">Consider the word "chidden" (stanza 1). God scolds the sun. What does it mean when the natural world itself is under divine reproach?</div>
+        <div class="hint">In stanza 2, the eyes "rove / Over tedious riddles". What does the simile reveal about the state of this relationship?</div>
+        <div class="hint">Examine the paradox "the deadest thing / Alive enough to have strength to die" (stanza 3). How does Hardy compress emotional contradiction into language?</div>
+        <div class="hint">The poem begins and ends near the same pond. What does this circular structure suggest about memory and trauma?</div>
+        <div class="hint">Notice the stanza form: four stanzas, each four lines, with an indented fourth line. How does this regularity contrast with the emotional instability the poem describes?</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROSE: The Awakening -->
+  <div id="text-prose" class="text-panel">
+    <div class="text-container">
+      <div class="text-meta">
+        <span class="text-badge prose">Prose</span>
+        <span class="text-title">From <em>The Awakening</em></span>
+        <span class="text-author">Kate Chopin, 1899</span>
+      </div>
+      <div class="text-body prose-text">
+        <p>The voice of the sea is seductive; never ceasing, whispering, clamoring, murmuring, inviting the soul to wander for a spell in abysses of solitude; to lose itself in mazes of inward contemplation. The voice of the sea speaks to the soul. The touch of the sea is sensuous, enfolding the body in its soft, close embrace.</p>
+        <p>She was becoming herself and daily casting aside that fictitious self which we assume like a garment with which to appear before the world. Edna spent whole days on her private terrace, reading, day-dreaming. She had resolved never again to belong to another than herself.</p>
+        <p>The water of the Gulf stretched out before her, gleaming with the million lights of the sun. The voice of the sea spoke in gentle, insistent tones. There was no living thing in sight except a bird with a broken wing that was beating the air above, reeling, fluttering, circling disabled down, down to the water.</p>
+      </div>
+
+      <div class="gq-box">
+        <div class="gq-label">Guiding Question</div>
+        <p>How does Chopin use language, imagery, and symbolism to present Edna's relationship with identity and freedom?</p>
+      </div>
+
+      <div class="hints-title">Annotation Hints: What to Look For</div>
+      <div class="hints-list">
+        <div class="hint">Chopin uses an extended personification of the sea as a speaking, touching presence. What emotional and psychological role does the sea play in the passage?</div>
+        <div class="hint">Notice the list of participial phrases: "whispering, clamoring, murmuring." How does this accumulation of sound words create a sensory and emotional effect?</div>
+        <div class="hint">Examine the simile of the "fictitious self … like a garment". What assumptions about identity and performance does it contain?</div>
+        <div class="hint">Consider the shift from second paragraph to third: from interior (selfhood) to exterior (seascape). How does Chopin use spatial movement to reflect psychological movement?</div>
+        <div class="hint">The bird with the broken wing appears at the end. It is "reeling, fluttering, circling disabled down, down." What might this image symbolise, given the passage's context?</div>
+        <div class="hint">Look at sentence length and rhythm. How does Chopin use long, flowing sentences in the first paragraph and shorter ones later? What effect does this create?</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- POEM 2: Larkin, Home is so Sad -->
+  <div id="text-poem2" class="text-panel">
+    <div class="text-container">
+      <div class="text-meta">
+        <span class="text-badge poetry">Poetry</span>
+        <span class="text-title">"Home is so Sad"</span>
+        <span class="text-author">Philip Larkin, 1958</span>
+      </div>
+      <div class="text-body">
+        <div class="stanza">
+          Home is so sad. It stays as it was left,<br>
+          Shaped to the comfort of the last to go<br>
+          As if to win them back. The books, the china,<br>
+          The pictures and the cutlery, the fender,<br>
+          The tiny family photographs, the lamp —
+        </div>
+        <div class="stanza">
+          All that has served its purpose fails to charm.<br>
+          It has no heart to put aside the theft<br>
+          Of what the willing soul once made a home<br>
+          Of what it treasured. Rather, it turns pathetic:<br>
+          You can see how it was: look at the photographs.
+        </div>
+      </div>
+
+      <div class="gq-box">
+        <div class="gq-label">Guiding Question</div>
+        <p>How does Larkin use personification, structure, and specific detail to explore the sadness of an empty home?</p>
+      </div>
+
+      <div class="hints-title">Annotation Hints: What to Look For</div>
+      <div class="hints-list">
+        <div class="hint">The poem opens with a flat, declarative statement: "Home is so sad." How does the simplicity of this opening affect the reader? What tone does it set?</div>
+        <div class="hint">The house is personified as waiting: "as if to win them back." Explore how the inanimate is given desire and intention. What emotional effect does this create?</div>
+        <div class="hint">Notice the list of domestic objects in stanza 1: books, china, photographs, lamp. Why does Larkin enumerate these items? What do they collectively represent?</div>
+        <div class="hint">The word "theft" in stanza 2 is unexpected. What has been stolen, and by whom? Consider its implications for how Larkin views time and loss.</div>
+        <div class="hint">The poem is two five-line stanzas (a decima split). How does the form contain grief, almost compartmentalising it? Is the structure itself a kind of restraint?</div>
+        <div class="hint">The final line: "You can see how it was: look at the photographs." The speaker suddenly addresses "you." What is the effect of this direct address at the poem's close?</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════ APPROACH ═══════════════════════════════ -->
+<section id="approach">
+  <p class="section-label">Step-by-Step Method</p>
+  <h2>How to Approach Paper 1</h2>
+  <p>A strong commentary is produced by a systematic method practised until it becomes automatic. Follow these steps in the examination room.</p>
+
+  <div class="steps-list">
+    <div class="step">
+      <div class="step-left">
+        <div class="step-num">01</div>
+        <div class="step-time">5 min</div>
+      </div>
+      <div>
+        <h3>Choose Your Text</h3>
+        <p>Read both texts and their guiding questions once through. Do not annotate yet. Ask yourself: <em>Which text gives me more to say? Where do I feel genuine curiosity?</em> Choose with your head. A shorter poem is not always easier than a prose extract.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-left">
+        <div class="step-num">02</div>
+        <div class="step-time">10 min</div>
+      </div>
+      <div>
+        <h3>Read Actively and Annotate</h3>
+        <p>Read your chosen text three times. On the first read, get a sense of the whole. On the second, begin marking:
+        </p>
+        <ul>
+          <li>Underline or circle key words, images, repeated words</li>
+          <li>Note tone shifts, structural divisions, turning points</li>
+          <li>Label any techniques you recognise (metaphor, enjambment, irony…)</li>
+          <li>Write brief margin notes: <em>what effect does this create?</em></li>
+          <li>On the third read, look for patterns across the whole text</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-left">
+        <div class="step-num">03</div>
+        <div class="step-time">5 min</div>
+      </div>
+      <div>
+        <h3>Plan Your Commentary</h3>
+        <p>Write a brief outline of the three key points you will develop. Each point should combine a literary technique with a specific effect on meaning or theme. Resist the urge to write about every technique you found. Depth beats breadth every time.</p>
+        <ul>
+          <li>Introduction: overall impression, context, what the text "does"</li>
+          <li>Body Point 1: usually the opening. How does the text establish itself?</li>
+          <li>Body Point 2: the central concern, with key technique and effect</li>
+          <li>Body Point 3: the turn or resolution. How does meaning develop or shift?</li>
+          <li>Conclusion: the text as a whole. What does it finally achieve?</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-left">
+        <div class="step-num">04</div>
+        <div class="step-time">10 min</div>
+      </div>
+      <div>
+        <h3>Write a Strong Introduction</h3>
+        <p>Your introduction should orient the reader, address the guiding question directly, and signal the direction of your argument. Avoid plot summary. Avoid beginning with "In this poem/passage…" Aim for a sentence that makes a genuine claim.</p>
+        <ul>
+          <li>Name the author, title (if known), form, and approximate period or context</li>
+          <li>State the central subject or speaker's situation in one sentence</li>
+          <li>Make a clear claim about the text's dominant mood, technique, or effect</li>
+          <li>Signal the focus of your commentary (link to guiding question)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-left">
+        <div class="step-num">05</div>
+        <div class="step-time">50 min</div>
+      </div>
+      <div>
+        <h3>Write Your Body Paragraphs</h3>
+        <p>Each body paragraph should develop one key idea. Embed quotations, and analyse every one you use. For every technique you name, explain <em>why the writer made that choice</em> and <em>what effect it creates on the reader</em>. Connect each paragraph to the text's larger meaning.</p>
+        <ul>
+          <li>Open each paragraph with a clear, analytical claim</li>
+          <li>Embed a short, specific quotation as evidence</li>
+          <li>Analyse choices at the level of individual words</li>
+          <li>Link to theme, tone, or the guiding question</li>
+          <li>Move through the text in order where possible</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-left">
+        <div class="step-num">06</div>
+        <div class="step-time">5 min</div>
+      </div>
+      <div>
+        <h3>Write Your Conclusion</h3>
+        <p>Bring together the threads of your commentary into a synthesis. Ask yourself: <em>What does this text ultimately achieve? What does it leave the reader with?</em> A strong conclusion often returns to the opening image or phrase and shows how your analysis has illuminated it.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-left">
+        <div class="step-num">07</div>
+        <div class="step-time">5 min</div>
+      </div>
+      <div>
+        <h3>Review and Refine</h3>
+        <p>Read your commentary once through. Check that each paragraph makes an analytical claim. Correct any errors in quotation. Ensure your response addresses the guiding question. Cut or condense anything that does not move your argument forward.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════ QUESTIONS BANK ═══════════════════════════════ -->
+<section id="questions" class="alt-bg">
+  <p class="section-label">Analytical Question Bank</p>
+  <h2>Questions to Ask the Text</h2>
+  <p>Before you write a single sentence of your commentary, interrogate the text. Use these questions to open up areas of analysis. You will not answer all of them; they are prompts to find what is worth writing about.</p>
+
+  <div class="q-grid">
+    <div class="q-group">
+      <div class="q-group-title">Speaker, Situation &amp; Context</div>
+      <div class="q-item">Who is speaking? What is their situation? Are they reliable?</div>
+      <div class="q-item">Who is the implied audience? Are they addressed directly?</div>
+      <div class="q-item">What has just happened, or is about to happen?</div>
+      <div class="q-item">What does the speaker want, consciously or unconsciously?</div>
+      <div class="q-item">What is the relationship between speaker and any other figures?</div>
+      <div class="q-item">What does the speaker know that the reader may not (or vice versa)?</div>
+    </div>
+
+    <div class="q-group">
+      <div class="q-group-title">Imagery &amp; Language</div>
+      <div class="q-item">What is the dominant image or metaphor? What does it suggest?</div>
+      <div class="q-item">Are there any unexpected or striking word choices? Why might the writer have chosen them?</div>
+      <div class="q-item">What sensory language is present (visual, auditory, tactile, olfactory)?</div>
+      <div class="q-item">Are there patterns of imagery (e.g. light and dark, water, animals)?</div>
+      <div class="q-item">Where does the language become most dense, compressed, or ambiguous?</div>
+      <div class="q-item">Are there any words with double meanings or unresolved ambiguity?</div>
+    </div>
+
+    <div class="q-group">
+      <div class="q-group-title">Structure &amp; Form</div>
+      <div class="q-item">Where is the turn or shift in the text? What changes at that moment?</div>
+      <div class="q-item">How does the text begin and end? Is there a contrast or a return?</div>
+      <div class="q-item">How does sentence or line length vary, and what effect does this create?</div>
+      <div class="q-item">Is there a regularity of form (sonnet, stanza, paragraph length)? Is it broken anywhere?</div>
+      <div class="q-item">Where does enjambment, caesura, or punctuation create unexpected pauses or rushes?</div>
+      <div class="q-item">Does the structure mirror or contradict the content?</div>
+    </div>
+
+    <div class="q-group">
+      <div class="q-group-title">Tone &amp; Atmosphere</div>
+      <div class="q-item">What is the emotional register of the opening? Does it change?</div>
+      <div class="q-item">Where is the tone most controlled or restrained? Most raw or intense?</div>
+      <div class="q-item">Is there irony, ambivalence, or emotional complexity the speaker may not acknowledge?</div>
+      <div class="q-item">What mood does the setting or physical environment create?</div>
+      <div class="q-item">Does the speaker's tone match what they are describing, or is there a gap?</div>
+    </div>
+
+    <div class="q-group">
+      <div class="q-group-title">Theme &amp; Meaning</div>
+      <div class="q-item">What is the text "about" beneath its literal surface?</div>
+      <div class="q-item">What large human experience does this text engage (love, loss, time, power, identity)?</div>
+      <div class="q-item">Does the text offer any resolution, or does it remain deliberately open?</div>
+      <div class="q-item">What does the text suggest about how the world works, or how it should work?</div>
+      <div class="q-item">What is the reader left feeling or thinking at the end? Is that effect intentional?</div>
+    </div>
+
+    <div class="q-group">
+      <div class="q-group-title">The Writer's Craft</div>
+      <div class="q-item">Why did the writer choose this form over another? Why a poem rather than prose?</div>
+      <div class="q-item">Which single choice (one word, one line break, one structural decision) is the most significant?</div>
+      <div class="q-item">What has the writer chosen NOT to say? What is absent?</div>
+      <div class="q-item">If one word were changed, how would the meaning shift?</div>
+      <div class="q-item">How does the ending reflect back on everything that came before?</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════ SCAFFOLD ═══════════════════════════════ -->
+<section id="scaffold">
+  <p class="section-label">Support Structures</p>
+  <h2>Scaffold for Developing Writers</h2>
+
+  <div class="scaffold-banner">
+    <div class="icon">🌱</div>
+    <p><strong>Who is this for?</strong> Use this section if you find yourself unsure where to begin, how to structure a paragraph, or how to move from observation to analysis. These frames are training wheels. The goal is to internalise them until you no longer need them.</p>
+  </div>
+
+  <div class="sub-tabs">
+    <button class="sub-tab active" onclick="showScaffold('reading')">Reading Frame</button>
+    <button class="sub-tab" onclick="showScaffold('paragraph')">Paragraph Template</button>
+    <button class="sub-tab" onclick="showScaffold('starters')">Sentence Starters</button>
+    <button class="sub-tab" onclick="showScaffold('outline')">Commentary Outline</button>
+    <button class="sub-tab" onclick="showScaffold('checklist')">Pre-Submit Checklist</button>
+  </div>
+
+  <!-- READING FRAME -->
+  <div id="scaffold-reading" class="sub-panel active">
+    <div class="reading-frame">
+      <div class="rf-title">5-Question Reading Frame: Answer These Before You Write</div>
+
+      <div class="rf-step">
+        <div class="rf-num">1</div>
+        <div>
+          <h4>What is happening in this text?</h4>
+          <p>Write one or two sentences describing the literal situation: who is present, where, what is occurring. Do not interpret yet; just describe what you see.</p>
+        </div>
+      </div>
+
+      <div class="rf-step">
+        <div class="rf-num">2</div>
+        <div>
+          <h4>What feeling does this text give you?</h4>
+          <p>Name the dominant emotion or atmosphere: melancholy, unease, longing, joy, irony… Then ask: <em>which specific words or images create that feeling?</em></p>
+        </div>
+      </div>
+
+      <div class="rf-step">
+        <div class="rf-num">3</div>
+        <div>
+          <h4>What is the most interesting or unusual moment?</h4>
+          <p>Identify one moment (a line, a word, a structural choice) that surprises you or seems especially important. This is often your best analytical entry point.</p>
+        </div>
+      </div>
+
+      <div class="rf-step">
+        <div class="rf-num">4</div>
+        <div>
+          <h4>What does the text want the reader to feel or understand?</h4>
+          <p>Think about the writer's intention. What experience are they crafting for you? Is the text trying to move you, disturb you, comfort you, challenge you?</p>
+        </div>
+      </div>
+
+      <div class="rf-step">
+        <div class="rf-num">5</div>
+        <div>
+          <h4>How does this text connect to the guiding question?</h4>
+          <p>Re-read the guiding question. Which of the techniques or images you identified are most relevant to answering it? Choose three to build your paragraphs around.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PARAGRAPH TEMPLATE -->
+  <div id="scaffold-paragraph" class="sub-panel">
+    <div class="para-template">
+      <p style="margin-bottom: 1.5rem; font-size: 0.88rem;">Each body paragraph follows the <strong style="color:var(--gold-light)">P-E-E-L</strong> structure: <em style="color:var(--muted)">Point → Evidence → Effect → Link</em>. Fill in the slots below with your own content.</p>
+
+      <div class="pt-block">
+        <span class="pt-label point">P: Point (your analytical claim)</span>
+        <div class="pt-content point">
+          Hardy/Chopin/Larkin uses <span class="slot">literary technique</span>
+          to suggest that <span class="slot">your interpretation of meaning or theme</span>,
+          which contributes to the poem's/passage's overall atmosphere of <span class="slot">mood/tone word</span>.
+        </div>
+      </div>
+      <div class="pt-connector">↓</div>
+
+      <div class="pt-block">
+        <span class="pt-label evidence">E: Evidence (a short, embedded quotation)</span>
+        <div class="pt-content evidence">
+          This is evident in the <span class="slot">line/phrase/image</span>
+          "<span class="slot">short quotation</span>,"
+          where the <span class="slot">specific word or phrase</span>
+          carries particular weight.
+        </div>
+      </div>
+      <div class="pt-connector">↓</div>
+
+      <div class="pt-block">
+        <span class="pt-label effect">E: Effect (close analysis of how and why)</span>
+        <div class="pt-content effect">
+          The word "<span class="slot">word</span>" is significant because it
+          <span class="slot">connotation / sound / association</span>,
+          which creates a sense of <span class="slot">effect on reader</span>.
+          This suggests that the speaker <span class="slot">your interpretation</span>.
+        </div>
+      </div>
+      <div class="pt-connector">↓</div>
+
+      <div class="pt-block">
+        <span class="pt-label link">L: Link (connect to theme, guiding question, or next point)</span>
+        <div class="pt-content link">
+          This reinforces the poem's/passage's central concern with <span class="slot">theme</span>,
+          and <span class="slot">connects to / contrasts with / develops</span>
+          the idea that <span class="slot">next idea or guiding question link</span>.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SENTENCE STARTERS -->
+  <div id="scaffold-starters" class="sub-panel">
+    <div class="starters-grid">
+      <div class="starter-group">
+        <div class="starter-group-title">Opening Your Commentary</div>
+        <div class="starter-item">
+          In this [poem / extract], [author] presents a [speaker / narrator] who…
+          <span>introduces speaker and situation</span>
+        </div>
+        <div class="starter-item">
+          [Author]'s [poem / passage] explores the experience of [theme] through the central image of…
+          <span>identifies central image and theme</span>
+        </div>
+        <div class="starter-item">
+          From the outset, [author] establishes a tone of [mood word], which pervades the entire text…
+          <span>opens with tone, avoids plot summary</span>
+        </div>
+        <div class="starter-item">
+          Written in [form], this [poem / passage] confronts the reader with [central tension/question]…
+          <span>names form and stakes</span>
+        </div>
+      </div>
+
+      <div class="starter-group">
+        <div class="starter-group-title">Naming a Technique and Its Effect</div>
+        <div class="starter-item">
+          Through the use of [technique], [author] suggests that…
+          <span>basic technique-effect structure</span>
+        </div>
+        <div class="starter-item">
+          The [metaphor / image / symbol] of [X] is significant because it implies…
+          <span>opens with the feature, then explains</span>
+        </div>
+        <div class="starter-item">
+          The choice of the word "[word]" is striking: its connotations of [X] reinforce…
+          <span>word-level analysis</span>
+        </div>
+        <div class="starter-item">
+          [Author]'s use of [technique] creates a sense of [effect] in the reader, suggesting…
+          <span>technique → reader effect → implication</span>
+        </div>
+      </div>
+
+      <div class="starter-group">
+        <div class="starter-group-title">Developing and Deepening Analysis</div>
+        <div class="starter-item">
+          This is further complicated by…
+          <span>adds nuance or contradiction</span>
+        </div>
+        <div class="starter-item">
+          What makes this particularly effective is…
+          <span>moves from observation to evaluation</span>
+        </div>
+        <div class="starter-item">
+          The ambiguity here is deliberate: the text allows for both [interpretation A] and [interpretation B]…
+          <span>explores multiple readings</span>
+        </div>
+        <div class="starter-item">
+          Read alongside [earlier image / previous stanza], this suggests a shift from X to Y…
+          <span>compares across the text</span>
+        </div>
+      </div>
+
+      <div class="starter-group">
+        <div class="starter-group-title">Discussing Structure and Form</div>
+        <div class="starter-item">
+          The poem's [regular / irregular] structure mirrors its thematic concern with…
+          <span>connects form to meaning</span>
+        </div>
+        <div class="starter-item">
+          The turn at [line / stanza] marks a significant shift in [tone / perspective / focus]…
+          <span>identifies the volta or structural pivot</span>
+        </div>
+        <div class="starter-item">
+          The [enjambment / caesura / abrupt full stop] enacts, formally, the [pause / disruption / collapse] that…
+          <span>reads punctuation as meaning</span>
+        </div>
+        <div class="starter-item">
+          By returning to [opening image / phrase] in the closing lines, the writer creates a sense of…
+          <span>circular structure, thematic resolution</span>
+        </div>
+      </div>
+
+      <div class="starter-group">
+        <div class="starter-group-title">Writing Your Conclusion</div>
+        <div class="starter-item">
+          This [poem / passage] finally presents [theme] as [more complex interpretation]…
+          <span>moves beyond the obvious</span>
+        </div>
+        <div class="starter-item">
+          Through a careful orchestration of [technique 1], [technique 2], and [technique 3], [author] achieves…
+          <span>synthesises the commentary</span>
+        </div>
+        <div class="starter-item">
+          The final image of [X] leaves the reader with a sense of [emotion/idea], suggesting that…
+          <span>ends on the closing image</span>
+        </div>
+        <div class="starter-item">
+          In addressing [guiding question], this text ultimately reveals that…
+          <span>returns explicitly to the guiding question</span>
+        </div>
+      </div>
+
+      <div class="starter-group">
+        <div class="starter-group-title">Words to Describe Tone</div>
+        <div class="starter-item">
+          elegiac · mournful · wistful · resigned · melancholic
+          <span>sadness, loss, memory</span>
+        </div>
+        <div class="starter-item">
+          detached · clinical · sardonic · ironic · understated
+          <span>distance, control, dark humour</span>
+        </div>
+        <div class="starter-item">
+          tender · intimate · confessional · vulnerable · ardent
+          <span>closeness, love, openness</span>
+        </div>
+        <div class="starter-item">
+          unsettling · foreboding · ominous · disquieting · uncanny
+          <span>dread, unease, strangeness</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMMENTARY OUTLINE -->
+  <div id="scaffold-outline" class="sub-panel">
+    <p style="margin-bottom: 2rem; font-size: 0.88rem; max-width: 680px;">Use this visual outline during your planning time. Fill in each block <em>before</em> you begin writing. This takes five minutes and saves you from losing direction in the middle of your commentary.</p>
+    <div class="outline-steps">
+
+      <div class="outline-block">
+        <div class="outline-spine">
+          <div class="outline-dot"></div>
+          <div class="outline-line"></div>
+        </div>
+        <div class="outline-content">
+          <h4>Introduction</h4>
+          <p>Author · Title (if given) · Form · Central subject or situation in one sentence · Dominant tone or technique · How it connects to the guiding question</p>
+          <span class="time-tag">≈ 10 min to write</span>
+        </div>
+      </div>
+
+      <div class="outline-block">
+        <div class="outline-spine">
+          <div class="outline-dot"></div>
+          <div class="outline-line"></div>
+        </div>
+        <div class="outline-content">
+          <h4>Body Paragraph 1: The Opening</h4>
+          <p>How does the text establish itself? What technique is immediately present? What expectations or questions does the opening create in the reader?</p>
+          <span class="time-tag">≈ 15 min to write</span>
+        </div>
+      </div>
+
+      <div class="outline-block">
+        <div class="outline-spine">
+          <div class="outline-dot"></div>
+          <div class="outline-line"></div>
+        </div>
+        <div class="outline-content">
+          <h4>Body Paragraph 2: The Central Concern</h4>
+          <p>The most important technique or image in the text. This paragraph should contain your deepest, most specific analysis. Quote precisely and examine individual word choices.</p>
+          <span class="time-tag">≈ 15 min to write</span>
+        </div>
+      </div>
+
+      <div class="outline-block">
+        <div class="outline-spine">
+          <div class="outline-dot"></div>
+          <div class="outline-line"></div>
+        </div>
+        <div class="outline-content">
+          <h4>Body Paragraph 3: The Turn or Development</h4>
+          <p>Where does meaning shift or complicate? This might be the poem's volta, a structural break, or a moment where the speaker's certainty falters. What changes, and why does it matter?</p>
+          <span class="time-tag">≈ 15 min to write</span>
+        </div>
+      </div>
+
+      <div class="outline-block">
+        <div class="outline-spine">
+          <div class="outline-dot"></div>
+          <div class="outline-line"></div>
+        </div>
+        <div class="outline-content">
+          <h4>Conclusion</h4>
+          <p>What does the text ultimately achieve? Synthesise your argument. Return to the guiding question. What understanding of the human experience does this text leave the reader with?</p>
+          <span class="time-tag">≈ 6 min to write</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CHECKLIST -->
+  <div id="scaffold-checklist" class="sub-panel">
+    <div class="checklist-wrap">
+      <p style="margin-bottom: 2rem; font-size: 0.88rem; max-width: 680px;">Use the final five minutes of your exam to run through this checklist. Tick each item only when you are sure it applies to your response.</p>
+
+      <div class="checklist-section">
+        <div class="checklist-section-title">Content &amp; Understanding</div>
+        <label class="check-item">
+          <input type="checkbox">
+          <label>My commentary addresses the guiding question directly and specifically.</label>
+        </label>
+        <label class="check-item">
+          <input type="checkbox">
+          <label>I have shown understanding of the text's literal meaning AND its implied/deeper meaning.</label>
+        </label>
+        <label class="check-item">
+          <input type="checkbox">
+          <label>Every paragraph of my commentary makes an analytical claim.</label>
+        </label>
+        <label class="check-item">
+          <input type="checkbox">
+          <label>I have considered the text as a whole, including its least obvious moments.</label>
+        </label>
+      </div>
+
+      <div class="checklist-section">
+        <div class="checklist-section-title">Literary Analysis</div>
+        <label class="check-item">
+          <input type="checkbox">
+          <label>I have named at least three specific literary techniques and explained their effect.</label>
+        </label>
+        <label class="check-item">
+          <input type="checkbox">
+          <label>I have analysed individual word choices as well as general techniques.</label>
+        </label>
+        <label class="check-item">
+          <input type="checkbox">
+          <label>I have discussed structure or form at least once in the commentary.</label>
+        </label>
+        <label class="check-item">
+          <input type="checkbox">
+          <label>My quotations are short, accurately copied, and embedded naturally into my sentences.</label>
+        </label>
+      </div>
+
+      <div class="checklist-section">
+        <div class="checklist-section-title">Organisation &amp; Development</div>
+        <label class="check-item">
+          <input type="checkbox">
+          <label>My introduction makes a claim about the text.</label>
+        </label>
+        <label class="check-item">
+          <input type="checkbox">
+          <label>Each paragraph develops a single clear idea from start to finish.</label>
+        </label>
+        <label class="check-item">
+          <input type="checkbox">
+          <label>My paragraphs connect to each other, so that ideas build across the commentary.</label>
+        </label>
+        <label class="check-item">
+          <input type="checkbox">
+          <label>My conclusion synthesises my argument.</label>
+        </label>
+      </div>
+
+      <div class="checklist-section">
+        <div class="checklist-section-title">Language &amp; Register</div>
+        <label class="check-item">
+          <input type="checkbox">
+          <label>My tone is formal and academic throughout, with no colloquial phrases.</label>
+        </label>
+        <label class="check-item">
+          <input type="checkbox">
+          <label>I refer to "the writer" or "Hardy / Chopin / Larkin", never "the author says" or "it says."</label>
+        </label>
+        <label class="check-item">
+          <input type="checkbox">
+          <label>I use the present tense when discussing the text ("Hardy creates…" not "Hardy created…").</label>
+        </label>
+        <label class="check-item">
+          <input type="checkbox">
+          <label>All literary terms I have used are used correctly and in context.</label>
+        </label>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ═══════════════════════════════ SCRIPTS ═══════════════════════════════ -->
+<script>
+  function showText(id) {
+    document.querySelectorAll('.text-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.text-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('text-' + id).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  function showScaffold(id) {
+    document.querySelectorAll('.sub-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.sub-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('scaffold-' + id).classList.add('active');
+    event.target.classList.add('active');
+  }
+</script>
+
+</body>
+</html>

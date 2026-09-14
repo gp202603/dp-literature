@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>"Master Harold" … and the Boys · DP Literature Revision</title>
+  <style>
+    :root {
+      --navy: #0d1b2a;
+      --midnight: #1b2a3b;
+      --ink: #243447;
+      --deep: #0a1220;
+      --gold: #c9a84c;
+      --gold-light: #e8d5a3;
+      --cream: #f5f0e8;
+      --white: #ffffff;
+      --text: #e8e4dc;
+      --muted: #8fa3b1;
+      --accent: #4a8fa8;
+      --red: #a83244;
+      --red-light: #d4758a;
+      --green: #3a7d5c;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Georgia', serif;
+      background: var(--navy);
+      color: var(--text);
+      line-height: 1.75;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(13,27,42,0.97);
+      border-bottom: 2px solid var(--gold);
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.6rem 3rem;
+      backdrop-filter: blur(8px);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 0.75rem; }
+    .nav-logo img { height: 38px; width: auto; object-fit: contain; }
+    .nav-logo a { color: var(--muted); text-decoration: none; font-size: 0.8rem; font-family: 'Helvetica Neue', sans-serif; }
+    .nav-logo em { color: var(--gold); font-size: 0.9rem; font-style: italic; }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; flex-wrap: wrap; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none; font-size: 0.82rem;
+      letter-spacing: 0.03em; transition: color 0.2s;
+      font-family: 'Helvetica Neue', sans-serif;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* HERO */
+    .hero {
+      padding: 6rem 3rem 5rem;
+      background: linear-gradient(160deg, #0a1220 0%, #0d1b2a 40%, #111e30 100%);
+      position: relative; overflow: hidden;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      opacity: 0.4;
+    }
+    .hero-tag {
+      font-family: 'Helvetica Neue', sans-serif;
+      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1.5rem;
+      border: 1px solid rgba(201,168,76,0.3);
+      display: inline-block; padding: 0.3rem 1rem; border-radius: 2px;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 4.5vw, 3.8rem);
+      font-weight: normal; line-height: 1.25; color: var(--white);
+      margin-bottom: 0.4rem;
+    }
+    .hero h1 em { font-style: italic; color: var(--gold); }
+    .hero-author { color: var(--muted); font-size: 1rem; margin: 0.5rem 0 0.3rem; }
+    .hero-year { color: rgba(201,168,76,0.6); font-size: 0.85rem; font-family: 'Helvetica Neue', sans-serif; }
+    .hero-tagline {
+      margin-top: 2rem; font-size: 1rem; color: var(--gold-light);
+      font-style: italic; max-width: 600px; border-left: 3px solid var(--gold);
+      padding-left: 1.2rem;
+    }
+    .hero-nav-pills {
+      display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2.5rem;
+    }
+    .pill {
+      font-family: 'Helvetica Neue', sans-serif;
+      font-size: 0.78rem; padding: 0.4rem 1rem; border-radius: 20px;
+      border: 1px solid rgba(201,168,76,0.35); color: var(--muted);
+      text-decoration: none; transition: all 0.2s;
+    }
+    .pill:hover { background: rgba(201,168,76,0.1); color: var(--gold); border-color: var(--gold); }
+
+    /* PAGE LAYOUT */
+    .page-wrap { display: flex; min-height: 100vh; }
+    .sidebar {
+      width: 240px; min-width: 240px;
+      position: sticky; top: 3.5rem; height: calc(100vh - 3.5rem);
+      overflow-y: auto; padding: 2rem 1.5rem;
+      background: var(--deep); border-right: 1px solid rgba(201,168,76,0.1);
+    }
+    .sidebar-title {
+      font-family: 'Helvetica Neue', sans-serif;
+      font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1rem; padding-bottom: 0.5rem;
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+    }
+    .sidebar ul { list-style: none; }
+    .sidebar li { margin-bottom: 0.1rem; }
+    .sidebar a {
+      display: block; padding: 0.4rem 0.6rem; border-radius: 3px;
+      text-decoration: none; font-size: 0.82rem; color: var(--muted);
+      font-family: 'Helvetica Neue', sans-serif; transition: all 0.15s;
+    }
+    .sidebar a:hover { color: var(--gold-light); background: rgba(201,168,76,0.07); }
+    .sidebar li.sub a { padding-left: 1.2rem; font-size: 0.78rem; }
+
+    .main-content { flex: 1; padding: 3rem; max-width: 900px; }
+
+    /* SECTIONS */
+    .content-section { margin-bottom: 4rem; scroll-margin-top: 5rem; }
+    .section-number {
+      font-family: 'Helvetica Neue', sans-serif;
+      font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); display: block; margin-bottom: 0.5rem;
+    }
+    h2.section-title {
+      font-size: 1.7rem; font-weight: normal; color: var(--white);
+      margin-bottom: 1.5rem; padding-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+    }
+    h3.sub-title {
+      font-size: 1.05rem; color: var(--gold-light); margin: 1.5rem 0 0.6rem;
+      font-weight: normal;
+    }
+    p { color: var(--muted); font-size: 0.95rem; margin-bottom: 0.9rem; max-width: 700px; }
+
+    /* TWO-COL */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1.5rem 0; }
+    .two-col.three { grid-template-columns: 1fr 1fr 1fr; }
+
+    /* CONTEXT BOXES */
+    .context-box {
+      background: var(--midnight); border-radius: 4px; padding: 1.5rem;
+      border: 1px solid rgba(201,168,76,0.15);
+    }
+    .context-box h4 {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.72rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.8rem;
+    }
+    .context-box p { font-size: 0.88rem; margin: 0; }
+
+    /* PLOT TABLE */
+    .plot-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+    .plot-table th {
+      background: rgba(201,168,76,0.15); color: var(--gold);
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.75rem;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      padding: 0.6rem 1rem; text-align: left;
+    }
+    .plot-table td {
+      padding: 0.7rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.05);
+      font-size: 0.88rem; color: var(--muted); vertical-align: top;
+    }
+    .plot-table td:first-child { color: var(--gold-light); font-weight: normal; white-space: nowrap; }
+    .plot-table td:last-child { color: rgba(255,255,255,0.45); font-size: 0.82rem; }
+    .plot-table tr:hover td { background: rgba(201,168,76,0.04); }
+
+    /* CHARACTERS */
+    .char-card {
+      background: var(--midnight); border-radius: 4px; padding: 1.8rem;
+      border-top: 3px solid var(--gold); margin-bottom: 1.5rem;
+    }
+    .char-card.hally { border-top-color: var(--red); }
+    .char-card.willie { border-top-color: var(--accent); }
+    .char-name {
+      font-size: 1.1rem; color: var(--white); margin-bottom: 0.2rem;
+    }
+    .char-role { color: var(--muted); font-size: 0.82rem; font-family: 'Helvetica Neue', sans-serif; margin-bottom: 1rem; }
+    .char-traits { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+    .trait {
+      font-family: 'Helvetica Neue', sans-serif;
+      font-size: 0.72rem; padding: 0.2rem 0.7rem; border-radius: 12px;
+      background: rgba(201,168,76,0.12); color: var(--gold);
+    }
+    .trait.red { background: rgba(168,50,68,0.15); color: var(--red-light); }
+    .trait.blue { background: rgba(74,143,168,0.15); color: #7dbdd6; }
+
+    /* THEMES */
+    .theme-item {
+      background: var(--ink); border-radius: 4px; padding: 1.5rem;
+      border-left: 4px solid var(--gold); margin-bottom: 1rem;
+    }
+    .theme-item.red { border-left-color: var(--red); }
+    .theme-item.blue { border-left-color: var(--accent); }
+    .theme-item.green { border-left-color: #3a9e72; }
+    .theme-name { color: var(--white); font-size: 1rem; margin-bottom: 0.5rem; }
+    .theme-item p { max-width: none; margin: 0; font-size: 0.88rem; }
+
+    /* SYMBOLS TABLE */
+    .symbol-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+    .symbol-card {
+      background: var(--midnight); border-radius: 4px; padding: 1.5rem;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .symbol-name {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.7rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.6rem;
+    }
+    .symbol-surface { color: var(--text); font-size: 0.88rem; margin-bottom: 0.5rem; }
+    .symbol-deep { color: var(--muted); font-size: 0.83rem; }
+
+    /* CRITICAL PERSPECTIVES */
+    .critic-card {
+      background: var(--midnight); border-radius: 4px; padding: 2rem;
+      margin-bottom: 1.5rem; border: 1px solid rgba(201,168,76,0.12);
+    }
+    .critic-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.2rem; }
+    .critic-name { font-size: 1.05rem; color: var(--white); margin-bottom: 0.2rem; }
+    .critic-work { color: var(--muted); font-size: 0.82rem; font-family: 'Helvetica Neue', sans-serif; }
+    .critic-badge {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.65rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.25rem 0.7rem; border-radius: 2px;
+      background: rgba(201,168,76,0.15); color: var(--gold);
+    }
+    .concept-table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+    .concept-table th {
+      background: rgba(201,168,76,0.1); color: var(--gold);
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.7rem;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      padding: 0.5rem 0.8rem; text-align: left;
+    }
+    .concept-table td {
+      padding: 0.65rem 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.04);
+      font-size: 0.83rem; color: var(--muted); vertical-align: top;
+    }
+    .concept-table td:first-child { color: var(--gold-light); font-size: 0.8rem; font-family: 'Helvetica Neue', sans-serif; white-space: nowrap; }
+    .concept-table tr:hover td { background: rgba(201,168,76,0.04); }
+
+    /* QUOTATIONS */
+    .quote-block {
+      background: var(--midnight); border-radius: 4px; padding: 2rem;
+      margin-bottom: 1.5rem; border-left: 4px solid var(--gold);
+    }
+    .quote-text {
+      font-size: 1.1rem; font-style: italic; color: var(--gold-light);
+      margin-bottom: 0.8rem; line-height: 1.6;
+    }
+    .quote-speaker {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.78rem;
+      color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+    }
+    .quote-analysis {
+      background: rgba(0,0,0,0.2); border-radius: 3px; padding: 1rem 1.2rem;
+      font-size: 0.88rem; color: var(--muted); border-left: 2px solid rgba(201,168,76,0.2);
+    }
+    .quote-analysis strong { color: var(--gold); font-weight: normal; }
+
+    /* ESSAY SECTION */
+    .essay-q {
+      background: var(--ink); border-radius: 4px; padding: 1.5rem;
+      margin-bottom: 1.5rem; border: 1px solid rgba(201,168,76,0.2);
+    }
+    .essay-q .q-text { font-size: 1rem; color: var(--white); margin-bottom: 1rem; }
+    .essay-step {
+      display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 0.6rem;
+    }
+    .step-num {
+      background: rgba(201,168,76,0.15); color: var(--gold);
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.7rem;
+      min-width: 1.5rem; height: 1.5rem; border-radius: 2px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .essay-step p { margin: 0; font-size: 0.85rem; }
+
+    .lens-table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+    .lens-table th {
+      background: rgba(201,168,76,0.1); color: var(--gold);
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.7rem;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      padding: 0.5rem 0.8rem; text-align: left;
+    }
+    .lens-table td {
+      padding: 0.65rem 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.04);
+      font-size: 0.83rem; color: var(--muted); vertical-align: top;
+    }
+    .lens-table td:first-child { color: var(--gold-light); white-space: nowrap; font-family: 'Helvetica Neue', sans-serif; font-size: 0.8rem; }
+
+    .checklist {
+      background: var(--ink); border-radius: 4px; padding: 1.5rem;
+      margin-top: 1rem;
+    }
+    .checklist h4 {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.72rem;
+      text-transform: uppercase; letter-spacing: 0.15em;
+      color: var(--gold); margin-bottom: 1rem;
+    }
+    .checklist ul { list-style: none; }
+    .checklist li {
+      padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+      font-size: 0.88rem; color: var(--muted);
+      display: flex; align-items: flex-start; gap: 0.7rem;
+    }
+    .checklist li::before { content: '✓'; color: var(--gold); flex-shrink: 0; margin-top: 0.05rem; }
+
+    /* FOOTER */
+    footer {
+      text-align: center; padding: 3rem;
+      border-top: 1px solid rgba(201,168,76,0.15);
+      color: var(--muted); font-size: 0.8rem;
+      font-family: 'Helvetica Neue', sans-serif;
+    }
+    footer a { color: var(--gold); text-decoration: none; }
+
+    @media (max-width: 900px) {
+      .sidebar { display: none; }
+      nav { padding: 0.8rem 1.5rem; }
+      .main-content { padding: 2rem 1.5rem; }
+      .two-col, .two-col.three { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <img src="books.svg" alt="Books" />
+    <a href="index.html">← DP Lit</a>
+    <em>"Master Harold"</em>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#context">Context</a></li>
+    <li><a href="#plot">Plot</a></li>
+    <li><a href="#characters">Characters</a></li>
+    <li><a href="#themes">Themes</a></li>
+    <li><a href="#symbols">Symbols</a></li>
+    <li><a href="#critics">Critical Perspectives</a></li>
+    <li><a href="#quotations">Quotations</a></li>
+    <li><a href="#essays">Essay Guide</a></li>
+  </ul>
+</nav>
+
+<header class="hero">
+  <div class="hero-tag">IB DP Literature · Comprehensive Revision Guide</div>
+  <h1><em>"Master Harold"</em> … and the Boys</h1>
+  <p class="hero-author">Athol Fugard</p>
+  <p class="hero-year">1982 · South Africa · One-Act Play</p>
+  <p class="hero-tagline">
+    Sam, on the dance floor: "A world in which accidents don't happen."
+  </p>
+  <div class="hero-nav-pills">
+    <a href="#context" class="pill">Context</a>
+    <a href="#plot" class="pill">Plot</a>
+    <a href="#characters" class="pill">Characters</a>
+    <a href="#themes" class="pill">Themes</a>
+    <a href="#symbols" class="pill">Symbols</a>
+    <a href="#critics" class="pill">Critical Perspectives</a>
+    <a href="#quotations" class="pill">Quotations</a>
+    <a href="#essays" class="pill">Essay Guide</a>
+  </div>
+</header>
+
+<div class="page-wrap">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-title">Contents</div>
+    <ul>
+      <li><a href="#context">1. Context &amp; Background</a></li>
+      <li><a href="#plot">2. Plot Structure</a></li>
+      <li><a href="#characters">3. Characters</a></li>
+      <li class="sub"><a href="#sam">Sam</a></li>
+      <li class="sub"><a href="#hally">Hally</a></li>
+      <li class="sub"><a href="#willie">Willie</a></li>
+      <li><a href="#themes">4. Themes</a></li>
+      <li><a href="#symbols">5. Symbols &amp; Motifs</a></li>
+      <li><a href="#critics">6. Critical Perspectives</a></li>
+      <li class="sub"><a href="#goffman">Goffman</a></li>
+      <li class="sub"><a href="#fanon">Fanon</a></li>
+      <li class="sub"><a href="#hegel">Hegel</a></li>
+      <li class="sub"><a href="#urban">Urban / Tolstoy</a></li>
+      <li class="sub"><a href="#freud">Freud</a></li>
+      <li class="sub"><a href="#hoegberg">Hoegberg</a></li>
+      <li><a href="#quotations">7. Key Quotations</a></li>
+      <li><a href="#essays">8. Essay Frameworks</a></li>
+    </ul>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main-content">
+
+    <!-- 1. CONTEXT -->
+    <section class="content-section" id="context">
+      <span class="section-number">Section 01</span>
+      <h2 class="section-title">Context &amp; Background</h2>
+
+      <div class="two-col">
+        <div class="context-box">
+          <h4>Biographical Context</h4>
+          <p>The play is strongly autobiographical. Fugard had a Black friend and mentor named <strong>Sam Semela</strong> who worked in his mother's St. George's Park Tea Room in Port Elizabeth. The kite, the spitting incident, and the "Whites Only" bench are all drawn from Fugard's real life. Writing the play was, for Fugard, an act of moral reckoning.</p>
+        </div>
+        <div class="context-box">
+          <h4>Historical Context: 1950 South Africa</h4>
+          <p>The play is set in 1950, the year Errol Durbach calls <em>"that annus mirabilis of Apartheid legislation."</em> The National Party won power in 1948 and began legislating racial segregation: the <strong>Group Areas Act</strong> (1950), the Population Registration Act, the Immorality Act. Apartheid was daily legal violence.</p>
+        </div>
+      </div>
+
+      <h3 class="sub-title">The Setting: St. George's Park Tea Room, Port Elizabeth</h3>
+      <p>The single-room setting is deliberate. A public commercial space (front stage) that is also a domestic refuge for three characters who are trapped together across the race line. The tea room is a microcosm of apartheid society. Hierarchy is encoded in the furniture, in body positions, and in every spoken title.</p>
+    </section>
+
+    <!-- 2. PLOT -->
+    <section class="content-section" id="plot">
+      <span class="section-number">Section 02</span>
+      <h2 class="section-title">Plot Structure &amp; Arc</h2>
+
+      <div class="two-col three" style="margin-bottom:1.5rem;">
+        <div class="context-box">
+          <h4>Exposition</h4>
+          <p>Sam and Willie dance. Hally arrives from school. His father is in hospital, which gives him a temporary reprieve.</p>
+        </div>
+        <div class="context-box">
+          <h4>Rising Action</h4>
+          <p>Men of Magnitude discussion. Kite memory. Sam's utopian dance vision. A second phone call confirms the father is coming home.</p>
+        </div>
+        <div class="context-box">
+          <h4>Crisis / Climax</h4>
+          <p>Racist joke. Hally demands "Master Harold." The spit.</p>
+        </div>
+      </div>
+
+      <table class="plot-table">
+        <thead>
+          <tr>
+            <th>Beat</th>
+            <th>What Happens</th>
+            <th>Significance</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Willie mopping / Sam reading</td>
+            <td>Willie on knees; Sam reading in waiter's coat</td>
+            <td>Racial hierarchy encoded in body positions before a word is spoken</td>
+          </tr>
+          <tr>
+            <td>Sam builds kite (flashback)</td>
+            <td>Sam made Hally a kite after his father's public drunken humiliation</td>
+            <td>Reveals Sam's genuine parental love; exposes the Whites Only bench</td>
+          </tr>
+          <tr>
+            <td>Men of Magnitude</td>
+            <td>Hally proposes Tolstoy/Darwin; Sam proposes Lincoln/Jesus/Gandhi</td>
+            <td>Irony: Hally admires Tolstoy yet embodies everything Tolstoy opposed</td>
+          </tr>
+          <tr>
+            <td>Dance as utopia</td>
+            <td>Sam describes ballroom competition as "a world without collisions"</td>
+            <td>Central symbol: the dance floor as an achieved ideal society</td>
+          </tr>
+          <tr>
+            <td>Second phone call</td>
+            <td>Father confirmed home; Hally spirals emotionally</td>
+            <td>The outside world invades; apartheid's reach into private space</td>
+          </tr>
+          <tr>
+            <td>Racist joke + spit</td>
+            <td>Hally demands "Master Harold"; tells racist joke; spits in Sam's face</td>
+            <td>Apartheid ideology violently reasserts itself in an intimate space</td>
+          </tr>
+          <tr>
+            <td>Sam reveals the bench</td>
+            <td>Sam reveals he could not sit with Hally; challenges him to walk away</td>
+            <td>The moral heart of the play: hope is conditional</td>
+          </tr>
+          <tr>
+            <td>Final dance</td>
+            <td>Willie spends bus fare on jukebox; Sam and Willie dance to Sarah Vaughan</td>
+            <td>Black dignity and love survive Hally's cruelty in a closing benediction.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 3. CHARACTERS -->
+    <section class="content-section" id="characters">
+      <span class="section-number">Section 03</span>
+      <h2 class="section-title">Character Analysis</h2>
+
+      <div id="sam" class="char-card">
+        <div class="char-name">Sam Semela</div>
+        <div class="char-role">Waiter · Surrogate Father · Moral Philosopher</div>
+        <p>Sam is the moral centre of the play. He built a kite to lift Hally's shame after his father's drunken humiliation; he taught Hally geography; he tried to form Hally's moral imagination. His patience and love are a conscious choice, costly in a way Hally never grasps.</p>
+        <p>Goffman: Sam wears the waiter's coat as a front-stage performance that conceals his intelligence and his moral authority. When he reads comic books, he is backstage. Fanon: Sam chooses non-violence as a survival strategy in a world where resistance means deportation. Hegel: Sam's dignity remains unbroken even when Hally demands submission. He is the true master in the dialectic.</p>
+        <div class="char-traits">
+          <span class="trait">Moral centre</span>
+          <span class="trait">Surrogate father</span>
+          <span class="trait">Non-violent</span>
+          <span class="trait">Front-stage performance</span>
+          <span class="trait">Educator</span>
+          <span class="trait">Gerasim parallel (Urban)</span>
+        </div>
+      </div>
+
+      <div id="hally" class="char-card hally">
+        <div class="char-name">Hally (Harold)</div>
+        <div class="char-role">White schoolboy · Tragic Figure of Complicity</div>
+        <p>Hally is a child of a broken home, the son of an alcoholic and racist father, who has genuinely loved and been loved by Sam. His tragedy is that under emotional crisis, he reaches for the tools of his oppressor class. Durbach calls his racism a "psychopathology", so internalised that it surfaces automatically, beyond conscious control.</p>
+        <p>Freud: Hally cannot confront his shame about his father's body, so he displaces that disgust onto Sam (the spit transfers the "filth" of disability onto the Black man). Goffman: the demand for "Master Harold" is an emergency impression management move. Hally reasserts social hierarchy when his sense of self is threatened. Hegel: in demanding submission, Hally achieves the opposite of freedom.</p>
+        <div class="char-traits">
+          <span class="trait red">Complicit</span>
+          <span class="trait red">Displacement (Freud)</span>
+          <span class="trait red">Apartheid's child</span>
+          <span class="trait">Intelligent</span>
+          <span class="trait">Genuinely loves Sam</span>
+          <span class="trait">Capable of change?</span>
+        </div>
+      </div>
+
+      <div id="willie" class="char-card willie">
+        <div class="char-name">Willie Malopo</div>
+        <div class="char-role">Waiter · Mirror &amp; Foil · Figure of Hope</div>
+        <p>Willie functions as a symbolic parallel and as the play's quiet resolution. His beating of Hilda mirrors the vertical violence Hally enacts on Sam; both reproduce cycles of oppression absorbed from those above them. Yet Willie's arc is hopeful: at the end, he resolves to stop beating Hilda and spends his bus fare so that Sam can dance. The dream is kept alive.</p>
+        <div class="char-traits">
+          <span class="trait blue">Mirror of oppression</span>
+          <span class="trait blue">Arc of hope</span>
+          <span class="trait">Comic relief</span>
+          <span class="trait">Final dancer</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. THEMES -->
+    <section class="content-section" id="themes">
+      <span class="section-number">Section 04</span>
+      <h2 class="section-title">Themes</h2>
+
+      <div class="theme-item red">
+        <div class="theme-name">Racism &amp; Apartheid</div>
+        <p>Apartheid is present in every object and body position before a word is spoken. The "Whites Only" bench builds racism into the landscape itself. Hally's racism is "psychopathological" (Durbach), so internalised it surfaces involuntarily. The system reproduces itself through the people it victimises (Willie → Hilda).</p>
+      </div>
+
+      <div class="theme-item">
+        <div class="theme-name">Education &amp; Wisdom</div>
+        <p>Whose knowledge counts? Hally has school facts; Sam has lived wisdom. The "Men of Magnitude" discussion is saturated with irony. Hally nominates Tolstoy while embodying everything Tolstoy opposed. Sam has been educating Hally all along, but the system can never acknowledge this.</p>
+      </div>
+
+      <div class="theme-item blue">
+        <div class="theme-name">Dance &amp; Utopia</div>
+        <p>Dance = "a world in which accidents don't happen", the ideal set against the real. Ballroom dancing historically descends from African and lower-class roots (Hoegberg), so Sam and Willie's hobby is an act of cultural reclamation. The final dance is an act of dignity and political resistance.</p>
+      </div>
+
+      <div class="theme-item green">
+        <div class="theme-name">Father Figures &amp; Family</div>
+        <p>Hally has two fathers: his biological father (alcoholic, racist, shaming) and his surrogate father Sam (loving, educational, morally serious). His tragedy is choosing the broken biological model over the genuine one. Hegel's dialectic: Hally makes himself more dependent and less free by insisting on dominance.</p>
+      </div>
+
+      <div class="theme-item" style="border-left-color:#8fa3b1">
+        <div class="theme-name">Hope &amp; Despair</div>
+        <p>The play oscillates: moments of genuine connection shattered by apartheid's logic. Sam's final words offer conditional hope, since Hally CAN walk away from the bench. Willie's resolution not to beat Hilda = the smallest possible redemption arc. Fugard himself walked away from it: this is the autobiographical hope embedded in the ending.</p>
+      </div>
+    </section>
+
+    <!-- 5. SYMBOLS -->
+    <section class="content-section" id="symbols">
+      <span class="section-number">Section 05</span>
+      <h2 class="section-title">Symbols &amp; Motifs</h2>
+
+      <div class="symbol-grid">
+        <div class="symbol-card">
+          <div class="symbol-name">The Kite</div>
+          <div class="symbol-surface">Sam built Hally a kite when he was depressed</div>
+          <div class="symbol-deep">Freedom, transcendence, love without condition. The Whites Only bench means Sam cannot share the joy he created. That tragic gap sits at the centre of their relationship.</div>
+        </div>
+        <div class="symbol-card">
+          <div class="symbol-name">The Whites Only Bench</div>
+          <div class="symbol-surface">A racial segregation law</div>
+          <div class="symbol-deep">The foundational injustice. Hally sits on it without noticing, because privilege is invisible to those who hold it. Sam's challenge: "You can walk away from it any time you choose."</div>
+        </div>
+        <div class="symbol-card">
+          <div class="symbol-name">Ballroom Dance</div>
+          <div class="symbol-surface">Sam &amp; Willie's hobby and competition</div>
+          <div class="symbol-deep">Utopian symbol: mutual respect, cooperation, no collisions. Cultural reclamation: African rhythms lie at the root of European ballroom. The dream of non-racial society made physical.</div>
+        </div>
+        <div class="symbol-card">
+          <div class="symbol-name">The Spit</div>
+          <div class="symbol-surface">Hally spits in Sam's face</div>
+          <div class="symbol-deep">The play's most violent act. Fanon: Hally transfers the "filth" of his father's disability and shame onto the Black man. The ultimate settler act turns the Other into a receptacle for your own abjection.</div>
+        </div>
+        <div class="symbol-card">
+          <div class="symbol-name">The Chamberpot</div>
+          <div class="symbol-surface">Hally empties his father's chamberpot</div>
+          <div class="symbol-deep">Hally is disgusted by the disabled father's body. Contrasted with Gerasim (Tolstoy's <em>Ivan Ilych</em>), who performs this task lovingly. Urban: Hally rejects Gerasim-like selfless service.</div>
+        </div>
+        <div class="symbol-card">
+          <div class="symbol-name">Sarah Vaughan Song</div>
+          <div class="symbol-surface">Plays as Sam &amp; Willie dance at the end</div>
+          <div class="symbol-deep">Grace and dignity in Black artistry, persisting after Hally's cruelty as a benediction. Willie's sacrifice (bus fare) enables the dream to be enacted.</div>
+        </div>
+        <div class="symbol-card">
+          <div class="symbol-name">The Telephone</div>
+          <div class="symbol-surface">Calls from Hally's mother</div>
+          <div class="symbol-deep">The outside world invading the temporary safety of the tea room. The apartheid system reaches in through a father's body and through a phone call, destabilising everything.</div>
+        </div>
+        <div class="symbol-card">
+          <div class="symbol-name">Waiter's Coat</div>
+          <div class="symbol-surface">Sam's uniform</div>
+          <div class="symbol-deep">Goffman: the front-stage costume. When Sam puts it on, he performs the role society has assigned him. But the coat can be removed; it does not define his inner self.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. CRITICS -->
+    <section class="content-section" id="critics">
+      <span class="section-number">Section 06</span>
+      <h2 class="section-title">Critical Perspectives</h2>
+      <p>The IB expects you to apply theoretical lenses as analytical tools. Use them to generate specific insights from specific textual moments.</p>
+
+      <!-- GOFFMAN -->
+      <div class="critic-card" id="goffman">
+        <div class="critic-header">
+          <div>
+            <div class="critic-name">A. Erving Goffman: Dramaturgical Theory</div>
+            <div class="critic-work"><em>The Presentation of Self in Everyday Life</em>, 1959</div>
+          </div>
+          <span class="critic-badge">Sociological</span>
+        </div>
+        <p>All social life is performance. People manage their image for an audience. <strong>Front stage</strong>: public space where the performance is on. <strong>Back stage</strong>: private space where the performer relaxes their role. <strong>Impression management</strong>: the constant work of maintaining a credible social front.</p>
+        <table class="concept-table">
+          <thead>
+            <tr><th>Concept</th><th>Application to the Play</th><th>Textual Evidence</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>FRONT STAGE</td>
+              <td>The tea room = front stage. Sam and Willie perform deference professionally.</td>
+              <td>"At your service, Master Harold!" is an exaggerated performance of servility.</td>
+            </tr>
+            <tr>
+              <td>BACK STAGE</td>
+              <td>Servants' quarters = their genuine private self. Hally is punished for crossing this frontier.</td>
+              <td>Hally sneaks to their quarters as a child and is "given a rowing" for crossing the boundary.</td>
+            </tr>
+            <tr>
+              <td>IMPRESSION MANAGEMENT</td>
+              <td>Hally demands "Master Harold" when his performance of "enlightened white boy" collapses.</td>
+              <td>Emergency reassertion of his front-stage social role to regain control.</td>
+            </tr>
+            <tr>
+              <td>PERFORMANCE BREAKDOWN</td>
+              <td>The spit = total collapse of Hally's performance of being above racism.</td>
+              <td>Sam: "You don't know what you've just done." Even Sam's composed front begins to crack.</td>
+            </tr>
+            <tr>
+              <td>ROLE CONFLICT</td>
+              <td>Sam performs "servant," "friend," "surrogate father," "moral philosopher" simultaneously.</td>
+              <td>When Sam rebukes Hally about his father, Hally punishes him: "You're only a servant here."</td>
+            </tr>
+            <tr>
+              <td>STIGMA</td>
+              <td>Hally's father is stigmatised by disability, and Hally has internalised this as shame.</td>
+              <td>"I'm sick and tired of emptying stinking chamberpots." Shame drives displacement onto Sam.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- FANON -->
+      <div class="critic-card" id="fanon">
+        <div class="critic-header">
+          <div>
+            <div class="critic-name">B. Frantz Fanon: Postcolonial Theory</div>
+            <div class="critic-work"><em>The Wretched of the Earth</em>, 1961</div>
+          </div>
+          <span class="critic-badge">Postcolonial</span>
+        </div>
+        <p>The colonial world is <strong>Manichaean</strong>, divided into two absolutely opposed zones: the settler's town (full, lit, stone) and the native town (crouching, dark, hungry). No grey area. The settler is the absolute beginning; the native is defined by lack. Violence is structural.</p>
+        <table class="concept-table">
+          <thead>
+            <tr><th>Concept</th><th>Application</th><th>Textual Evidence</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Manichaean World</td>
+              <td>Tea room (settler's world) vs. servants' quarters (native's world).</td>
+              <td>Tea room = well-lit, comfortable; quarters = "grey little room with cold cement floor."</td>
+            </tr>
+            <tr>
+              <td>Settler as Absolute Beginning</td>
+              <td>Hally cannot conceive of Sam as having independent knowledge.</td>
+              <td>"Tolstoy may have educated his peasants, but I've educated you."</td>
+            </tr>
+            <tr>
+              <td>Spatial Exclusion</td>
+              <td>The Whites Only bench = Fanon's frontier made literal and legal.</td>
+              <td>Sam could not sit with Hally. Hally: "too young, too excited to notice." Privilege = invisible frontier.</td>
+            </tr>
+            <tr>
+              <td>"Filth" Transfer / The Spit</td>
+              <td>Hally faces his father's disability (family's filth) and spits it onto Sam.</td>
+              <td>Walder: "the contempt he is unable to show his father." The spit is displaced shame.</td>
+            </tr>
+            <tr>
+              <td>Should Sam Have Hit Back?</td>
+              <td>Fanon asks: is non-violence a form of complicity?</td>
+              <td>A Black audience member reportedly said Sam "should have kicked Hally's ass a long time ago." Sam's restraint is conditioned by the threat of deportation.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- HEGEL -->
+      <div class="critic-card" id="hegel">
+        <div class="critic-header">
+          <div>
+            <div class="critic-name">C. G.W.F. Hegel: The Master-Slave Dialectic</div>
+            <div class="critic-work"><em>Phenomenology of Spirit</em>, 1807</div>
+          </div>
+          <span class="critic-badge">Philosophical</span>
+        </div>
+        <p>Two consciousnesses meet and each desires to be recognised as fully human and free. One submits. The <strong>master</strong> requires the <strong>slave's</strong> recognition, but recognition extorted from a person you have debased is worthless. The master becomes <em>dependent</em> on the slave; the slave, in labour and dignity, becomes freer than the master.</p>
+        <table class="concept-table">
+          <thead>
+            <tr><th>Hegelian Moment</th><th>The Irony</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>The demand "Master Harold"</td>
+              <td>By insisting on Sam's submission, Hally achieves the opposite of freedom. He becomes dependent on forced deference, which means nothing. Sam's dignity is unbroken.</td>
+            </tr>
+            <tr>
+              <td>Sam's challenge at the bench</td>
+              <td>An invitation to genuine mutual recognition, the Hegelian resolution. Hally can choose to walk away. The future (Fugard's real life) suggests this choice is possible.</td>
+            </tr>
+            <tr>
+              <td>The final dance</td>
+              <td>Sam and Willie enact a world of mutual recognition, a world without collisions. The slaves dance freely while the master has left, diminished.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- URBAN -->
+      <div class="critic-card" id="urban">
+        <div class="critic-header">
+          <div>
+            <div class="critic-name">D. David V. Urban &amp; Tolstoy: Christian Humanism</div>
+            <div class="critic-work">Urban, <em>Renascence</em>, 2010 · Tolstoy, <em>The Death of Ivan Ilych</em>, 1886</div>
+          </div>
+          <span class="critic-badge">Comparative / Humanist</span>
+        </div>
+        <p>The central irony: Hally claims to admire Tolstoy for his egalitarianism and Christian pacifism, yet embodies their precise opposite. Sam actually exemplifies Tolstoyan values in his patient, non-violent service. Urban's parallel: <strong>Sam is Gerasim</strong> (the peasant servant in <em>Ivan Ilych</em> who tends to the dying man without embarrassment); <strong>Hally is Ivan Ilych</strong>, the man who is "ill" in the moral sense.</p>
+        <p>The chamberpot: Gerasim empties it without shame, with love. Hally is disgusted. Sam's patience with Hally, which excuses his cruelty as illness, mirrors Gerasim's compassionate service exactly. Hally's claim to Tolstoy is devastatingly ironic: he is the subject of Tolstoy's moral lesson.</p>
+      </div>
+
+      <!-- FREUD -->
+      <div class="critic-card" id="freud">
+        <div class="critic-header">
+          <div>
+            <div class="critic-name">E. Sigmund Freud: Displacement &amp; the Unconscious</div>
+            <div class="critic-work"><em>The Interpretation of Dreams</em>, 1899 and broader psychoanalytic theory</div>
+          </div>
+          <span class="critic-badge">Psychoanalytic</span>
+        </div>
+        <p>Displacement: emotional energy directed at one object is redirected onto a safer target. Hally cannot confront his feelings about his father, which mix shame with love and disgust. He displaces this unresolvable emotion onto Sam.</p>
+        <p>The spit is really directed at the father whose body Hally empties chamberpots from, whose drunkenness destroys the family home, whose existence Hally is both ashamed of and unable to abandon. Sam becomes the safe target for the rage Hally cannot express to his father. Apartheid provides the ideological permission for this displacement.</p>
+      </div>
+
+      <!-- HOEGBERG -->
+      <div class="critic-card" id="hoegberg">
+        <div class="critic-header">
+          <div>
+            <div class="critic-name">F. David Hoegberg: The Shakespeare Parallel</div>
+            <div class="critic-work"><em>Comparative Drama</em>, 1996 · Henry IV, Parts 1 &amp; 2</div>
+          </div>
+          <span class="critic-badge">Comparative</span>
+        </div>
+        <p>Hally → Hal (Prince Henry): both are young men choosing between a lower-class mentor (Sam / Falstaff) and the dominant ideology of their class. Both ultimately betray the mentor who has given them their humanity. Hoegberg reads the "nigger's arse" joke as Hally's "vile participation", the moment Prince Hal joins his father's court by publicly humiliating Falstaff.</p>
+        <p>Ballroom dancing descends from African rhythms (Hoegberg) and is a site of cultural reclamation. Shakespeare's "Hal" becomes Fugard's "Hally": the same tragedy of choosing class loyalty over genuine human love.</p>
+      </div>
+    </section>
+
+    <!-- 7. QUOTATIONS -->
+    <section class="content-section" id="quotations">
+      <span class="section-number">Section 07</span>
+      <h2 class="section-title">Annotated Key Quotations</h2>
+
+      <div class="quote-block">
+        <div class="quote-text">"A world in which accidents don't happen."</div>
+        <div class="quote-speaker">Sam, describing the ballroom dance competition</div>
+        <div class="quote-analysis">
+          <strong>Central utopian image.</strong> The dance floor works as political allegory, where no collisions = no apartheid. Symbolic of the ideal society Sam is trying to build in Hally's mind. Also foreshadows the play's "collision" when Hally spits. The conditional tense ("a world in which") signals that this remains an aspiration for now.
+        </div>
+      </div>
+
+      <div class="quote-block">
+        <div class="quote-text">"Tolstoy may have educated his peasants, but I've educated you."</div>
+        <div class="quote-speaker">Hally to Sam</div>
+        <div class="quote-analysis">
+          <strong>Urban's central irony:</strong> Hally claims the Tolstoyan mantle while enacting its precise opposite. Sam is his educator. <strong>Fanon:</strong> Hally positions himself as the "absolute beginning" of Sam's intellectual life, the settler who believes the native has no prior existence. The irony is devastating: the play is Fugard's tribute to Sam's moral education of him.
+        </div>
+      </div>
+
+      <div class="quote-block">
+        <div class="quote-text">"You're only a servant here, and don't forget it."</div>
+        <div class="quote-speaker">Hally to Sam</div>
+        <div class="quote-analysis">
+          <strong>Goffman:</strong> emergency reassertion of front-stage roles when back-stage intimacy has gone too far. <strong>Hegel:</strong> Hally demands the master-slave structure to restore his threatened self-image. The word "only" performs the psychopathology of apartheid, reducing a full human being to a social function. Note also: this comes immediately after Sam crosses a role boundary by rebuking Hally about his father.
+        </div>
+      </div>
+
+      <div class="quote-block">
+        <div class="quote-text">"It's a case of illness with you, sir."</div>
+        <div class="quote-speaker">Gerasim to Ivan Ilych (Tolstoy), echoed in Sam's behaviour toward Hally</div>
+        <div class="quote-analysis">
+          <strong>Urban's parallel:</strong> Sam's patience with Hally mirrors Gerasim's compassionate service to the dying Ivan Ilych. Hally's cruelty is excused as "illness", both the illness of being a child of an alcoholic and the "psychopathology of apartheid" (Durbach). Sam forgives Hally because he understands the cause of the act.
+        </div>
+      </div>
+
+      <div class="quote-block">
+        <div class="quote-text">"You were too young, too excited to notice then. But not anymore."</div>
+        <div class="quote-speaker">Sam, revealing the truth about the Whites Only bench</div>
+        <div class="quote-analysis">
+          <strong>The educational climax.</strong> Sam withdraws the protective screen of ignorance he has maintained for Hally's sake. Now Hally knows, and is responsible. Ignorance can no longer be the excuse. <strong>Goffman:</strong> Sam steps wholly out of the servant performance. This is Sam's backstage self speaking, finally, without the waiter's coat. The moment is an act of love and of moral demand.
+        </div>
+      </div>
+
+      <div class="quote-block">
+        <div class="quote-text">"You don't have to sit up there by yourself. You know what that bench means now, and you can leave it any time you choose."</div>
+        <div class="quote-speaker">Sam's final words to Hally</div>
+        <div class="quote-analysis">
+          <strong>The play's moral crux.</strong> The bench = apartheid privilege. The choice = Hally's. <strong>Hegel:</strong> the invitation to genuine mutual recognition. The future (Fugard's own life story) suggests this choice is possible. Fugard builds a hope into the ending that is conditional and hard-won. "Any time you choose" asserts free will in the face of a deterministic ideology.
+        </div>
+      </div>
+
+      <div class="quote-block">
+        <div class="quote-text">"I felt for that little boy... Master Harold. I felt for him."</div>
+        <div class="quote-speaker">Sam, about the kite incident</div>
+        <div class="quote-analysis">
+          The kite story reveals Sam as a genuine father figure motivated by love. Sam's use of "Master Harold" here is devastating. It is both the title Hally demanded earlier (as a weapon) and the name of the child Sam loved and pitied. The title collapses its two meanings: oppressive social hierarchy and a father's tender grief.
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. ESSAYS -->
+    <section class="content-section" id="essays">
+      <span class="section-number">Section 08</span>
+      <h2 class="section-title">Essay Frameworks &amp; IB Guidance</h2>
+
+      <p>Paper 2 and the HL Essay require a clear, argued claim using textual evidence and at least one critical perspective, named explicitly.</p>
+
+      <div class="essay-q">
+        <div class="q-text"><strong>Sample Question:</strong> How does Fugard use the tea room setting to dramatise the power structures of apartheid South Africa?</div>
+        <div class="essay-step">
+          <div class="step-num">1</div>
+          <p><strong>Thesis:</strong> The St. George's Park Tea Room functions as a microcosm of apartheid society, encoding racial hierarchy in space, objects, and body positions before a word is spoken. Goffman's front/back stage framework reveals this spatial politics with precision.</p>
+        </div>
+        <div class="essay-step">
+          <div class="step-num">2</div>
+          <p><strong>Para 1:</strong> The opening stage picture puts Willie on his knees and Sam reading. Goffman's "setting" (physical backdrop) communicates hierarchy before dialogue. Fugard's stage directions are a deliberate political statement.</p>
+        </div>
+        <div class="essay-step">
+          <div class="step-num">3</div>
+          <p><strong>Para 2:</strong> The front/back stage division between tea room and servants' quarters. Fanon's two zones made architectural. Hally's childhood visits to the servants' quarters = crossing the colonial frontier; he is "punished" for it.</p>
+        </div>
+        <div class="essay-step">
+          <div class="step-num">4</div>
+          <p><strong>Para 3:</strong> Through the telephone, the outside world (apartheid) reaches into the private space and destabilises it. The Whites Only bench brings the exterior legal order into the room symbolically.</p>
+        </div>
+        <div class="essay-step">
+          <div class="step-num">5</div>
+          <p><strong>Para 4:</strong> In the final dance the set becomes utopian. Sam and Willie transform the same space into the world without collisions. Form enacts the thematic argument: space can be reimagined.</p>
+        </div>
+      </div>
+
+      <h3 class="sub-title">Critical Perspectives Quick-Reference</h3>
+      <table class="lens-table">
+        <thead>
+          <tr><th>Lens</th><th>Key Question</th><th>Best Applied To</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Goffman (Dramaturgical)</td>
+            <td>What performance is being enacted? What breaks down?</td>
+            <td>Setting, body positions, "Master Harold" title, the spit, servants' quarters</td>
+          </tr>
+          <tr>
+            <td>Fanon (Postcolonial)</td>
+            <td>Who is treated as object? Where are the colonial zones?</td>
+            <td>Whites Only bench, tea room vs. quarters, the spit, Hally's pedagogy</td>
+          </tr>
+          <tr>
+            <td>Hegel (Dialectical)</td>
+            <td>Who seeks recognition from whom? Is it genuine or forced?</td>
+            <td>"Master Harold" demand, Sam's dignity, the final dance, Sam's challenge</td>
+          </tr>
+          <tr>
+            <td>Urban / Tolstoy (Humanist)</td>
+            <td>How does Sam embody values Hally claims? What is Hally's "illness"?</td>
+            <td>Sam's non-violence, Gerasim parallel, chamberpot, Sam's love</td>
+          </tr>
+          <tr>
+            <td>Freud (Psychoanalytic)</td>
+            <td>What is Hally displacing onto Sam? What is unconscious?</td>
+            <td>The spit, the chamberpot, the father's body, Hally's volatility</td>
+          </tr>
+          <tr>
+            <td>Hoegberg (Comparative)</td>
+            <td>How does Fugard rewrite Henry IV? What is "vile participation"?</td>
+            <td>Sam/Falstaff, Hally/Hal, the dance vision, the joke as rejection</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="checklist">
+        <h4>Final Checklist for IB Responses</h4>
+        <ul>
+          <li>Use the author's name in your thesis: "Fugard…" not "the play…"</li>
+          <li>Name your critical lens explicitly: "Through a Fanonian lens…" or "Applying Goffman's concept of front/back stage…"</li>
+          <li>Quote precisely, including page/act references where possible</li>
+          <li>Every analysis point must connect technique → effect → meaning</li>
+          <li>For Paper 2: make the comparison do analytical work in every paragraph</li>
+          <li>For the IO: identify a global issue that is genuinely transnational (race, education, power, identity)</li>
+          <li>Avoid plot summary: state what Fugard does, then why it matters</li>
+          <li>End with the broader significance: what does the text say about the human condition?</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  <p><a href="index.html">← Back to DP Literature Home</a></p>
+  <p style="margin-top: 0.5rem">Revision guide compiled for IB DP students. All critical perspectives attributed to their original scholars. Fugard, Goffman, Fanon, Hegel, Urban, Freud, Hoegberg.</p>
+</footer>
+
+</body>
+</html>

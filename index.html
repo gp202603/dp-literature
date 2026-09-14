@@ -1,0 +1,2177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DP English A Literature · Higher Level</title>
+  <style>
+    :root {
+      --navy: #0d1b2a;
+      --midnight: #1b2a3b;
+      --ink: #243447;
+      --gold: #c9a84c;
+      --gold-light: #e8d5a3;
+      --cream: #f5f0e8;
+      --white: #ffffff;
+      --text: #e8e4dc;
+      --muted: #8fa3b1;
+      --accent: #4a8fa8;
+      --red: #a83244;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Georgia', serif;
+      background: var(--navy);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(13,27,42,0.97);
+      border-bottom: 2px solid var(--gold);
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.6rem 3rem;
+      backdrop-filter: blur(8px);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 0.75rem; }
+    .nav-logo img { height: 40px; width: auto; object-fit: contain; }
+    .nav-logo span { color: var(--muted); font-size: 0.8rem; font-family: 'Helvetica Neue', sans-serif; }
+    .nav-links { display: flex; gap: 0.6rem 1.6rem; list-style: none; flex-wrap: wrap; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.9rem; letter-spacing: 0.03em; transition: color 0.2s; font-family: 'Helvetica Neue', sans-serif; }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* HERO */
+    .hero {
+      min-height: 88vh;
+      display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
+      padding: 6rem 3rem 4rem;
+      background: linear-gradient(135deg, var(--navy) 0%, #0a1628 50%, #111e30 100%);
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: 0; right: 0; width: 50%; height: 100%;
+      background: radial-gradient(ellipse at top right, rgba(201,168,76,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-tag {
+      font-family: 'Helvetica Neue', sans-serif;
+      font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1.5rem;
+      border: 1px solid rgba(201,168,76,0.3); display: inline-block;
+      padding: 0.3rem 1rem; border-radius: 2px;
+    }
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-weight: normal; line-height: 1.2;
+      color: var(--white); margin-bottom: 0.5rem;
+      max-width: 750px;
+    }
+    .hero h1 em { color: var(--gold); font-style: normal; }
+    .hero-sub {
+      font-family: 'Helvetica Neue', sans-serif;
+      font-size: 0.95rem; color: var(--muted);
+      margin-top: 1rem; max-width: 500px; letter-spacing: 0.02em;
+    }
+    .hero-quote {
+      margin-top: 3rem; padding: 1.5rem 2rem;
+      border-left: 3px solid var(--gold);
+      background: rgba(201,168,76,0.05);
+      max-width: 600px; font-size: 1.1rem; font-style: italic;
+      color: var(--gold-light);
+    }
+    .hero-quote cite { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.5rem; font-style: normal; font-family: 'Helvetica Neue', sans-serif; }
+
+    /* SECTION */
+    section { padding: 5rem 3rem; }
+    .section-label {
+      font-family: 'Helvetica Neue', sans-serif;
+      font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.75rem;
+    }
+    h2 {
+      font-size: 2rem; font-weight: normal; color: var(--white);
+      margin-bottom: 1rem; line-height: 1.3;
+    }
+    h3 { font-size: 1.2rem; font-weight: normal; color: var(--gold-light); margin-bottom: 0.5rem; }
+    p { color: var(--muted); margin-bottom: 1rem; font-size: 0.97rem; max-width: 680px; }
+
+    /* DIVIDER */
+    .divider { height: 1px; background: linear-gradient(to right, transparent, var(--gold), transparent); margin: 0 3rem; opacity: 0.3; }
+
+    /* TEXTS GRID */
+    .texts-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem; margin-top: 2.5rem;
+    }
+    .text-card {
+      background: var(--midnight); border: 1px solid rgba(201,168,76,0.15);
+      border-radius: 4px; padding: 2rem;
+      transition: border-color 0.25s, transform 0.2s;
+      position: relative;
+    }
+    .text-card:hover { border-color: rgba(201,168,76,0.5); transform: translateY(-2px); }
+    .text-card.featured { border-color: rgba(201,168,76,0.4); background: linear-gradient(135deg, var(--midnight), #1e2f44); }
+    .text-card .badge {
+      font-family: 'Helvetica Neue', sans-serif;
+      font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
+      padding: 0.2rem 0.6rem; border-radius: 2px; margin-bottom: 1rem;
+      display: inline-block;
+    }
+    .badge.play { background: rgba(168,50,68,0.2); color: #d4758a; }
+    .badge.novel { background: rgba(74,143,168,0.2); color: #7dbdd6; }
+    .badge.poetry { background: rgba(201,168,76,0.15); color: var(--gold); }
+    .badge.featured-badge { background: rgba(201,168,76,0.2); color: var(--gold); }
+    .text-card h3 { color: var(--white); font-size: 1.1rem; margin-bottom: 0.25rem; }
+    .text-card .author { color: var(--muted); font-size: 0.85rem; margin-bottom: 1rem; }
+    .text-card p { font-size: 0.88rem; color: var(--muted); margin: 0 0 1.2rem; }
+    .text-card a.btn {
+      font-family: 'Helvetica Neue', sans-serif;
+      font-size: 0.8rem; text-decoration: none;
+      padding: 0.5rem 1.2rem; border-radius: 2px;
+      display: inline-block; letter-spacing: 0.05em; transition: all 0.2s;
+    }
+    .btn-primary { background: var(--gold); color: var(--navy); font-weight: bold; }
+    .btn-primary:hover { background: var(--gold-light); }
+    .btn-ghost { border: 1px solid rgba(201,168,76,0.4); color: var(--gold); }
+    .btn-ghost:hover { background: rgba(201,168,76,0.1); }
+
+    /* ASSESSMENT SECTION */
+    .assess-bg { background: var(--midnight); }
+    .assess-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.5rem; margin-top: 2.5rem;
+    }
+    .assess-card {
+      padding: 1.8rem; background: var(--ink); border-radius: 4px;
+      border-left: 3px solid var(--gold);
+    }
+    .assess-card .icon { font-size: 1.5rem; margin-bottom: 0.8rem; }
+    .assess-card h3 { color: var(--white); font-size: 1rem; margin-bottom: 0.5rem; }
+    .assess-card p { font-size: 0.85rem; color: var(--muted); margin: 0; max-width: none; }
+    .assess-card .weight { color: var(--gold); font-size: 0.8rem; margin-top: 0.5rem; font-family: 'Helvetica Neue', sans-serif; }
+
+    /* APPROACHES SECTION */
+    .approach-list { margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem; max-width: 750px; }
+    .approach-item {
+      display: flex; gap: 1.5rem; align-items: flex-start;
+      padding: 1.2rem 1.5rem; background: var(--ink); border-radius: 4px;
+    }
+    .approach-num {
+      font-size: 1.5rem; color: rgba(201,168,76,0.3); font-family: 'Helvetica Neue', sans-serif;
+      min-width: 2rem; line-height: 1;
+    }
+    .approach-item h3 { color: var(--gold-light); margin-bottom: 0.3rem; font-size: 1rem; }
+    .approach-item p { margin: 0; font-size: 0.88rem; max-width: none; }
+
+    /* STUDY TOOLS */
+    .tool-tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0 0; }
+    .tool-tab {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.8rem;
+      padding: 0.5rem 1.2rem; border-radius: 2px; cursor: pointer;
+      border: 1px solid rgba(201,168,76,0.25); color: var(--muted);
+      background: transparent; transition: all 0.2s; letter-spacing: 0.04em;
+    }
+    .tool-tab:hover { color: var(--gold); border-color: var(--gold); }
+    .tool-tab.active { background: var(--gold); color: var(--navy); font-weight: bold; border-color: var(--gold); }
+    .tool-panel { display: none; margin-top: 1.5rem; }
+    .tool-panel.active { display: block; }
+
+    /* Literary Devices */
+    .devices-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.75rem; }
+    .device-card {
+      background: var(--midnight); border-radius: 4px; border: 1px solid rgba(255,255,255,0.06);
+      overflow: hidden;
+    }
+    .device-header {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.9rem 1.2rem; cursor: pointer; user-select: none;
+    }
+    .device-header:hover { background: rgba(201,168,76,0.05); }
+    .device-name { color: var(--gold-light); font-size: 0.95rem; }
+    .device-toggle { color: var(--gold); font-size: 0.7rem; font-family: 'Helvetica Neue', sans-serif; transition: transform 0.2s; }
+    .device-body { display: none; padding: 0 1.2rem 1rem; border-top: 1px solid rgba(255,255,255,0.05); }
+    .device-body.open { display: block; }
+    .device-def { color: var(--muted); font-size: 0.85rem; margin: 0.7rem 0 0.5rem; }
+    .device-example { font-style: italic; color: rgba(201,168,76,0.7); font-size: 0.82rem; border-left: 2px solid rgba(201,168,76,0.3); padding-left: 0.8rem; }
+
+    /* Framework panels */
+    .framework-steps { display: flex; flex-direction: column; gap: 0.75rem; max-width: 750px; }
+    .fw-step {
+      display: flex; gap: 1.2rem; align-items: flex-start;
+      background: var(--midnight); border-radius: 4px; padding: 1.2rem 1.5rem;
+    }
+    .fw-num {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 1.3rem;
+      color: rgba(201,168,76,0.35); min-width: 2rem; line-height: 1.2;
+    }
+    .fw-step h4 { color: var(--gold-light); font-size: 0.95rem; margin-bottom: 0.3rem; font-weight: normal; }
+    .fw-step p { color: var(--muted); font-size: 0.85rem; margin: 0; max-width: none; }
+    .fw-step ul { color: var(--muted); font-size: 0.85rem; padding-left: 1.2rem; margin-top: 0.4rem; }
+    .fw-step li { margin-bottom: 0.25rem; }
+
+    /* Two-panel layout */
+    .tool-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; max-width: 900px; }
+    .tool-box { background: var(--midnight); border-radius: 4px; padding: 1.5rem; }
+    .tool-box h4 {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.7rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1rem; padding-bottom: 0.5rem;
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+    }
+    .tool-box ul { list-style: none; }
+    .tool-box li {
+      padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+      font-size: 0.85rem; color: var(--muted); display: flex; gap: 0.6rem;
+    }
+    .tool-box li::before { content: '→'; color: var(--gold); flex-shrink: 0; }
+    .tool-box li:last-child { border-bottom: none; }
+
+    /* Starters */
+    .starters-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem; }
+    .starter-group { background: var(--midnight); border-radius: 4px; padding: 1.3rem; }
+    .starter-group h4 {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.68rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.8rem;
+    }
+    .starter {
+      font-style: italic; font-size: 0.83rem; color: var(--gold-light);
+      padding: 0.4rem 0.6rem; margin-bottom: 0.4rem;
+      border-left: 2px solid rgba(201,168,76,0.25);
+      background: rgba(201,168,76,0.03); border-radius: 0 2px 2px 0;
+    }
+    .starter span { color: rgba(201,168,76,0.5); font-style: normal; font-size: 0.75rem; display: block; margin-top: 0.1rem; }
+
+    /* Drama Terms */
+    .drama-search-wrap { margin-bottom: 1.5rem; }
+    .drama-search {
+      width: 100%; max-width: 420px; padding: 0.6rem 1rem;
+      background: var(--midnight); border: 1px solid rgba(201,168,76,0.25); border-radius: 3px;
+      color: var(--text); font-family: 'Helvetica Neue', sans-serif; font-size: 0.88rem;
+      outline: none;
+    }
+    .drama-search::placeholder { color: var(--muted); }
+    .drama-search:focus { border-color: var(--gold); }
+    .drama-category { margin-bottom: 2rem; }
+    .drama-cat-title {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.68rem;
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold);
+      border-bottom: 1px solid rgba(201,168,76,0.2); padding-bottom: 0.5rem;
+      margin-bottom: 0.9rem;
+    }
+    .drama-cat-note { color: var(--muted); font-size: 0.8rem; margin-bottom: 0.8rem; font-style: italic; }
+    .drama-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 0.6rem; }
+    .dt-card {
+      background: var(--midnight); border-radius: 4px; padding: 0.9rem 1.1rem;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    .dt-card[data-hidden="true"] { display: none; }
+    .dt-name { color: var(--gold-light); font-size: 0.88rem; margin-bottom: 0.3rem; }
+    .dt-def { color: var(--muted); font-size: 0.8rem; line-height: 1.5; }
+    /* Freytag's Pyramid */
+    .pyramid-wrap { margin: 0.5rem 0 1.5rem; max-width: 650px; }
+    .pyramid-row { display: flex; gap: 2px; align-items: flex-end; height: 110px; }
+    .pyramid-bar {
+      flex: 1; display: flex; align-items: flex-end; justify-content: center;
+      border-radius: 3px 3px 0 0;
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.65rem;
+      letter-spacing: 0.06em; text-align: center; padding: 0 0.3rem 0.4rem;
+      color: var(--navy); font-weight: bold; line-height: 1.2;
+    }
+    .pyramid-labels { display: flex; gap: 2px; margin-top: 2px; }
+    .pyramid-label { flex: 1; text-align: center; font-size: 0.68rem; color: var(--muted); font-family: 'Helvetica Neue', sans-serif; padding-top: 0.3rem; border-top: 2px solid rgba(255,255,255,0.06); }
+    /* Stage Forms grid */
+    .sf-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.8rem; }
+    .sf-card { background: var(--midnight); border-radius: 4px; padding: 1rem 1.1rem; border: 1px solid rgba(255,255,255,0.05); }
+    .sf-name { color: var(--gold-light); font-size: 0.88rem; margin-bottom: 0.25rem; }
+    .sf-diagram { font-family: monospace; font-size: 0.65rem; color: rgba(201,168,76,0.5); margin: 0.4rem 0; line-height: 1.4; white-space: pre; }
+    .sf-def { color: var(--muted); font-size: 0.78rem; line-height: 1.5; }
+    /* Reflect questions */
+    .reflect-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.6rem; }
+    .reflect-q {
+      background: var(--midnight); border-radius: 4px; padding: 0.9rem 1.1rem;
+      border-left: 3px solid rgba(201,168,76,0.35); color: var(--muted); font-size: 0.85rem; font-style: italic;
+    }
+
+    /* IO Issues */
+    .issues-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 0.75rem; margin-bottom: 1.5rem; }
+    .issue-card {
+      background: var(--midnight); border-radius: 4px; padding: 1.1rem 1.3rem;
+      border-left: 3px solid var(--gold);
+    }
+    .issue-card.power { border-left-color: #a83244; }
+    .issue-card.identity { border-left-color: #4a8fa8; }
+    .issue-card.equality { border-left-color: #3a7d5c; }
+    .issue-name { color: var(--white); font-size: 0.9rem; margin-bottom: 0.3rem; }
+    .issue-texts { color: var(--muted); font-size: 0.78rem; font-family: 'Helvetica Neue', sans-serif; }
+
+    /* Checklist */
+    .checklist-rows { display: flex; flex-direction: column; gap: 0.4rem; max-width: 700px; }
+    .checklist { background: var(--ink); border-radius: 4px; padding: 1rem 1.2rem; }
+    .checklist ul { list-style: none; }
+    .checklist li { padding: 0.3rem 0; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 0.82rem; color: var(--muted); display: flex; align-items: flex-start; gap: 0.5rem; }
+    .checklist li::before { content: '▸'; color: var(--gold); flex-shrink: 0; }
+    .checklist li:last-child { border-bottom: none; }
+    .check-item {
+      display: flex; align-items: flex-start; gap: 0.8rem;
+      background: var(--midnight); border-radius: 4px; padding: 0.8rem 1rem;
+      cursor: pointer; transition: background 0.15s;
+    }
+    .check-item:hover { background: rgba(201,168,76,0.07); }
+    .check-item input[type=checkbox] { accent-color: var(--gold); width: 1rem; height: 1rem; flex-shrink: 0; margin-top: 0.15rem; cursor: pointer; }
+    .check-item label { color: var(--muted); font-size: 0.88rem; cursor: pointer; line-height: 1.5; }
+    .check-item input:checked + label { color: rgba(201,168,76,0.6); text-decoration: line-through; }
+    .check-group-title {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.68rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--gold); margin: 1rem 0 0.5rem;
+    }
+
+    @media (max-width: 700px) {
+      .tool-two-col { grid-template-columns: 1fr; }
+    }
+
+    /* ── NEW VISUAL COMPONENTS ── */
+
+    /* Lit HL vs Lang Lit callout */
+    .course-distinction {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+      margin-bottom: 1.8rem;
+    }
+    @media (max-width: 600px) { .course-distinction { grid-template-columns: 1fr; } }
+    .course-box {
+      border-radius: 4px; padding: 1.2rem 1.4rem;
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+    .course-box.you-are-here {
+      background: linear-gradient(135deg, rgba(201,168,76,0.1), rgba(201,168,76,0.05));
+      border-color: rgba(201,168,76,0.4);
+    }
+    .course-box.not-this { background: var(--midnight); opacity: 0.55; }
+    .course-badge {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.62rem;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      padding: 0.2rem 0.7rem; border-radius: 2px; display: inline-block;
+      margin-bottom: 0.8rem;
+    }
+    .course-box.you-are-here .course-badge { background: var(--gold); color: var(--navy); font-weight: bold; }
+    .course-box.not-this .course-badge { background: rgba(255,255,255,0.07); color: var(--muted); }
+    .course-box h4 { color: var(--white); font-size: 0.9rem; margin-bottom: 0.6rem; font-weight: normal; }
+    .course-box ul { list-style: none; padding: 0; }
+    .course-box li { font-size: 0.83rem; color: var(--muted); padding: 0.25rem 0; display: flex; gap: 0.5rem; align-items: center; }
+    .course-box li::before { content: '▸'; color: var(--gold); flex-shrink: 0; font-size: 0.7rem; }
+    .course-box.not-this li::before { color: rgba(255,255,255,0.2); }
+
+    /* Text type cards */
+    .p1tt-grid {
+      display: flex; flex-wrap: wrap;
+      gap: 0.75rem; margin-bottom: 1.8rem;
+    }
+    .p1tt-card { flex: 1 1 160px; min-width: 160px; max-width: 220px; }
+    .p1tt-card {
+      border-radius: 4px; padding: 1.1rem 1.2rem;
+      background: var(--midnight); border: 1px solid rgba(255,255,255,0.06);
+      transition: border-color 0.2s;
+    }
+    .p1tt-card:hover { border-color: rgba(201,168,76,0.3); }
+    .p1tt-icon { font-size: 1.4rem; margin-bottom: 0.5rem; }
+    .p1tt-name { color: var(--gold-light); font-size: 0.88rem; margin-bottom: 0.35rem; }
+    .p1tt-examples { color: var(--muted); font-size: 0.77rem; line-height: 1.5; }
+    .p1tt-features { margin-top: 0.6rem; }
+    .p1tt-features span {
+      display: inline-block; font-size: 0.68rem; font-family: 'Helvetica Neue', sans-serif;
+      padding: 0.15rem 0.5rem; background: rgba(201,168,76,0.08); color: rgba(201,168,76,0.7);
+      border-radius: 2px; margin: 0.15rem 0.1rem 0 0;
+    }
+
+    /* Timing bar */
+    .timing-visual { margin: 0.5rem 0 1.8rem; max-width: 820px; }
+    .timing-bar-wrap { display: flex; height: 44px; border-radius: 4px; overflow: hidden; gap: 2px; }
+    .timing-seg {
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.65rem;
+      font-weight: bold; color: var(--navy); text-align: center;
+      line-height: 1.2; padding: 0 0.3rem;
+    }
+    .timing-seg.seg-read { background: #3a5a7a; color: #a8c4d4; flex: 5; }
+    .timing-seg.seg-annotate { background: #2d4a6a; color: #8ab0c8; flex: 12; }
+    .timing-seg.seg-write1 { background: rgba(201,168,76,0.65); flex: 40; }
+    .timing-seg.seg-write2 { background: rgba(168,50,68,0.55); color: #f0c0cc; flex: 40; }
+    .timing-seg.seg-review { background: #3a5a3a; color: #90c090; flex: 8; }
+    .timing-labels { display: flex; gap: 2px; margin-top: 0.4rem; }
+    .timing-label { font-size: 0.65rem; color: var(--muted); font-family: 'Helvetica Neue', sans-serif; flex: 1; text-align: center; }
+    .timing-label.tl5 { flex: 5; }
+    .timing-label.tl12 { flex: 12; }
+    .timing-label.tl40 { flex: 40; }
+    .timing-label.tl8 { flex: 8; }
+    .timing-note { font-size: 0.78rem; color: var(--muted); margin-top: 0.6rem; font-style: italic; }
+
+    /* Verb chips */
+    .verb-grid { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.6rem; }
+    .verb-chip {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.75rem;
+      padding: 0.25rem 0.7rem; border-radius: 2px; border: 1px solid;
+    }
+    .verb-chip.evaluative { border-color: rgba(201,168,76,0.35); color: var(--gold-light); background: rgba(201,168,76,0.07); }
+    .verb-chip.analytical { border-color: rgba(74,143,168,0.35); color: #7dbdd6; background: rgba(74,143,168,0.07); }
+    .verb-chip.comparative { border-color: rgba(60,125,92,0.4); color: #7ac49a; background: rgba(60,125,92,0.08); }
+
+    /* Tips accordion */
+    .tips-list { max-width: 750px; }
+    .tip-item {
+      background: var(--midnight); border-radius: 4px; margin-bottom: 0.5rem;
+      border: 1px solid rgba(255,255,255,0.05); overflow: hidden;
+    }
+    .tip-header {
+      display: flex; align-items: center; gap: 0.9rem; padding: 0.85rem 1.2rem;
+      cursor: pointer; user-select: none;
+    }
+    .tip-header:hover { background: rgba(201,168,76,0.04); }
+    .tip-num {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.7rem;
+      color: var(--gold); min-width: 1.6rem; font-weight: bold;
+    }
+    .tip-title { color: var(--gold-light); font-size: 0.9rem; flex: 1; }
+    .tip-arrow { color: var(--gold); font-size: 0.7rem; transition: transform 0.2s; }
+    .tip-body { display: none; padding: 0 1.2rem 1rem 3rem; }
+    .tip-body.open { display: block; }
+    .tip-body p { color: var(--muted); font-size: 0.83rem; margin: 0; max-width: none; }
+
+    /* Pitfall cards */
+    .pitfall-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+    @media (max-width: 600px) { .pitfall-grid { grid-template-columns: 1fr; } }
+    .pitfall-card {
+      background: var(--midnight); border-radius: 4px; padding: 1rem 1.2rem;
+      border-left: 3px solid rgba(168,50,68,0.5);
+    }
+    .pitfall-title { color: #d4758a; font-size: 0.88rem; margin-bottom: 0.3rem; }
+    .pitfall-fix { color: var(--muted); font-size: 0.8rem; line-height: 1.5; }
+    .pitfall-fix::before { content: '✓ Fix: '; color: rgba(120,200,120,0.7); font-family: 'Helvetica Neue', sans-serif; }
+
+    /* Stems table */
+    .stems-table { max-width: 820px; border-collapse: collapse; width: 100%; margin-top: 0.8rem; font-size: 0.83rem; }
+    .stems-table th {
+      text-align: left; padding: 0.5rem 1rem; background: rgba(201,168,76,0.1);
+      color: var(--gold); font-family: 'Helvetica Neue', sans-serif; font-size: 0.68rem;
+      letter-spacing: 0.1em; text-transform: uppercase; font-weight: normal;
+    }
+    .stems-table td {
+      padding: 0.5rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.04);
+      color: var(--muted); vertical-align: top;
+    }
+    .stems-table td:first-child { color: var(--gold-light); white-space: nowrap; font-size: 0.78rem; }
+    .stems-table tr:last-child td { border-bottom: none; }
+    .stems-table .stem-ex { font-style: italic; font-size: 0.78rem; color: rgba(201,168,76,0.6); display: block; margin-top: 0.2rem; }
+
+    /* Question breakdown visual */
+    .q-breakdown { max-width: 820px; background: var(--midnight); border-radius: 4px; padding: 1.5rem; margin-bottom: 1.5rem; }
+    .q-text {
+      font-size: 0.95rem; color: var(--text); line-height: 1.7; margin-bottom: 1.2rem;
+      border-left: 3px solid var(--gold); padding-left: 1rem;
+      font-style: italic;
+    }
+    .q-annotations { display: flex; flex-direction: column; gap: 0.5rem; }
+    .q-annot { display: flex; gap: 0.8rem; align-items: flex-start; font-size: 0.82rem; }
+    .q-annot-term { color: var(--gold); font-family: 'Helvetica Neue', sans-serif; min-width: 120px; font-size: 0.78rem; padding-top: 0.1rem; }
+    .q-annot-def { color: var(--muted); }
+
+    /* Thesis formula */
+    .thesis-formula { display: flex; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin: 1rem 0 1.5rem; max-width: 820px; }
+    .tf-part {
+      background: var(--midnight); border-radius: 3px; padding: 0.5rem 0.9rem;
+      font-size: 0.82rem; border: 1px solid rgba(201,168,76,0.2);
+    }
+    .tf-part.tf-key { background: rgba(201,168,76,0.12); color: var(--gold-light); border-color: rgba(201,168,76,0.35); }
+    .tf-part.tf-plain { color: var(--muted); border-color: rgba(255,255,255,0.06); }
+    .tf-plus { color: rgba(201,168,76,0.4); font-size: 1rem; font-weight: bold; }
+
+    /* Comparative language table */
+    .comp-table-wrap { max-width: 820px; }
+    .comp-two { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 600px) { .comp-two { grid-template-columns: 1fr; } }
+    .comp-col { background: var(--midnight); border-radius: 4px; padding: 1.2rem; }
+    .comp-col h5 {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.65rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      margin-bottom: 0.8rem; padding-bottom: 0.4rem;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .comp-col.col-sim h5 { color: #7ac49a; }
+    .comp-col.col-cont h5 { color: #d4758a; }
+    .comp-phrase {
+      font-size: 0.82rem; color: var(--muted); padding: 0.3rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      font-style: italic;
+    }
+    .comp-phrase:last-child { border-bottom: none; }
+
+    /* Sample questions */
+    .sample-qs { display: flex; flex-direction: column; gap: 0.6rem; max-width: 820px; margin-bottom: 1.5rem; }
+    .sample-q {
+      background: var(--midnight); border-radius: 4px; padding: 1rem 1.3rem;
+      border-left: 3px solid rgba(74,143,168,0.4);
+    }
+    .sq-text { color: var(--text); font-size: 0.88rem; font-style: italic; margin-bottom: 0.5rem; }
+    .sq-hint { color: var(--muted); font-size: 0.78rem; font-family: 'Helvetica Neue', sans-serif; }
+    .sq-hint::before { content: '→ Focus: '; color: var(--accent); }
+
+    /* Section label inside panel */
+    .panel-section-label {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.7rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--gold); margin: 1.8rem 0 0.7rem;
+      display: flex; align-items: center; gap: 0.8rem;
+    }
+    .panel-section-label::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(to right, rgba(201,168,76,0.2), transparent);
+      max-width: 300px;
+    }
+
+    /* Text Types */
+    .tt-search-wrap { margin-bottom: 1.5rem; }
+    .tt-search {
+      width: 100%; max-width: 420px; padding: 0.6rem 1rem;
+      background: var(--midnight); border: 1px solid rgba(201,168,76,0.25); border-radius: 3px;
+      color: var(--text); font-family: 'Helvetica Neue', sans-serif; font-size: 0.88rem;
+      outline: none;
+    }
+    .tt-search::placeholder { color: var(--muted); }
+    .tt-search:focus { border-color: var(--gold); }
+    .tt-category { margin-bottom: 2rem; }
+    .tt-cat-title {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.68rem;
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold);
+      border-bottom: 1px solid rgba(201,168,76,0.2); padding-bottom: 0.5rem;
+      margin-bottom: 0.9rem;
+    }
+    .tt-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 0.6rem; }
+    .tt-card {
+      background: var(--midnight); border-radius: 4px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    .tt-card[data-hidden="true"] { display: none; }
+    .tt-header {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.85rem 1.1rem; cursor: pointer; user-select: none; gap: 0.5rem;
+    }
+    .tt-header:hover { background: rgba(201,168,76,0.05); }
+    .p1tt-name { color: var(--gold-light); font-size: 0.9rem; flex: 1; }
+    .tt-badge {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.58rem;
+      letter-spacing: 0.09em; text-transform: uppercase; padding: 0.15rem 0.55rem;
+      border-radius: 2px; flex-shrink: 0; white-space: nowrap;
+    }
+    .tt-badge.opinion { background: rgba(168,50,68,0.2); color: #d4758a; }
+    .tt-badge.info    { background: rgba(74,143,168,0.2); color: #7dbdd6; }
+    .tt-badge.creative{ background: rgba(201,168,76,0.15); color: var(--gold); }
+    .tt-badge.digital { background: rgba(60,168,110,0.2); color: #7dd6a8; }
+    .tt-toggle { color: var(--gold); font-size: 0.7rem; font-family: 'Helvetica Neue', sans-serif; flex-shrink: 0; }
+    .tt-body { display: none; padding: 0 1.1rem 1rem; border-top: 1px solid rgba(255,255,255,0.05); }
+    .tt-body.open { display: block; }
+    .tt-row { margin-top: 0.65rem; }
+    .tt-row-label {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.61rem;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold);
+      margin-bottom: 0.2rem;
+    }
+    .tt-row-val { color: var(--muted); font-size: 0.83rem; line-height: 1.5; margin: 0; max-width: none; }
+    .tt-list { color: var(--muted); font-size: 0.82rem; padding-left: 1.1rem; margin: 0; line-height: 1.85; }
+    .tt-tip {
+      font-size: 0.8rem; color: rgba(201,168,76,0.85); font-style: italic;
+      border-left: 2px solid rgba(201,168,76,0.3); padding: 0.3rem 0.7rem;
+      margin-top: 0.6rem; background: rgba(201,168,76,0.04); border-radius: 0 2px 2px 0;
+    }
+
+    /* Criteria visual */
+    .criteria-bars { max-width: 500px; margin-bottom: 1.5rem; }
+    .crit-row { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.5rem; }
+    .crit-label { font-family: 'Helvetica Neue', sans-serif; font-size: 0.78rem; color: var(--gold-light); min-width: 130px; }
+    .crit-bar-wrap { flex: 1; height: 8px; background: rgba(255,255,255,0.06); border-radius: 4px; overflow: hidden; }
+    .crit-bar { height: 100%; border-radius: 4px; transition: width 0.4s; }
+    .crit-pts { font-family: 'Helvetica Neue', sans-serif; font-size: 0.72rem; color: var(--muted); min-width: 3rem; }
+
+    /* FOOTER */
+    footer {
+      text-align: center; padding: 3rem;
+      border-top: 1px solid rgba(201,168,76,0.15);
+      color: var(--muted); font-size: 0.8rem;
+      font-family: 'Helvetica Neue', sans-serif;
+    }
+    footer span { color: var(--gold); }
+
+    @media (max-width: 700px) {
+      nav { padding: 0.8rem 1rem; flex-wrap: wrap; }
+      .nav-links { gap: 0.45rem 0.9rem; }
+      .nav-links a { font-size: 0.78rem; }
+      .hero, section { padding-left: 1.5rem; padding-right: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <img src="books.svg" alt="Books" />
+    <span>DP English A · Literature HL</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#texts">Texts</a></li>
+    <li><a href="#assessment">Assessment</a></li>
+    <li><a href="#approaches">Approaches</a></li>
+    <li><a href="#resources">Resources</a></li>
+    <li><a href="master_harold.html" style="color:var(--gold)">Master Harold ↗</a></li>
+    <li><a href="salesman.html" style="color:var(--gold)">Salesman ↗</a></li>
+    <li><a href="antigone.html" style="color:var(--gold)">Antigone ↗</a></li>
+    <li><a href="paper1.html" style="color:var(--accent)">Paper 1 ↗</a></li>
+    <li><a href="paper2_tracker_hl.html" style="color:var(--accent)">Antigone P2 Tracker HL ↗</a></li>
+    <li><a href="paper2_tracker_sl.html" style="color:var(--accent)">Antigone P2 Tracker SL ↗</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <img src="books.svg" alt="Books" style="height:72px; width:auto; margin-bottom:2rem;" />
+  <div class="hero-tag">IB Diploma Programme · English A</div>
+  <h1>Literature <em>Higher Level</em></h1>
+  <p class="hero-sub">
+    A space to explore language and the human condition through close reading, critical lenses, and global voices.
+  </p>
+  <blockquote class="hero-quote">
+    "Literature illuminates the full range of human experiences and encourages a deeper understanding of the world."
+    <cite>IB Language A: Literature Guide</cite>
+  </blockquote>
+</header>
+
+<!-- TEXTS -->
+<section id="texts">
+  <div class="section-label">Year 1 · DP1</div>
+  <h2>Year 1 Reading</h2>
+  <p>The first year builds the habits everything else depends on: reading a play as a designed event, writing an analytical paragraph, and treating context as evidence rather than decoration. We begin with modern American drama.</p>
+
+  <div class="texts-grid">
+    <div class="text-card featured">
+      <span class="badge featured-badge play">★ Full Teaching Unit</span>
+      <h3>Death of a Salesman</h3>
+      <div class="author">Arthur Miller, 1949 · United States</div>
+      <p>A salesman comes home too tired to finish the drive, and the walls of his house stop holding time in place. Miller's study of work, self-deception and inheritance, taught here as a nine-stage unit from stagecraft through to Paper 1.</p>
+      <a href="salesman.html" class="btn btn-primary">Open Teaching Unit →</a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- YEAR 2 -->
+<section id="texts-y2">
+  <div class="section-label">Year 2 · DP2</div>
+  <h2>Year 2 Reading</h2>
+  <p>The second year moves across genre, period and culture, and turns the reading habits of Year 1 towards the four assessment components.</p>
+
+  <div class="texts-grid">
+    <div class="text-card featured">
+      <span class="badge featured-badge">★ Featured Revision</span>
+      <h3>"Master Harold" … and the Boys</h3>
+      <div class="author">Athol Fugard, 1982 · South Africa</div>
+      <p>A one-act play set in apartheid South Africa, exploring power, race, education, and the tragic complicity of a white boy in the racist system that raised him.</p>
+      <a href="master_harold.html" class="btn btn-primary">Open Revision Guide →</a>
+    </div>
+
+    <div class="text-card featured">
+      <span class="badge featured-badge poetry">★ Featured Revision</span>
+      <h3>Selected Poetry</h3>
+      <div class="author">Pablo Neruda, 1924–1968 · Chile</div>
+      <p>From erotic love lyrics to political epic, Neruda's poetry spans surrealism, Marxist witness, and ecocritical odes to common things. Nobel Prize, 1971.</p>
+      <a href="neruda.html" class="btn btn-primary">Open Revision Guide →</a>
+    </div>
+
+    <div class="text-card featured">
+      <span class="badge featured-badge play">★ Featured Revision</span>
+      <h3>Antigone</h3>
+      <div class="author">Sophocles, c. 442 BC · Athens · Work in Translation</div>
+      <p>A girl buries her brother against a decree, and a city discovers what its own laws cost. Sophocles' study of authority, kinship and the limits of human mastery, read here in Don Taylor's translation, with the Ode to Man as its interpretive key.</p>
+      <a href="antigone.html" class="btn btn-primary">Open Revision Guide →</a>
+    </div>
+
+    <div class="text-card">
+      <span class="badge novel">Novel</span>
+      <h3>Ethan Frome</h3>
+      <div class="author">Edith Wharton, 1911 · United States</div>
+      <p>A tale of desire, duty, and tragedy in the frozen New England landscape. Wharton makes setting a mirror of the mind.</p>
+      <a href="#" class="btn btn-ghost">Notes coming soon</a>
+    </div>
+  </div>
+</section>
+
+
+<div class="divider"></div>
+
+<!-- ASSESSMENT -->
+<section id="assessment" class="assess-bg">
+  <div class="section-label">How You Are Examined</div>
+  <h2>IB DP Assessment Overview</h2>
+  <p>English A Literature HL is assessed through four components, both external and internal, requiring close reading, extended writing, and oral performance.</p>
+
+  <div class="assess-grid">
+    <div class="assess-card">
+      <div class="icon">📝</div>
+      <h3>Paper 1: Literary Commentary</h3>
+      <p>Two unseen literary extracts (prose and poetry). HL students write detailed commentaries on both. No notes allowed.</p>
+      <div class="weight">External · 35%</div>
+    </div>
+
+    <div class="assess-card">
+      <div class="icon">✍️</div>
+      <h3>Paper 2: Comparative Essay</h3>
+      <p>A 1 hour 45 minute essay comparing two works studied in the course. Four questions are set, and you choose one. Argues a claim with textual evidence.</p>
+      <div class="weight">External · 25%</div>
+    </div>
+
+    <div class="assess-card">
+      <div class="icon">📖</div>
+      <h3>HL Essay</h3>
+      <p>A 1,200–1,500 word formal essay on a literary work studied in the course. Independently researched, written outside class.</p>
+      <div class="weight">External · 20%</div>
+    </div>
+
+    <div class="assess-card">
+      <div class="icon">🎤</div>
+      <h3>Individual Oral (IO)</h3>
+      <p>A 10-minute oral on an extract from each of two texts studied, exploring how a global issue is reflected through literary craft.</p>
+      <div class="weight">Internal · 20%</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- APPROACHES -->
+<section id="approaches">
+  <div class="section-label">Critical Lenses</div>
+  <h2>Approaches to the Text</h2>
+  <p>DP Literature requires you to apply theoretical frameworks as analytical tools, using them to generate insight.</p>
+
+  <div class="approach-list">
+    <div class="approach-item">
+      <div class="approach-num">01</div>
+      <div>
+        <h3>Dramaturgical Theory (Erving Goffman)</h3>
+        <p>All social life is performance. Analyse front/back stage, impression management, and performance breakdown in texts. Essential for <em>Master Harold</em>.</p>
+      </div>
+    </div>
+    <div class="approach-item">
+      <div class="approach-num">02</div>
+      <div>
+        <h3>Postcolonial Theory (Frantz Fanon)</h3>
+        <p>The Manichaean division of the colonial world into settler and native zones. How texts represent space, bodies, language, and the psychology of the colonised. Key for <em>Master Harold</em>.</p>
+      </div>
+    </div>
+    <div class="approach-item">
+      <div class="approach-num">03</div>
+      <div>
+        <h3>The Master-Slave Dialectic (G.W.F. Hegel)</h3>
+        <p>Two consciousnesses in struggle for recognition. The master requires the slave's recognition, which is worthless; genuine freedom is impossible in this structure.</p>
+      </div>
+    </div>
+    <div class="approach-item">
+      <div class="approach-num">04</div>
+      <div>
+        <h3>Psychoanalytic Reading (Sigmund Freud)</h3>
+        <p>Displacement, the unconscious, repression. Characters' stated motivations are not their real ones. What is the text not saying?</p>
+      </div>
+    </div>
+    <div class="approach-item">
+      <div class="approach-num">05</div>
+      <div>
+        <h3>Reader-Response Theory</h3>
+        <p>Meaning is created in the encounter between text and reader. How does the text position the reader? Who is the implied audience, and what assumptions does it make?</p>
+      </div>
+    </div>
+    <div class="approach-item">
+      <div class="approach-num">06</div>
+      <div>
+        <h3>Late Modernism &amp; Literary Form</h3>
+        <p>How does form (structure, narrative voice, time, fragmentation) carry meaning? Late modernist texts interrogate the very tools of representation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- RESOURCES -->
+<section id="resources">
+  <div class="section-label">Study Tools</div>
+  <h2>Resources &amp; Quick Reference</h2>
+  <p>Interactive frameworks for every assessment component. Click a tab to get started.</p>
+
+  <!-- TABS -->
+  <div class="tool-tabs">
+    <button class="tool-tab active" onclick="showTool('devices')">Literary Devices</button>
+    <button class="tool-tab" onclick="showTool('paper1')">Paper 1</button>
+    <button class="tool-tab" onclick="showTool('paper2')">Paper 2</button>
+    <button class="tool-tab" onclick="showTool('io')">Individual Oral</button>
+    <button class="tool-tab" onclick="showTool('hlessay')">HL Essay</button>
+    <button class="tool-tab" onclick="showTool('starters')">Sentence Starters</button>
+    <button class="tool-tab" onclick="showTool('drama')">Drama Terms</button>
+    <button class="tool-tab" onclick="showTool('texttypes')">Text Types</button>
+    <button class="tool-tab" onclick="showTool('activities')">Class Activities</button>
+  </div>
+
+  <!-- PANEL: Literary Devices -->
+  <div class="tool-panel active" id="panel-devices">
+    <p style="margin-bottom:1rem;">Click any device to expand its definition and a literary example.</p>
+    <div class="devices-grid" id="devicesGrid"></div>
+  </div>
+
+  <!-- PANEL: Paper 1 -->
+  <div class="tool-panel" id="panel-paper1">
+
+    <div class="panel-section-label">Literature HL vs Language &amp; Literature HL</div>
+    <div class="course-distinction">
+      <div class="course-box you-are-here">
+        <div class="course-badge">★ English A: Literature HL (you are here)</div>
+        <h4>Literary Text Types</h4>
+        <ul>
+          <li>Prose fiction (novel extract, short story)</li>
+          <li>Prose non-fiction (essay, memoir, journal)</li>
+          <li>Poetry (any form, any period)</li>
+          <li>Drama (play script + stage directions)</li>
+        </ul>
+      </div>
+      <div class="course-box not-this">
+        <div class="course-badge">English A: Language &amp; Literature HL (different exam)</div>
+        <h4>Non-Literary Text Types</h4>
+        <ul>
+          <li>Advertisement / PSA / poster</li>
+          <li>Website / blog / opinion piece</li>
+          <li>Speech / letter / brochure</li>
+          <li>News article / review / comic</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="panel-section-label">The Four Literary Text Types: What to Look For</div>
+    <div class="p1tt-grid">
+      <div class="p1tt-card">
+        <div class="p1tt-icon">📖</div>
+        <div class="p1tt-name">Prose Fiction</div>
+        <div class="p1tt-examples">Novel extract, short story, novella passage</div>
+        <div class="p1tt-features">
+          <span>Narrative voice</span><span>Free indirect discourse</span>
+          <span>Focalization</span><span>Setting as mood</span>
+          <span>Dialogue rhythms</span><span>Temporal structure</span>
+        </div>
+      </div>
+      <div class="p1tt-card">
+        <div class="p1tt-icon">📰</div>
+        <div class="p1tt-name">Prose Non-Fiction</div>
+        <div class="p1tt-examples">Personal essay, memoir, travel writing, literary journalism</div>
+        <div class="p1tt-features">
+          <span>Rhetorical mode</span><span>Tone &amp; register</span>
+          <span>Anecdote</span><span>Direct address</span>
+          <span>Implied argument</span><span>Persona</span>
+        </div>
+      </div>
+      <div class="p1tt-card">
+        <div class="p1tt-icon">✍️</div>
+        <div class="p1tt-name">Poetry</div>
+        <div class="p1tt-examples">Lyric, dramatic monologue, ode, elegy, sonnet, free verse</div>
+        <div class="p1tt-features">
+          <span>Lineation</span><span>Enjambment / caesura</span>
+          <span>Rhyme scheme</span><span>Meter</span>
+          <span>Speaker vs. poet</span><span>Volta</span>
+        </div>
+      </div>
+      <div class="p1tt-card">
+        <div class="p1tt-icon">🎭</div>
+        <div class="p1tt-name">Drama</div>
+        <div class="p1tt-examples">Play extract, stage directions, dramatic monologue</div>
+        <div class="p1tt-features">
+          <span>Primary text</span><span>Secondary text</span>
+          <span>Stichomythia</span><span>Subtext</span>
+          <span>Proxemics</span><span>Status shifts</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-section-label">Time Allocation: 2 hours 15 minutes (HL)</div>
+    <div class="timing-visual">
+      <div class="timing-bar-wrap">
+        <div class="timing-seg seg-read">5 min reading</div>
+        <div class="timing-seg seg-annotate">15 min annotate + plan both</div>
+        <div class="timing-seg seg-write1">~50 min · Commentary 1</div>
+        <div class="timing-seg seg-write2">~50 min · Commentary 2</div>
+        <div class="timing-seg seg-review">5 min review</div>
+      </div>
+      <p class="timing-note">HL students respond to <strong>both</strong> extracts. SL students choose one. Neither course permits notes or annotated texts.</p>
+    </div>
+
+    <div class="panel-section-label">Marking Criteria: 20 marks per commentary (40 total)</div>
+    <div class="tool-two-col" style="margin-bottom:1.5rem;">
+      <div>
+        <div class="criteria-bars">
+          <div class="crit-row"><div class="crit-label">A · Understanding &amp; Interpretation</div><div class="crit-bar-wrap"><div class="crit-bar" style="width:100%;background:rgba(201,168,76,0.65);"></div></div><div class="crit-pts">5 pts</div></div>
+          <div class="crit-row"><div class="crit-label">B · Analysis &amp; Evaluation</div><div class="crit-bar-wrap"><div class="crit-bar" style="width:100%;background:rgba(74,143,168,0.65);"></div></div><div class="crit-pts">5 pts</div></div>
+          <div class="crit-row"><div class="crit-label">C · Focus &amp; Organisation</div><div class="crit-bar-wrap"><div class="crit-bar" style="width:100%;background:rgba(60,125,92,0.65);"></div></div><div class="crit-pts">5 pts</div></div>
+          <div class="crit-row"><div class="crit-label">D · Language</div><div class="crit-bar-wrap"><div class="crit-bar" style="width:100%;background:rgba(168,50,68,0.6);"></div></div><div class="crit-pts">5 pts</div></div>
+        </div>
+      </div>
+      <div class="tool-box">
+        <h4>What Each Criterion Demands</h4>
+        <ul>
+          <li><strong style="color:rgba(201,168,76,0.9)">A</strong> · Read between the lines: what is implied, not just stated? Draw reasoned conclusions from implications.</li>
+          <li><strong style="color:#7dbdd6">B</strong> · Name authorial choices and evaluate their effectiveness. How do they shape meaning?</li>
+          <li><strong style="color:#7ac49a">C</strong> · Use the guiding question's exact language in thesis + every topic sentence.</li>
+          <li><strong style="color:#d4758a">D</strong> · Formal register, precise vocabulary, no contractions, no "I think."</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="panel-section-label">Step-by-Step Commentary Approach</div>
+    <div class="framework-steps">
+      <div class="fw-step"><div class="fw-num">1</div><div>
+        <h4>Read &amp; annotate (6 min per text)</h4>
+        <p>Read twice. First read: understand the content and situation. Second read: mark structural shifts, tonal changes, repeated images, and the guiding question's key terms. Identify the text type immediately: prose, poetry, and drama each demand different analytical vocabulary.</p>
+      </div></div>
+      <div class="fw-step"><div class="fw-num">2</div><div>
+        <h4>Identify your central argument (4 min)</h4>
+        <p>Answer the guiding question in one sentence; that sentence is your thesis. You need one central interpretive claim, not a list of features. Example: <em>"Through accumulating imagery of paralysis and confinement, Wharton constructs Ethan's environment as an extension of his psychological imprisonment."</em></p>
+      </div></div>
+      <div class="fw-step"><div class="fw-num">3</div><div>
+        <h4>Introduction: establish your argument</h4>
+        <p>State: author + title + genre/form + approximate period. Answer the guiding question directly with your thesis. Briefly identify the structural principles you will analyse. Do not retell the plot or summarise the extract.</p>
+      </div></div>
+      <div class="fw-step"><div class="fw-num">4</div><div>
+        <h4>Body paragraphs: Technique → Effect → Evaluate → Link to GQ</h4>
+        <ul>
+          <li>Name the technique precisely: which metaphor is it? What tenor/vehicle? What connotations?</li>
+          <li>Quote briefly and exactly; analyse the specific words, not the general idea</li>
+          <li>State the effect on the reader: what does the reader feel / think / understand?</li>
+          <li>Evaluate effectiveness: <em>why this word?</em> What does the author "effectively" / "powerfully" achieve?</li>
+          <li>Link back to the guiding question language (exact words or close synonyms)</li>
+        </ul>
+      </div></div>
+      <div class="fw-step"><div class="fw-num">5</div><div>
+        <h4>Form &amp; structure: analyse these in every commentary</h4>
+        <p><strong style="color:var(--gold-light)">Prose fiction:</strong> narrative voice (1st/3rd limited/omniscient), tense, sentence length, free indirect discourse, paragraph rhythm, temporal order.<br>
+        <strong style="color:var(--gold-light)">Poetry:</strong> lineation, stanza form, enjambment, caesura, rhyme scheme, meter, volta, speaker vs. poet.<br>
+        <strong style="color:var(--gold-light)">Drama:</strong> stage directions as secondary text, dialogue rhythms, stichomythia, silence/pause, proxemics, status shifts encoded in form of address.</p>
+      </div></div>
+      <div class="fw-step"><div class="fw-num">6</div><div>
+        <h4>Conclusion: widen the frame</h4>
+        <p>Return to the guiding question and your central claim. Go beyond the extract: what does it ultimately reveal about the human condition, power, identity, or language itself? Avoid merely restating your introduction. Zoom out to broader significance.</p>
+      </div></div>
+    </div>
+
+    <div class="panel-section-label">Sentence Stems by Criterion</div>
+    <table class="stems-table">
+      <thead><tr><th>Criterion</th><th>Sentence Stem + Example</th></tr></thead>
+      <tbody>
+        <tr><td>A · Implications</td><td>This implies that… / The reader can infer that… / While not overtly stated, [Author] hints that…<span class="stem-ex">e.g. "The repeated motif of darkness implies that Marlow cannot fully articulate what he witnessed, because colonial horror exceeds the capacity of language."</span></td></tr>
+        <tr><td>A · Interpretation</td><td>[Author] constructs [text] as an exploration of… / At its core, this extract is a study in…<span class="stem-ex">e.g. "At its core, this extract is a study in the performance of racial authority encoded in the everyday rituals of service."</span></td></tr>
+        <tr><td>B · Authorial choice</td><td>Through [technique], [Author] illustrates… / [Author]'s choice of the word "[x]" is deliberate: it…<span class="stem-ex">e.g. "Fugard's choice of the word 'service' is deliberate: it simultaneously enacts and ironises the racial hierarchy it names."</span></td></tr>
+        <tr><td>B · Evaluation</td><td>[Author] effectively/skillfully/powerfully [verb]s… / This is particularly effective because…<span class="stem-ex">e.g. "This is particularly effective because it forces the reader to hold two contradictory interpretations, deference and defiance, simultaneously."</span></td></tr>
+        <tr><td>C · GQ link</td><td>[GQ's exact words in topic sentences] / Thus, [Author]'s exploration of [GQ theme] reveals…<span class="stem-ex">Repeat or synonym the GQ's key words in every topic sentence AND the final sentence of every paragraph.</span></td></tr>
+        <tr><td>D · Register</td><td>[Author] constructs / portrays / interrogates / positions… [never: "the text is talking about"]<span class="stem-ex">e.g. "Wharton interrogates the ideology of rural respectability by constructing the landscape itself as a site of psychological entrapment."</span></td></tr>
+      </tbody>
+    </table>
+
+    <div class="panel-section-label">Evaluative &amp; Analytical Verbs: Replace "shows" and "suggests"</div>
+    <div style="margin-bottom:0.5rem;"><span style="font-size:0.7rem;font-family:'Helvetica Neue',sans-serif;color:var(--gold);letter-spacing:0.1em;text-transform:uppercase;">Evaluative (Criterion B: how author crafts meaning)</span></div>
+    <div class="verb-grid" style="margin-bottom:1.2rem;">
+      <span class="verb-chip evaluative">criticises</span><span class="verb-chip evaluative">condemns</span><span class="verb-chip evaluative">ridicules</span><span class="verb-chip evaluative">subverts</span>
+      <span class="verb-chip evaluative">interrogates</span><span class="verb-chip evaluative">challenges</span><span class="verb-chip evaluative">exposes</span><span class="verb-chip evaluative">demonises</span>
+      <span class="verb-chip evaluative">romanticises</span><span class="verb-chip evaluative">glorifies</span><span class="verb-chip evaluative">satirises</span><span class="verb-chip evaluative">celebrates</span>
+    </div>
+    <div style="margin-bottom:0.5rem;"><span style="font-size:0.7rem;font-family:'Helvetica Neue',sans-serif;color:#7dbdd6;letter-spacing:0.1em;text-transform:uppercase;">Analytical (what the text does)</span></div>
+    <div class="verb-grid" style="margin-bottom:1.8rem;">
+      <span class="verb-chip analytical">constructs</span><span class="verb-chip analytical">evokes</span><span class="verb-chip analytical">connotes</span><span class="verb-chip analytical">juxtaposes</span>
+      <span class="verb-chip analytical">ironises</span><span class="verb-chip analytical">embodies</span><span class="verb-chip analytical">enacts</span><span class="verb-chip analytical">foreshadows</span>
+      <span class="verb-chip analytical">underscores</span><span class="verb-chip analytical">distorts</span><span class="verb-chip analytical">illuminates</span><span class="verb-chip analytical">manifests</span>
+    </div>
+
+    <div class="panel-section-label">Top 10 Tips for Paper 1</div>
+    <div class="tips-list">
+      <div class="tip-item"><div class="tip-header" onclick="toggleTip(this)"><span class="tip-num">01</span><span class="tip-title">Read and annotate carefully before writing anything</span><span class="tip-arrow">▼</span></div><div class="tip-body"><p>This is a reading test first. Annotate in the margins: big ideas, authorial choices, GQ keywords. Students who annotate carefully almost always outperform those who dive straight into writing.</p></div></div>
+      <div class="tip-item"><div class="tip-header" onclick="toggleTip(this)"><span class="tip-num">02</span><span class="tip-title">Focus on the Guiding Question and use its exact language</span><span class="tip-arrow">▼</span></div><div class="tip-body"><p>The GQ tells you what to analyse. Use its exact words (or synonyms) in your thesis, every topic sentence, and your conclusion. Examiners actively look for this focus when marking Criterion C.</p></div></div>
+      <div class="tip-item"><div class="tip-header" onclick="toggleTip(this)"><span class="tip-num">03</span><span class="tip-title">Plan before you write, even a rough outline</span><span class="tip-arrow">▼</span></div><div class="tip-body"><p>Spend 4 minutes: write your thesis + 4 paragraph topic words. A clear plan prevents wandering and saves time. Aim for 5 focused body paragraphs, not 2 enormous ones.</p></div></div>
+      <div class="tip-item"><div class="tip-header" onclick="toggleTip(this)"><span class="tip-num">04</span><span class="tip-title">Discuss implications, not just literal meaning</span><span class="tip-arrow">▼</span></div><div class="tip-body"><p>Your job is to interpret and analyse, not retell. Read between the lines: what is implied but not stated? What does the text assume about its reader? Discussing implications is how you reach the highest band for Criterion A.</p></div></div>
+      <div class="tip-item"><div class="tip-header" onclick="toggleTip(this)"><span class="tip-num">05</span><span class="tip-title">Name authorial choices precisely and evaluate their effect</span><span class="tip-arrow">▼</span></div><div class="tip-body"><p>Which metaphor is it? What two things are being compared and why? Every technique must connect to an effect on the reader and a meaning. This is Criterion B.</p></div></div>
+      <div class="tip-item"><div class="tip-header" onclick="toggleTip(this)"><span class="tip-num">06</span><span class="tip-title">Analyse form and structure, not only content</span><span class="tip-arrow">▼</span></div><div class="tip-body"><p>Prose: sentence length, rhythm, narrative voice. Poetry: lineation, enjambment, caesura, stanza structure. Drama: stage directions, silence, status shifts. Form carries meaning; never ignore it.</p></div></div>
+      <div class="tip-item"><div class="tip-header" onclick="toggleTip(this)"><span class="tip-num">07</span><span class="tip-title">Go beyond the obvious and explore subtleties</span><span class="tip-arrow">▼</span></div><div class="tip-body"><p>Think about what most students will write, then go further. What is the author indirectly suggesting? What does the text assume about its audience? Nuanced readings earn top marks for Criterion A.</p></div></div>
+      <div class="tip-item"><div class="tip-header" onclick="toggleTip(this)"><span class="tip-num">08</span><span class="tip-title">Avoid the "firehose": fewer techniques, deeper analysis</span><span class="tip-arrow">▼</span></div><div class="tip-body"><p>Listing 15 techniques with one sentence each scores poorly. Choose 4 per paragraph and analyse each fully: name → quote → effect → evaluate → link to GQ.</p></div></div>
+      <div class="tip-item"><div class="tip-header" onclick="toggleTip(this)"><span class="tip-num">09</span><span class="tip-title">Write a proper conclusion and don't run out of time</span><span class="tip-arrow">▼</span></div><div class="tip-body"><p>Reserve 5 minutes. Zoom out: what does this extract ultimately reveal about the human condition, language, or power? Don't just restate the introduction. End with a flourish.</p></div></div>
+      <div class="tip-item"><div class="tip-header" onclick="toggleTip(this)"><span class="tip-num">10</span><span class="tip-title">Maintain formal academic register throughout</span><span class="tip-arrow">▼</span></div><div class="tip-body"><p>No contractions, no "I think," no "the text is talking about." Use the author as subject: "Conrad constructs…", "Fugard positions…". Academic register signals Criterion D competence from sentence one.</p></div></div>
+    </div>
+
+    <div class="panel-section-label">Common Pitfalls to Avoid</div>
+    <div class="pitfall-grid">
+      <div class="pitfall-card"><div class="pitfall-title">Ignoring the Guiding Question</div><div class="pitfall-fix">Put GQ keywords in your thesis and every topic sentence.</div></div>
+      <div class="pitfall-card"><div class="pitfall-title">Writing without a plan</div><div class="pitfall-fix">Take 4 minutes to draft paragraph topics before writing a sentence.</div></div>
+      <div class="pitfall-card"><div class="pitfall-title">Summarising the content</div><div class="pitfall-fix">Use the author as subject; focus on craft decisions, not plot retelling.</div></div>
+      <div class="pitfall-card"><div class="pitfall-title">The "firehose" of techniques</div><div class="pitfall-fix">Every technique must connect to effect and meaning. Fewer, deeper is better.</div></div>
+      <div class="pitfall-card"><div class="pitfall-title">Neglecting form and structure</div><div class="pitfall-fix">Lineation, syntax and stage directions all carry meaning. Always discuss form.</div></div>
+      <div class="pitfall-card"><div class="pitfall-title">Skipping the conclusion</div><div class="pitfall-fix">Reserve 5 min. Widen the frame instead of restating your introduction.</div></div>
+    </div>
+
+  </div>
+
+  <!-- PANEL: Paper 2 -->
+  <div class="tool-panel" id="panel-paper2">
+
+    <div class="tool-two-col" style="margin-bottom:1.5rem;">
+      <div class="tool-box">
+        <h4>What Paper 2 Requires (HL)</h4>
+        <ul>
+          <li>Comparative essay on two literary works studied</li>
+          <li>Choose one question from four general options</li>
+          <li>1 hour 45 minutes, with no texts or notes permitted</li>
+          <li>Works must be from different parts of the course</li>
+          <li>Texts used for the IO or HL Essay cannot be reused</li>
+          <li>25% of final grade; same task for HL and SL</li>
+        </ul>
+      </div>
+      <div class="tool-box">
+        <h4>Marking Criteria (25 marks total)</h4>
+        <ul>
+          <li><strong style="color:rgba(201,168,76,0.9)">A</strong> · Knowledge and understanding of both works, used to reach conclusions about their similarities and differences (5)</li>
+          <li><strong style="color:#7dbdd6">B</strong> · Analysis and evaluation of how language, technique, style and broader authorial choices shape meaning (5)</li>
+          <li><strong style="color:#7dbdd6">B</strong> · Analysis and evaluation used comparatively, across both works (5)</li>
+          <li><strong style="color:#7ac49a">C</strong> · Structure, balance and focus in the presentation of ideas (5)</li>
+          <li><strong style="color:#d4758a">D</strong> · Clarity, variety and accuracy of language, with an appropriate register and style (5)</li>
+          <li>Criterion A: genuine understanding of similarities AND differences in relation to the question</li>
+          <li>Criterion B: compare HOW authors make choices, not just what they write about</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="panel-section-label">Breaking Down the Question</div>
+    <div class="q-breakdown">
+      <div class="q-text">"Literature brings into the open important issues of the time." How have authors presented "important issues" in two works you have studied?</div>
+      <div class="q-annotations">
+        <div class="q-annot"><div class="q-annot-term">"brings into the open"</div><div class="q-annot-def">Makes public; suggests literature can examine difficult topics, reveal what is hidden or taboo</div></div>
+        <div class="q-annot"><div class="q-annot-term">"important issues"</div><div class="q-annot-def">Things that matter to society: themes and messages conveyed to an audience</div></div>
+        <div class="q-annot"><div class="q-annot-term">"of the time"</div><div class="q-annot-def">Issues important when the work was written AND/OR when the action takes place; consider historical context</div></div>
+        <div class="q-annot"><div class="q-annot-term">"presented"</div><div class="q-annot-def">HOW: characters, actions, events, literary and dramatic techniques, narrative choices</div></div>
+      </div>
+    </div>
+
+    <div class="panel-section-label">Sample Practice Questions</div>
+    <div class="sample-qs">
+      <div class="sample-q"><div class="sq-text">"Literature brings into the open important issues of the time." How have authors presented "important issues" in two works you have studied?</div><div class="sq-hint">What are the central social/political/moral issues? How does each author make them visible through literary craft?</div></div>
+      <div class="sample-q"><div class="sq-text">Discuss how two literary works you have studied portray the struggle to be understood.</div><div class="sq-hint">Who struggles to be understood? By whom? How do the authors use technique (silence, dialogue, narrative voice) to show this struggle?</div></div>
+      <div class="sample-q"><div class="sq-text">Some literary texts, although set in a particular place or time, convey ideas that are universal. In what ways is this true in two of the works you have studied?</div><div class="sq-hint">What is universal? How do specific historical settings open onto broader human truths? Compare the methods, not just the themes.</div></div>
+      <div class="sample-q"><div class="sq-text">Discuss how two works you have studied present concepts of good and bad, not as absolute notions, but as a matter of individual perception.</div><div class="sq-hint">Are good/evil relative in these texts? How do authors use character, irony, or perspective to destabilise moral absolutes?</div></div>
+    </div>
+
+    <div class="panel-section-label">Thesis Formula</div>
+    <p style="font-size:0.83rem;color:var(--muted);margin-bottom:0.8rem;">A strong Paper 2 thesis names both works, identifies the central link, and signals the comparative argument.</p>
+    <div class="thesis-formula">
+      <div class="tf-part tf-key">[Author A] in [Title A]</div>
+      <div class="tf-plus">+</div>
+      <div class="tf-part tf-key">[Author B] in [Title B]</div>
+      <div class="tf-plus">both</div>
+      <div class="tf-part tf-plain">[shared concern / theme]</div>
+      <div class="tf-plus">yet</div>
+      <div class="tf-part tf-key">their methods diverge: where [A]… , [B]…</div>
+    </div>
+    <div class="tool-box" style="max-width:820px;margin-top:0.8rem;margin-bottom:1.5rem;">
+      <h4>Sample Thesis (Master Harold + Death of a Salesman)</h4>
+      <ul>
+        <li>Both Fugard and Miller build a play around a man who has been taught to measure himself by a system that will not measure him back, but their methods diverge: Fugard keeps his three characters inside one room and one unbroken afternoon, so that the hierarchy is enacted in real time between people who love each other, whereas Miller dissolves the walls of the Loman house and lets the past walk through them, so that the damage arrives as memory rather than as event.</li>
+      </ul>
+    </div>
+
+    <div class="panel-section-label">Essay Structure Framework</div>
+    <div class="framework-steps">
+      <div class="fw-step"><div class="fw-num">↑</div><div>
+        <h4>Introduction: state both works and your comparative thesis</h4>
+        <p>Name both authors and titles. Answer the question with a precise comparative thesis. Name the critical lens or analytical framework you will apply. Do not retell plots. Aim for four focused sentences.</p>
+      </div></div>
+      <div class="fw-step"><div class="fw-num">P1</div><div>
+        <h4>First comparative point</h4>
+        <p>Choose one literary technique or thematic argument, then ask how each author handles it. Quote both texts in the same paragraph. Analyse differences and similarities together, not separately. Topic sentence must use the question's language and name both texts.</p>
+      </div></div>
+      <div class="fw-step"><div class="fw-num">P2</div><div>
+        <h4>Second comparative point: develop or complicate</h4>
+        <p>Develop your first point or introduce a new technique. Show a deeper layer: where the texts seem similar on the surface but diverge in method or meaning. Use comparative language to make the relationship explicit.</p>
+      </div></div>
+      <div class="fw-step"><div class="fw-num">P3</div><div>
+        <h4>Third comparative point: the most analytical</h4>
+        <p>Apply your critical lens explicitly: "Through a Fanonian lens, both Conrad and Fugard…" or "Applying Goffman's concept of front/back stage…" Connect technique to ideology, psychology, or power. This paragraph should feel like the climax of your argument.</p>
+      </div></div>
+      <div class="fw-step"><div class="fw-num">↓</div><div>
+        <h4>Conclusion: the comparison itself is your subject</h4>
+        <p>Return to your thesis. What does comparing these two works reveal that reading each alone would not? The comparison itself should be your conclusion's subject: what it shows about literature, power, language, or the human condition.</p>
+      </div></div>
+    </div>
+
+    <div class="panel-section-label">Comparative Language</div>
+    <div class="comp-table-wrap">
+      <div class="comp-two">
+        <div class="comp-col col-sim">
+          <h5>Similarity / Both texts…</h5>
+          <div class="comp-phrase">Both [A] and [B] use [technique] to…</div>
+          <div class="comp-phrase">In the same way, [Author B]…</div>
+          <div class="comp-phrase">Similarly, [Author B] constructs…</div>
+          <div class="comp-phrase">Just as [A] employs…, [B] also…</div>
+          <div class="comp-phrase">In similar fashion, [B] depicts…</div>
+          <div class="comp-phrase">Likewise, [B]'s use of [technique]…</div>
+        </div>
+        <div class="comp-col col-cont">
+          <h5>Contrast / Difference…</h5>
+          <div class="comp-phrase">While [A] uses [technique] to…, [B] instead…</div>
+          <div class="comp-phrase">In contrast to [A], [B]'s [element]…</div>
+          <div class="comp-phrase">However, [B] subverts this by…</div>
+          <div class="comp-phrase">Unlike [A], whose [element]…, [B]…</div>
+          <div class="comp-phrase">Contrary to [A]'s approach, [B]…</div>
+          <div class="comp-phrase">The contrast is most revealing when…</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-section-label">What Examiners Look For: Key Reminders</div>
+    <div class="pitfall-grid" style="margin-bottom:1rem;">
+      <div class="pitfall-card" style="border-left-color:rgba(74,143,168,0.5);"><div class="pitfall-title" style="color:#7dbdd6;">Criterion A: Knowledge</div><div class="pitfall-fix" style="color:var(--muted);">Context matters less than showing deep understanding of the works through specific, precise references.</div></div>
+      <div class="pitfall-card" style="border-left-color:rgba(74,143,168,0.5);"><div class="pitfall-title" style="color:#7dbdd6;">Criterion B: Analysis</div><div class="pitfall-fix" style="color:var(--muted);">Compare HOW authors make choices, not just what the texts are about. Use the author as subject of every analytical sentence.</div></div>
+      <div class="pitfall-card" style="border-left-color:rgba(74,143,168,0.5);"><div class="pitfall-title" style="color:#7dbdd6;">Criterion C: Focus</div><div class="pitfall-fix" style="color:var(--muted);">Every paragraph must be balanced, giving equal attention to both works, and must use the question's exact language.</div></div>
+      <div class="pitfall-card" style="border-left-color:rgba(74,143,168,0.5);"><div class="pitfall-title" style="color:#7dbdd6;">Criterion D: Language</div><div class="pitfall-fix" style="color:var(--muted);">No contractions and no first person. Aim for varied vocabulary, accurate grammar and precise terminology. Read your work back once.</div></div>
+    </div>
+
+    <div class="tool-box" style="max-width:600px;">
+      <h4>The Golden Rule of Paper 2</h4>
+      <ul>
+        <li>Never alternate: one paragraph on Text A, then one on Text B. That produces a summary of two texts presented side by side.</li>
+        <li>Genuine comparison = both texts appear in the SAME paragraph, around the SAME point, analysed simultaneously.</li>
+        <li>Wear your "comparative hat" from the first sentence to the last.</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- PANEL: IO -->
+  <div class="tool-panel" id="panel-io">
+    <div class="tool-two-col" style="margin-bottom:1.5rem;">
+      <div class="tool-box">
+        <h4>IO Requirements</h4>
+        <ul>
+          <li>10-minute oral + 5-minute discussion</li>
+          <li>One extract from a literary work</li>
+          <li>One extract from a non-literary body of work</li>
+          <li>Both must connect to one <strong>global issue</strong></li>
+          <li>20% of final grade (internally assessed)</li>
+          <li>Prepare a 10-minute outline; no full scripts</li>
+        </ul>
+      </div>
+      <div class="tool-box">
+        <h4>IO Structure (10 min)</h4>
+        <ul>
+          <li><strong>0–1 min:</strong> Introduce global issue + both works</li>
+          <li><strong>1–4 min:</strong> Close analysis of literary extract</li>
+          <li><strong>4–7 min:</strong> Close analysis of non-literary extract</li>
+          <li><strong>7–9 min:</strong> Synthesise: how do both texts illuminate the issue?</li>
+          <li><strong>9–10 min:</strong> Conclusion: broader significance</li>
+        </ul>
+      </div>
+    </div>
+    <p style="margin-bottom:0.8rem;font-family:'Helvetica Neue',sans-serif;font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);">Global Issues: Suggestions for Our Texts</p>
+    <div class="issues-grid">
+      <div class="issue-card power">
+        <div class="issue-name">Race, Power &amp; Systemic Oppression</div>
+        <div class="issue-texts">Master Harold · Antigone · Death of a Salesman</div>
+      </div>
+      <div class="issue-card identity">
+        <div class="issue-name">Identity, Belonging &amp; Displacement</div>
+        <div class="issue-texts">Death of a Salesman · Master Harold · Ethan Frome</div>
+      </div>
+      <div class="issue-card equality">
+        <div class="issue-name">Education as Power / Whose Knowledge Counts?</div>
+        <div class="issue-texts">Master Harold · Antigone · Neruda</div>
+      </div>
+      <div class="issue-card">
+        <div class="issue-name">The Performance of Social Roles</div>
+        <div class="issue-texts">Master Harold · Death of a Salesman · Antigone</div>
+      </div>
+      <div class="issue-card power">
+        <div class="issue-name">Authority &amp; the Individual Conscience</div>
+        <div class="issue-texts">Master Harold · Neruda · Antigone</div>
+      </div>
+      <div class="issue-card identity">
+        <div class="issue-name">The Impossibility of the American Dream</div>
+        <div class="issue-texts">Death of a Salesman · Ethan Frome</div>
+      </div>
+      <div class="issue-card equality">
+        <div class="issue-name">Work, Value &amp; Modern Life</div>
+        <div class="issue-texts">Death of a Salesman · Antigone</div>
+      </div>
+      <div class="issue-card">
+        <div class="issue-name">Family, Trauma &amp; Intergenerational Violence</div>
+        <div class="issue-texts">Death of a Salesman · Master Harold · Ethan Frome</div>
+      </div>
+    </div>
+    <div class="tool-box" style="max-width:600px;">
+      <h4>What Makes a Good Global Issue?</h4>
+      <ul>
+        <li>Transnational: relevant beyond one country or culture</li>
+        <li>Significant: it has real-world consequences for real people</li>
+        <li>Genuinely embedded in the literary text (not grafted on)</li>
+        <li>Specific enough to generate close analysis, such as "how language performs racial hierarchy"</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- PANEL: HL Essay -->
+  <div class="tool-panel" id="panel-hlessay">
+    <div class="tool-two-col" style="margin-bottom:1.5rem;">
+      <div class="tool-box">
+        <h4>HL Essay Requirements</h4>
+        <ul>
+          <li>1,200–1,500 words (strict: penalty for over/under)</li>
+          <li>One literary work studied in the course</li>
+          <li>Focus on how the author uses language to create meaning</li>
+          <li>Written independently over several weeks</li>
+          <li>Supervised writing sessions required</li>
+          <li>20% of final grade (externally assessed)</li>
+        </ul>
+      </div>
+      <div class="tool-box">
+        <h4>Marking Criteria</h4>
+        <ul>
+          <li><strong>A</strong> · Knowledge &amp; Understanding (5)</li>
+          <li><strong>B</strong> · Analysis &amp; Evaluation (5)</li>
+          <li><strong>C</strong> · Focus &amp; Organisation (5)</li>
+          <li><strong>D</strong> · Language (5)</li>
+          <li>Total: 20 marks</li>
+          <li>Must have a formal bibliography</li>
+        </ul>
+      </div>
+    </div>
+    <p style="margin-bottom:0.5rem;font-family:'Helvetica Neue',sans-serif;font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);">Pre-Submission Checklist</p>
+    <div class="checklist-rows">
+      <div class="check-group-title">Argument &amp; Thesis</div>
+      <div class="check-item"><input type="checkbox" id="c1"><label for="c1">My essay has a single, arguable thesis stated in the introduction, not a question or topic description</label></div>
+      <div class="check-item"><input type="checkbox" id="c2"><label for="c2">Every paragraph advances the thesis; no paragraph is only context or summary</label></div>
+      <div class="check-item"><input type="checkbox" id="c3"><label for="c3">I name the author in my thesis: "Fugard constructs…" not "the play shows…"</label></div>
+
+      <div class="check-group-title">Analysis</div>
+      <div class="check-item"><input type="checkbox" id="c4"><label for="c4">Every quotation is followed by analysis of specific words/techniques, not paraphrase</label></div>
+      <div class="check-item"><input type="checkbox" id="c5"><label for="c5">I have named at least one critical perspective and applied it as an analytical tool</label></div>
+      <div class="check-item"><input type="checkbox" id="c6"><label for="c6">I have analysed form and structure, not only content and theme</label></div>
+      <div class="check-item"><input type="checkbox" id="c7"><label for="c7">My analysis moves from technique → effect → meaning (not technique → summary)</label></div>
+
+      <div class="check-group-title">Language &amp; Format</div>
+      <div class="check-item"><input type="checkbox" id="c8"><label for="c8">Word count is between 1,200 and 1,500 words (not including bibliography)</label></div>
+      <div class="check-item"><input type="checkbox" id="c9"><label for="c9">All quotations are in quotation marks with accurate citation</label></div>
+      <div class="check-item"><input type="checkbox" id="c10"><label for="c10">I am writing in formal academic English, with no contractions and no colloquialisms</label></div>
+      <div class="check-item"><input type="checkbox" id="c11"><label for="c11">Bibliography is included in an accepted format (MLA or Chicago)</label></div>
+      <div class="check-item"><input type="checkbox" id="c12"><label for="c12">I have proofread for agreement, tense consistency, and punctuation</label></div>
+    </div>
+  </div>
+
+  <!-- PANEL: Drama Terms -->
+  <div class="tool-panel" id="panel-drama">
+    <p style="margin-bottom:1rem;">Comprehensive glossary of drama terminology from performance, structure, staging, and genre. Search to filter.</p>
+    <div class="drama-search-wrap">
+      <input class="drama-search" type="text" placeholder="Search terms…" oninput="filterDrama(this.value)" />
+    </div>
+    <div id="dramaContent"></div>
+  </div>
+
+  <!-- PANEL: Sentence Starters -->
+  <div class="tool-panel" id="panel-starters">
+    <p style="margin-bottom:1.2rem;">Copy and adapt these academic sentence starters to elevate your essays and commentaries.</p>
+    <div class="starters-grid" id="startersGrid"></div>
+  </div>
+
+  <!-- PANEL: Class Activities -->
+  <div class="tool-panel" id="panel-activities">
+    <p style="margin-bottom:1.8rem;">Classroom workshops and collaborative exercises used in our DP Literature lessons. These activities build close-reading habits, discussion skills, and analytical confidence.</p>
+
+    <div class="panel-section-label">Workshops: "Master Harold" &amp; Poetry</div>
+    <div class="texts-grid" style="margin-top:0;">
+
+      <div class="text-card">
+        <span class="badge play">Collaborative</span>
+        <h3>Sharing Lines</h3>
+        <div class="author">Oral &amp; Close-Reading Activity</div>
+        <p>Students receive individual lines from a poem or dramatic text. Working without seeing the whole, each person reads their line aloud in sequence, and the class reconstructs meaning collaboratively, noticing how each fragment contributes to the whole. Builds sensitivity to enjambment, tone, and the cumulative effect of language.</p>
+        <div class="checklist" style="margin-top:0.8rem;">
+          <ul>
+            <li>Focus: how individual lines gain meaning in context</li>
+            <li>DP link: Poetry analysis (lineation and enjambment)</li>
+            <li>Skill: active listening, close reading, oral fluency</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="text-card">
+        <span class="badge novel">Objects</span>
+        <h3>Activity with Objects</h3>
+        <div class="author">Symbolism &amp; Theme Exploration</div>
+        <p>Physical objects are used as entry points into a literary text. Students select or are given an object (a bench, a coat, a kite) and explore what it means literally, then what it might symbolise. Particularly powerful for <em>Master Harold</em>, where the bench, the waiter's coat and the kite are all loaded with symbolic weight before the play is read closely.</p>
+        <div class="checklist" style="margin-top:0.8rem;">
+          <ul>
+            <li>Focus: symbol vs. literal object; surface vs. deep meaning</li>
+            <li>DP link: symbolism, motif, literary devices</li>
+            <li>Skill: inferential thinking, thematic connection-making</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="text-card">
+        <span class="badge poetry">Poetry</span>
+        <h3>Poetry Word Association</h3>
+        <div class="author">Pre-Reading &amp; Vocabulary Activity</div>
+        <p>Before reading a poem closely, students free-associate with key words from the text, writing down whatever connections, images, or feelings those words trigger. This activates prior knowledge and personal resonance, making the encounter with the poem richer. Also reveals the range of connotations a single word carries across different readers.</p>
+        <div class="checklist" style="margin-top:0.8rem;">
+          <ul>
+            <li>Focus: connotation, reader-response, personal lens</li>
+            <li>DP link: Reader-Response Theory; Paper 1 Criterion A</li>
+            <li>Skill: lateral thinking, vocabulary sensitivity</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="text-card">
+        <span class="badge novel">Small Group</span>
+        <h3>Small Group Activity: Poetry or Prose</h3>
+        <div class="author">Analytical Discussion Exercise</div>
+        <p>A structured small-group discussion framework for any poem or prose extract. Groups are assigned specific analytical tasks: one group focuses on imagery and diction, another on structure and form, a third on tone and speaker. Groups then share findings with the class, building a collaborative commentary. Mirrors the demands of Paper 1.</p>
+        <div class="checklist" style="margin-top:0.8rem;">
+          <ul>
+            <li>Focus: distribution of analytical tasks across a text</li>
+            <li>DP link: Paper 1 (technique, effect, meaning)</li>
+            <li>Skill: collaboration, oral articulation, structured analysis</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="text-card">
+        <span class="badge poetry">Visual Art</span>
+        <h3>Using Art with Poetry</h3>
+        <div class="author">Ekphrasis &amp; Visual Interpretation</div>
+        <p>A painting or artwork is presented alongside a poem. Students first analyse the visual image (composition, colour, subject, mood), then read the poem to explore how the two works speak to each other. Develops the ability to read across media, and sharpens vocabulary for describing atmosphere, perspective, and form.</p>
+        <div class="checklist" style="margin-top:0.8rem;">
+          <ul>
+            <li>Focus: ekphrasis; cross-media interpretation</li>
+            <li>DP link: IO global issues; reader-response; visual literacy</li>
+            <li>Skill: observation, comparative analysis, descriptive language</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="text-card featured">
+        <span class="badge featured-badge">★ Master Harold</span>
+        <h3>Daisy and Karl Narrative</h3>
+        <div class="author">Creative Writing Response</div>
+        <p>A creative writing exercise inspired by the structure and themes of <em>Master Harold</em>. Students write a short dramatic narrative between two characters (named "Daisy" and "Karl") placed in an unequal power relationship, exploring how dialogue, stage directions, and silence can carry themes of race, class, or family without stating them directly. The exercise reveals how much is said through what is <em>not</em> said.</p>
+        <div class="checklist" style="margin-top:0.8rem;">
+          <ul>
+            <li>Focus: how dramatic form carries theme; subtext in dialogue</li>
+            <li>DP link: HL Essay creative response; Paper 1 drama analysis</li>
+            <li>Skill: dramatic writing, implicit meaning, empathic imagination</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="panel-section-label" style="margin-top:2rem;">IB Connection: How These Activities Map to Assessment</div>
+    <div class="assess-grid" style="margin-top:0.8rem;">
+      <div class="assess-card">
+        <div class="icon">🎭</div>
+        <h3>Sharing Lines → Paper 1</h3>
+        <p>Practises reading a text for its structure and cumulative effect, exactly what Paper 1 commentary demands. Attention to lineation and form.</p>
+      </div>
+      <div class="assess-card">
+        <div class="icon">🪁</div>
+        <h3>Activity with Objects → IO</h3>
+        <p>Symbol analysis is central to the IO: choose an extract rich in symbolic objects and track how they connect to a global issue.</p>
+      </div>
+      <div class="assess-card">
+        <div class="icon">🎨</div>
+        <h3>Art with Poetry → IO &amp; Paper 2</h3>
+        <p>Cross-media comparison builds the comparative analytical muscle needed for Paper 2 and the IO's synthesis of two texts.</p>
+      </div>
+      <div class="assess-card">
+        <div class="icon">✍️</div>
+        <h3>Daisy &amp; Karl → HL Essay</h3>
+        <p>Creative writing from inside a text builds understanding of authorial craft, which is essential for writing about how an author creates meaning.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PANEL: Text Types -->
+  <div class="tool-panel" id="panel-texttypes">
+    <p style="margin-bottom:0.7rem;">Comprehensive reference for text types encountered in English A Language &amp; Literature. Each card covers purpose, audience, structural &amp; language features, register, and an examiner tip. Search to filter.</p>
+    <div class="tt-search-wrap">
+      <input class="tt-search" type="text" placeholder="Search text types…" oninput="filterTT(this.value)" />
+    </div>
+    <div id="ttContent"></div>
+  </div>
+
+</section>
+
+<script>
+// TAB SWITCHING
+function showTool(id) {
+  document.querySelectorAll('.tool-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tool-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// TIP ACCORDION
+function toggleTip(header) {
+  const body = header.nextElementSibling;
+  const arrow = header.querySelector('.tip-arrow');
+  const isOpen = body.classList.toggle('open');
+  arrow.textContent = isOpen ? '▲' : '▼';
+}
+
+
+// LITERARY DEVICES DATA
+const devices = [
+  { name: 'Metaphor', def: 'A direct comparison between two unlike things without using "like" or "as". States one thing IS another.', ex: '"Life is a broken-winged bird." (Hughes)' },
+  { name: 'Simile', def: 'A comparison using "like" or "as", making a figurative connection between two different things.', ex: '"He was as patient as a stone" establishes silent endurance.' },
+  { name: 'Imagery', def: 'Language that appeals to the senses (sight, sound, touch, taste, smell), creating vivid mental pictures.', ex: 'Fugard\'s "grey little room with cold cement floor" renders poverty as at once tactile and visual.' },
+  { name: 'Symbolism', def: 'An object, person, or setting that carries meaning beyond its literal function in the text.', ex: 'The kite in Master Harold: freedom, love without condition, transcendence.' },
+  { name: 'Irony (Dramatic)', def: 'The audience/reader knows something the character does not, creating tension or pathos.', ex: 'Hally\'s claim to admire Tolstoy while enacting everything Tolstoy opposed.' },
+  { name: 'Irony (Verbal)', def: 'Saying the opposite of what is meant; the surface meaning contradicts the intended meaning.', ex: '"At your service, Master Harold!" performs a deference that masks both dignity and contempt.' },
+  { name: 'Irony (Situational)', def: 'The outcome is the opposite of what was expected, creating contrast between expectation and reality.', ex: 'Sam, the servant, is the true moral educator; Hally, the student, is morally illiterate.' },
+  { name: 'Foreshadowing', def: 'Hints or clues early in a text that suggest later events, creating anticipation or dread.', ex: 'Willie\'s violence toward Hilda foreshadows Hally\'s violence toward Sam.' },
+  { name: 'Motif', def: 'A recurring element (image, phrase, object) that develops meaning through repetition across the text.', ex: 'The dance in Master Harold: repeated as rehearsal, vision, and final act of dignity.' },
+  { name: 'Tone', def: 'The author\'s (or narrator\'s) attitude toward the subject, conveyed through diction, syntax, and imagery.', ex: 'Conrad\'s tone in Heart of Darkness shifts from detached irony to existential dread.' },
+  { name: 'Diction', def: 'The specific word choices an author makes; formal vs informal, Latinate vs Anglo-Saxon, connotation.', ex: '"Only a servant": the word "only" performs the psychopathology of apartheid.' },
+  { name: 'Syntax', def: 'The arrangement of words and phrases; sentence length, structure, and order create rhythm and emphasis.', ex: 'Short, declarative sentences in Beckett enact the text\'s absurdist stasis.' },
+  { name: 'Juxtaposition', def: 'Placing two contrasting elements side by side to highlight their differences and create meaning.', ex: 'The tea room (settler\'s world) and the servants\' quarters are Fanon\'s two zones in one building.' },
+  { name: 'Allusion', def: 'An indirect reference to another text, figure, or event, which enriches meaning for the reader.', ex: 'Fugard\'s Tolstoy allusions: Sam as Gerasim, Hally as Ivan Ilych (Urban, 2010).' },
+  { name: 'Pathetic Fallacy', def: 'Attributing human emotions to nature or the environment, so setting reflects mood.', ex: 'Wharton\'s frozen Starkfield: the landscape mirrors Ethan\'s emotional paralysis.' },
+  { name: 'Dialogue', def: 'Spoken exchanges between characters; dramatic texts use dialogue as the primary vehicle of characterisation and conflict.', ex: 'In Master Harold, every shift in power is performed through shifts in address and title.' },
+  { name: 'Enjambment', def: '(Poetry) A line that continues without pause into the next, creating momentum or ambiguity.', ex: 'The run-on line enacts restlessness or refusal to be contained by formal boundaries.' },
+  { name: 'Caesura', def: '(Poetry) A strong pause within a line, created by punctuation or natural speech rhythm.', ex: 'The caesura interrupts forward movement, enacting hesitation or authority.' },
+  { name: 'Free Indirect Discourse', def: 'A narrative technique blending the narrator\'s voice with a character\'s thoughts without quotation marks.', ex: 'Morrison uses this to dissolve the boundary between narrator and character perspective.' },
+  { name: 'Narrative Voice', def: 'The perspective from which a story is told: first person (I), third person limited/omniscient, second person (rare).', ex: 'Marlow\'s first-person narration in Heart of Darkness filters imperialism through unreliable self-reflection.' },
+  { name: 'Anaphora', def: 'The repetition of a word or phrase at the beginning of successive clauses, creating rhythm and emphasis.', ex: '"We shall fight… we shall never surrender": commitment accumulates through repetition.' },
+  { name: 'Stage Directions', def: '(Drama) Instructions about setting, movement, and delivery that carry meaning beyond dialogue.', ex: 'Fugard\'s opening has Willie on his knees, encoding racial hierarchy before a word is spoken.' },
+
+  // FIGURATIVE LANGUAGE
+  { name: 'Personification', def: 'Attributing human qualities, actions, or feelings to a non-human entity (object, idea, animal, natural force).', ex: '"Time creeps" grants time the human capacity for slow, deliberate movement.' },
+  { name: 'Hyperbole', def: 'Deliberate exaggeration not meant to be taken literally; used for emphasis, humour, or heightened effect.', ex: '"I have not slept one wink" is absolute hyperbole, expressing total wakefulness.' },
+  { name: 'Oxymoron', def: 'Two contradictory terms placed directly together to create a compressed paradox or reveal complexity.', ex: '"living death," "loving hate" (Romeo and Juliet).' },
+  { name: 'Paradox', def: 'A statement that seems self-contradictory or absurd yet reveals a deeper truth on examination.', ex: '"The child is father of the man" (Wordsworth): our formative years shape our adult selves.' },
+  { name: 'Extended Metaphor (Conceit)', def: 'A metaphor sustained across a passage, poem, or entire text; each detail of the comparison is developed.', ex: 'The dance as social harmony in Master Harold: developed from rehearsal through to the final act.' },
+  { name: 'Metonymy', def: 'Substituting a name or attribute closely associated with a thing for the thing itself.', ex: '"The Crown" for the monarchy; "the press" for journalism. In each case the part stands in for the whole institution.' },
+  { name: 'Synecdoche', def: 'A specific form of metonymy: a part stands for the whole, or the whole for a part.', ex: '"All hands on deck": hands stand for sailors; "wheels" for a car.' },
+  { name: 'Euphemism', def: 'A mild or indirect expression used in place of one considered too harsh, blunt, or taboo.', ex: '"Passed away" for death; "collateral damage" for civilian casualties. The choice of word does ideological work.' },
+  { name: 'Litotes', def: 'Understatement using a negative to affirm a positive; meiosis. Creates ironic or reserved effect.', ex: '"Not unhappy" conveys understated joy, signalling emotional restraint or cultural repression.' },
+
+  // SOUND & POETRY DEVICES
+  { name: 'Alliteration', def: 'Repetition of the same initial consonant sound in closely connected words; creates rhythm, emphasis, or mood.', ex: '"The fair breeze blew, the white foam flew" (Coleridge): the sound enacts the movement.' },
+  { name: 'Assonance', def: 'Repetition of vowel sounds in nearby words; creates internal rhyme and a specific sonic texture.', ex: 'The long "o" in "slow moan grown old" draws the sound out into a sonic mourning.' },
+  { name: 'Consonance', def: 'Repetition of consonant sounds within or at the end of words; distinct from rhyme (any position, not just end).', ex: '"Pitter-patter": the repeated "t" and "r" sounds enact the rhythm of raindrops.' },
+  { name: 'Onomatopoeia', def: 'A word that phonetically imitates or suggests the sound it describes; language performing what it names.', ex: '"Crash," "hiss," "murmur": the word is the sound. Creates immediacy and sensory presence.' },
+  { name: 'Rhyme Scheme', def: 'The pattern of end rhymes in a poem, labelled alphabetically (ABAB, AABB, etc.). Affects pace, expectation, and closure.', ex: 'In the Shakespearean sonnet\'s ABAB CDCD EFEF GG, the closing couplet enacts resolution.' },
+  { name: 'Metre / Rhythm', def: 'The regular (or irregular) pattern of stressed and unstressed syllables in a line of verse. Conveys pace, energy, and meaning.', ex: 'Iambic pentameter mimics natural speech; its disruption signals emotional turbulence.' },
+  { name: 'Iambic Pentameter', def: 'Ten-syllable lines with five iambs (da-DUM), the dominant metre of English dramatic verse. Departures from it carry significance.', ex: 'Shakespeare\'s characters break metre at moments of crisis, so that the line enacts the fracture.' },
+  { name: 'Volta', def: '(Sonnets / poetry) A turn or shift in argument, perspective, or emotion, usually marking the poem\'s pivotal moment.', ex: 'The "but" at line 9 of a Petrarchan sonnet: the octave poses a problem; the sestet turns toward resolution.' },
+
+  // NARRATIVE TECHNIQUES
+  { name: 'Unreliable Narrator', def: 'A narrator whose account is compromised by self-interest, limited knowledge, psychological distortion, or naivety.', ex: 'Marlow in Heart of Darkness: his ideological assumptions shape what he is able to perceive and report.' },
+  { name: 'Stream of Consciousness', def: 'A technique rendering the unfiltered, continuous flow of a character\'s thoughts, impressions, and associations.', ex: 'Woolf\'s Mrs Dalloway: perception moves between present moment and memory without transition.' },
+  { name: 'In Medias Res', def: 'Beginning the narrative "in the middle of things" so that context is withheld and tension is immediate.', ex: 'Conrad opens Heart of Darkness on the Thames; Marlow\'s frame narrative progressively supplies context.' },
+  { name: 'Frame Narrative', def: 'A story within a story: an outer narrator introduces and contextualises an inner narrator\'s account.', ex: 'Heart of Darkness: the unnamed outer narrator presents Marlow\'s tale, giving two layers of reliability to interrogate.' },
+  { name: 'Analepsis (Flashback)', def: 'A narrative movement back in time, either within the narrator\'s account or as a character\'s memory.', ex: 'Death of a Salesman: Willy\'s memory sequences interrupt the present, showing how the past colonises identity.' },
+  { name: 'Prolepsis (Flash-forward)', def: 'An anticipatory narrative hint of future events; can create dramatic irony when the reader knows what the character does not.', ex: 'Opening a novel with its ending and working backwards: the reader\'s knowledge frames every scene with irony.' },
+  { name: 'Ellipsis (Narrative)', def: 'A gap in the narrative where time passes without being narrated; the reader must infer what has occurred.', ex: 'Chapter breaks in novels often skip years, leaving the reader to reconstruct change from the before-and-after contrast.' },
+
+  // RHETORIC & STRUCTURE
+  { name: 'Anaphora', def: 'Repetition of a word or phrase at the start of successive clauses or lines; creates cumulative rhythm and emphasis.', ex: '"I have a dream... I have a dream...": repetition becomes incantatory, and meaning builds with each iteration.' },
+  { name: 'Rhetorical Question', def: 'A question posed for effect, not expecting an answer; it asserts or implies the answer within the question itself.', ex: '"Am I not a man and a brother?" asserts humanity; the answer is assumed and demanded.' },
+  { name: 'Parallelism', def: 'Grammatical or structural correspondence between phrases or clauses; creates balance, rhythm, and persuasive force.', ex: 'In "To err is human, to forgive divine" the parallel structure enacts the contrast it describes.' },
+  { name: 'Chiasmus', def: 'A rhetorical reversal of parallel structures: AB / BA. Creates epigrammatic effect and memorable compression.', ex: '"Ask not what your country can do for you — ask what you can do for your country."' },
+  { name: 'Ambiguity', def: 'Language open to more than one interpretation; may be deliberate (literary ambiguity) or a mark of irresolution or complexity.', ex: 'The end of The Cherry Orchard: the sound of the axe registers as tragic loss and as liberation at once.' },
+  { name: 'Allegory', def: 'A sustained narrative in which characters, events, and settings represent abstract ideas or moral/political truths beyond the literal level.', ex: 'Animal Farm: the farm IS the Soviet state and every animal IS a political faction, so the reading must always be double.' },
+  { name: 'Satire', def: 'The use of irony, exaggeration, or ridicule to expose and critique human vice, folly, or political hypocrisy.', ex: 'Wilde\'s The Importance of Being Earnest: the aristocracy is satirised through the trivialisation of what they find serious.' },
+  { name: 'Mood / Atmosphere', def: 'The emotional quality of a text as experienced by the reader, created by setting, diction, imagery, and pacing.', ex: 'The fog in Heart of Darkness creates an atmosphere of epistemological obscurity in which nothing can be seen clearly.' },
+  { name: 'Setting', def: 'The time and place of a narrative, which shapes character, theme, and meaning; a constructed environment, not mere background.', ex: 'The tearoom in Master Harold is a transitional space, neither public nor private, Black nor white, and it enacts the play\'s instability.' },
+  { name: 'Epigraph', def: 'A quotation placed at the beginning of a text or chapter; it frames the work\'s themes and invites an intertextual reading.', ex: 'Conrad\'s epigraph to Heart of Darkness quotes from an 18th-century source, establishing irony before the narrative begins.' },
+  { name: 'Intertextuality', def: 'The relationship between a text and other texts it references, echoes, or rewrites; all texts exist in a web of prior language.', ex: 'Coetzee\'s Foe rewrites Defoe\'s Robinson Crusoe, so meaning depends on reading the two texts together.' },
+];
+
+const grid = document.getElementById('devicesGrid');
+if (grid) {
+  devices.forEach((d, i) => {
+    grid.innerHTML += `
+      <div class="device-card">
+        <div class="device-header" onclick="toggleDevice(${i})">
+          <span class="device-name">${d.name}</span>
+          <span class="device-toggle" id="tog-${i}">▼ expand</span>
+        </div>
+        <div class="device-body" id="db-${i}">
+          <p class="device-def">${d.def}</p>
+          <div class="device-example">${d.ex}</div>
+        </div>
+      </div>`;
+  });
+}
+
+function toggleDevice(i) {
+  const body = document.getElementById('db-' + i);
+  const tog = document.getElementById('tog-' + i);
+  const open = body.classList.toggle('open');
+  tog.textContent = open ? '▲ close' : '▼ expand';
+}
+
+// DRAMA TERMS DATA
+const dramaCategories = [
+  {
+    name: 'Drama as a Literary Text Type · Paper 1 Conventions',
+    note: 'When Paper 1 presents a dramatic extract, apply these conventions specifically. Drama differs from prose and poetry in fundamental ways.',
+    terms: [
+      { name: 'Primary Text', def: 'The dialogue spoken by characters. This is the main vehicle of drama, so analyse word choice, syntax, rhythm, and tone in the dialogue itself.' },
+      { name: 'Secondary Text', def: 'Stage directions, dramatis personae and scene headings are the authorial instructions surrounding the dialogue. These carry meaning as literary devices in their own right.' },
+      { name: 'Dramatis Personae', def: 'The list of characters and their designated roles. Note status markers, social identities, and relational titles encoded here before the dialogue begins.' },
+      { name: 'Performance as Text', def: 'Drama is written for performance. When analysing for Paper 1, read stage directions as authorial statements: physical positioning, silence, and gesture are all crafted choices.' },
+      { name: 'Form of Address', def: 'How characters name or title each other ("Master Harold," "Sam," "Willie") encodes social hierarchy. Shifts in address = shifts in power. A key feature to analyse in dramatic dialogue.' },
+      { name: 'Stichomythia', def: 'Rapid alternation of single lines between characters. Creates urgency, conflict, or wit. Common in Greek tragedy (Sophocles) and Shakespearean drama. Contrasts with extended monologue.' },
+      { name: 'Subtext', def: 'What lies beneath the spoken words: the unspoken desire, tension, or meaning a performer must convey. In Paper 1 analysis, subtext is the interpretive layer beneath the surface dialogue.' },
+      { name: 'Pause and Silence', def: 'Absence of speech as a deliberate device. Pinter\'s "pauses" and "silences" are structurally significant. In drama, silence encodes power, trauma, or refusal.' },
+      { name: 'Proxemics (in text)', def: 'Physical distance between characters encoded in stage directions. Proximity = intimacy or threat; distance = power or emotional separation. Read stage directions for proxemic signals.' },
+      { name: 'Status Shifts', def: 'The relative social or psychological power characters hold can shift through a scene. Analyse how dialogue and action transfer, reassert, or contest status.' },
+      { name: 'Dramatic Irony', def: 'The audience knows something a character does not, creating tension or pathos. In Paper 1, identify moments where authorial awareness creates a gap between character perception and meaning.' },
+      { name: 'Exposition in Drama', def: 'Background information woven into the opening dialogue/action. Note how much the audience is told at the start of an extract, and what is withheld, since both are deliberate authorial choices.' },
+      { name: 'Catharsis', def: 'Aristotle\'s concept: the emotional purging of pity and fear experienced by the audience through tragedy. When analysing dramatic extracts, consider the emotional effect the scene is designed to produce.' },
+    ]
+  },
+  {
+    name: 'Dramatic Sub-Genres · Types of Comedy',
+    note: 'Different comic forms serve different social and artistic purposes. Identifying the sub-genre sharpens your analysis.',
+    terms: [
+      { name: 'Comedy of Manners', def: 'Satirises the behaviour and customs of upper-class society. Witty dialogue, social embarrassment, and exposing hypocrisy. (Wilde\'s The Importance of Being Earnest.)' },
+      { name: 'Romantic Comedy', def: 'Centres on love and romance, typically ending in marriage or union. Mistaken identities, misunderstanding, and reconciliation. (Shakespeare\'s A Midsummer Night\'s Dream.)' },
+      { name: 'Satirical Comedy', def: 'Uses humour to critique social institutions, political power, or human folly. Exaggeration, irony, and absurdity expose what is wrong.' },
+      { name: 'Dark Comedy (Black Comedy)', def: 'Treats serious, disturbing, or taboo subjects with humour. Provokes uncomfortable laughter, exposing the absurdity of serious matters. (Beckett\'s Waiting for Godot.)' },
+      { name: 'Farce', def: 'Extreme comedy relying on physical humour, rapid misunderstanding, and implausible situations. Logic is suspended in favour of pace and chaos. Characters are types, not individuals.' },
+      { name: 'Tragicomedy', def: 'Blends tragic and comic elements; avoids pure resolution. Characters may hover between survival and loss. (Chekhov\'s The Cherry Orchard; Beckett.)' },
+    ]
+  },
+  {
+    name: 'Dramatic Sub-Genres · Types of Tragedy',
+    note: 'Classical tragedy has a formal structure; modern tragedy has evolved to include anti-heroes, social determinism, and open endings.',
+    terms: [
+      { name: 'Classical (Greek) Tragedy', def: 'Athenian form: a hero of high status, a hamartia (fatal flaw), peripeteia (reversal of fortune), anagnorisis (recognition of truth), and catharsis. Unified structure; chorus comments on action.' },
+      { name: 'Aristotelian Tragedy', def: 'Derived from Aristotle\'s Poetics: tragedy imitates actions of serious importance involving persons of high estate; plot is primary ("the soul of tragedy"); character second.' },
+      { name: 'Shakespearean Tragedy', def: 'The protagonist\'s fatal flaw causes suffering for themselves and others. Often ends with multiple deaths and a restoration of order. (Hamlet, Macbeth, King Lear.)' },
+      { name: 'Domestic Tragedy', def: 'The tragic protagonist is an ordinary person, not a king or hero. Suffering is social and domestic in scale. (Arthur Miller\'s Death of a Salesman; Ibsen\'s Ghosts.)' },
+      { name: 'Social / Political Tragedy', def: 'The tragic force is the social system, not individual moral failure. Characters are destroyed by the structures around them. (Fugard\'s plays; Brecht\'s Mother Courage.)' },
+      { name: 'Modern Tragedy', def: 'Often lacks classical resolution; endings are ambiguous or open. The "hero" may be ordinary, unheroic, or morally flawed. Theodicy (the justification of suffering) is questioned or absent.' },
+    ]
+  },
+  {
+    name: 'Plot & Structure',
+    pyramid: true,
+    terms: [
+      { name: 'Exposition', def: 'The opening section that introduces setting, characters, and situation before action begins.' },
+      { name: 'Rising Action', def: 'Events that build conflict and tension steadily toward the climax.' },
+      { name: 'Climax', def: 'The turning point: the moment of highest tension, or the decisive action that changes everything.' },
+      { name: 'Falling Action', def: 'Events following the climax as consequences unfold and the outcome becomes clear.' },
+      { name: 'Catastrophe / Resolution', def: 'The final outcome. In tragedy, the protagonist\'s downfall; in comedy, reconciliation or marriage.' },
+      { name: 'Denouement', def: 'The untying of the plot, with all threads resolved after the climax. (French: "unknotting")' },
+      { name: 'Scene', def: 'A unit of dramatic action, typically defined by consistent time, place, or characters on stage.' },
+      { name: 'Act', def: 'A major structural division of a play, containing multiple scenes; usually signals a shift in time or location.' },
+      { name: 'Epilogue', def: 'A closing speech or section after the main action concludes; often addresses the audience directly.' },
+      { name: 'Flashback', def: 'A scene set earlier in time than the current narrative; disrupts chronology to reveal backstory.' },
+      { name: 'Foreshadowing', def: 'Early hints or clues that anticipate later events; creates dramatic irony or a sense of inevitability.' },
+      { name: 'Linear Plot', def: 'Events presented in chronological order from beginning to end.' },
+      { name: 'Non-linear Plot', def: 'Time is disrupted by flashbacks, flash-forwards, or fragmented chronology.' },
+      { name: 'Episodic Structure', def: 'A series of loosely connected scenes rather than a single continuous cause-and-effect arc. Common in Brechtian theatre.' },
+      { name: 'Key Scene', def: 'A pivotal moment that shifts the play\'s direction or most fully concentrates its central concern.' },
+      { name: 'Open Drama', def: 'No tidy resolution; ambiguous ending that resists closure. (e.g. Chekhov, Beckett)' },
+      { name: 'Closed Drama', def: 'All conflicts resolved by the final scene; sense of completion and order restored.' },
+    ]
+  },
+  {
+    name: 'The Three Unities (Aristotle)',
+    note: 'Aristotle\'s classical rules for dramatic construction, drawn from Greek tragedy and influential through Neoclassicism.',
+    terms: [
+      { name: 'Unity of Time', def: 'The dramatic action should take place within a single day (or as short a time as possible).' },
+      { name: 'Unity of Place', def: 'The action should occur in a single location; no scene changes to different places.' },
+      { name: 'Unity of Action', def: 'A single main plot with no unrelated subplots; all events causally connected.' },
+    ]
+  },
+  {
+    name: 'Performance & Actor',
+    terms: [
+      { name: 'Aside', def: 'A remark spoken directly to the audience, unheard by other characters; breaks the fourth wall.' },
+      { name: 'Soliloquy', def: 'An extended speech delivered alone on stage, directly revealing the character\'s inner thoughts and feelings.' },
+      { name: 'Monologue', def: 'A lengthy, uninterrupted speech by one character to others; unlike soliloquy, the audience is present in the world of the play.' },
+      { name: 'Chorus', def: 'A group (or single figure) who comments on action, provides context, or addresses the audience. Central to Greek tragedy and Brechtian theatre.' },
+      { name: 'Catharsis', def: 'Aristotle\'s concept: the emotional purging of pity and fear experienced by the audience through witnessing tragedy.' },
+      { name: 'Status', def: 'The relative social or psychological power a character holds in a given scene. Status can shift through dialogue and action.' },
+      { name: 'Subtext', def: 'What lies beneath the spoken words: the unspoken meaning, desire, or tension that a performer must convey.' },
+      { name: 'Acting Style', def: 'The conventions of performance: naturalistic (Stanislavski), alienated (Brecht), stylised, or physical theatre.' },
+      { name: 'Motivation', def: 'What a character wants in a given moment: their objective. Stanislavski\'s central concept for realistic performance.' },
+      { name: 'Timing', def: 'The rhythm of performance: the use of pauses, speed, and dynamic variation for dramatic or comedic effect.' },
+      { name: 'Ensemble', def: 'The company of actors working as a unified whole, with no single performer dominating.' },
+      { name: 'Use of Costume', def: 'Clothing as a sign of character, status, period, or transformation. Costume change can signal identity shift.' },
+      { name: 'Use of Props', def: 'Objects handled by actors that carry meaning beyond their function and can become symbols (the kite in Master Harold).' },
+    ]
+  },
+  {
+    name: 'Dialogue & Language',
+    terms: [
+      { name: 'Primary Text', def: 'The dialogue itself, the words characters speak. The main vehicle of drama, unlike prose fiction.' },
+      { name: 'Secondary Text', def: 'Stage directions: authorial instructions for performance (setting, movement, delivery). Also a literary device in their own right.' },
+      { name: 'Tone', def: 'The emotional register or attitude conveyed through speech: ironic, earnest, bitter, tender.' },
+      { name: 'Pace', def: 'The speed at which dialogue moves; rapid pace builds tension, slow pace can suggest reflection or threat.' },
+      { name: 'Pitch', def: 'The highness or lowness of voice, expressing emotion or marking status and authority.' },
+      { name: 'Tempo / Rhythm', def: 'The pattern of fast and slow, stressed and unstressed, in speech; can mirror a character\'s emotional state.' },
+      { name: 'Dialect / Accent', def: 'Regional or social variety of language; marks identity, class, and cultural belonging.' },
+      { name: 'Volume & Projection', def: 'Loudness and reach of voice; changes in dynamic create emphasis and emotional impact.' },
+      { name: 'Pause / Silence', def: 'Absence of speech as dramatic device. Harold Pinter\'s "pauses" and "silences" are notated and structurally significant.' },
+      { name: 'Narration', def: 'A character who addresses the audience directly to advance the story or provide context (Stage Manager in Our Town; Tom in The Glass Menagerie).' },
+      { name: 'Exposition (in dialogue)', def: 'Background information woven into dialogue, often at the play\'s opening, to orient the audience.' },
+      { name: 'Stichomythia', def: 'Rapid alternation of single lines between characters; creates urgency, conflict, or wit. Common in Greek tragedy and Shakespearean drama.' },
+    ]
+  },
+  {
+    name: 'Action & Staging',
+    terms: [
+      { name: 'Proxemics', def: 'The use of physical distance between performers to communicate power, intimacy, or conflict. Studied by Laban and later by theatre makers.' },
+      { name: 'Blocking', def: 'The planned movement of actors on stage, typically decided during rehearsal by the director.' },
+      { name: 'Tableau', def: 'A frozen stage image at a dramatically significant moment; creates a visual statement or emblem.' },
+      { name: 'Mime', def: 'Non-verbal, gestural performance without dialogue; conveys action, emotion, or narrative through body alone.' },
+      { name: 'Stillness', def: 'The deliberate absence of movement as dramatic emphasis; can signal shock, authority, or grief.' },
+      { name: 'Sight Lines', def: 'The angles from which audience members can see the stage; affects blocking and set design.' },
+      { name: 'Stage Areas', def: 'Upstage = far from audience (traditionally: authority, distance). Downstage = close to audience (intimacy, vulnerability). Stage Left/Right from actor\'s perspective.' },
+      { name: 'Split Stage', def: 'Two or more areas of the stage used simultaneously for parallel or contrasting action.' },
+      { name: 'Eye Contact', def: 'Between actors: signals relationship, power, and emotion. Between actor and audience: breaks the fourth wall.' },
+      { name: 'Entrances & Exits', def: 'A character\'s arrival or departure as a dramaturgically significant event; can shift power, pace, and mood.' },
+      { name: 'Fourth Wall', def: 'The imaginary boundary between performers and audience. Naturalism maintains it; Brecht and postmodern theatre break it deliberately.' },
+    ]
+  },
+  {
+    name: 'Sound & Lighting',
+    note: 'Both are design elements that create mood, guide attention, establish period, and signal dramatic change.',
+    terms: [
+      { name: 'Sound: Volume', def: 'Dynamic range, loud or quiet, creates mood, shock, and emphasis.' },
+      { name: 'Sound: Use of Music', def: 'Mood-setting, period-marking, or ironic counterpoint (Brecht used music to alienate, not to comfort).' },
+      { name: 'Sound: Sound Effects', def: 'Diegetic sounds (heard within the play\'s world) vs. non-diegetic (heard only by audience). Each has a different dramaturgical function.' },
+      { name: 'Sound: Atmosphere', def: 'Ambient soundscapes that establish environment, genre, and emotional register before action begins.' },
+      { name: 'Sound: Creating Tension', def: 'Silence, dissonance, or rhythmic build toward dramatic moments; the relationship between sound and silence.' },
+      { name: 'Lighting: Colour', def: 'Warm tones (amber, red) suggest intimacy or danger; cool tones (blue, white) signal isolation, truth, or the supernatural.' },
+      { name: 'Lighting: Intensity', def: 'Brightness and shadow: dimming signals time passage, death, or introspection; bright light signals exposure or revelation.' },
+      { name: 'Lighting: Atmosphere', def: 'The overall emotional quality created by the lighting state; can transform the same set into entirely different worlds.' },
+      { name: 'Lighting: Isolating Areas', def: 'Spotlights focus audience attention; darkness excludes; pools of light create psychological or symbolic space.' },
+      { name: 'Lighting: Creating Focus', def: 'Directing the audience\'s gaze to significant action or speech through selective illumination.' },
+    ]
+  },
+  {
+    name: 'Stage Forms',
+    stageforms: true,
+    terms: [
+      { name: 'Proscenium (End-on)', diagram: '[ STAGE ]\n─────────\n[audience]', def: 'Audience faces stage directly through a "picture frame" arch. Maintains the fourth wall; most traditional Western theatre form.' },
+      { name: 'Thrust Stage', diagram: '  [stage]\n ← → ← →\n[audience]', def: 'Stage extends into the audience on three sides. More intimate; the audience surrounds the action on three sides.' },
+      { name: 'Apron Stage', diagram: '[stage][ext]\n──────────\n[audience]', def: 'An extension of the proscenium stage that projects into the audience area, closing the gap between performers and spectators.' },
+      { name: 'Traverse Stage', diagram: '[aud][stg][aud]\n     ───', def: 'The stage runs between two banks of seating. Audience on either side; performers move along a corridor of action.' },
+      { name: 'Promenade', diagram: '[stg][aud][stg]\n [aud moves]', def: 'Audience moves through the space with the performers. No fixed seating; site-responsive; audience becomes part of the environment.' },
+      { name: 'Theatre in the Round', diagram: '  [aud]\n[aud][stg][aud]\n  [aud]', def: 'Stage surrounded by audience on all sides. Maximally intimate; no dominant perspective; no hidden backstage.' },
+    ]
+  },
+  {
+    name: 'Character & Characterisation',
+    terms: [
+      { name: 'Protagonist', def: 'The central character whose journey drives the plot; heroic or not, this is the figure through whom the audience tracks the narrative.' },
+      { name: 'Antagonist', def: 'The character or force opposing the protagonist; may be a person, institution, or internal psychological force.' },
+      { name: 'Foil Character', def: 'A character who contrasts with another to highlight qualities by comparison. Willie and Sam both serve as foils to Hally in Master Harold.' },
+      { name: 'Round Character', def: 'Complex, multidimensional, and capable of change or surprise. (E.M. Forster\'s term from Aspects of the Novel, applied broadly to drama.)' },
+      { name: 'Flat Character', def: 'A type or function rather than a fully realised individual; defined by one or two traits. Useful for satire or allegory.' },
+      { name: 'Direct Characterisation', def: 'Explicit statements about character, made by stage directions, narrators, or other characters.' },
+      { name: 'Indirect Characterisation', def: 'Character revealed through action, dialogue, choices, and appearance rather than explicit statement.' },
+      { name: 'Stock Character', def: 'A familiar character type from theatrical tradition: the miser, the braggart soldier, the ingénue. Common in comedy and melodrama.' },
+    ]
+  },
+  {
+    name: 'Genres & Subgenres',
+    terms: [
+      { name: 'Tragedy', def: 'Protagonist falls from high to low, typically ending in death. Explores human limitation, moral failure, or fate. (Aristotle: pity and fear; catharsis.)' },
+      { name: 'Comedy', def: 'Ends in resolution, often marriage or reconciliation. Celebrates social cohesion; errors corrected; order restored.' },
+      { name: 'Tragicomedy', def: 'Blends tragic and comic elements; avoids pure resolution. Characters may hover between survival and loss. (Chekhov; Beckett.)' },
+      { name: 'Melodrama', def: 'Characters are clearly good or evil; emotion is heightened; virtue is rewarded, villainy punished. Originally accompanied by music.' },
+      { name: 'Farce', def: 'Extreme comedy relying on physical humour, rapid misunderstanding, and implausible situations. Logic is suspended in favour of pace and chaos.' },
+      { name: 'Theatre of the Absurd', def: 'Language breaks down; meaning is impossible; existence is presented as purposeless and repetitive. (Beckett\'s Waiting for Godot; Ionesco\'s The Chairs.)' },
+      { name: 'Epic Theatre (Brecht)', def: 'The Verfremdungseffekt (alienation effect) prevents emotional identification; spectators are called to political analysis, not empathy. Songs, placards, direct address.' },
+      { name: 'Naturalism', def: 'Theatre that replicates ordinary life with fidelity; realistic dialogue, mundane settings, social determinism. (Ibsen, Strindberg, early Chekhov.)' },
+      { name: 'Expressionism', def: 'Inner psychological states externalised through distorted, symbolic staging, heightened language, and non-realistic design.' },
+      { name: 'Greek Tragedy', def: 'Classical Athenian form featuring a chorus, a hero of high status brought low by hamartia (fatal flaw), and peripeteia (reversal of fortune). Unified, formal structure.' },
+    ]
+  },
+];
+
+const reflectQuestions = [
+  'Is there a sense of development in character, relationship, or plot?',
+  'How important are contrast and conflict to the play\'s structure?',
+  'With whom are you invited to sympathise, and why?',
+  'Is there a predominant mood or atmosphere to the play?',
+  'Is the play realistic or more stylised and abstract?',
+];
+
+function renderDrama() {
+  const container = document.getElementById('dramaContent');
+  if (!container) return;
+  let html = '';
+  dramaCategories.forEach(cat => {
+    html += `<div class="drama-category" data-cat="${cat.name}">`;
+    html += `<div class="drama-cat-title">${cat.name}</div>`;
+    if (cat.note) html += `<div class="drama-cat-note">${cat.note}</div>`;
+    if (cat.pyramid) {
+      const bars = [
+        { label: 'Exposition', h: 20, color: '#2a3d55' },
+        { label: 'Rising Action', h: 55, color: '#2d4a6a' },
+        { label: 'Climax', h: 100, color: 'rgba(201,168,76,0.55)' },
+        { label: 'Falling Action', h: 55, color: '#2d4a6a' },
+        { label: 'Catastrophe', h: 20, color: '#2a3d55' },
+      ];
+      html += '<div class="pyramid-wrap">';
+      html += '<div class="pyramid-row">';
+      bars.forEach(b => {
+        html += `<div class="pyramid-bar" style="height:${b.h}%;background:${b.color};"></div>`;
+      });
+      html += '</div><div class="pyramid-labels">';
+      bars.forEach(b => { html += `<div class="pyramid-label">${b.label}</div>`; });
+      html += '</div></div>';
+    }
+    if (cat.stageforms) {
+      html += '<div class="sf-grid">';
+      cat.terms.forEach(t => {
+        html += `<div class="sf-card dt-card" data-name="${t.name.toLowerCase()}" data-def="${t.def.toLowerCase()}">
+          <div class="sf-name dt-name">${t.name}</div>
+          <div class="sf-diagram">${t.diagram}</div>
+          <div class="sf-def dt-def">${t.def}</div>
+        </div>`;
+      });
+      html += '</div>';
+    } else {
+      html += '<div class="drama-grid">';
+      cat.terms.forEach(t => {
+        html += `<div class="dt-card" data-name="${t.name.toLowerCase()}" data-def="${t.def.toLowerCase()}">
+          <div class="dt-name">${t.name}</div>
+          <div class="dt-def">${t.def}</div>
+        </div>`;
+      });
+      html += '</div>';
+    }
+    html += '</div>';
+  });
+  // Analytical questions
+  html += `<div class="drama-category" data-cat="analytical">
+    <div class="drama-cat-title">Analytical Reflection Questions</div>
+    <div class="drama-cat-note">Use these questions to open analysis of any dramatic text.</div>
+    <div class="reflect-grid">`;
+  reflectQuestions.forEach(q => {
+    html += `<div class="reflect-q">${q}</div>`;
+  });
+  html += '</div></div>';
+  container.innerHTML = html;
+}
+renderDrama();
+
+function filterDrama(query) {
+  const q = query.toLowerCase().trim();
+  document.querySelectorAll('#dramaContent .dt-card').forEach(card => {
+    if (!q) { card.removeAttribute('data-hidden'); return; }
+    const match = card.dataset.name.includes(q) || card.dataset.def.includes(q);
+    card.setAttribute('data-hidden', match ? 'false' : 'true');
+  });
+  document.querySelectorAll('#dramaContent .drama-category').forEach(cat => {
+    if (!q) { cat.style.display = ''; return; }
+    const visible = [...cat.querySelectorAll('.dt-card')].some(c => c.dataset.hidden !== 'true');
+    const reflectMatch = cat.dataset.cat === 'analytical' && reflectQuestions.some(rq => rq.toLowerCase().includes(q));
+    cat.style.display = (visible || reflectMatch) ? '' : 'none';
+  });
+}
+
+// SENTENCE STARTERS DATA
+const starters = [
+  {
+    group: 'Opening / Thesis',
+    items: [
+      { text: '[Author] constructs [text] as an exploration of…', note: 'Always name the author, not "the text"' },
+      { text: 'Through [technique], [Author] positions the reader to…', note: 'Links craft to reader effect immediately' },
+      { text: 'At its core, [text] is a study in…', note: 'Establishes central interpretive claim' },
+    ]
+  },
+  {
+    group: 'Introducing Evidence',
+    items: [
+      { text: 'This is crystallised in the moment when…', note: '' },
+      { text: 'The tension is made explicit when [Author] writes: "…"', note: '' },
+      { text: 'A pivotal example occurs in [Act/Chapter/stanza], where…', note: '' },
+    ]
+  },
+  {
+    group: 'Analysing Technique',
+    items: [
+      { text: 'The [technique] here is significant because…', note: 'Be specific: which metaphor, what diction' },
+      { text: '[Author]\'s choice of the word "[word]" is deliberate: it…', note: 'Focuses on precise diction' },
+      { text: 'The [syntax/structure/form] enacts the very…', note: 'Form mirrors content' },
+    ]
+  },
+  {
+    group: 'Applying a Critical Lens',
+    items: [
+      { text: 'Through a Fanonian lens, this moment reveals…', note: 'Name the lens explicitly' },
+      { text: 'Applying Goffman\'s concept of front/back stage…', note: '' },
+      { text: '[Critic]\'s framework illuminates how [Author]…', note: 'Lens as analytical tool, not label' },
+    ]
+  },
+  {
+    group: 'Comparison (Paper 2)',
+    items: [
+      { text: 'While [Author A] uses [technique] to…, [Author B] achieves a similar effect through…', note: '' },
+      { text: 'Both [Author A] and [Author B] present [theme], yet their methods diverge: where [A]…, [B]…', note: '' },
+      { text: 'The contrast is most revealing when…', note: 'Comparison in one paragraph, not alternating' },
+    ]
+  },
+  {
+    group: 'Developing / Complicating',
+    items: [
+      { text: 'This reading is complicated, however, by…', note: 'Shows sophistication by acknowledging the counter-reading' },
+      { text: 'Yet [Author] simultaneously undermines this by…', note: '' },
+      { text: 'The ambiguity is productive: it suggests…', note: '' },
+    ]
+  },
+  {
+    group: 'Conclusion',
+    items: [
+      { text: 'Ultimately, [Author] uses [text] to argue that…', note: 'Return to thesis with new depth' },
+      { text: 'What this comparison ultimately reveals is…', note: 'The comparison itself as your conclusion' },
+      { text: 'In this sense, [text] speaks to the broader human condition of…', note: 'Zoom out to significance' },
+    ]
+  },
+  {
+    group: 'IO · Global Issue',
+    items: [
+      { text: 'Both [text A] and [text B] use [technique] to foreground the global issue of…', note: '' },
+      { text: 'The global issue of [issue] manifests differently in each text: in [A]…, while in [B]…', note: '' },
+      { text: '[Author]\'s treatment of [issue] is shaped by [context], which accounts for…', note: '' },
+    ]
+  },
+];
+
+const sGrid = document.getElementById('startersGrid');
+if (sGrid) {
+  starters.forEach(group => {
+    let html = `<div class="starter-group"><h4>${group.group}</h4>`;
+    group.items.forEach(s => {
+      html += `<div class="starter">${s.text}${s.note ? `<span>${s.note}</span>` : ''}</div>`;
+    });
+    html += '</div>';
+    sGrid.innerHTML += html;
+  });
+}
+
+// TEXT TYPES DATA
+const textTypeData = [
+  {
+    cat: 'Opinion & Argument', catKey: 'opinion',
+    types: [
+      {
+        name: 'Opinion Piece / Column',
+        purpose: 'Assert a personal viewpoint on a current issue; persuade and provoke thought',
+        audience: 'Newspaper or magazine readers; educated general public',
+        format: ['Attention-grabbing headline', 'Byline (author named)', 'Short paragraphs (3–5 sentences)', 'Core claim in opening or closing paragraph', 'No subheadings (usually)'],
+        language: ['First person ("I") throughout', 'Rhetorical questions', 'Anaphora / tricolon for emphasis', 'Hedging for nuance ("arguably", "perhaps")', 'Direct address ("you") to draw the reader in'],
+        tone: 'Confident, personal, often wry or ironic',
+        register: 'Informal–semi-formal',
+        tip: 'Take a clear, arguable stance in the opening. Anticipate and briefly rebut the counterargument.'
+      },
+      {
+        name: 'Editorial / Leader Article',
+        purpose: 'Express the official editorial position of a publication on a significant issue',
+        audience: 'Regular readers of the publication; educated general public',
+        format: ['Formal headline', 'No byline (the publication speaks)', 'Short to medium paragraphs', 'May include statistics or authoritative quotes'],
+        language: ['Collective "we" (institutional voice)', 'Modal verbs asserting position ("must", "should", "ought to")', 'Formal, measured diction', 'Evidence-based assertions'],
+        tone: 'Authoritative, measured, formal',
+        register: 'Formal',
+        tip: 'Distinguish from an opinion piece by the absence of personal anecdote and the use of institutional "we".'
+      },
+      {
+        name: 'Formal Letter',
+        purpose: 'Make a request, complaint, application, or official communication to an institution or individual',
+        audience: 'A specific named addressee; professional or official context',
+        format: ['Sender\'s address (top right)', 'Date', 'Recipient\'s address (left)', 'Salutation: "Dear Mr/Ms [Surname]" or "Dear Sir or Madam"', 'Paragraphs: purpose → details → requested action', 'Close: "Yours sincerely" (named recipient) / "Yours faithfully" (unnamed)'],
+        language: ['Formal, precise vocabulary', 'Polite but assertive modal verbs', 'Passive voice occasionally ("I was informed…")', 'Full forms, with no contractions'],
+        tone: 'Polite, professional, formal',
+        register: 'Formal',
+        tip: '"Yours sincerely" when you know the name; "Yours faithfully" when you don\'t. Never mix them.'
+      },
+      {
+        name: 'Open Letter',
+        purpose: 'Address a public figure or institution on an issue of public concern; persuade a broader readership',
+        audience: 'Nominal addressee (e.g. a politician or CEO) AND the general public who will read it',
+        format: ['Published in a newspaper or online', 'Headline naming the addressee: "An Open Letter to…"', 'Salutation: "Dear [Name/Title]"', 'May use sub-headers or numbered points', 'Visible formal close'],
+        language: ['Shifts between direct address ("you") and inclusive "we"', 'Emotionally resonant language', 'Facts and evidence to establish credibility', 'Anaphora for cumulative emotional effect'],
+        tone: 'Sincere, urgent, often righteous but controlled',
+        register: 'Semi-formal to formal',
+        tip: 'The dual audience (nominal addressee + general public) is the defining feature. Write to be read by both.'
+      },
+      {
+        name: 'Speech / Address',
+        purpose: 'Persuade, inspire, commemorate, inform, or entertain a live audience',
+        audience: 'A specific live audience (graduation, political rally, ceremony, debate)',
+        format: ['Direct address: "Ladies and gentlemen…" / "Fellow students…"', 'Clear three-part structure: hook → body → memorable close', 'Rhetorical signposting: "Let me begin by…" "In closing…"', 'Designed to be heard, not read'],
+        language: ['Anaphora and tricolon ("We will…")', 'Inclusive pronouns ("we", "our")', 'Rhetorical questions', 'Short declarative sentences for impact', 'Concrete examples and personal anecdotes'],
+        tone: 'Passionate, confident and inspiring, or solemn depending on the occasion',
+        register: 'Formal–semi-formal',
+        tip: 'The opening and closing are the most memorable parts. Plan them first. Build in deliberate pauses.'
+      },
+      {
+        name: 'Persuasive / Argumentative Essay',
+        purpose: 'Argue a clear position on a debatable topic, systematically countering opposing views',
+        audience: 'Academic or educated reader',
+        format: ['Introduction with clear thesis statement', 'Body paragraphs, each opening with a topic sentence', 'Counterargument + rebuttal (near the end)', 'Conclusion returning to and deepening the thesis', 'No personal address ("you")'],
+        language: ['Academic vocabulary', 'Hedging and qualification ("to some extent", "while it may be argued")', 'Logical connectives ("consequently", "therefore", "however")', 'Evidence: statistics, expert opinion, examples', 'Active voice preferred'],
+        tone: 'Reasoned, confident, objective',
+        register: 'Formal',
+        tip: 'TEEL structure (Topic sentence, Evidence, Explanation, Link). Never open with "In my opinion" in a formal persuasive essay.'
+      },
+    ]
+  },
+  {
+    cat: 'Information & Reference', catKey: 'info',
+    types: [
+      {
+        name: 'Newspaper Article / News Report',
+        purpose: 'Inform readers of a recent event factually and objectively',
+        audience: 'General public; readers of the specific publication',
+        format: ['Headline (key information, active verb)', 'Standfirst / deck (bold summary below headline)', 'Inverted pyramid structure (most → least important)', 'Short paragraphs (1–3 sentences)', 'Direct and indirect speech from sources', 'Byline: "By [Journalist Name]"'],
+        language: ['Third person, past tense', 'Factual, precise diction', 'The 5 Ws: Who, What, When, Where, Why', 'Nominalisation for compression', 'Reported speech: "According to…"'],
+        tone: 'Neutral, objective, factual',
+        register: 'Formal',
+        tip: 'The headline and first sentence together should give the whole story. The inverted pyramid means the article can be cut from the bottom without losing key information.'
+      },
+      {
+        name: 'Feature Article / Magazine Article',
+        purpose: 'Explore a topic in depth; inform, analyse, and engage rather than simply report',
+        audience: 'Magazine or newspaper readers with interest in the topic',
+        format: ['Engaging headline (may use wordplay, allusion, or question)', 'Standfirst / teaser paragraph', 'Subheadings throughout', 'Mix of narrative, quotes, statistics, and analysis', 'Sidebar or pull quote', 'Byline and sometimes an author bio'],
+        language: ['More descriptive and literary than a news report', 'Opening anecdote or scene to hook the reader', 'Expert and eyewitness quotations', 'Second person ("you") sometimes for intimacy', 'Varied sentence length'],
+        tone: 'Engaging, authoritative, sometimes personal',
+        register: 'Semi-formal',
+        tip: 'Unlike hard news, a feature may open with a story or scene ("delayed reveal" structure). The main point can emerge gradually.'
+      },
+      {
+        name: 'Review',
+        purpose: 'Evaluate a work (book, film, restaurant, performance) and guide audience choices',
+        audience: 'Potential audience for the work; interested general reader',
+        format: ['Title, author/director, publication details in header', 'Brief plot/content summary (no spoilers)', 'Critical evaluation against clear criteria', 'Optional rating', 'Recommendation'],
+        language: ['Evaluative adjectives ("compelling", "derivative", "nuanced")', 'Hedging and qualification', 'Brief quotation from the work', 'Personal opinion framed as reasoned judgement', 'Present tense for description'],
+        tone: 'Authoritative, evaluative, sometimes witty',
+        register: 'Semi-formal',
+        tip: 'State your overall judgement early (first or second paragraph). A strong review supports a clear, arguable verdict.'
+      },
+      {
+        name: 'Formal Report',
+        purpose: 'Present findings, analysis, and recommendations to a specific decision-making audience',
+        audience: 'Named recipient or organisation (e.g. "Report to the School Board")',
+        format: ['Title and recipient clearly stated', 'Terms of Reference / Purpose section', 'Numbered sections with subheadings', 'Findings (organised clearly)', 'Conclusions', 'Recommendations', 'Appendix if needed'],
+        language: ['Third person, often passive voice', 'Technical / field-specific vocabulary', 'Bullet points and numbered lists', 'Precise, factual diction', 'No contractions or colloquialisms'],
+        tone: 'Impersonal, objective, professional',
+        register: 'Formal',
+        tip: 'Recommendations must follow logically from the findings. Use clear numbered sections for easy navigation.'
+      },
+      {
+        name: 'Brochure / Leaflet / Flyer',
+        purpose: 'Inform and persuade a target audience about a service, place, or cause',
+        audience: 'Defined by the subject (e.g. tourists, parents, patients)',
+        format: ['Attention-grabbing headline or slogan', 'Columns / folded panels', 'Short sentences and bullet points', 'Visual elements (photos, icons, maps) implied or described', 'Contact information or call to action'],
+        language: ['Second person: "You will enjoy…" / "Visit us today!"', 'Imperative verbs: "Discover…", "Book now…"', 'Superlatives and intensifiers', 'Facts and statistics for credibility', 'Positive, enticing adjectives'],
+        tone: 'Welcoming, informative, persuasive',
+        register: 'Informal–semi-formal',
+        tip: 'Brochures combine information and persuasion. Always identify the purpose first: a charity leaflet and a tourism brochure have entirely different tones.'
+      },
+      {
+        name: 'Interview (Published)',
+        purpose: 'Reveal the views, personality, and expertise of the interviewee through question-and-answer',
+        audience: 'General public; readers interested in the interviewee or their field',
+        format: ['Introduction establishing who the interviewee is and why they matter', 'Q&A format: Q: in bold, A: in regular text', 'Mix of biographical, personal, and topic-specific questions', 'Closing question often about legacy or future'],
+        language: ['Questions: direct, varied (open and closed)', 'Answers: conversational but edited for print', 'The interviewer\'s voice shapes the narrative', 'Reported speech in the introduction'],
+        tone: 'Conversational (answers); curious and probing (questions)',
+        register: 'Informal–semi-formal',
+        tip: 'Character is revealed as much through HOW the interviewee answers (length, evasion, word choice) as through what they say.'
+      },
+    ]
+  },
+  {
+    cat: 'Creative & Personal', catKey: 'creative',
+    types: [
+      {
+        name: 'Blog Post',
+        purpose: 'Share opinions, experiences, or information in an accessible, conversational style',
+        audience: 'Online readers; followers of the blog; internet community with shared interest',
+        format: ['Catchy, often clickbait-adjacent title', 'Date and author name', 'Subheadings and short paragraphs', 'Hyperlinks implied', 'Comments section implied', 'Call to action at close: "What do you think? Tell me below."'],
+        language: ['First person throughout', 'Contractions, rhetorical questions, parenthetical asides', 'Informal address: "you all", "folks"', 'Lists and bullet points', 'Emojis in informal contexts'],
+        tone: 'Personal, accessible, engaging, often humorous',
+        register: 'Informal',
+        tip: 'Unlike an opinion piece, a blog can begin with a personal anecdote and explore several examples before arriving at its point. The intimacy with the reader is the defining quality.'
+      },
+      {
+        name: 'Diary / Journal Entry',
+        purpose: 'Record personal thoughts, feelings, and events; process experience privately',
+        audience: 'Private (ostensibly the writer only), though a performed intimacy when written for assessment',
+        format: ['Date: often informal ("Tuesday, 14 March")', 'Salutation: "Dear Diary" (optional, often clichéd)', 'First-person narrative of events or reflections', 'No requirement for conclusion or resolution', 'May end mid-thought or in ellipsis'],
+        language: ['First person, mixed past and present tense', 'Fragmented sentences reflecting stream of consciousness', 'Emotional, unguarded vocabulary', 'Questions to the self', 'Dashes and ellipses to indicate paused or unfinished thought'],
+        tone: 'Intimate, unguarded and reflective, sometimes distressed or euphoric',
+        register: 'Informal (private)',
+        tip: 'The most powerful diary entries show psychological state through HOW the character writes, not only what they write. Syntax enacts emotion.'
+      },
+      {
+        name: 'Personal Essay / Memoir',
+        purpose: 'Explore a formative experience or personal truth; blend narrative and reflection',
+        audience: 'Educated general reader; literary magazine or anthology audience',
+        format: ['Scene-based opening (often in medias res)', 'Alternation between narrated event and present reflection', 'No rigid structure: essayistic and digressive', 'Personal insight or "turn" often near the close'],
+        language: ['First person, past for narration / present for reflection', 'Literary techniques: metaphor, imagery, symbolism', 'Precise sensory detail', 'Philosophical or introspective asides', 'Elevated or poetic diction'],
+        tone: 'Reflective, sincere, often vulnerable or meditative',
+        register: 'Literary / semi-formal',
+        tip: 'The key tension is between the experiencing self (past) and the reflecting self (present). The gap between these is where meaning is made.'
+      },
+      {
+        name: 'Short Story / Flash Fiction',
+        purpose: 'Entertain, provoke, or illuminate a truth through compressed narrative',
+        audience: 'Literary magazine or anthology readers; general educated reader',
+        format: ['Scene-based opening with no lengthy exposition', 'One central conflict or revelation', 'Very few characters', 'Compressed time frame', 'Ending often ambiguous or epiphanic'],
+        language: ['Show don\'t tell: action and dialogue over statement', 'Precise diction (every word is chosen)', 'Varied sentence rhythm to control pace', 'Free indirect discourse (character thought embedded in narration)', 'Symbolic detail'],
+        tone: 'Varies by story: ironic, melancholic, tense or playful',
+        register: 'Literary',
+        tip: 'In flash fiction especially, the ending must feel both surprising and inevitable. The last line is disproportionately important.'
+      },
+    ]
+  },
+  {
+    cat: 'Digital & Media', catKey: 'digital',
+    types: [
+      {
+        name: 'Advertisement',
+        purpose: 'Persuade the audience to buy a product, use a service, adopt a behaviour, or support a cause',
+        audience: 'Specific targeted consumer segment or general public',
+        format: ['Slogan / tagline', 'Product/brand name prominent', 'Visual focus (described or implied)', 'Call to action: "Buy now", "Visit us at…"', 'Minimal text, so every word works hard'],
+        language: ['Imperative verbs: "Discover", "Transform", "Join"', 'Second person: "You deserve…"', 'Superlatives: "the best", "the only one"', 'Alliteration, rhyme, wordplay for memorability', 'Aspirational and inclusive language'],
+        tone: 'Persuasive, aspirational, upbeat',
+        register: 'Varies: informal (youth products) to formal (luxury or financial services)',
+        tip: 'All advertisements sell more than a product: they sell an identity, lifestyle, or aspiration. Analyse what values are attached to the product.'
+      },
+      {
+        name: 'Podcast Script / Radio Broadcast',
+        purpose: 'Inform, entertain, or explore a topic for a listening audience',
+        audience: 'Defined by the podcast\'s niche (history, culture, education, news)',
+        format: ['Audio cues: "[intro music fades]", "[SFX]"', 'Host introduction: "Welcome to… I\'m [Name]"', 'Clearly segmented: intro → content → sign-off', 'Episode summary or chapter breaks for longer episodes'],
+        language: ['Conversational but scripted', 'Short sentences designed to be heard', 'Repetition of key terms (listeners can\'t re-read)', 'Inclusive address: "Today we\'re exploring…"', 'Signposting: "First… Next… Finally…"'],
+        tone: 'Engaged, accessible, often enthusiastic',
+        register: 'Informal–semi-formal',
+        tip: 'Podcast writing is for the ear: vary sentence length and rhythm, use "soundbite" phrasing, and build in signposts and pauses.'
+      },
+      {
+        name: 'Social Media Post / Thread',
+        purpose: 'Share information, opinions, or personal updates with an online community',
+        audience: 'Online followers; general internet users (public posts)',
+        format: ['Character limit implies compression (e.g. X/Twitter)', 'Hashtags: "#…" for discoverability', 'Mentions: "@Username"', 'Thread: first post states main idea; subsequent posts elaborate', 'Images, memes, or videos often accompany'],
+        language: ['Extreme compression: abbreviations, emojis', 'Provocative or intriguing opening hook (to stop scrolling)', 'Rhetorical questions for engagement', 'Colloquial, platform-specific vocabulary'],
+        tone: 'Varies widely: humorous, outraged, celebratory, confessional',
+        register: 'Informal',
+        tip: 'The key constraint is the attention span of the feed. Hook the reader in the first line. Character limits make every word a deliberate choice.'
+      },
+      {
+        name: 'Formal Email',
+        purpose: 'Communicate professionally with a specific recipient; make requests, share information, or follow up',
+        audience: 'Specific named recipient (colleague, client, authority)',
+        format: ['Subject line: concise and specific', 'Salutation: "Dear [Name]"', 'Purpose stated in the first sentence', 'Body in short focused paragraphs', 'Clear action point or question near the close', 'Sign-off: "Kind regards," / "Yours sincerely,"'],
+        language: ['Formal vocabulary but more direct than a letter', 'Clear polite requests: "I would be grateful if you could…"', 'Active voice', 'No colloquialisms or emoji'],
+        tone: 'Professional, concise, courteous',
+        register: 'Formal',
+        tip: 'Emails are more direct than formal letters. State your purpose in the first two lines. The subject line is part of your text, so make it useful and specific.'
+      },
+      {
+        name: 'Proposal',
+        purpose: 'Put forward a plan, project, or idea for consideration and approval',
+        audience: 'Decision-maker (manager, school authority, committee) who must approve the proposal',
+        format: ['Title: "Proposal for…" or "A Proposal to…"', 'Overview / executive summary', 'Background / context', 'Objectives', 'Methods / plan of action', 'Benefits and justification', 'Budget or resources (if relevant)', 'Conclusion and call for approval'],
+        language: ['Formal, future-focused language', 'Modal verbs: "would", "will", "could"', 'Logical connectives for sequencing', 'Cost-benefit vocabulary', 'Confident but not arrogant tone'],
+        tone: 'Persuasive, professional, forward-looking',
+        register: 'Formal',
+        tip: 'A proposal is both informative (what will happen) and persuasive (why it should happen). Address potential objections within the proposal itself.'
+      },
+    ]
+  }
+];
+
+let ttIdx = 0;
+function renderTT() {
+  const container = document.getElementById('ttContent');
+  if (!container) return;
+  let html = '';
+  textTypeData.forEach(cat => {
+    html += `<div class="tt-category" data-cat="${cat.catKey}"><div class="tt-cat-title">${cat.cat}</div><div class="tt-grid">`; 
+    cat.types.forEach(t => {
+      const id = ttIdx++;
+      const fmtList = t.format.map(f => `<li>${f}</li>`).join('');
+      const langList = t.language.map(l => `<li>${l}</li>`).join('');
+      const searchText = [t.name, t.purpose, t.audience, ...t.format, ...t.language, t.tone, t.register, t.tip].join(' ').toLowerCase();
+      html += `<div class="tt-card" data-search="${searchText.replace(/"/g,'&quot;')}">
+        <div class="tt-header" onclick="toggleTT(${id})">
+          <span class="tt-name">${t.name}</span>
+          <span class="tt-badge ${cat.catKey}">${cat.cat.split(' ')[0]}</span>
+          <span class="tt-toggle" id="tttog-${id}">▼</span>
+        </div>
+        <div class="tt-body" id="ttb-${id}">
+          <div class="tt-row"><div class="tt-row-label">Purpose</div><p class="tt-row-val">${t.purpose}</p></div>
+          <div class="tt-row"><div class="tt-row-label">Audience</div><p class="tt-row-val">${t.audience}</p></div>
+          <div class="tt-row"><div class="tt-row-label">Format Features</div><ul class="tt-list">${fmtList}</ul></div>
+          <div class="tt-row"><div class="tt-row-label">Language Features</div><ul class="tt-list">${langList}</ul></div>
+          <div class="tt-row"><div class="tt-row-label">Tone &amp; Register</div><p class="tt-row-val">${t.tone} · <em>${t.register}</em></p></div>
+          <div class="tt-tip">💡 ${t.tip}</div>
+        </div>
+      </div>`;
+    });
+    html += '</div></div>';
+  });
+  container.innerHTML = html;
+}
+renderTT();
+
+function toggleTT(id) {
+  const body = document.getElementById('ttb-' + id);
+  const tog = document.getElementById('tttog-' + id);
+  const open = body.classList.toggle('open');
+  tog.textContent = open ? '▲' : '▼';
+}
+
+function filterTT(query) {
+  const q = query.toLowerCase().trim();
+  document.querySelectorAll('#ttContent .tt-card').forEach(card => {
+    if (!q) { card.removeAttribute('data-hidden'); return; }
+    const match = card.dataset.search.includes(q);
+    card.setAttribute('data-hidden', match ? 'false' : 'true');
+  });
+  document.querySelectorAll('#ttContent .tt-category').forEach(cat => {
+    if (!q) { cat.style.display = ''; return; }
+    const visible = [...cat.querySelectorAll('.tt-card')].some(c => c.dataset.hidden !== 'true');
+    cat.style.display = visible ? '' : 'none';
+  });
+}
+</script>
+
+<footer>
+  <p>DP English A Literature · Higher Level · <span>IB Diploma Programme</span></p>
+  <p style="margin-top: 0.5rem">Compiled for students. All critical perspectives attributed to their original scholars.</p>
+</footer>
+
+</body>
+</html>

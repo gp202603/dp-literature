@@ -1,0 +1,1534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pablo Neruda: DP English A Literature HL Revision</title>
+  <style>
+    :root {
+      --navy: #0d1b2a;
+      --midnight: #1b2a3b;
+      --ink: #243447;
+      --gold: #c9a84c;
+      --gold-light: #e8d5a3;
+      --cream: #f5f0e8;
+      --white: #ffffff;
+      --text: #e8e4dc;
+      --muted: #8fa3b1;
+      --accent: #4a8fa8;
+      --red: #a83244;
+      --green: #3a7d5c;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Georgia', serif;
+      background: var(--navy);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(13,27,42,0.97);
+      border-bottom: 2px solid var(--gold);
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.6rem 3rem;
+      backdrop-filter: blur(8px);
+    }
+    .nav-logo a { color: var(--gold); text-decoration: none; font-size: 0.9rem; font-family: 'Helvetica Neue', sans-serif; letter-spacing: 0.05em; }
+    .nav-logo a:hover { color: var(--gold-light); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.85rem; letter-spacing: 0.03em; transition: color 0.2s; font-family: 'Helvetica Neue', sans-serif; }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* HERO */
+    .hero {
+      min-height: 70vh;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 5rem 3rem 4rem;
+      background: linear-gradient(135deg, #0a1520 0%, #0d1b2a 60%, #111e30 100%);
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: 0; right: 0; width: 55%; height: 100%;
+      background: radial-gradient(ellipse at top right, rgba(201,168,76,0.06) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero-breadcrumb {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.75rem;
+      color: var(--muted); margin-bottom: 2rem; letter-spacing: 0.05em;
+    }
+    .hero-breadcrumb a { color: var(--gold); text-decoration: none; }
+    .hero-breadcrumb a:hover { text-decoration: underline; }
+    .hero-tag {
+      font-family: 'Helvetica Neue', sans-serif;
+      font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1.2rem;
+      border: 1px solid rgba(201,168,76,0.3); display: inline-block;
+      padding: 0.3rem 1rem; border-radius: 2px;
+    }
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-weight: normal; line-height: 1.15;
+      color: var(--white); margin-bottom: 0.4rem;
+    }
+    .hero h1 em { color: var(--gold); font-style: normal; }
+    .hero-dates {
+      font-family: 'Helvetica Neue', sans-serif;
+      font-size: 0.85rem; color: var(--muted); margin-bottom: 2rem; letter-spacing: 0.05em;
+    }
+    .hero-quote {
+      padding: 1.4rem 1.8rem;
+      border-left: 3px solid var(--gold);
+      background: rgba(201,168,76,0.05);
+      max-width: 650px; font-size: 1.05rem; font-style: italic;
+      color: var(--gold-light); margin-top: 2rem;
+    }
+    .hero-quote cite { display: block; font-size: 0.78rem; color: var(--muted); margin-top: 0.5rem; font-style: normal; font-family: 'Helvetica Neue', sans-serif; }
+
+    /* PAGE NAV / TOC */
+    .page-toc {
+      background: var(--midnight); border-bottom: 1px solid rgba(201,168,76,0.15);
+      padding: 0.75rem 3rem; display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center;
+    }
+    .page-toc a {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.75rem; color: var(--muted);
+      text-decoration: none; padding: 0.25rem 0.75rem; border-radius: 2px;
+      border: 1px solid transparent; transition: all 0.2s; letter-spacing: 0.03em;
+    }
+    .page-toc a:hover { color: var(--gold); border-color: rgba(201,168,76,0.3); }
+
+    /* SECTION */
+    section { padding: 4.5rem 3rem; }
+    section:nth-child(even) { background: rgba(27,42,59,0.5); }
+    .section-label {
+      font-family: 'Helvetica Neue', sans-serif;
+      font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.75rem;
+    }
+    h2 {
+      font-size: 1.9rem; font-weight: normal; color: var(--white);
+      margin-bottom: 1rem; line-height: 1.3;
+    }
+    h3 { font-size: 1.15rem; font-weight: normal; color: var(--gold-light); margin-bottom: 0.5rem; }
+    h4 { font-size: 0.95rem; font-weight: normal; color: var(--gold-light); margin-bottom: 0.4rem; }
+    p { color: var(--muted); margin-bottom: 0.9rem; font-size: 0.95rem; max-width: 720px; line-height: 1.75; }
+
+    /* DIVIDER */
+    .divider { height: 1px; background: linear-gradient(to right, transparent, var(--gold), transparent); opacity: 0.2; }
+
+    /* TIMELINE */
+    .timeline { max-width: 720px; margin-top: 2rem; }
+    .tl-item {
+      display: flex; gap: 1.5rem; margin-bottom: 1.5rem; align-items: flex-start;
+    }
+    .tl-year {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.78rem;
+      color: var(--gold); min-width: 52px; padding-top: 0.1rem; letter-spacing: 0.05em;
+    }
+    .tl-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--gold); opacity: 0.5; flex-shrink: 0; margin-top: 0.45rem;
+    }
+    .tl-content h4 { color: var(--white); font-size: 0.9rem; margin-bottom: 0.2rem; }
+    .tl-content p { color: var(--muted); font-size: 0.83rem; margin: 0; max-width: none; }
+
+    /* POEM CARDS */
+    .poems-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.2rem; margin-top: 2rem; }
+    .poem-card {
+      background: var(--midnight); border: 1px solid rgba(201,168,76,0.12);
+      border-radius: 4px; padding: 1.6rem; transition: border-color 0.2s;
+    }
+    .poem-card:hover { border-color: rgba(201,168,76,0.4); }
+    .poem-collection {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.65rem;
+      letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+    .poem-title { color: var(--white); font-size: 1rem; margin-bottom: 0.3rem; }
+    .poem-year { font-family: 'Helvetica Neue', sans-serif; font-size: 0.78rem; color: var(--muted); margin-bottom: 0.9rem; }
+    .poem-quote {
+      font-style: italic; color: rgba(201,168,76,0.8); font-size: 0.85rem;
+      border-left: 2px solid rgba(201,168,76,0.3); padding-left: 0.9rem;
+      margin: 0.8rem 0;
+    }
+    .poem-analysis { color: var(--muted); font-size: 0.83rem; margin: 0; max-width: none; line-height: 1.6; }
+    .poem-themes { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.9rem; }
+    .theme-chip {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.68rem;
+      padding: 0.18rem 0.6rem; border-radius: 2px; border: 1px solid;
+      letter-spacing: 0.05em;
+    }
+    .chip-love { border-color: rgba(168,50,68,0.4); color: #d4758a; background: rgba(168,50,68,0.08); }
+    .chip-politics { border-color: rgba(74,143,168,0.4); color: #7dbdd6; background: rgba(74,143,168,0.08); }
+    .chip-nature { border-color: rgba(58,125,92,0.4); color: #7ac49a; background: rgba(58,125,92,0.08); }
+    .chip-death { border-color: rgba(150,110,60,0.4); color: #c9a060; background: rgba(150,110,60,0.08); }
+    .chip-exile { border-color: rgba(120,80,160,0.4); color: #b090d0; background: rgba(120,80,160,0.08); }
+    .chip-identity { border-color: rgba(201,168,76,0.3); color: var(--gold); background: rgba(201,168,76,0.06); }
+    .chip-memory { border-color: rgba(80,130,180,0.4); color: #90b8e0; background: rgba(80,130,180,0.08); }
+
+    /* TECHNIQUES TABLE */
+    .tech-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.75rem; margin-top: 1.5rem; }
+    .tech-card {
+      background: var(--midnight); border-radius: 4px; border: 1px solid rgba(255,255,255,0.06);
+      overflow: hidden;
+    }
+    .tech-header {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.85rem 1.1rem; cursor: pointer; user-select: none;
+    }
+    .tech-header:hover { background: rgba(201,168,76,0.05); }
+    .tech-name { color: var(--gold-light); font-size: 0.9rem; }
+    .tech-toggle { color: var(--gold); font-size: 0.65rem; font-family: 'Helvetica Neue', sans-serif; }
+    .tech-body { display: none; padding: 0 1.1rem 1rem; border-top: 1px solid rgba(255,255,255,0.05); }
+    .tech-body.open { display: block; }
+    .tech-def { color: var(--muted); font-size: 0.83rem; margin: 0.65rem 0 0.5rem; max-width: none; }
+    .tech-example { font-style: italic; color: rgba(201,168,76,0.7); font-size: 0.8rem; border-left: 2px solid rgba(201,168,76,0.25); padding-left: 0.75rem; margin: 0; max-width: none; }
+
+    /* CRITICAL LENSES */
+    .lenses-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1rem; margin-top: 1.8rem; }
+    .lens-card {
+      background: var(--ink); border-radius: 4px; padding: 1.5rem;
+      border-left: 3px solid var(--gold);
+    }
+    .lens-card.marxist { border-left-color: #4a8fa8; }
+    .lens-card.postcolonial { border-left-color: #3a7d5c; }
+    .lens-card.feminist { border-left-color: #a83244; }
+    .lens-card.ecocrit { border-left-color: #5a8a5a; }
+    .lens-card.reader { border-left-color: #8a6a9a; }
+    .lens-label {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.65rem;
+      letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 0.5rem;
+    }
+    .lens-card.marxist .lens-label { color: #7dbdd6; }
+    .lens-card.postcolonial .lens-label { color: #7ac49a; }
+    .lens-card.feminist .lens-label { color: #d4758a; }
+    .lens-card.ecocrit .lens-label { color: #8ac48a; }
+    .lens-card.reader .lens-label { color: #b090d0; }
+    .lens-title { color: var(--white); font-size: 1rem; margin-bottom: 0.6rem; }
+    .lens-body { color: var(--muted); font-size: 0.83rem; line-height: 1.65; margin: 0; max-width: none; }
+    .lens-questions { margin-top: 0.8rem; }
+    .lens-q {
+      font-style: italic; color: rgba(201,168,76,0.65); font-size: 0.78rem;
+      padding: 0.25rem 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .lens-q:last-child { border-bottom: none; }
+
+    /* SCHOLARS */
+    .scholars-list { max-width: 820px; margin-top: 1.5rem; }
+    .scholar-item {
+      background: var(--midnight); border-radius: 4px; padding: 1.4rem 1.6rem;
+      margin-bottom: 0.75rem; border: 1px solid rgba(255,255,255,0.05);
+      border-left: 3px solid rgba(201,168,76,0.4);
+    }
+    .scholar-name { color: var(--white); font-size: 0.95rem; margin-bottom: 0.2rem; }
+    .scholar-work {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.75rem;
+      color: var(--accent); margin-bottom: 0.6rem; font-style: italic;
+    }
+    .scholar-arg { color: var(--muted); font-size: 0.83rem; line-height: 1.65; margin: 0; max-width: none; }
+
+    /* QUOTATIONS */
+    .quotes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 0.9rem; margin-top: 1.5rem; }
+    .quote-card {
+      background: var(--midnight); border-radius: 4px; padding: 1.3rem 1.5rem;
+      border-top: 2px solid rgba(201,168,76,0.3);
+    }
+    .quote-text {
+      font-style: italic; color: var(--gold-light); font-size: 0.9rem;
+      line-height: 1.65; margin-bottom: 0.6rem;
+    }
+    .quote-source {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.72rem;
+      color: var(--muted); letter-spacing: 0.03em;
+    }
+    .quote-tags { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.6rem; }
+    .quote-tag {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.63rem;
+      padding: 0.12rem 0.5rem; border-radius: 2px;
+      background: rgba(201,168,76,0.08); color: rgba(201,168,76,0.6);
+      border: 1px solid rgba(201,168,76,0.15);
+    }
+
+    /* THEMES */
+    .themes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 0.75rem; margin-top: 1.5rem; }
+    .theme-card {
+      background: var(--midnight); border-radius: 4px; padding: 1.2rem 1.4rem;
+    }
+    .theme-name { font-size: 1rem; color: var(--white); margin-bottom: 0.5rem; }
+    .theme-desc { color: var(--muted); font-size: 0.82rem; line-height: 1.6; margin: 0; max-width: none; }
+    .theme-poems { font-family: 'Helvetica Neue', sans-serif; font-size: 0.72rem; color: var(--accent); margin-top: 0.5rem; }
+
+    /* CONTROVERSY */
+    .controversy-wrap { max-width: 820px; }
+    .controversy-block {
+      background: var(--midnight); border-radius: 4px; padding: 1.5rem 1.8rem;
+      margin-bottom: 1rem; border-left: 3px solid rgba(168,50,68,0.5);
+    }
+    .controversy-block.political { border-left-color: rgba(74,143,168,0.5); }
+    .controversy-title { color: var(--white); font-size: 0.95rem; margin-bottom: 0.6rem; }
+    .controversy-body { color: var(--muted); font-size: 0.83rem; line-height: 1.65; margin: 0; max-width: none; }
+
+    /* CONTEXT GRID */
+    .context-two { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; max-width: 820px; margin-top: 1.5rem; }
+    @media (max-width: 650px) { .context-two { grid-template-columns: 1fr; } }
+    .context-box { background: var(--midnight); border-radius: 4px; padding: 1.4rem; }
+    .context-box h4 {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.65rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.9rem; padding-bottom: 0.5rem;
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+    }
+    .context-box ul { list-style: none; }
+    .context-box li {
+      padding: 0.3rem 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+      font-size: 0.82rem; color: var(--muted); display: flex; gap: 0.5rem; align-items: flex-start;
+    }
+    .context-box li::before { content: '▸'; color: var(--gold); flex-shrink: 0; font-size: 0.7rem; padding-top: 0.1rem; }
+    .context-box li:last-child { border-bottom: none; }
+
+    /* ESSAY PROMPTS */
+    .prompts-list { max-width: 820px; margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.7rem; }
+    .prompt-card {
+      background: var(--midnight); border-radius: 4px; padding: 1.1rem 1.4rem;
+      border-left: 3px solid rgba(74,143,168,0.4);
+    }
+    .prompt-text { color: var(--text); font-size: 0.88rem; font-style: italic; margin-bottom: 0.4rem; }
+    .prompt-lens { font-family: 'Helvetica Neue', sans-serif; font-size: 0.72rem; color: var(--accent); }
+
+    /* FOOTER */
+    footer {
+      background: #07111c; border-top: 1px solid rgba(201,168,76,0.15);
+      padding: 2rem 3rem; text-align: center;
+    }
+    footer p { color: var(--muted); font-size: 0.82rem; font-family: 'Helvetica Neue', sans-serif; max-width: none; margin: 0 0 0.3rem; }
+    footer span { color: var(--gold); }
+
+    /* EXAM PREP TABS */
+    .exam-tabs { display: flex; flex-wrap: wrap; gap: 0; margin: 2rem 0 0; border-bottom: 2px solid rgba(201,168,76,0.15); }
+    .exam-tab { background: none; border: none; border-bottom: 2px solid transparent; cursor: pointer; font-family: 'Helvetica Neue', sans-serif; font-size: 0.82rem; color: var(--muted); padding: 0.7rem 1.4rem; letter-spacing: 0.04em; transition: all 0.2s; margin-bottom: -2px; }
+    .exam-tab:hover { color: var(--gold-light); }
+    .exam-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+    .exam-panel { padding-top: 2rem; }
+    .scholar-dp { font-family: 'Helvetica Neue', sans-serif; font-size: 0.78rem; color: var(--accent); margin-top: 0.7rem; padding-top: 0.6rem; border-top: 1px solid rgba(255,255,255,0.07); }
+    .scholar-dp strong { color: var(--gold-light); font-style: normal; }
+
+    @media (max-width: 700px) {
+      nav, .page-toc, section, .hero { padding-left: 1.2rem; padding-right: 1.2rem; }
+      .hero { padding-top: 3rem; padding-bottom: 2.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <a href="index.html">← DP English A Literature HL</a>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#biography">Biography</a></li>
+    <li><a href="#poem-types">Poem Types</a></li>
+    <li><a href="#poems">Key Poems</a></li>
+    <li><a href="#lenses">Lenses</a></li>
+    <li><a href="#scholars">Scholars</a></li>
+    <li><a href="#exam-prep">Exam Prep</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-breadcrumb"><a href="index.html">Home</a> / Poetry / Pablo Neruda</div>
+  <div class="hero-tag">Poetry · Late Modernism · Chilean Literature</div>
+  <h1>Pablo <em>Neruda</em></h1>
+  <div class="hero-dates">1904–1973 · Chile · Nobel Prize in Literature 1971</div>
+  <div class="hero-quote">
+    "I want to do with you what spring does with the cherry trees."
+    <cite>Poem XIV, Twenty Love Poems and a Song of Despair (1924)</cite>
+  </div>
+</div>
+
+<!-- PAGE TOC -->
+<div class="page-toc">
+  <a href="#biography">Biography &amp; Context</a>
+  <a href="#collections">Collections Overview</a>
+  <a href="#poem-types">Poem Types</a>
+  <a href="#poems">Key Poems</a>
+  <a href="#techniques">Poetic Techniques</a>
+  <a href="#lenses">Critical Lenses</a>
+  <a href="#scholars">Key Scholars</a>
+  <a href="#quotations">Quotations Bank</a>
+  <a href="#themes">Themes</a>
+  <a href="#modernism">Literary History</a>
+  <a href="#controversy">Controversy</a>
+  <a href="#exam-prep">Exam Prep</a>
+</div>
+
+<!-- BIOGRAPHY -->
+<section id="biography">
+  <div class="section-label">01 · Biographical &amp; Historical Context</div>
+  <h2>Life, Exile, and Chile</h2>
+  <p>Understanding Neruda requires holding the personal and the political together. His biography is inseparable from Chilean history, Latin American anti-colonialism, and the global currents of communism, Stalinism, and the Spanish Civil War.</p>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-year">1904</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h4>Born Neftalí Ricardo Reyes Basoalto, Parral, Chile</h4>
+        <p>Born into a working-class railway family. His mother died weeks after his birth. Raised in Temuco, the rainy frontier south, whose landscapes infuse his nature imagery throughout his career.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1920s</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h4>Pseudonym and early mentorship</h4>
+        <p>Adopted pen name "Pablo Neruda" to conceal his writing from his disapproving father, reportedly after Czech poet Jan Neruda. Mentored in Temuco by Gabriela Mistral, who would herself win the Nobel Prize in 1945.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1924</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h4>Twenty Love Poems and a Song of Despair</h4>
+        <p>Published aged 19. Instantly controversial for its frank eroticism. Became the best-selling book of Spanish-language poetry ever written. Established Neruda as a major voice but also as a transgressive one.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1927–35</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h4>Diplomatic postings in Asia</h4>
+        <p>Chilean government stationed him in Burma, Ceylon (Sri Lanka), Java, Singapore. Profoundly alienated by colonial poverty and his own isolation. This existential darkness produces Residencia en la Tierra (1933, 1935), Neruda's most surrealist and psychologically intense work.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1936–37</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h4>Spanish Civil War: political awakening</h4>
+        <p>Posted to Madrid and Barcelona. Witnesses Fascist atrocities. The murder of his friend Federico García Lorca by Francoist forces radicalises him permanently. Writes España en el Corazón (1937) and declares: "Poetry is rebellion." Joins the Communist Party of Chile in 1945.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1948–52</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h4>Exile and the Ley Maldita</h4>
+        <p>President González Videla, under US Cold War pressure, bans communism in Chile (the Ley de Defensa Permanente de la Democracia, nicknamed the "Ley Maldita"). Neruda, a sitting senator, is charged with treason. He hides for months, then escapes on horseback over the Andes into Argentina. Exiled until 1952, travelling the Soviet bloc, Mexico, Europe. Canto General (1950) is written largely during this period.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1950–54</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h4>Canto General and the Odas</h4>
+        <p>Canto General (1950) is published clandestinely in Chile and in Mexico: an epic of Latin American history, geology, colonialism, and communist solidarity. On returning to Chile, Neruda reinvents himself as a poet of the ordinary in the Odas Elementales (1954), writing accessible, democratic odes to salt, socks, a tomato.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1971</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h4>Nobel Prize in Literature</h4>
+        <p>Awarded "for a poetry that with the action of an elemental force brings alive a continent's destiny and dreams." At the time, serving as Chilean Ambassador to France under Salvador Allende's socialist government. His Nobel lecture explicitly connects poetry to political memory and continental liberation.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1973</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h4>Death and mystery</h4>
+        <p>Pinochet's coup overthrows Allende on 11 September 1973. Neruda is hospitalised with cancer. He dies 12 days later, 23 September. His Santiago home is ransacked by soldiers. The official cause is "prostate cancer," but ongoing forensic investigations (most recently 2023) have raised the possibility of deliberate poisoning. The matter has not been definitively resolved.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- COLLECTIONS -->
+<section id="collections">
+  <div class="section-label">02 · Major Works</div>
+  <h2>Collections at a Glance</h2>
+  <p>Neruda's output spans five distinct stylistic phases. IB students should be able to place individual poems within this arc of development.</p>
+
+  <div class="context-two" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); max-width: 1000px;">
+    <div class="context-box">
+      <h4>Twenty Love Poems (1924)</h4>
+      <ul>
+        <li>Erotic, sensual, melancholic love lyrics</li>
+        <li>Nature as extended metaphor for the beloved</li>
+        <li>Romantic despair and desire coexist</li>
+        <li>Feminist scholars critique objectification of women</li>
+        <li>Best-selling Spanish-language poetry book of all time</li>
+      </ul>
+    </div>
+    <div class="context-box">
+      <h4>Residence on Earth (1933–35)</h4>
+      <ul>
+        <li>Surrealist, existentially dark, formally fractured</li>
+        <li>Written during isolation in colonial Asia</li>
+        <li>Themes: despair, decay, dissolution of the self</li>
+        <li>Influenced by Spanish surrealism and Whitman</li>
+        <li>Neruda later repudiated these poems as too nihilistic</li>
+      </ul>
+    </div>
+    <div class="context-box">
+      <h4>Canto General (1950)</h4>
+      <ul>
+        <li>Epic: 15 cantos, 231 poems covering the history of the Americas</li>
+        <li>Pre-Columbian nature → conquest → resistance → communism</li>
+        <li>Marxist and postcolonial readings are essential here</li>
+        <li>The Heights of Macchu Picchu is the central poem</li>
+        <li>Published clandestinely, illustrated by Rivera and Siqueiros</li>
+      </ul>
+    </div>
+    <div class="context-box">
+      <h4>Odes to Common Things (1954–59)</h4>
+      <ul>
+        <li>225 odes to everyday objects: salt, socks, a tomato, bread</li>
+        <li>Deliberately democratic and accessible in register</li>
+        <li>Ecocritical readings focus on material-world attention</li>
+        <li>Marxist readings see celebration of labour and workers</li>
+        <li>Formally innovative: narrow vertical free-verse columns</li>
+      </ul>
+    </div>
+    <div class="context-box">
+      <h4>One Hundred Love Sonnets (1959)</h4>
+      <ul>
+        <li>Written for his wife Matilde Urrutia</li>
+        <li>Return to the sonnet form, but loose and irregular</li>
+        <li>Mature, reciprocal vision of love (contrast with 1924)</li>
+        <li>Nature still central but partnership replaces possession</li>
+        <li>Divided: Morning, Afternoon, Evening, Night</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- POEM TYPES -->
+<section id="poem-types">
+  <div class="section-label">03 · Genre &amp; Form</div>
+  <h2>Categories of Poem Type</h2>
+  <p>Neruda's output spans a wide range of poetic forms and genres. Recognising the type of poem you are dealing with shapes which analytical tools to apply and which critical lenses are most productive.</p>
+
+  <div class="tech-grid">
+
+    <div class="tech-card">
+      <div class="tech-header" onclick="toggleTech(this)">
+        <span class="tech-name">Love Lyric</span>
+        <span class="tech-toggle">▼</span>
+      </div>
+      <div class="tech-body">
+        <p class="tech-def">First-person meditations on desire, loss, and the beloved. The dominant mode of <em>Twenty Love Poems</em> (1924) and <em>One Hundred Love Sonnets</em> (1959). The lyric "I" is intimate and directed at a "you." Voice, apostrophe, and extended metaphor of nature are key devices. Alazraki (1972) traces this from early symbolist influence through the mature sonnets, showing how the same form carries very different emotional content at different stages of Neruda's career.</p>
+        <p class="tech-example">Key poems: Poem XIV ("I like for you to be still"), Poem XX ("Tonight I can write"), Sonnet XVII ("I do not love you as if you were salt-rose").</p>
+      </div>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-header" onclick="toggleTech(this)">
+        <span class="tech-name">Political / Witness Poem</span>
+        <span class="tech-toggle">▼</span>
+      </div>
+      <div class="tech-body">
+        <p class="tech-def">Poems of political testimony and collective outrage. After the Spanish Civil War (1936–37), Neruda's "poetic conversion" (Alazraki) produced poems that name atrocities and indict oppressors, calling the reader to witness. Direct address and documentary detail implicate the reader morally. Key device: anaphora as accumulation of evidence. The register shifts from private lyric to public speech. Neruda's "I" becomes a collective "we."</p>
+        <p class="tech-example">Key poems: "I'm Explaining a Few Things," "The United Fruit Co.," <em>España en el Corazón</em> (1937).</p>
+      </div>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-header" onclick="toggleTech(this)">
+        <span class="tech-name">Surrealist Poem</span>
+        <span class="tech-toggle">▼</span>
+      </div>
+      <div class="tech-body">
+        <p class="tech-def">Poems of psychological despair and existential fragmentation written during Neruda's Asian isolation (1927–35). Alazraki argues Neruda did not commit to Surrealist theory or any manifesto. He used surrealist techniques (disintegrated syntax, irrational imagery, dreamlike accumulation) to express personal anguish rather than to illustrate a programme. De Costa: the "disintegrated ideas, sentences, and words" are a formal consequence of the poet's philosophical attitude, so that form enacts content. Critics called these "the greatest surrealist poems in a western language."</p>
+        <p class="tech-example">Key poems: "Dead Gallop," "Sexual Water," "Sonata and Destructions" (<em>Residencia en la Tierra</em>, 1933–35).</p>
+      </div>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-header" onclick="toggleTech(this)">
+        <span class="tech-name">Elemental Ode</span>
+        <span class="tech-toggle">▼</span>
+      </div>
+      <div class="tech-body">
+        <p class="tech-def">A democratic form celebrating ordinary objects: salt, socks, tomatoes, bread. Narrow vertical free-verse columns mirror the precision and simplicity of the poem's subject. Neruda's odes are "utilitaria y util" (useful like metal or flour), a consciously political choice to make poetry accessible to all readers. Alazraki describes the Odes as achieving "a lyric clarity" that is "a point of arrival in his poetic development," a transparency of language that only a mature and ripe poet could achieve.</p>
+        <p class="tech-example">Key poems: "Ode to My Socks," "Ode to a Large Tuna in the Market," "Ode to Salt," "Ode to the Tomato."</p>
+      </div>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-header" onclick="toggleTech(this)">
+        <span class="tech-name">Epic Canto / Long Poem</span>
+        <span class="tech-toggle">▼</span>
+      </div>
+      <div class="tech-body">
+        <p class="tech-def">The ambitious, multi-part poem crossing lyric intimacy with epic scale. <em>Canto General</em> (1950) is 15 cantos and 231 poems, a poetic history of the Americas from pre-Columbian origins through the conquest to communism. Alazraki argues Neruda achieved "a form without counterpart in Western poetry," fusing the personal lyric odyssey (the poet-exile's individual life) with continental epic (the dispossession and resistance of an entire people). Whitman's democratic catalogues are the key formal inheritance.</p>
+        <p class="tech-example">Key poems: "The Heights of Macchu Picchu" (12 cantos), "I Wish the Wood-cutter Would Wake Up," "The United Fruit Co."</p>
+      </div>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-header" onclick="toggleTech(this)">
+        <span class="tech-name">Sonnet</span>
+        <span class="tech-toggle">▼</span>
+      </div>
+      <div class="tech-body">
+        <p class="tech-def"><em>One Hundred Love Sonnets</em> (1959) returns to a traditional form but Neruda's sonnets are irregular and conversational rather than metrically strict. Written for his wife Matilde Urrutia, they represent a mature, reciprocal vision of love, in sharp contrast with the possessive desire of the 1924 collection. The volta (turn) is used to explore contradictions within love. Alazraki describes the evolution from Neruda's early love poems to the sonnets as evidence of his lifelong development as "the chronicler of all things."</p>
+        <p class="tech-example">Key poems: Sonnet XVII ("I do not love you…"), Sonnet LXXXIX ("When I die, I want your hands on my eyes").</p>
+      </div>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-header" onclick="toggleTech(this)">
+        <span class="tech-name">Sardonic / Self-Reflective Poem</span>
+        <span class="tech-toggle">▼</span>
+      </div>
+      <div class="tech-body">
+        <p class="tech-def">The later collections, particularly <em>Estravagario</em> (1958), adopt a sardonic, self-mocking tone. Alazraki notes that in <em>Estravagario</em>, "the militant poet gives way to a poet perplexed and amused by the bizarre paradoxes of his own personal life." Irony and jest replace rage and epic ambition. Neruda confesses that "toda claridad es oscura" (all clarity is obscure), a late-modernist acknowledgment that poetry must touch mystery as well as communicate politically.</p>
+        <p class="tech-example">Key poems: "Itinerarios" (<em>Estravagario</em>, 1958), "Testamento de Otoño," <em>Plenos Poderes</em> (1962).</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- KEY POEMS -->
+<section id="poems">
+  <div class="section-label">04 · Close Reading Focus</div>
+  <h2>Key Poems for IB HL</h2>
+  <p>The following poems represent the range of Neruda's work most likely to appear in Paper 1, Paper 2, or the Individual Oral. For each, note the key literary devices, central argument, and which critical lenses apply most productively.</p>
+
+  <div class="poems-grid">
+
+    <div class="poem-card">
+      <div class="poem-collection">Twenty Love Poems and a Song of Despair</div>
+      <div class="poem-title">Poem XIV: "I like for you to be still"</div>
+      <div class="poem-year">1924</div>
+      <div class="poem-quote">"I like for you to be still: it is as though you were absent, / and you hear me from far away and my voice does not touch you."</div>
+      <p class="poem-analysis">The beloved is prized for her silence and passivity, a posture feminist critics (see Atwood's response poem "Is/Not") read as a male fantasy of possession. The speaker's desire is constituted by the woman's absence. Paradox: she is most fully "present" as an object of imagination when she is literally absent. Key devices: apostrophe, paradox, anaphora on "I like."</p>
+      <div class="poem-themes">
+        <span class="theme-chip chip-love">Love</span>
+        <span class="theme-chip chip-identity">Gender</span>
+      </div>
+    </div>
+
+    <div class="poem-card">
+      <div class="poem-collection">Twenty Love Poems and a Song of Despair</div>
+      <div class="poem-title">Poem XX: "Tonight I can write the saddest lines"</div>
+      <div class="poem-year">1924</div>
+      <div class="poem-quote">"Tonight I can write the saddest lines. / I loved her, and sometimes she loved me too."</div>
+      <p class="poem-analysis">Perhaps the most widely read poem in the Spanish language. Uses anaphora ("Tonight I can write…") as both rhetorical motor and enactment of grief. The repetition performs the way sorrow circles back on itself. The past tense creates temporal distance; the shift to present tense in the final stanza acknowledges the impossibility of recovery. Metapoetic: the poem is "about" the act of writing it.</p>
+      <div class="poem-themes">
+        <span class="theme-chip chip-love">Love</span>
+        <span class="theme-chip chip-memory">Memory</span>
+        <span class="theme-chip chip-death">Loss</span>
+      </div>
+    </div>
+
+    <div class="poem-card">
+      <div class="poem-collection">Residence on Earth</div>
+      <div class="poem-title">"Dead Gallop" (Galope Muerto)</div>
+      <div class="poem-year">1933</div>
+      <div class="poem-quote">"Like ashes, like seas peopling themselves, / in the submerged slowness, in what is unformed…"</div>
+      <p class="poem-analysis">The opening poem of Residencia. A sustained surrealist meditation on decay, accumulation, and the impossibility of coherent selfhood. Syntax breaks down deliberately: the "disintegrated sentences" (de Costa) enact the poem's philosophical content. Key devices: surrealist imagery, fragmented syntax, accumulation through cataloguing. Nancy Willard reads the Residencias as exploring "isolation among the living" rather than death itself.</p>
+      <div class="poem-themes">
+        <span class="theme-chip chip-death">Decay</span>
+        <span class="theme-chip chip-identity">Self</span>
+      </div>
+    </div>
+
+    <div class="poem-card">
+      <div class="poem-collection">Residence on Earth / Tercera Residencia</div>
+      <div class="poem-title">"I'm Explaining a Few Things" (Explico algunas cosas)</div>
+      <div class="poem-year">1937</div>
+      <div class="poem-quote">"Come and see the blood in the streets, / come and see / the blood in the streets, / come and see the blood / in the streets!"</div>
+      <p class="poem-analysis">The pivot poem in Neruda's career, the moment the private surrealist becomes the public political poet. Begins with nostalgic description of pre-war Madrid, then is violently interrupted by the Fascist bombing. The final anaphoric cry for the reader to "come and see the blood" implicates them in witness. Marxist readings connect it to political memory; reader-response theory notes how the poem's demand makes the reader complicit.</p>
+      <div class="poem-themes">
+        <span class="theme-chip chip-politics">Politics</span>
+        <span class="theme-chip chip-exile">War</span>
+        <span class="theme-chip chip-memory">Memory</span>
+      </div>
+    </div>
+
+    <div class="poem-card">
+      <div class="poem-collection">Canto General</div>
+      <div class="poem-title">"The Heights of Macchu Picchu" (Alturas de Macchu Picchu)</div>
+      <div class="poem-year">1945 / 1950</div>
+      <div class="poem-quote">"I come to speak for your dead mouths. / Throughout the earth / let dead lips congregate… / Speak through my words and my blood."</div>
+      <p class="poem-analysis">Twelve-part poem, the centrepiece of Canto General. The speaker ascends Macchu Picchu and passes through personal depression (Sections I–V) into collective historical consciousness (Sections VI–XII). The ancient Inca city becomes a site of postcolonial witness. Neruda speaks for the anonymous labourers who built it and whose names history erased. Alazraki argues the poem fuses "lyric and epic." Key movement: from "I" to "we," from individual voice to the collective voice of the Americas.</p>
+      <div class="poem-themes">
+        <span class="theme-chip chip-politics">Postcolonial</span>
+        <span class="theme-chip chip-identity">Identity</span>
+        <span class="theme-chip chip-death">Death</span>
+        <span class="theme-chip chip-memory">History</span>
+      </div>
+    </div>
+
+    <div class="poem-card">
+      <div class="poem-collection">Odes to Common Things</div>
+      <div class="poem-title">"Ode to My Socks" (Oda a mis calcetines)</div>
+      <div class="poem-year">1956</div>
+      <div class="poem-quote">"Two socks as soft / as hares… / I resisted / the sharp temptation / to save them somewhere / as schoolboys / keep / fireflies."</div>
+      <p class="poem-analysis">The socks (a gift from a shepherd) become the occasion for meditation on beauty, temptation, and the ethics of use. Ecocritical readings focus on the domestic object's dignity; Marxist readings find a celebration of artisanal labour. The self-mocking comic tone is itself significant: the poet who wrote of continental epics now celebrates a pair of woollen socks. The "moral" at the poem's end (beauty must be used, not hoarded) carries political weight about wealth distribution.</p>
+      <div class="poem-themes">
+        <span class="theme-chip chip-nature">Objects</span>
+        <span class="theme-chip chip-politics">Labour</span>
+      </div>
+    </div>
+
+    <div class="poem-card">
+      <div class="poem-collection">Odes to Common Things</div>
+      <div class="poem-title">"Ode to a Large Tuna in the Market"</div>
+      <div class="poem-year">1954</div>
+      <div class="poem-quote">"…only you lived through / the sea's truth… / and now / you lie / in front of me, dead."</div>
+      <p class="poem-analysis">The tuna arrives in the market as a "silvered" ambassador from the deep. The poem mourns its death while celebrating its magnificent life. Classic ecocritical poem: the "gaze" reverses, and the tuna's life in the ocean is given equal weight to human commerce. The market becomes a site of ecological witness. Death and nature as entwined themes.</p>
+      <div class="poem-themes">
+        <span class="theme-chip chip-nature">Nature</span>
+        <span class="theme-chip chip-death">Death</span>
+      </div>
+    </div>
+
+    <div class="poem-card">
+      <div class="poem-collection">Canto General</div>
+      <div class="poem-title">"United Fruit Co." (La United Fruit Co.)</div>
+      <div class="poem-year">1950</div>
+      <div class="poem-quote">"When the trumpet sounded, it was / all prepared on the earth, / and Jehovah parcelled out the earth / to Coca-Cola, Inc., Anaconda, / Ford Motors, and other entities."</div>
+      <p class="poem-analysis">Neruda's most direct anti-imperialist poem. The opening parody of the Book of Genesis ("When the trumpet sounded") immediately signals a Marxist demystification of corporate capitalism as a new god. The United Fruit Company (which backed US-backed coups in Central America) is named directly. Postcolonial and Marxist lenses are essential. Formally, the list of corporations reads like a liturgy, a deliberate sacrilegious irony.</p>
+      <div class="poem-themes">
+        <span class="theme-chip chip-politics">Marxist</span>
+        <span class="theme-chip chip-politics">Postcolonial</span>
+        <span class="theme-chip chip-exile">Imperialism</span>
+      </div>
+    </div>
+
+    <div class="poem-card">
+      <div class="poem-collection">Canto General</div>
+      <div class="poem-title">"Keeping Quiet" (Oda a la Quietud / La Unidad)</div>
+      <div class="poem-year">1950</div>
+      <div class="poem-quote">"Now we will count to twelve / and we will all keep still… / perhaps a huge silence / might interrupt this sadness / of never understanding ourselves."</div>
+      <p class="poem-analysis">A meditation on collective stillness as a form of resistance and renewal. Eco-critical scholarship (Lawrence Buell's framework of environmental consciousness) has applied to this poem the argument that Neruda challenges the modern ideology of continuous productivity. The silence the poem calls for is transformative. Often taught for its connection to ecological ethics and the need to pause human exploitation of nature and each other.</p>
+      <div class="poem-themes">
+        <span class="theme-chip chip-nature">Ecocritical</span>
+        <span class="theme-chip chip-politics">Resistance</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- POETIC TECHNIQUES -->
+<section id="techniques">
+  <div class="section-label">05 · Style &amp; Form</div>
+  <h2>Poetic Techniques and Literary Devices</h2>
+  <p>Neruda's distinctive voice emerges from a recognisable set of techniques that recur across very different phases of his career. Click each device to expand the analysis and see an example from the poems.</p>
+
+  <div class="tech-grid">
+
+    <div class="tech-card">
+      <div class="tech-header" onclick="toggleTech(this)">
+        <span class="tech-name">Surrealist Imagery</span>
+        <span class="tech-toggle">▼</span>
+      </div>
+      <div class="tech-body">
+        <p class="tech-def">Juxtaposition of unlike images to bypass rational logic and access emotional or subconscious truth. Neruda uses surrealism as an emotional intensifier: "impossible metaphors" that create feeling rather than argument.</p>
+        <p class="tech-example">"Like ashes, like seas peopling themselves, in the submerged slowness…" (Dead Gallop). The accumulation of unlike images creates a sensation of dissolution that no rational description could.</p>
+      </div>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-header" onclick="toggleTech(this)">
+        <span class="tech-name">Extended Nature Metaphor</span>
+        <span class="tech-toggle">▼</span>
+      </div>
+      <div class="tech-body">
+        <p class="tech-def">Women's bodies and emotional states are mapped onto natural landscapes: hills, sea, earth, wind. De Costa notes Neruda "raised to a cosmic level" the equation of woman with nature. This is both a poetic technique and a site of feminist critique.</p>
+        <p class="tech-example">"Your body of white stone, your river legs" (Twenty Love Poems). The geology of Chile becomes the grammar of desire.</p>
+      </div>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-header" onclick="toggleTech(this)">
+        <span class="tech-name">Anaphora</span>
+        <span class="tech-toggle">▼</span>
+      </div>
+      <div class="tech-body">
+        <p class="tech-def">The repetition of a phrase at the beginning of successive lines or clauses. In Neruda, anaphora performs the circularity of grief, the insistence of political witness, or the accumulative power of epic catalogue.</p>
+        <p class="tech-example">"Tonight I can write the saddest lines…" (repeated 3 times). "Come and see the blood in the streets, come and see the blood…" (I'm Explaining a Few Things).</p>
+      </div>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-header" onclick="toggleTech(this)">
+        <span class="tech-name">Catalogue / Epic List</span>
+        <span class="tech-toggle">▼</span>
+      </div>
+      <div class="tech-body">
+        <p class="tech-def">Neruda inherits the Whitmanesque tradition of the democratic list, enumerating rivers, minerals, birds, peoples, corporations. The list form in Canto General enacts his political argument: each item has equal weight, no hierarchy. In the Odes, it dignifies the overlooked.</p>
+        <p class="tech-example">"Jehovah parcelled out the earth / to Coca-Cola, Inc., Anaconda, / Ford Motors, and other entities" (United Fruit Co.). The corporate liturgy as satirical catalogue.</p>
+      </div>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-header" onclick="toggleTech(this)">
+        <span class="tech-name">Free Verse / Fragmented Syntax</span>
+        <span class="tech-toggle">▼</span>
+      </div>
+      <div class="tech-body">
+        <p class="tech-def">Neruda abandoned conventional metre early. In Residencia, syntax itself fragments: sentences dissolve mid-thought, reflecting the poem's subject (dissolution, despair). In the Odes, he uses a narrow vertical column of short lines that visually slows the reader's attention to each word.</p>
+        <p class="tech-example">The Odes' narrow columns force a word-by-word encounter: the form enacts the close, loving attention to ordinary things that is the collection's argument.</p>
+      </div>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-header" onclick="toggleTech(this)">
+        <span class="tech-name">Apostrophe &amp; Direct Address</span>
+        <span class="tech-toggle">▼</span>
+      </div>
+      <div class="tech-body">
+        <p class="tech-def">Neruda frequently addresses absent lovers, dead civilisations, objects, and the reader directly. In the Odes, objects are addressed as equals: "O salt." In Macchu Picchu, the dead workers are addressed directly: "Speak through my words and my blood."</p>
+        <p class="tech-example">"I come to speak for your dead mouths": the apostrophe to the Incan dead is simultaneously a political manifesto and an act of poetic conjuring.</p>
+      </div>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-header" onclick="toggleTech(this)">
+        <span class="tech-name">Shift from "I" to "We"</span>
+        <span class="tech-toggle">▼</span>
+      </div>
+      <div class="tech-body">
+        <p class="tech-def">A key structural move in the political poems. Individual lyric subjectivity ("I") transforms into collective political voice ("we"). In Macchu Picchu, the speaker's personal journey of depression becomes the voice of a continent. This shift is Neruda's argument for the social function of the poet.</p>
+        <p class="tech-example">Sections I–V of Macchu Picchu: "I" wanders and suffers. Section XII: "Come up to be born with me, my brother". The singular becomes the collective.</p>
+      </div>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-header" onclick="toggleTech(this)">
+        <span class="tech-name">Metapoetry</span>
+        <span class="tech-toggle">▼</span>
+      </div>
+      <div class="tech-body">
+        <p class="tech-def">Poems that reflect on the act of writing poetry. Poem XX ("Tonight I can write the saddest lines") is a poem about trying to write a poem about loss. The Odes include "Ode to the Book" (a poem about books).</p>
+        <p class="tech-example">"Tonight I can write the saddest lines. / I loved her, and sometimes she loved me too": the present-tense writing frame foregrounds the poem's own construction.</p>
+      </div>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-header" onclick="toggleTech(this)">
+        <span class="tech-name">Intertextuality / Epic Parody</span>
+        <span class="tech-toggle">▼</span>
+      </div>
+      <div class="tech-body">
+        <p class="tech-def">Neruda deliberately invokes and subverts canonical forms (Biblical Genesis, classical epic, the ode tradition) to advance political arguments. The sacred is secularised; the corporate is made sacred. This irony is a central device in Canto General.</p>
+        <p class="tech-example">"When the trumpet sounded, it was all prepared on the earth": the Genesis cadence, applied to US corporations, makes the reader hear the parody immediately.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CRITICAL LENSES -->
+<section id="lenses">
+  <div class="section-label">06 · Critical Theory</div>
+  <h2>Critical Perspectives</h2>
+  <p>Each lens opens different aspects of Neruda's work and should be selected based on which poem or theme you are discussing. Good IB HL essays deploy two lenses in dialogue rather than applying one exhaustively.</p>
+
+  <div class="lenses-grid">
+
+    <div class="lens-card marxist">
+      <div class="lens-label">Marxist / Political Reading</div>
+      <div class="lens-title">Poetry as Class Consciousness</div>
+      <p class="lens-body">A Marxist reading asks: whose interests does the poem serve? Who is silenced? Neruda's commitment to writing in "the language of everyday life" (PIT Journal, UNC, 2023) was a political choice in itself, aimed at making poetry accessible to the Chilean working class rather than an educated elite. Canto General reads Latin American history as a story of colonial exploitation, Indigenous dispossession, and capitalist extraction. The United Fruit Co. poem makes the Marxist argument explicit. The Odes celebrate the labour embedded in ordinary objects (the bread, the salt, the tomato) as a form of workers' solidarity. Roland Bleiker (Third World Quarterly, 1999) argues that Neruda "reveals how poetry can enter the political process and become a critical historical memory."</p>
+      <div class="lens-questions">
+        <div class="lens-q">How does the poem represent class, labour, or economic power?</div>
+        <div class="lens-q">Who is given voice and who is silenced?</div>
+        <div class="lens-q">How does form (accessible register, lists, common speech) embody ideology?</div>
+      </div>
+    </div>
+
+    <div class="lens-card postcolonial">
+      <div class="lens-label">Postcolonial Reading</div>
+      <div class="lens-title">Voicing the Colonised Continent</div>
+      <p class="lens-body">Canto General is the central text for postcolonial analysis. Neruda's project is to write a counter-history of the Americas from a Latin American subject-position, against the European colonial narratives of discovery and civilisation. The Heights of Macchu Picchu enacts this: the speaker first experiences personal nihilism (a metaphor for the colonial wound), then ascends to identify with the anonymous builders whom colonialism erased. His declaration "I come to speak for your dead mouths" is an act of literary decolonisation. The Inca civilisation is recovered as a living political resource. Key issue: Neruda himself was mestizo, not Indigenous. Postcolonial critics interrogate whether this is solidarity or appropriation.</p>
+      <div class="lens-questions">
+        <div class="lens-q">Does the poem recover or appropriate Indigenous voices?</div>
+        <div class="lens-q">How does Neruda represent colonialism and its violence?</div>
+        <div class="lens-q">Who is the implied reader: a Latin American subject or a European observer?</div>
+      </div>
+    </div>
+
+    <div class="lens-card feminist">
+      <div class="lens-label">Feminist / Gender Reading</div>
+      <div class="lens-title">Woman as Object, Nature, and Absence</div>
+      <p class="lens-body">Feminist criticism of Neruda is substantial and sharp. The core problem: in the Twenty Love Poems, women are unnamed and voiceless, defined by their relationship to the male speaker's desire. René de Costa notes Neruda "raised to a cosmic level" the equation of woman with nature. Feminist critics read this elevation as a form of depersonalisation. Scholar Margaret Persin acknowledges Neruda's "view of woman as sexual object to be admired and possessed" but argues his later work shows evolution. Canadian poet Margaret Atwood responded directly with her poem "Is/Not," which overturns Neruda's love-as-physics metaphors. The memoir admission regarding the assault in Ceylon (1930), discussed in the Controversy section below, has given feminist critique of Neruda a biographical as well as textual dimension. GradeSaver and Academia.edu scholarship notes the "objectification theory" framework applied to the love poems through courtly love analysis.</p>
+      <div class="lens-questions">
+        <div class="lens-q">Is the female subject of the poem an agent or an object?</div>
+        <div class="lens-q">What does the speaker's desire reveal about gendered power?</div>
+        <div class="lens-q">How does the equation of woman with nature function: elevation or erasure?</div>
+      </div>
+    </div>
+
+    <div class="lens-card ecocrit">
+      <div class="lens-label">Ecocriticism</div>
+      <div class="lens-title">Attention to the Non-Human World</div>
+      <p class="lens-body">Ecocriticism examines how literature constructs the relationship between human beings and the natural or material world. Neruda's entire oeuvre can be read through this lens, but the Odes are most productive. The Odes perform what ecocritics call a "poetics of attention": the slow, loving examination of a tomato, a stone, a piece of soap. Lawrence Buell's criteria for "environmental consciousness" in texts (including texts that challenge "continuous growth and productivity") apply directly to "Keeping Quiet," where Neruda calls for collective stillness. The ecocritical reading finds in Neruda's material poetics an ethics of care for the non-human world. The "Ode to a Large Tuna" gives the fish's ocean life equal dignity to human commercial activity. A published paper in The Academic (2025) applies this framework explicitly to "Keeping Quiet."</p>
+      <div class="lens-questions">
+        <div class="lens-q">How does the poem position the human in relation to the natural world?</div>
+        <div class="lens-q">Does the poem challenge or reinforce human exploitation of nature?</div>
+        <div class="lens-q">What values are expressed through the attention given to non-human objects?</div>
+      </div>
+    </div>
+
+    <div class="lens-card reader">
+      <div class="lens-label">Reader-Response</div>
+      <div class="lens-title">The Reader's Role in Meaning-Making</div>
+      <p class="lens-body">Reader-response theory asks how the text activates the reader. Neruda's political poems frequently implicate the reader. "Come and see the blood in the streets" makes the reader a witness who is called to action. The surrealist poems of Residencia resist stable interpretation: meaning is co-created between text and reader, since the fractured imagery offers no single interpretive path. Neruda himself insisted metaphor (rather than rational argument) reveals truth, which is itself a reader-response claim: meaning emerges in the imaginative encounter between image and mind. The accessibility of the Odes was a deliberate political choice to widen the readership of poetry. The implied reader is the Chilean campesino, not the university student.</p>
+      <div class="lens-questions">
+        <div class="lens-q">How does the poem address or position the reader?</div>
+        <div class="lens-q">What assumptions does the poem make about its audience?</div>
+        <div class="lens-q">How does ambiguity (especially in Residencia) invite multiple readings?</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- KEY SCHOLARS -->
+<section id="scholars">
+  <div class="section-label">07 · Academic Scholarship</div>
+  <h2>Key Critics and Their Arguments</h2>
+  <p>These critics have shaped how we understand Neruda's poetry. Each entry summarises the scholar's main arguments and connects them to the Areas of Exploration and Key Concepts in the IB DP Literature course.</p>
+
+  <div class="scholars-list">
+
+    <div class="scholar-item">
+      <div class="scholar-name">René de Costa</div>
+      <div class="scholar-work"><em>The Poetry of Pablo Neruda</em>, Harvard University Press, 1979</div>
+      <p class="scholar-arg">The foundational English-language monograph on Neruda. De Costa's key contribution is methodological: he was, he claims, "the first" to assess Neruda's Communist and non-Communist writings with equal critical detachment, free from Cold War distortion. His central argument about <em>Residencia</em> is formal: the "disintegrated ideas, sentences, and words" are a formal consequence of the poet's philosophical attitude. The structure enacts the content of dissolution and despair. On the love poems, de Costa notes that Neruda "raised to a cosmic level" the equation of woman with nature, a move that both elevates and depersonalises the female figure.</p>
+      <div class="scholar-dp"><strong>DP Connections:</strong> Readers, Writers &amp; Texts: how formal choices enact meaning · Key Concept: <em>Creativity &amp; Expression</em> · Time &amp; Place: the Asian isolation context of <em>Residencia</em></div>
+    </div>
+
+    <div class="scholar-item">
+      <div class="scholar-name">Jaime Alazraki</div>
+      <div class="scholar-work">"Pablo Neruda, the Chronicler of All Things," <em>Books Abroad</em>, vol. 46, no. 1, Winter 1972, pp. 49–54</div>
+      <p class="scholar-arg">Alazraki traces Neruda's entire career as a sequence of stylistic transformations: from symbolist modernism (<em>Crepusculario</em>, 1923) through the surrealist darkness of <em>Residencia</em>, the "poetic conversion" triggered by the Spanish Civil War, the continental epic of <em>Canto General</em>, the democratic transparency of the <em>Elemental Odes</em>, and the sardonic self-reflection of <em>Estravagario</em>. His central thesis: Neruda's work was "a sort of seismograph through which one could learn what was happening not only in the poetry of Latin America but also in contemporary poetry at large." On <em>Canto General</em>: the poem achieves "a form without counterpart in Western poetry". It is a fusion of epic and lyric: "By bringing together his own odyssey and the drama of the continent, Neruda has simultaneously given to Canto General the quality of a lyric and an epic poem." The poet's personal exile becomes one with the continental history of colonialism and resistance. On the Odes: Neruda reached "a lyric clarity" that is "a point of arrival in his poetic development": a transparency achieved only by the consummate and ripe poet he was by 1954. Alazraki also identifies Whitman as Neruda's deepest formal influence: Neruda consciously adopted the self-designation "Pablo Neruda, el cronista de todas las cosas" (the chronicler of all things).</p>
+      <div class="scholar-dp"><strong>DP Connections:</strong> Time &amp; Place: Neruda as seismograph of a historical moment · Key Concept: <em>Transformation</em>, the "poetic conversion" after the Spanish Civil War · Intertextuality: Whitman's democratic catalogues and Neruda's odes · Readers, Writers &amp; Texts: how form embodies political commitment</div>
+    </div>
+
+    <div class="scholar-item">
+      <div class="scholar-name">Louise A. Detwiler</div>
+      <div class="scholar-work">"Deconstructing the Role of Love in Two of Pablo Neruda's <em>Veinte Poemas de Amor</em>," <em>Hispanófila</em>, no. 122, January 1998, pp. 85–93 · Indiana University Bloomington</div>
+      <p class="scholar-arg">Detwiler applies semiotics and deconstruction (drawing on Eagleton and Belsey) to "Cuerpo de mujer" (Poem 1) and "Me gustas cuando callas" (Poem 15). Traditional readings treat Love as a force of passionate chaos, the emotion that overwhelms both poet and beloved. Detwiler's deconstructive counter-reading argues the opposite: Love in these poems operates as a rational, ideological regulator of Woman's position within a male-dominated gender hierarchy. "Crazy Love" functions as "false consciousness": it smooths over objectification and domination by coding them as romance. In "Cuerpo de mujer," what scholars have read as pure eroticism could describe an act of aggression normalised in the name of Love. In "Me gustas cuando callas," the imposition of silence on the woman is "sweetly couched in the romantic game", but its function is to "deprive her of discourse in order to secure her position as Other." Woman is made present only as absence: her eyes are absent, her mouth sealed, her voice inaudible. Love, Detwiler concludes, "produces order for the male-dominated gender hierarchy and regulates Woman", concealing this ideological work beneath the appearance of passionate chaos.</p>
+      <div class="scholar-dp"><strong>DP Connections:</strong> Readers, Writers &amp; Texts: deconstruction as a reading practice · Key Concept: <em>Representation</em>, how Love represents and conceals ideological relations · Key Concept: <em>Identity</em>, Woman as Other, Man as World · Time &amp; Place: gender dynamics in 1920s Latin American literary culture</div>
+    </div>
+
+    <div class="scholar-item">
+      <div class="scholar-name">Manuel Durán and Margery Safir</div>
+      <div class="scholar-work"><em>Earth Tones: The Poetry of Pablo Neruda</em>, Indiana University Press, 1981</div>
+      <p class="scholar-arg">Durán and Safir provide the key contextual argument for the <em>Residencias</em>: that Neruda's Asian diplomatic postings placed him in "a mixture of chaos, poverty, and fascinating perceptions of the ancient cultures in contrast with a degrading colonial present", and that this colonial encounter is what produced the existential darkness of <em>Residencia</em>. On <em>Canto General</em>: "In the Canto, Neruda reached his peak as a public poet. He produced an ideological work that largely transcended contemporary events and became an epic of an entire continent and its people."</p>
+      <div class="scholar-dp"><strong>DP Connections:</strong> Time &amp; Place: colonial context shapes poetic voice · Key Concept: <em>Identity</em>, the role of displacement in forming the lyric self · Intertextuality: the poem as continental epic record</div>
+    </div>
+
+    <div class="scholar-item">
+      <div class="scholar-name">Roland Bleiker</div>
+      <div class="scholar-work">"Pablo Neruda and the Struggle for Political Memory," <em>Third World Quarterly</em>, vol. 20, no. 5, 1999</div>
+      <p class="scholar-arg">Bleiker argues that Neruda "reveals how poetry can enter the political process and become a critical historical memory." For Bleiker, political poetry must be "as accessible as possible". Neruda's turn to the language of everyday life in the Odes, and the accessible epic register of <em>Canto General</em>, was a conscious strategy to make poetry politically functional. The core argument: poetry is a form of historical memory-work that can intervene in political struggles and preserve what political violence seeks to erase.</p>
+      <div class="scholar-dp"><strong>DP Connections:</strong> Key Concept: <em>Culture, Identity &amp; Community</em>: poetry as collective memory · Readers, Writers &amp; Texts: the politics of accessibility and readership · Time &amp; Place: Chilean political history as context</div>
+    </div>
+
+    <div class="scholar-item">
+      <div class="scholar-name">Nancy Willard</div>
+      <div class="scholar-work"><em>Testimony of the Invisible Man</em> (critical study)</div>
+      <p class="scholar-arg">"Neruda makes it clear that our most intense experience of impermanence is not death but our own isolation among the living." Willard reframes <em>Residencia en la Tierra</em>: these are poems about the existential pain of being alive and unreachable among other people. "If Neruda is intolerant of despair, it is because he wants nothing to sully man's residence on earth." This humanist reading provides a counterweight to purely biographical or political interpretations of the <em>Residencia</em> period.</p>
+      <div class="scholar-dp"><strong>DP Connections:</strong> Readers, Writers &amp; Texts: the reader's experience of existential isolation in the poems · Key Concept: <em>Identity</em>, the self as always already in relation to others · Time &amp; Place: reading the colonial encounter as an existential wound</div>
+    </div>
+
+    <div class="scholar-item">
+      <div class="scholar-name">Margaret Persin</div>
+      <div class="scholar-work">"Writing and Women's Work in the Later Poetry of Pablo Neruda" (scholarly article)</div>
+      <p class="scholar-arg">Persin argues for an evolutionary reading of Neruda's treatment of women. While acknowledging his early poetry presents "woman as sexual object to be admired and possessed," she argues this was "tempered by the poet's stance in his more mature verse", specifically <em>One Hundred Love Sonnets</em> (1959), written for Matilde Urrutia, which presents a mature and more reciprocal vision of love. Historical and cultural context is necessary to understand Neruda's intentions and development. Persin's argument stands in productive tension with Detwiler's deconstruction of the earlier love poems. Together they chart the evolution Alazraki describes across Neruda's career.</p>
+      <div class="scholar-dp"><strong>DP Connections:</strong> Key Concept: <em>Transformation</em>, the evolution of Neruda's treatment of love and gender · Time &amp; Place: historical and cultural context required for interpretation · Intertextuality: reading the Sonnets against the earlier love poems</div>
+    </div>
+
+    <div class="scholar-item">
+      <div class="scholar-name">Mark Eisner</div>
+      <div class="scholar-work"><em>Neruda: The Biography of a Poet</em>, Ecco/HarperCollins, 2018</div>
+      <p class="scholar-arg">The major recent English-language biography. Eisner both celebrates Neruda's achievement and confronts its biographical complications directly. On the Ceylon incident (1930): "There is no evidence that Neruda ever committed another assault of this nature, but he describes his exercise of power and privilege with little shame." Eisner's position, acknowledging the act without erasing the poet, models how to hold biographical difficulty alongside literary value. This is the reference point for the critical debate between art and artist in Neruda's legacy.</p>
+      <div class="scholar-dp"><strong>DP Connections:</strong> Time &amp; Place: the colonial power structures that enabled the assault · Key Concept: <em>Identity</em>, the relationship between the biographical Neruda and the constructed poetic voice · Readers, Writers &amp; Texts: how biographical knowledge changes our reading of the love poems</div>
+    </div>
+
+    <div class="scholar-item">
+      <div class="scholar-name">Octavio Paz</div>
+      <div class="scholar-work">Various essays; reference in <em>Hudson Review</em>, 2018</div>
+      <p class="scholar-arg">Fellow Latin American Nobel laureate and Neruda's erstwhile friend. Paz's critique of Neruda's Stalinism is the most significant from within the literary community: "Neruda became more and more Stalinist, while I became less and less enchanted with Stalin." Paz wrote of Stalinist poets who "saw themselves becoming entangled in a mesh of lies, falsehoods, deceits, and perjuries, until they lost their souls", implicating Neruda without naming him. Despite this, Paz still acknowledged Neruda as "the greatest poet of his generation." This tension between poetic genius and political complicity is the central critical problem of Neruda's legacy.</p>
+      <div class="scholar-dp"><strong>DP Connections:</strong> Time &amp; Place: Stalinism and the Cold War as context for political poetry · Key Concept: <em>Culture, Identity &amp; Community</em>: the relationship between political commitment and literary value · Intertextuality: Paz and Neruda in dialogue and opposition</div>
+    </div>
+
+    <div class="scholar-item">
+      <div class="scholar-name">Gabriel García Márquez (contextual)</div>
+      <div class="scholar-work">Public statement, widely cited</div>
+      <p class="scholar-arg">Gabriel García Márquez called Neruda "the greatest poet of the 20th century in any language." This claim from one of Latin America's greatest novelists encapsulates the position of Neruda's defenders: that whatever the biographical and political controversies, the poetry stands as a world-historical achievement. The Nobel Committee's citation ("for a poetry that with the action of an elemental force brings alive a continent's destiny and dreams") echoes García Márquez's assessment in its emphasis on continental scope and elemental power.</p>
+      <div class="scholar-dp"><strong>DP Connections:</strong> Key Concept: <em>Culture, Identity &amp; Community</em>: literature as expression of continental identity · Intertextuality: García Márquez and Neruda as key voices of the same Latin American cultural project</div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- QUOTATIONS BANK -->
+<section id="quotations">
+  <div class="section-label">08 · Close Reading Material</div>
+  <h2>Key Quotations Bank</h2>
+  <p>These short, analysable quotations are suitable for Paper 1 commentary, Paper 2 essays, and the Individual Oral. For each, note which techniques are present and which critical lens they invite.</p>
+
+  <div class="quotes-grid">
+
+    <div class="quote-card">
+      <div class="quote-text">"I like for you to be still: it is as though you were absent."</div>
+      <div class="quote-source">Poem XIV, Twenty Love Poems (1924)</div>
+      <div class="quote-tags">
+        <span class="quote-tag">Paradox</span>
+        <span class="quote-tag">Feminist critique</span>
+        <span class="quote-tag">Absence/presence</span>
+      </div>
+    </div>
+
+    <div class="quote-card">
+      <div class="quote-text">"Tonight I can write the saddest lines. / I loved her, and sometimes she loved me too."</div>
+      <div class="quote-source">Poem XX, Twenty Love Poems (1924)</div>
+      <div class="quote-tags">
+        <span class="quote-tag">Anaphora</span>
+        <span class="quote-tag">Metapoetry</span>
+        <span class="quote-tag">Memory / loss</span>
+      </div>
+    </div>
+
+    <div class="quote-card">
+      <div class="quote-text">"I want to do with you what spring does with the cherry trees."</div>
+      <div class="quote-source">Poem XIV, Twenty Love Poems (1924)</div>
+      <div class="quote-tags">
+        <span class="quote-tag">Extended metaphor</span>
+        <span class="quote-tag">Nature imagery</span>
+        <span class="quote-tag">Desire</span>
+      </div>
+    </div>
+
+    <div class="quote-card">
+      <div class="quote-text">"Like ashes, like seas peopling themselves, / in the submerged slowness, in what is unformed…"</div>
+      <div class="quote-source">Dead Gallop, Residence on Earth (1933)</div>
+      <div class="quote-tags">
+        <span class="quote-tag">Surrealism</span>
+        <span class="quote-tag">Fragmented syntax</span>
+        <span class="quote-tag">Decay</span>
+      </div>
+    </div>
+
+    <div class="quote-card">
+      <div class="quote-text">"Come and see the blood in the streets, come and see the blood in the streets!"</div>
+      <div class="quote-source">I'm Explaining a Few Things, Tercera Residencia (1937)</div>
+      <div class="quote-tags">
+        <span class="quote-tag">Anaphora</span>
+        <span class="quote-tag">Reader-response</span>
+        <span class="quote-tag">Political witness</span>
+      </div>
+    </div>
+
+    <div class="quote-card">
+      <div class="quote-text">"I come to speak for your dead mouths. / Throughout the earth / let dead lips congregate…"</div>
+      <div class="quote-source">The Heights of Macchu Picchu, XII (1945/1950)</div>
+      <div class="quote-tags">
+        <span class="quote-tag">Apostrophe</span>
+        <span class="quote-tag">Postcolonial</span>
+        <span class="quote-tag">I → We shift</span>
+      </div>
+    </div>
+
+    <div class="quote-card">
+      <div class="quote-text">"Speak through my words and my blood."</div>
+      <div class="quote-source">The Heights of Macchu Picchu, XII (closing line)</div>
+      <div class="quote-tags">
+        <span class="quote-tag">Collective voice</span>
+        <span class="quote-tag">Identity</span>
+        <span class="quote-tag">Epic</span>
+      </div>
+    </div>
+
+    <div class="quote-card">
+      <div class="quote-text">"When the trumpet sounded, it was / all prepared on the earth, / and Jehovah parcelled out the earth / to Coca-Cola, Inc., Anaconda…"</div>
+      <div class="quote-source">United Fruit Co., Canto General (1950)</div>
+      <div class="quote-tags">
+        <span class="quote-tag">Biblical parody</span>
+        <span class="quote-tag">Marxist</span>
+        <span class="quote-tag">Satirical catalogue</span>
+      </div>
+    </div>
+
+    <div class="quote-card">
+      <div class="quote-text">"Now we will count to twelve / and we will all keep still… / perhaps a huge silence / might interrupt this sadness."</div>
+      <div class="quote-source">Keeping Quiet, Canto General (1950)</div>
+      <div class="quote-tags">
+        <span class="quote-tag">Ecocritical</span>
+        <span class="quote-tag">Collective "we"</span>
+        <span class="quote-tag">Stillness as resistance</span>
+      </div>
+    </div>
+
+    <div class="quote-card">
+      <div class="quote-text">"Poetry is rebellion." </div>
+      <div class="quote-source">Neruda, from various speeches; cited in PIT Journal, UNC</div>
+      <div class="quote-tags">
+        <span class="quote-tag">Manifesto</span>
+        <span class="quote-tag">Marxist</span>
+        <span class="quote-tag">Metapoetry</span>
+      </div>
+    </div>
+
+    <div class="quote-card">
+      <div class="quote-text">"It was through metaphor, not rational analysis and argument, that the mysteries of the world could be revealed."</div>
+      <div class="quote-source">Neruda, cited in multiple sources including EBSCO</div>
+      <div class="quote-tags">
+        <span class="quote-tag">Poetics statement</span>
+        <span class="quote-tag">Reader-response</span>
+        <span class="quote-tag">Surrealism</span>
+      </div>
+    </div>
+
+    <div class="quote-card">
+      <div class="quote-text">"Come up to be born with me, my brother." </div>
+      <div class="quote-source">The Heights of Macchu Picchu, XII</div>
+      <div class="quote-tags">
+        <span class="quote-tag">Solidarity</span>
+        <span class="quote-tag">Postcolonial</span>
+        <span class="quote-tag">Apostrophe</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- THEMES -->
+<section id="themes">
+  <div class="section-label">09 · Thematic Analysis</div>
+  <h2>Core Themes</h2>
+  <p>These themes recur across Neruda's collections and connect his work to other texts studied in the IB HL course. Use them to build Paper 2 comparative arguments.</p>
+
+  <div class="themes-grid">
+    <div class="theme-card">
+      <div class="theme-name">Love and Desire</div>
+      <p class="theme-desc">Neruda's treatment of love evolves dramatically, from the possessive, objectifying desire of the early love poems to the mature reciprocal partnership of One Hundred Love Sonnets. Love is always inflected with loss and the body. Nature is never far from desire.</p>
+      <div class="theme-poems">Poem XIV, Poem XX, One Hundred Love Sonnets</div>
+    </div>
+    <div class="theme-card">
+      <div class="theme-name">Political Resistance</div>
+      <p class="theme-desc">Poetry as a weapon against imperialism, fascism, and capitalism. Neruda's political poetry refuses the separation of aesthetic and political life. The Spanish Civil War, US corporate imperialism, and the Pinochet coup all enter the poems directly.</p>
+      <div class="theme-poems">I'm Explaining a Few Things, United Fruit Co., Canto General</div>
+    </div>
+    <div class="theme-card">
+      <div class="theme-name">Exile and Belonging</div>
+      <p class="theme-desc">Exile, literal (1948–52) and metaphorical (Asia, 1927–35), produces some of Neruda's most intense writing. Chile becomes a mythologised homeland most fully imagined in absence. The return is always complicated by what exile has made of the self.</p>
+      <div class="theme-poems">Residencia en la Tierra, Las Uvas y el Viento, Macchu Picchu</div>
+    </div>
+    <div class="theme-card">
+      <div class="theme-name">Nature and the Material World</div>
+      <p class="theme-desc">From the forests of Temuco to the Pacific at Isla Negra, the natural world is Neruda's constant poetic resource. Nature is a participant: oceans speak, stones remember. The Odes extend this attention to manufactured objects.</p>
+      <div class="theme-poems">Odes to Common Things, Residencia, Twenty Love Poems</div>
+    </div>
+    <div class="theme-card">
+      <div class="theme-name">Memory and History</div>
+      <p class="theme-desc">Neruda writes against personal, historical, and colonial forgetting. Poetry is a technology of memory. The names of the exploited must be spoken; the dead of Spain, of Macchu Picchu, of Chile must not be erased. This gives his work an archival as well as aesthetic function.</p>
+      <div class="theme-poems">Macchu Picchu, I'm Explaining a Few Things, Canto General broadly</div>
+    </div>
+    <div class="theme-card">
+      <div class="theme-name">Identity and Selfhood</div>
+      <p class="theme-desc">Neruda's poetic "I" is unstable across his career: dissolved in the surrealism of Residencia, expanded to continental scale in Canto General, domesticated in the Odes. The question "who is the speaker?" is always worth asking. The pseudonym itself signals a constructed, literary self.</p>
+      <div class="theme-poems">Dead Gallop, Macchu Picchu, Odes to Common Things</div>
+    </div>
+    <div class="theme-card">
+      <div class="theme-name">Death and Impermanence</div>
+      <p class="theme-desc">Death in Neruda is rarely simply personal. It is historical (colonial genocide), political (fascist murder), ecological (the tuna), and existential (Residencia's dissolution). Even the love poems are saturated with loss. Yet death is countered by the poem's capacity to preserve.</p>
+      <div class="theme-poems">Residencia, Macchu Picchu, Ode to a Large Tuna</div>
+    </div>
+    <div class="theme-card">
+      <div class="theme-name">Latin American Identity</div>
+      <p class="theme-desc">Canto General is in part a project of continental identity-formation, articulating what it means to be Latin American against the erasures of colonialism and the pressures of US imperialism. Neruda imagines a unified Latin America rooted in pre-Columbian civilisation and working-class solidarity.</p>
+      <div class="theme-poems">Canto General, Macchu Picchu, United Fruit Co.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- LITERARY HISTORY -->
+<section id="modernism">
+  <div class="section-label">10 · Literary Context</div>
+  <h2>Neruda and Late Modernism</h2>
+  <p>Where does Neruda sit in literary history? He occupies a contested, productive position between modernism and postmodernism, and students should be able to articulate it.</p>
+
+  <div class="context-two">
+    <div class="context-box">
+      <h4>Modernist Connections</h4>
+      <ul>
+        <li>Influenced by Spanish surrealism (Lorca, Alberti) and French symbolism</li>
+        <li>Free verse formal experimentation, rejecting traditional metre and rhyme</li>
+        <li>Fragmented syntax in Residencia echoes Eliot's The Waste Land (1922) in its formal despair</li>
+        <li>Like Pound, attempts to write an epic that encompasses an entire civilisation (Canto General cf. Cantos)</li>
+        <li>Whitman's democratic catalogues are a key inheritance: Neruda as a Latin American Whitman</li>
+        <li>Engagement with Freudian unconscious / surrealist dreamwork in Residencia</li>
+      </ul>
+    </div>
+    <div class="context-box">
+      <h4>Where He Diverges from Anglo Modernism</h4>
+      <ul>
+        <li>Rejects modernist elitism and difficulty, becoming deliberately accessible in the Odes</li>
+        <li>Embraces mass readership as a political obligation</li>
+        <li>Political commitment: unlike Eliot's conservative Anglicanism or Pound's fascism, Neruda's politics are communist and anti-colonial</li>
+        <li>Grounded in the body and the senses rather than in abstraction</li>
+        <li>Latin American context: his surrealism draws on South American landscape, not Parisian cafés</li>
+        <li>The colonial encounter (not WWI) is the central historical trauma that shapes his modernism</li>
+      </ul>
+    </div>
+  </div>
+
+  <p style="margin-top: 1.5rem;">Neruda is best described as a <strong style="color: var(--gold-light);">late modernist with populist and postcolonial inflections</strong>. His career arc, from symbolist early work (Crepusculario, 1923) through surrealism (Residencia, 1933–35) to political epic (Canto General, 1950) to everyday odes (1954–59), maps onto the global arc of late modernism's political turn. He is the Latin American counterpart to the engagement of Brecht, Neruda's French contemporary Aragon, or the Harlem Renaissance poets, writers who insisted on both aesthetic seriousness and political commitment.</p>
+
+  <p>In IB Paper 2 comparisons: Neruda connects productively to Athol Fugard's political theatre (both deploy aesthetic form in service of political witness), to Toni Morrison's recovery of erased historical voices (cf. Macchu Picchu's address to the dead), and to the Absurdist political silence of Beckett (compare Neruda's "Keeping Quiet" to Beckett's strategic silences in Waiting for Godot).</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTROVERSY -->
+<section id="controversy">
+  <div class="section-label">11 · Critical Debate</div>
+  <h2>Controversy: Art vs. Artist</h2>
+  <p>Neruda is one of the most debated figures in literary studies precisely because his biographical problems are significant and his art is undeniably great. IB HL students are expected to engage with these tensions critically, keeping them in view without letting them displace the literary analysis.</p>
+
+  <div class="controversy-wrap">
+
+    <div class="controversy-block">
+      <div class="controversy-title">The Memoir Admission: Ceylon, 1930</div>
+      <p class="controversy-body">In his posthumously published memoir (Confieso que he vivido, 1974, translated as Memoirs), Neruda describes a sexual encounter in Ceylon (now Sri Lanka) with a Tamil woman of the "Untouchable" caste whose job was to empty his latrine. He describes her as "completely unresponsive" and acknowledges "she was right to despise me." He does not use the word rape, but the encounter as described is understood by scholars and readers as a sexual assault made possible by colonial hierarchy and caste oppression. Mark Eisner (Neruda: The Biography of a Poet, 2018) devotes significant attention to this passage, noting Neruda describes "his exercise of power and privilege with little shame." Chile's feminist movement, energised by #MeToo and university sexual abuse scandals, brought this passage to wide public attention post-2015. In 2018 the Chilean Ministry of Culture reversed a decision to rename Santiago Airport after Neruda. Some Chilean schools are now teaching Neruda with explicit critical framing around this history. IB students should note: the text of the love poems and the biographical reality are now in critical dialogue with each other.</p>
+    </div>
+
+    <div class="controversy-block political">
+      <div class="controversy-title">Stalinism: Poems in Praise of Tyranny</div>
+      <p class="controversy-body">Neruda was a committed Stalinist for most of his mature political career. He received the Stalin Peace Prize in 1953 and wrote an ode to Stalin upon his death. He wrote poems praising Fulgencio Batista and Fidel Castro. His poetry includes what has been described as "dithyrambs to Stalin" and a poem called "The Angel of the Central Committee." His friend Octavio Paz broke with him over this: "Neruda became more and more Stalinist, while I became less and less enchanted with Stalin." Paz later wrote of Stalinist writers who "lost their souls" through "a mesh of lies, falsehoods, deceits, and perjuries", directly implicating Neruda. The Nobel Committee deliberated about the Prize precisely because of Neruda's Stalinist record; his Swedish translator Artur Lundkvist reportedly lobbied hard to ensure he received it. US poet Mark Strand: "Neruda was a genius as a poet, but not smart as a man." The critical question is whether his political blindness about Stalinism undermines his status as a poet of liberation, or whether, as the Nobel Committee decided, the poetry transcends the politics.</p>
+    </div>
+
+    <div class="controversy-block">
+      <div class="controversy-title">How to Handle Controversy in IB Essays</div>
+      <p class="controversy-body">The IB rewards nuanced critical thinking. A strong Paper 2 or Individual Oral will acknowledge controversy without being derailed by it. The most intellectually honest approach is: (1) name the biographical problem clearly; (2) consider what it opens up in the text (e.g. the feminist critique of the love poems is strengthened by the Ceylon admission); (3) assess whether the critical debate changes your reading of specific literary features. The Hudson Review (2018) puts it well: "Justice for Pablo Neruda, and for his readers, would be to acknowledge his sins without losing sight of his accomplishment." Avoiding the controversy entirely is a critical weakness. Reducing the poetry entirely to biography is also a critical weakness. The tension between them is the subject.</p>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXAM PREP -->
+<section id="exam-prep">
+  <div class="section-label">12 · Assessment Preparation</div>
+  <h2>Exam &amp; Assessment Preparation</h2>
+  <p>Select a tab to navigate between assessment components. All materials connect directly to the IB DP Literature assessment model.</p>
+
+  <div class="exam-tabs">
+    <button class="exam-tab active" onclick="switchExamTab(this, 'hl-essay')">HL Essay</button>
+    <button class="exam-tab" onclick="switchExamTab(this, 'io-tips')">Individual Oral</button>
+    <button class="exam-tab" onclick="switchExamTab(this, 'prompts')">Essay Prompts</button>
+    <button class="exam-tab" onclick="switchExamTab(this, 'homework')">Homework</button>
+  </div>
+
+  <!-- HL ESSAY PANEL -->
+  <div class="exam-panel" id="ep-hl-essay">
+    <h3 style="color:var(--white); margin-bottom: 1.2rem;">HL Essay: Format &amp; Strategy</h3>
+    <p>The HL Essay is a 1,200–1,500 word formal literary essay on a literary topic of your own choosing, worth 20% of your final grade.</p>
+    <div class="context-two" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); max-width: 1000px; margin-top: 1.5rem;">
+      <div class="context-box">
+        <h4>What the HL Essay Requires</h4>
+        <ul>
+          <li>A focused literary question about one author or two comparable works</li>
+          <li>1,200–1,500 words of formal analytical prose, with no bullet points</li>
+          <li>Close reading of specific passages with quoted textual evidence</li>
+          <li>A debatable argument rather than a description of themes</li>
+          <li>Engagement with at least one critical lens / theoretical perspective</li>
+          <li>Consistent in-text citation (MLA or other approved format)</li>
+        </ul>
+      </div>
+      <div class="context-box">
+        <h4>Strong Topics Using Neruda</h4>
+        <ul>
+          <li>The evolution of Neruda's treatment of the female figure from 1924 to 1959</li>
+          <li>How surrealist technique in <em>Residencia</em> enacts rather than describes psychological dissolution</li>
+          <li>The function of nature in constructing political argument in <em>Canto General</em></li>
+          <li>How the shift from "I" to "we" in <em>Macchu Picchu</em> enacts postcolonial solidarity</li>
+          <li>The tension between political commitment and aesthetic transparency in the Odes</li>
+        </ul>
+      </div>
+      <div class="context-box">
+        <h4>Common HL Essay Mistakes</h4>
+        <ul>
+          <li>Topic too broad ("imagery in Neruda's poetry")</li>
+          <li>Describing what happens rather than arguing what it means</li>
+          <li>Ignoring literary techniques when analysis is the core of the essay</li>
+          <li>Only using one poem; engage with at least three specific texts or passages</li>
+          <li>Using a critical lens as decoration rather than as a tool for generating insight</li>
+          <li>Summarising biography instead of close reading texts</li>
+        </ul>
+      </div>
+      <div class="context-box">
+        <h4>Structuring Your Argument</h4>
+        <ul>
+          <li>Introduction: state your specific literary question and central argument (thesis)</li>
+          <li>Body paragraphs: one claim, one quoted passage, technique analysis, lens application</li>
+          <li>Avoid rigid point-evidence-explanation as a formula; develop it into a genuine analytical move</li>
+          <li>Conclusion: show why your argument matters. What does this reading open up?</li>
+          <li>Aim for four body paragraphs; quality of analysis over quantity of evidence</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- IO TIPS PANEL -->
+  <div class="exam-panel" id="ep-io-tips" style="display:none">
+    <h3 style="color:var(--white); margin-bottom: 1.2rem;">Individual Oral: Format &amp; Strategy</h3>
+    <p>The IO is a 10-minute spoken presentation followed by a 5-minute discussion, worth 20% of your grade. You connect an extract from each of your two studied texts through a Global Issue.</p>
+    <div class="context-two" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); max-width: 1000px; margin-top: 1.5rem;">
+      <div class="context-box">
+        <h4>IO Structure</h4>
+        <ul>
+          <li>Choose a <strong>Global Issue</strong> visible in both texts</li>
+          <li>Select one extract per text (approx. 20–40 lines)</li>
+          <li>~4 minutes per text: close reading of how literary features address the Global Issue</li>
+          <li>Conclude with the relationship between the two texts through that Global Issue</li>
+          <li>Prepare for 5 minutes of teacher questions, ready to extend or revisit any argument</li>
+        </ul>
+      </div>
+      <div class="context-box">
+        <h4>Global Issues That Work With Neruda</h4>
+        <ul>
+          <li><strong>Power and Privilege</strong>: colonial exploitation, class, gender hierarchy (Detwiler: Love as ideology)</li>
+          <li><strong>Cultural Identity</strong>: Latin American identity, erasure of Indigenous voices in <em>Macchu Picchu</em></li>
+          <li><strong>Political Resistance &amp; Memory</strong>: poetry as historical memory against Fascism and imperialism</li>
+          <li><strong>Gender Equality</strong>: Woman as Other in the love lyrics (Detwiler, Persin)</li>
+          <li><strong>Environmental Sustainability</strong>: ecocritical reading of the Odes and "Keeping Quiet"</li>
+        </ul>
+      </div>
+      <div class="context-box">
+        <h4>Pairing Neruda With Other Texts</h4>
+        <ul>
+          <li><strong>Neruda + Fugard:</strong> Power and Privilege, through colonial dynamics and form as ideology</li>
+          <li><strong>Neruda + Morrison:</strong> Memory and erasure, since both speak for the silenced dead</li>
+          <li><strong>Neruda + Beckett:</strong> The politics of silence, setting "Keeping Quiet" against the silences in <em>Godot</em></li>
+          <li><strong>Neruda + Achebe:</strong> Postcolonial identity, continental and national resistance</li>
+        </ul>
+      </div>
+      <div class="context-box">
+        <h4>IO Pitfalls to Avoid</h4>
+        <ul>
+          <li>Don't treat the Global Issue as a theme; it must be an externally-existing issue</li>
+          <li>Don't spend the IO summarising; spend it on how literary choices create meaning</li>
+          <li>Link explicitly: "This connects to my global issue of [X] because…"</li>
+          <li>Don't choose a Global Issue only visible in one text</li>
+          <li>Practise timed, since running over 10 minutes is heavily penalised</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ESSAY PROMPTS PANEL -->
+  <div class="exam-panel" id="ep-prompts" style="display:none">
+    <h3 style="color:var(--white); margin-bottom: 1.2rem;">Practice Essay Prompts</h3>
+    <p>Modelled on IB Paper 2 and Individual Oral question types. Each can be answered using Neruda alone or comparatively with another text from the course.</p>
+    <div class="prompts-list" style="margin-top: 1.5rem;">
+      <div class="prompt-card">
+        <div class="prompt-text">"In literature, political commitment and poetic beauty are always in tension." Discuss with reference to at least two works studied in the course.</div>
+        <div class="prompt-lens">Suggested lens: Marxist / Political · Link Neruda to Fugard or Morrison</div>
+      </div>
+      <div class="prompt-card">
+        <div class="prompt-text">How do writers use the natural world to explore political or social ideas? Discuss with reference to at least two works.</div>
+        <div class="prompt-lens">Suggested lens: Ecocriticism · Neruda's Odes + Canto General; compare with Conrad's Congo</div>
+      </div>
+      <div class="prompt-card">
+        <div class="prompt-text">"The most powerful literary works give voice to those whom history has silenced." To what extent is this true of the texts you have studied?</div>
+        <div class="prompt-lens">Suggested lens: Postcolonial · Macchu Picchu + Song of Solomon (Morrison)</div>
+      </div>
+      <div class="prompt-card">
+        <div class="prompt-text">Explore the ways in which writers construct gender and desire in the works you have studied.</div>
+        <div class="prompt-lens">Suggested lens: Feminist / Detwiler's deconstruction · Twenty Love Poems + contrast with Wharton or Morrison</div>
+      </div>
+      <div class="prompt-card">
+        <div class="prompt-text">"Literature is at its most effective when it makes the reader uncomfortable." Discuss.</div>
+        <div class="prompt-lens">Suggested lens: Reader-response · Neruda's political witness poems + Fugard's Hally</div>
+      </div>
+      <div class="prompt-card">
+        <div class="prompt-text">How do the formal choices writers make (structure, voice, imagery) contribute to the political meaning of their work?</div>
+        <div class="prompt-lens">Suggested lens: Marxist / Formalist · Neruda's accessible register in the Odes; fragmented syntax in Residencia</div>
+      </div>
+      <div class="prompt-card">
+        <div class="prompt-text">"Memory is not passive: it is a political act." Explore this idea in the literary works you have studied.</div>
+        <div class="prompt-lens">Suggested lens: Postcolonial / Marxist · Macchu Picchu + Morrison's Song of Solomon</div>
+      </div>
+      <div class="prompt-card">
+        <div class="prompt-text">Individual Oral prompt: How does Neruda's shift from "I" to "we" in <em>The Heights of Macchu Picchu</em> engage a Global Issue of cultural identity and colonial history?</div>
+        <div class="prompt-lens">IO focus: Cultural identity / Power and Privilege · Cross-text: Fugard's racial identity construction</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOMEWORK PANEL -->
+  <div class="exam-panel" id="ep-homework" style="display:none">
+    <h3 style="color:var(--white); margin-bottom: 0.5rem;">Homework: IB Guiding Questions</h3>
+    <p>The IB DP Literature course organises study around three <strong>Areas of Exploration</strong> and a set of <strong>Key Concepts</strong>. Use these guiding questions to practise IB-style thinking about Neruda's poetry.</p>
+
+    <div style="margin-top: 2rem;">
+      <h3 style="color: var(--gold); font-size: 0.9rem; font-family: 'Helvetica Neue', sans-serif; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1.2rem;">DP Key Concepts: Guiding Questions</h3>
+      <div class="prompts-list">
+        <div class="prompt-card" style="border-left-color: rgba(201,168,76,0.5);">
+          <div class="prompt-text">IDENTITY: How does Neruda's construction of a poetic "I", from the surrealist dissolution of self in <em>Residencia</em> to the collective "we" of <em>Macchu Picchu</em>, reflect changing ideas about individual and collective Latin American identity?</div>
+          <div class="prompt-lens">Key Concept: Identity · Poems: Dead Gallop, The Heights of Macchu Picchu</div>
+        </div>
+        <div class="prompt-card" style="border-left-color: rgba(74,143,168,0.5);">
+          <div class="prompt-text">CULTURE &amp; COMMUNITY: In what ways does <em>Canto General</em> attempt to construct a pan-Latin American cultural identity? What are the risks and possibilities of speaking "for" an entire continent?</div>
+          <div class="prompt-lens">Key Concept: Culture · Poems: Canto General, United Fruit Co. · Scholar: Bleiker (1999)</div>
+        </div>
+        <div class="prompt-card" style="border-left-color: rgba(168,50,68,0.5);">
+          <div class="prompt-text">CREATIVITY &amp; EXPRESSION: Neruda described his ideal as "impure poetry", poetry "useful like metal or flour." How does his formal experimentation (surrealism, the ode column, the epic canto) serve the kind of poetry he wanted to write? How does Alazraki's concept of Neruda as "seismograph" relate to this idea?</div>
+          <div class="prompt-lens">Key Concept: Creativity · Scholar: Alazraki (1972) · Collections: Residencia, Odes, Canto General</div>
+        </div>
+        <div class="prompt-card" style="border-left-color: rgba(58,125,92,0.5);">
+          <div class="prompt-text">COMMUNICATION &amp; LANGUAGE: How does Neruda use different registers (hermetic surrealism, democratic plain speech, epic grandeur) for different political and emotional purposes? What is gained and what is lost when his Spanish is read in translation?</div>
+          <div class="prompt-lens">Key Concept: Communication · Consider: Odes vs. Residencia · Area: Readers, Writers &amp; Texts</div>
+        </div>
+        <div class="prompt-card" style="border-left-color: rgba(120,80,160,0.5);">
+          <div class="prompt-text">TRANSFORMATION: Alazraki (1972) describes a "poetic conversion" after the Spanish Civil War. To what extent does a poet's political transformation change the value or meaning of their earlier work? Does the later political stance alter how we read <em>Residencia</em>?</div>
+          <div class="prompt-lens">Key Concept: Transformation · Scholar: Alazraki, 1972 · Texts: España en el Corazón, Residencia</div>
+        </div>
+        <div class="prompt-card" style="border-left-color: rgba(201,168,76,0.4);">
+          <div class="prompt-text">REPRESENTATION: Detwiler (1998) argues that Love in <em>Veinte Poemas</em> functions as a "regulator" of Woman's position, and that "crazy Love" conceals ideological domination beneath the appearance of passion. How does representation of love construct or disguise power relations?</div>
+          <div class="prompt-lens">Key Concept: Representation · Scholar: Detwiler (Hispanófila, 1998) · Poems: "Cuerpo de mujer," "Me gustas cuando callas"</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 3rem;">
+      <h3 style="color: var(--gold); font-size: 0.9rem; font-family: 'Helvetica Neue', sans-serif; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1.2rem;">Areas of Exploration: Guiding Questions</h3>
+      <div class="lenses-grid">
+        <div class="lens-card" style="border-left-color: #4a8fa8;">
+          <div class="lens-label" style="color: #7dbdd6;">Readers, Writers &amp; Texts</div>
+          <div class="lens-title">How literature creates meaning</div>
+          <div class="lens-questions">
+            <div class="lens-q">How does Neruda's use of metaphor invite the reader to make meaning that cannot be arrived at by argument alone?</div>
+            <div class="lens-q">When you read "Come and see the blood in the streets," how does the direct address position you as a reader? What responsibility does it create?</div>
+            <div class="lens-q">How does knowing about Neruda's biographical controversies affect your response to the love poems?</div>
+            <div class="lens-q">What is gained and what is lost when Neruda's Spanish is translated into English?</div>
+          </div>
+        </div>
+        <div class="lens-card" style="border-left-color: #3a7d5c;">
+          <div class="lens-label" style="color: #7ac49a;">Time &amp; Place</div>
+          <div class="lens-title">Context and literature's relationship to the world</div>
+          <div class="lens-questions">
+            <div class="lens-q">How does the political history of Chile (the Ley Maldita, Pinochet's coup) shape the texts Neruda wrote during different phases of his career?</div>
+            <div class="lens-q">Alazraki describes Neruda's work as "a seismograph through which one could learn what was happening in contemporary poetry at large." What does this mean for how we read literature as a historical document?</div>
+            <div class="lens-q">In what ways does <em>Canto General</em> rewrite the colonial history of the Americas from a Latin American perspective?</div>
+            <div class="lens-q">How does the context of Neruda's Asian exile (1927–35) shape the imagery and register of <em>Residencia en la Tierra</em>?</div>
+          </div>
+        </div>
+        <div class="lens-card" style="border-left-color: #a83244;">
+          <div class="lens-label" style="color: #d4758a;">Intertextuality</div>
+          <div class="lens-title">Literature in conversation with other texts</div>
+          <div class="lens-questions">
+            <div class="lens-q">Neruda called Walt Whitman "our poet." In what specific ways do Whitman's democratic catalogues and Neruda's odes share a poetic project?</div>
+            <div class="lens-q">Margaret Atwood's poem "Is/Not" responds directly to Neruda's love lyrics. What does this counter-text reveal about the relationship between gender and poetic tradition?</div>
+            <div class="lens-q">How does "I'm Explaining a Few Things" enter into dialogue with the lyric tradition, or challenge it?</div>
+            <div class="lens-q">If you are comparing Neruda and Fugard: both use art to bear witness to political violence. What similarities and differences do you find in the aesthetic choices each writer makes?</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 3rem;">
+      <h3 style="color: var(--gold); font-size: 0.9rem; font-family: 'Helvetica Neue', sans-serif; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1rem;">Practical Homework Tasks</h3>
+      <div class="context-two" style="max-width: 900px;">
+        <div class="context-box">
+          <h4>Close Reading Tasks</h4>
+          <ul>
+            <li>Annotate "I like for you to be still" with Detwiler's argument in mind. Where do you see Love functioning as a "regulator"?</li>
+            <li>Choose one elemental ode and identify every device Neruda uses to give an ordinary object dignity. Which lens applies most productively?</li>
+            <li>Read section XII of <em>The Heights of Macchu Picchu</em>. Mark the exact moment the speaker shifts from "I" to "we." What effect does this have?</li>
+            <li>Compare Poem XIV (1924) and Sonnet XVII (1959). How has Neruda's treatment of the beloved changed over 35 years?</li>
+          </ul>
+        </div>
+        <div class="context-box">
+          <h4>Research &amp; Critical Thinking</h4>
+          <ul>
+            <li>Read Alazraki's argument about Neruda's "poetic conversion." Do you agree that the Spanish Civil War represents a complete transformation, or do you see continuities?</li>
+            <li>Apply Detwiler's deconstructive reading of "Me gustas cuando callas." What does Love "conceal" in this poem according to her argument?</li>
+            <li>Find and read Margaret Atwood's poem "Is/Not." Write 200 words on how it responds to Neruda's love poems.</li>
+            <li>Write a paragraph arguing whether the biographical evidence about Ceylon should or should not change your reading of the love poems.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<div class="divider"></div>
+
+<!-- FOOTER -->
+<footer>
+  <p>DP English A Literature · Higher Level · <span>IB Diploma Programme</span></p>
+  <p style="margin-top: 0.3rem;">Pablo Neruda Revision Guide. All critical perspectives attributed to their original scholars.</p>
+  <p style="margin-top: 0.5rem;"><a href="index.html" style="color: var(--gold); text-decoration: none;">← Return to Course Home</a></p>
+</footer>
+
+<script>
+  // Technique accordions
+  function toggleTech(header) {
+    const body = header.nextElementSibling;
+    const tog = header.querySelector('.tech-toggle');
+    const open = body.classList.toggle('open');
+    tog.textContent = open ? '▲' : '▼';
+  }
+
+  function switchExamTab(btn, name) {
+    document.querySelectorAll('.exam-panel').forEach(p => { p.style.display = 'none'; });
+    document.querySelectorAll('.exam-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('ep-' + name).style.display = '';
+    btn.classList.add('active');
+  }
+
+  // Smooth scroll for TOC links
+  document.querySelectorAll('.page-toc a, .nav-links a').forEach(link => {
+    link.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      if (href && href.startsWith('#')) {
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

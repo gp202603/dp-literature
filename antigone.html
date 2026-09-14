@@ -1,0 +1,1588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Antigone · Sophocles | DP Literature Revision</title>
+  <style>
+    :root {
+      --navy: #0d1b2a;
+      --midnight: #1b2a3b;
+      --ink: #243447;
+      --deep: #0a1220;
+      --gold: #c9a84c;
+      --gold-light: #e8d5a3;
+      --cream: #f5f0e8;
+      --white: #ffffff;
+      --text: #e8e4dc;
+      --muted: #8fa3b1;
+      --accent: #4a8fa8;
+      --red: #a83244;
+      --red-light: #d4758a;
+      --green: #3a7d5c;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Georgia', serif;
+      background: var(--navy);
+      color: var(--text);
+      line-height: 1.75;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(13,27,42,0.97);
+      border-bottom: 2px solid var(--gold);
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.6rem 3rem;
+      backdrop-filter: blur(8px);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 0.75rem; }
+    .nav-logo img { height: 38px; width: auto; object-fit: contain; }
+    .nav-logo a { color: var(--muted); text-decoration: none; font-size: 0.8rem; font-family: 'Helvetica Neue', sans-serif; }
+    .nav-logo em { color: var(--gold); font-size: 0.9rem; font-style: italic; }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; flex-wrap: wrap; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none; font-size: 0.82rem;
+      letter-spacing: 0.03em; transition: color 0.2s;
+      font-family: 'Helvetica Neue', sans-serif;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* HERO */
+    .hero {
+      padding: 6rem 3rem 5rem;
+      background: linear-gradient(160deg, #0a1220 0%, #0d1b2a 40%, #111e30 100%);
+      position: relative; overflow: hidden;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      opacity: 0.4;
+    }
+    .hero-tag {
+      font-family: 'Helvetica Neue', sans-serif;
+      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1.5rem;
+      border: 1px solid rgba(201,168,76,0.3);
+      display: inline-block; padding: 0.3rem 1rem; border-radius: 2px;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 4.5vw, 3.8rem);
+      font-weight: normal; line-height: 1.25; color: var(--white);
+      margin-bottom: 0.4rem;
+    }
+    .hero h1 em { font-style: italic; color: var(--gold); }
+    .hero-author { color: var(--muted); font-size: 1rem; margin: 0.5rem 0 0.3rem; }
+    .hero-year { color: rgba(201,168,76,0.6); font-size: 0.85rem; font-family: 'Helvetica Neue', sans-serif; }
+    .hero-tagline {
+      margin-top: 2rem; font-size: 1rem; color: var(--gold-light);
+      font-style: italic; max-width: 600px; border-left: 3px solid var(--gold);
+      padding-left: 1.2rem;
+    }
+    .hero-nav-pills {
+      display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2.5rem;
+    }
+    .pill {
+      font-family: 'Helvetica Neue', sans-serif;
+      font-size: 0.78rem; padding: 0.4rem 1rem; border-radius: 20px;
+      border: 1px solid rgba(201,168,76,0.35); color: var(--muted);
+      text-decoration: none; transition: all 0.2s;
+    }
+    .pill:hover { background: rgba(201,168,76,0.1); color: var(--gold); border-color: var(--gold); }
+
+    /* PAGE LAYOUT */
+    .page-wrap { display: flex; min-height: 100vh; }
+    .sidebar {
+      width: 240px; min-width: 240px;
+      position: sticky; top: 3.5rem; height: calc(100vh - 3.5rem);
+      overflow-y: auto; padding: 2rem 1.5rem;
+      background: var(--deep); border-right: 1px solid rgba(201,168,76,0.1);
+    }
+    .sidebar-title {
+      font-family: 'Helvetica Neue', sans-serif;
+      font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1rem; padding-bottom: 0.5rem;
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+    }
+    .sidebar ul { list-style: none; }
+    .sidebar li { margin-bottom: 0.1rem; }
+    .sidebar a {
+      display: block; padding: 0.4rem 0.6rem; border-radius: 3px;
+      text-decoration: none; font-size: 0.82rem; color: var(--muted);
+      font-family: 'Helvetica Neue', sans-serif; transition: all 0.15s;
+    }
+    .sidebar a:hover { color: var(--gold-light); background: rgba(201,168,76,0.07); }
+    .sidebar li.sub a { padding-left: 1.2rem; font-size: 0.78rem; }
+
+    .main-content { flex: 1; padding: 3rem; max-width: 900px; }
+
+    /* SECTIONS */
+    .content-section { margin-bottom: 4rem; scroll-margin-top: 5rem; }
+    .section-number {
+      font-family: 'Helvetica Neue', sans-serif;
+      font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); display: block; margin-bottom: 0.5rem;
+    }
+    h2.section-title {
+      font-size: 1.7rem; font-weight: normal; color: var(--white);
+      margin-bottom: 1.5rem; padding-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+    }
+    h3.sub-title {
+      font-size: 1.05rem; color: var(--gold-light); margin: 1.5rem 0 0.6rem;
+      font-weight: normal;
+    }
+    p { color: var(--muted); font-size: 0.95rem; margin-bottom: 0.9rem; max-width: 700px; }
+
+    /* TWO-COL */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1.5rem 0; }
+    .two-col.three { grid-template-columns: 1fr 1fr 1fr; }
+
+    /* CONTEXT BOXES */
+    .context-box {
+      background: var(--midnight); border-radius: 4px; padding: 1.5rem;
+      border: 1px solid rgba(201,168,76,0.15);
+    }
+    .context-box h4 {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.72rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.8rem;
+    }
+    .context-box p { font-size: 0.88rem; margin: 0; }
+
+    /* PLOT TABLE */
+    .plot-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+    .plot-table th {
+      background: rgba(201,168,76,0.15); color: var(--gold);
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.75rem;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      padding: 0.6rem 1rem; text-align: left;
+    }
+    .plot-table td {
+      padding: 0.7rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.05);
+      font-size: 0.88rem; color: var(--muted); vertical-align: top;
+    }
+    .plot-table td:first-child { color: var(--gold-light); font-weight: normal; white-space: nowrap; }
+    .plot-table td:last-child { color: rgba(255,255,255,0.45); font-size: 0.82rem; }
+    .plot-table tr:hover td { background: rgba(201,168,76,0.04); }
+
+    /* CHARACTERS */
+    .char-card {
+      background: var(--midnight); border-radius: 4px; padding: 1.8rem;
+      border-top: 3px solid var(--gold); margin-bottom: 1.5rem;
+    }
+    .char-card.hally { border-top-color: var(--red); }
+    .char-card.willie { border-top-color: var(--accent); }
+    .char-name {
+      font-size: 1.1rem; color: var(--white); margin-bottom: 0.2rem;
+    }
+    .char-role { color: var(--muted); font-size: 0.82rem; font-family: 'Helvetica Neue', sans-serif; margin-bottom: 1rem; }
+    .char-traits { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+    .trait {
+      font-family: 'Helvetica Neue', sans-serif;
+      font-size: 0.72rem; padding: 0.2rem 0.7rem; border-radius: 12px;
+      background: rgba(201,168,76,0.12); color: var(--gold);
+    }
+    .trait.red { background: rgba(168,50,68,0.15); color: var(--red-light); }
+    .trait.blue { background: rgba(74,143,168,0.15); color: #7dbdd6; }
+
+    /* THEMES */
+    .theme-item {
+      background: var(--ink); border-radius: 4px; padding: 1.5rem;
+      border-left: 4px solid var(--gold); margin-bottom: 1rem;
+    }
+    .theme-item.red { border-left-color: var(--red); }
+    .theme-item.blue { border-left-color: var(--accent); }
+    .theme-item.green { border-left-color: #3a9e72; }
+    .theme-name { color: var(--white); font-size: 1rem; margin-bottom: 0.5rem; }
+    .theme-item p { max-width: none; margin: 0; font-size: 0.88rem; }
+
+    /* SYMBOLS TABLE */
+    .symbol-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+    .symbol-card {
+      background: var(--midnight); border-radius: 4px; padding: 1.5rem;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .symbol-name {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.7rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.6rem;
+    }
+    .symbol-surface { color: var(--text); font-size: 0.88rem; margin-bottom: 0.5rem; }
+    .symbol-deep { color: var(--muted); font-size: 0.83rem; }
+
+    /* CRITICAL PERSPECTIVES */
+    .critic-card {
+      background: var(--midnight); border-radius: 4px; padding: 2rem;
+      margin-bottom: 1.5rem; border: 1px solid rgba(201,168,76,0.12);
+    }
+    .critic-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.2rem; }
+    .critic-name { font-size: 1.05rem; color: var(--white); margin-bottom: 0.2rem; }
+    .critic-work { color: var(--muted); font-size: 0.82rem; font-family: 'Helvetica Neue', sans-serif; }
+    .critic-badge {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.65rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.25rem 0.7rem; border-radius: 2px;
+      background: rgba(201,168,76,0.15); color: var(--gold);
+    }
+    .concept-table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+    .concept-table th {
+      background: rgba(201,168,76,0.1); color: var(--gold);
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.7rem;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      padding: 0.5rem 0.8rem; text-align: left;
+    }
+    .concept-table td {
+      padding: 0.65rem 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.04);
+      font-size: 0.83rem; color: var(--muted); vertical-align: top;
+    }
+    .concept-table td:first-child { color: var(--gold-light); font-size: 0.8rem; font-family: 'Helvetica Neue', sans-serif; white-space: nowrap; }
+    .concept-table tr:hover td { background: rgba(201,168,76,0.04); }
+
+    /* QUOTATIONS */
+    .quote-block {
+      background: var(--midnight); border-radius: 4px; padding: 2rem;
+      margin-bottom: 1.5rem; border-left: 4px solid var(--gold);
+    }
+    .quote-text {
+      font-size: 1.1rem; font-style: italic; color: var(--gold-light);
+      margin-bottom: 0.8rem; line-height: 1.6;
+    }
+    .quote-speaker {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.78rem;
+      color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+    }
+    .quote-analysis {
+      background: rgba(0,0,0,0.2); border-radius: 3px; padding: 1rem 1.2rem;
+      font-size: 0.88rem; color: var(--muted); border-left: 2px solid rgba(201,168,76,0.2);
+    }
+    .quote-analysis strong { color: var(--gold); font-weight: normal; }
+
+    /* ESSAY SECTION */
+    .essay-q {
+      background: var(--ink); border-radius: 4px; padding: 1.5rem;
+      margin-bottom: 1.5rem; border: 1px solid rgba(201,168,76,0.2);
+    }
+    .essay-q .q-text { font-size: 1rem; color: var(--white); margin-bottom: 1rem; }
+    .essay-step {
+      display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 0.6rem;
+    }
+    .step-num {
+      background: rgba(201,168,76,0.15); color: var(--gold);
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.7rem;
+      min-width: 1.5rem; height: 1.5rem; border-radius: 2px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .essay-step p { margin: 0; font-size: 0.85rem; }
+
+    .lens-table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+    .lens-table th {
+      background: rgba(201,168,76,0.1); color: var(--gold);
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.7rem;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      padding: 0.5rem 0.8rem; text-align: left;
+    }
+    .lens-table td {
+      padding: 0.65rem 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.04);
+      font-size: 0.83rem; color: var(--muted); vertical-align: top;
+    }
+    .lens-table td:first-child { color: var(--gold-light); white-space: nowrap; font-family: 'Helvetica Neue', sans-serif; font-size: 0.8rem; }
+
+    .checklist {
+      background: var(--ink); border-radius: 4px; padding: 1.5rem;
+      margin-top: 1rem;
+    }
+    .checklist h4 {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.72rem;
+      text-transform: uppercase; letter-spacing: 0.15em;
+      color: var(--gold); margin-bottom: 1rem;
+    }
+    .checklist ul { list-style: none; }
+    .checklist li {
+      padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+      font-size: 0.88rem; color: var(--muted);
+      display: flex; align-items: flex-start; gap: 0.7rem;
+    }
+    .checklist li::before { content: '✓'; color: var(--gold); flex-shrink: 0; margin-top: 0.05rem; }
+
+    /* FOOTER */
+    footer {
+      text-align: center; padding: 3rem;
+      border-top: 1px solid rgba(201,168,76,0.15);
+      color: var(--muted); font-size: 0.8rem;
+      font-family: 'Helvetica Neue', sans-serif;
+    }
+    footer a { color: var(--gold); text-decoration: none; }
+
+    @media (max-width: 900px) {
+      .sidebar { display: none; }
+      nav { padding: 0.8rem 1.5rem; }
+      .main-content { padding: 2rem 1.5rem; }
+      .two-col, .two-col.three { grid-template-columns: 1fr; }
+    }
+
+    /* ============================================================
+       ANTIGONE-SPECIFIC COMPONENTS
+       Extends the shared house style above. Same palette, no new colours.
+       ============================================================ */
+
+    /* Verse passages from the Taylor translation */
+    .passage {
+      background: var(--midnight); border-radius: 4px;
+      border-left: 4px solid var(--gold);
+      padding: 1.5rem 1.8rem; margin: 1.5rem 0;
+    }
+    .passage-ref {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.68rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1rem;
+    }
+    .verse {
+      white-space: pre-line; font-size: 0.95rem; line-height: 1.75;
+      color: var(--gold-light); margin: 0; max-width: none;
+    }
+    .verse .sp {
+      font-variant: small-caps; letter-spacing: 0.05em;
+      color: var(--muted); font-style: normal;
+    }
+    .passage-note {
+      margin-top: 1.1rem; padding-top: 0.9rem;
+      border-top: 1px solid rgba(201,168,76,0.15);
+      font-size: 0.83rem; color: var(--muted); max-width: none;
+    }
+
+    /* Investigation prompts — "what to investigate" */
+    .investigate { margin: 1.2rem 0; }
+    .investigate .inv-item {
+      padding: 0.9rem 0 0.9rem 1.2rem;
+      border-left: 2px solid rgba(201,168,76,0.25);
+      margin-bottom: 0.6rem;
+    }
+    .investigate .inv-item strong { color: var(--gold-light); font-weight: normal; }
+    .investigate .inv-item p { margin: 0; font-size: 0.9rem; max-width: none; }
+
+    /* Student tasks */
+    .task-box {
+      background: rgba(168,50,68,0.08); border-radius: 4px;
+      border: 1px solid rgba(168,50,68,0.28);
+      padding: 1.5rem; margin: 1.8rem 0;
+    }
+    .task-box h4 {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.72rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--red-light); margin-bottom: 1rem;
+    }
+    .task-box ol { margin: 0; padding-left: 1.3rem; }
+    .task-box li {
+      color: var(--muted); font-size: 0.9rem; margin-bottom: 0.7rem;
+      padding-left: 0.3rem;
+    }
+    .task-box li::marker { color: var(--red-light); }
+    .task-box li.stretch { color: var(--gold-light); font-style: italic; }
+    .task-box p { font-size: 0.9rem; }
+
+    /* Examiner's-eye callout */
+    .examiner-box {
+      background: rgba(74,143,168,0.08); border-radius: 4px;
+      border: 1px solid rgba(74,143,168,0.28);
+      padding: 1.5rem; margin: 1.8rem 0;
+    }
+    .examiner-box h4 {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.72rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: #7dbdd6; margin-bottom: 1rem;
+    }
+    .examiner-box p, .examiner-box li { font-size: 0.9rem; max-width: none; }
+    .examiner-box ol { padding-left: 1.3rem; margin-bottom: 0.6rem; }
+    .examiner-box li { color: var(--muted); margin-bottom: 0.45rem; }
+    .examiner-box li strong { color: var(--gold-light); font-weight: normal; }
+
+    /* Traps / warnings */
+    .trap-box {
+      background: rgba(201,168,76,0.06); border-radius: 4px;
+      border: 1px dashed rgba(201,168,76,0.35);
+      padding: 1.5rem; margin: 1.8rem 0;
+    }
+    .trap-box h4 {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.72rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1rem;
+    }
+    .trap-box ul { list-style: none; }
+    .trap-box li {
+      color: var(--muted); font-size: 0.89rem; padding: 0.45rem 0 0.45rem 1.5rem;
+      position: relative; border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .trap-box li:last-child { border-bottom: 0; }
+    .trap-box li::before {
+      content: '✕'; position: absolute; left: 0; color: var(--red-light); font-size: 0.8rem;
+    }
+    .trap-box li strong { color: var(--gold-light); font-weight: normal; }
+
+    /* Greek key terms */
+    .greek { font-style: italic; color: var(--gold-light); }
+
+    /* Structural map of the play */
+    .map { border-radius: 4px; overflow: hidden; margin: 1.5rem 0; }
+    .map-row {
+      display: grid; grid-template-columns: 8rem 1fr;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .map-row .k {
+      background: rgba(201,168,76,0.08); padding: 0.65rem 0.9rem;
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.72rem;
+      letter-spacing: 0.08em; color: var(--gold);
+    }
+    .map-row .v { padding: 0.65rem 1rem; font-size: 0.87rem; color: var(--muted); }
+    .map-row.ode .k { background: rgba(74,143,168,0.1); color: #7dbdd6; }
+    .map-row.ode .v { color: rgba(232,213,163,0.75); font-style: italic; }
+    .map-row .v strong { color: var(--white); font-weight: normal; }
+
+    /* Diagnostic ladder: weak → better → strong */
+    .rung {
+      background: var(--midnight); border-radius: 4px;
+      padding: 1.3rem 1.5rem; margin-bottom: 1rem;
+      border-left: 4px solid var(--muted);
+    }
+    .rung.mid { border-left-color: var(--gold); }
+    .rung.good { border-left-color: var(--green); }
+    .rung .grade {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.68rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 0.7rem;
+    }
+    .rung.mid .grade { color: var(--gold); }
+    .rung.good .grade { color: #5cb98c; }
+    .rung .sample { color: var(--text); font-size: 0.9rem; margin-bottom: 0; max-width: none; }
+    .rung .why {
+      margin-top: 0.9rem; padding-top: 0.8rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.82rem;
+      color: var(--muted); max-width: none;
+    }
+    .rung .why strong { color: var(--gold-light); font-weight: normal; }
+
+    /* Annotated model paragraph */
+    .model-para {
+      background: var(--midnight); border-radius: 4px;
+      padding: 1.8rem; margin: 1.5rem 0;
+      border: 1px solid rgba(201,168,76,0.15);
+    }
+    .model-para .sample { color: var(--text); font-size: 0.95rem; max-width: none; }
+    .mk {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.6rem;
+      background: rgba(201,168,76,0.2); color: var(--gold);
+      border-radius: 2px; padding: 0.05rem 0.3rem;
+      vertical-align: 0.4em; margin: 0 0.1rem; letter-spacing: 0.05em;
+    }
+    .model-para .notes { list-style: none; margin-top: 1.3rem; padding-top: 1rem;
+      border-top: 1px solid rgba(255,255,255,0.06); }
+    .model-para .notes li {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.82rem;
+      color: var(--muted); margin-bottom: 0.5rem; display: flex; gap: 0.6rem;
+      align-items: flex-start;
+    }
+
+    /* Reveal-after-attempting */
+    details {
+      background: var(--ink); border-radius: 4px; margin: 1.2rem 0;
+      border: 1px solid rgba(201,168,76,0.15); padding: 0 1.4rem;
+    }
+    details summary {
+      cursor: pointer; list-style: none; padding: 0.9rem 0;
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.8rem;
+      color: var(--gold); letter-spacing: 0.03em;
+    }
+    details summary::-webkit-details-marker { display: none; }
+    details summary::before { content: '▸ '; }
+    details[open] summary::before { content: '▾ '; }
+    details[open] summary {
+      border-bottom: 1px solid rgba(201,168,76,0.15); margin-bottom: 1rem;
+    }
+    details .inner { padding-bottom: 1.2rem; }
+    details .inner p:last-child { margin-bottom: 0; }
+
+    /* Pairing cards for Paper 2 */
+    .pair-card {
+      background: var(--midnight); border-radius: 4px; padding: 1.6rem;
+      border-top: 3px solid var(--accent); margin-bottom: 1.2rem;
+    }
+    .pair-card.second { border-top-color: var(--green); }
+    .pair-card.third { border-top-color: var(--red); }
+    .pair-card h4 {
+      font-family: 'Georgia', serif; font-size: 1.05rem; color: var(--white);
+      margin-bottom: 0.2rem; letter-spacing: 0;
+      text-transform: none;
+    }
+    .pair-card .pairing-sub {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 0.75rem;
+      color: var(--muted); margin-bottom: 1rem;
+    }
+    .pair-card p, .pair-card li { font-size: 0.88rem; max-width: none; }
+    .pair-card ul { padding-left: 1.1rem; margin-top: 0.5rem; }
+    .pair-card li { color: var(--muted); margin-bottom: 0.35rem; }
+    .pair-card li strong { color: var(--gold-light); font-weight: normal; }
+
+    /* References */
+    .refs { list-style: none; }
+    .refs li {
+      color: var(--muted); font-size: 0.86rem; padding: 0.6rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      padding-left: 1.6rem; text-indent: -1.6rem;
+    }
+    .refs li em { color: var(--gold-light); }
+
+    @media (max-width: 900px) {
+      .map-row { grid-template-columns: 1fr; }
+    }
+    @media print {
+      nav, .sidebar, .hero-nav-pills { display: none; }
+      body { background: #fff; color: #000; }
+      details summary { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <img src="books.svg" alt="Books" />
+    <a href="index.html">← DP Lit</a>
+    <em>Antigone</em>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#shape">Structure</a></li>
+    <li><a href="#defaults">Readings</a></li>
+    <li><a href="#context">Context</a></li>
+    <li><a href="#stage">Staging</a></li>
+    <li><a href="#lab">Close Reading</a></li>
+    <li><a href="#translation">Translation</a></li>
+    <li><a href="#critics">Critical Perspectives</a></li>
+    <li><a href="#paper2">Paper 2</a></li>
+    <li><a href="#bank">Quotations</a></li>
+  </ul>
+</nav>
+
+<header class="hero">
+  <div class="hero-tag">IB DP Literature · Work in Translation · Comprehensive Revision Guide</div>
+  <h1><em>Antigone</em></h1>
+  <p class="hero-author">Sophocles · translated by Don Taylor</p>
+  <p class="hero-year">c. 442–441 BC · Athens · Tragedy</p>
+  <p class="hero-tagline">
+    Antigone, on the unwritten laws: "No one understands where they came from, / But everyone recognises their force."
+  </p>
+  <div class="hero-nav-pills">
+    <a href="#shape" class="pill">Structure</a>
+    <a href="#defaults" class="pill">Three Readings to Avoid</a>
+    <a href="#context" class="pill">Context</a>
+    <a href="#stage" class="pill">Staging</a>
+    <a href="#lab" class="pill">Close Reading Lab</a>
+    <a href="#translation" class="pill">Translation</a>
+    <a href="#critics" class="pill">Critical Perspectives</a>
+    <a href="#paper2" class="pill">Paper 2</a>
+    <a href="#surgery" class="pill">Paragraph Surgery</a>
+    <a href="#bank" class="pill">Quotations</a>
+    <a href="#questions" class="pill">Questions</a>
+  </div>
+</header>
+
+<div class="page-wrap">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-title">Contents</div>
+    <ul>
+      <li><a href="#shape">1. Structure as Argument</a></li>
+      <li><a href="#defaults">2. Three Essays Not to Write</a></li>
+      <li><a href="#context">3. Context That Earns Its Place</a></li>
+      <li><a href="#stage">4. Meaning Made by the Stage</a></li>
+      <li><a href="#lab">5. Close Reading Laboratory</a></li>
+      <li class="sub"><a href="#pass-a">A · Ode to Man</a></li>
+      <li class="sub"><a href="#pass-b">B · The Unwritten Laws</a></li>
+      <li class="sub"><a href="#pass-c">C · Creon &amp; Haemon</a></li>
+      <li class="sub"><a href="#pass-d">D · Antigone's Lament</a></li>
+      <li class="sub"><a href="#pass-e">E · Teiresias</a></li>
+      <li><a href="#translation">6. Reading a Translation</a></li>
+      <li><a href="#critics">7. Critical Perspectives</a></li>
+      <li class="sub"><a href="#hegel">Hegel</a></li>
+      <li class="sub"><a href="#knox">Knox · Whitman</a></li>
+      <li class="sub"><a href="#segal">Segal</a></li>
+      <li class="sub"><a href="#gender-crit">Gender criticism</a></li>
+      <li><a href="#paper2">8. Paper 2 Comparative</a></li>
+      <li class="sub"><a href="#paper2">Pairings &#128274;</a></li>
+      <li class="sub"><a href="#paper2">Comparative thesis &#128274;</a></li>
+      <li class="sub"><a href="#paper2">Model paragraph &#128274;</a></li>
+      <li><a href="#surgery">9. Paragraph Surgery</a></li>
+      <li><a href="#bank">10. Quotation Bank</a></li>
+      <li><a href="#questions">11. Question Bank</a></li>
+      <li><a href="#refs">References</a></li>
+    </ul>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main-content">
+
+    <div class="context-box" style="margin-bottom:2.5rem;">
+      <h4>Texts and sources used in this chapter</h4>
+      <p>All quotations from the play are from <strong>Sophocles, <em>Antigone</em>, translated by Don Taylor, with commentary and notes by Angie Varakis</strong> (Bloomsbury Methuen Drama, Student Editions, 2006). Page references are to that edition. Numbers in square brackets are line numbers of the Greek text, so you can find the same moment in any other translation. Critical material is drawn from <strong>Charles Paul Segal, 'Sophocles' Praise of Man and the Conflicts of the <em>Antigone</em>'</strong> (<em>Arion</em> III.2, 1964) and from Varakis's commentary, which is where Hegel, Knox, Whitman, Foley and Lefkowitz are cited below. Full details in <a href="#refs" style="color:var(--gold)">References</a>.</p>
+    </div>
+
+    <!-- 1. STRUCTURE -->
+    <section class="content-section" id="shape">
+      <span class="section-number">Section 01</span>
+      <h2 class="section-title">The Shape of the Play Is an Argument</h2>
+
+      <p>Before you have an opinion about Antigone or Creon, notice what Sophocles built. <em>Antigone</em> runs to 1353 lines. Antigone speaks her last words and is led away to the cave at line 943; the chorus begins its Danaë ode at 944, and she never appears on stage again. Sophocles gives the remaining four hundred lines, nearly a third of his tragedy, to the man who has condemned her.</p>
+
+      <p>Be precise about what happens next, because it is the play's strangest decision and candidates routinely get it wrong. Antigone does not die when she leaves the stage. She is still alive, sealed in the tomb, throughout the Teiresias scene, which is exactly why Creon's dash to the cave is a race rather than a formality. She hangs herself at some unwitnessed moment, and the audience learns of it only at line 1220, from a messenger describing what the rescue party found: "We saw her, strung up by the neck, hanging / From an improvised rope of twisted linen / Strips, torn from her own dress" (p. 51). The heroine's death is doubly removed from us. It happens out of sight, and it reaches us second-hand.</p>
+
+      <p>No dramatist staging a balanced debate between two principles would arrange things this way. A debate needs both parties present at the verdict. Sophocles takes one of them out of the theatre while she is still living, denies her a death scene, and keeps the stage running for another four hundred lines. Whatever this play is doing, it is not adjudicating. Varakis's own study guide puts the difficulty to students directly: "Why do you think Sophocles chose to have Antigone killed half-way through the play?"</p>
+
+      <p>The formal architecture is unusually visible, and Athenian audiences read it as fluently as we read paragraph breaks. Seven speaking scenes are separated by six choral songs. The odes are the play thinking aloud about what it has just shown you, in a different register and metre, sung and danced rather than spoken.</p>
+
+      <div class="map">
+        <div class="map-row"><div class="k">Prologos</div><div class="v">Antigone and Ismene alone, before dawn. The only scene with no man on stage and no chorus watching.</div></div>
+        <div class="map-row ode"><div class="k">Parodos</div><div class="v">Victory song. Images of light and sunrise; the elders do not yet know about the decree.</div></div>
+        <div class="map-row"><div class="k">Scene 1</div><div class="v">Creon's inaugural address; the decree; the guard reports the first, partial burial.</div></div>
+        <div class="map-row ode"><div class="k">Stasimon 1</div><div class="v">The Ode to Man, the great praise of human mastery. <strong>Antigone is dragged on the instant it ends.</strong></div></div>
+        <div class="map-row"><div class="k">Scene 2</div><div class="v">The confrontation. Antigone's speech on the unwritten laws. Ismene tries to share the guilt and is refused.</div></div>
+        <div class="map-row ode"><div class="k">Stasimon 2</div><div class="v">Inherited doom: offend the gods and your family is cursed down the generations. <strong>Creon is on stage throughout it.</strong></div></div>
+        <div class="map-row"><div class="k">Scene 3</div><div class="v">Creon and Haemon. Father and son destroy their relationship at the rate of one line each.</div></div>
+        <div class="map-row ode"><div class="k">Stasimon 3</div><div class="v">Ode to Eros. Desire defeats gods and men alike, sung directly after Creon has dismissed love as weakness.</div></div>
+        <div class="map-row"><div class="k">Scene 4</div><div class="v">Antigone's lament and last speech. She is led to the cave at line 943, still alive, and never appears again.</div></div>
+        <div class="map-row ode"><div class="k">Stasimon 4</div><div class="v">Danaë and other mythic figures walled up or driven mad. Antigone becomes a pattern, not an exception.</div></div>
+        <div class="map-row"><div class="k">Scene 5</div><div class="v">Teiresias. The altars are choked with carrion. Creon capitulates, far too slowly.</div></div>
+        <div class="map-row ode"><div class="k">Stasimon 5</div><div class="v">Prayer to Dionysus, patron god of Thebes, to come and cleanse the city. The god does not come.</div></div>
+        <div class="map-row"><div class="k">Exodos</div><div class="v">The messenger reports what the rescue party found: Antigone hanged, Haemon dead beside her. Eurydice hears it, goes indoors in silence and kills herself. Creon carries his son's body. "I am nothing now. I have become nothing."</div></div>
+      </div>
+
+      <p>Read the ode column downwards on its own and a second play emerges alongside the first: confidence in human power, then inherited doom, then irresistible desire, then the walled-up figures of myth, then an unanswered prayer. The odes travel from mastery to helplessness while the scenes travel from decree to catastrophe. They stand as counter-evidence to the action they follow.</p>
+
+      <div class="task-box">
+        <h4>Task 1 · Structural argument</h4>
+        <ol>
+          <li>Sophocles could have brought Antigone back on stage. Creon reaches the tomb while the audience is still watching, so a rescue, or a death in view, was available to him. Instead he removes her at 943 and has her death narrated three hundred lines later. Write two sentences arguing that this double removal is <em>necessary</em> to what the play means, and that the meaning depends on it.</li>
+          <li>Now argue the opposite: that removing her is a structural weakness and the play loses its centre. Which argument is harder to sustain, and what does that tell you about your reading?</li>
+          <li>Her death is reported, not shown, and so are Haemon's and Eurydice's. Every death in this tragedy reaches the audience through someone else's account. Write one sentence on what Sophocles gains by refusing to stage any of them.</li>
+          <li class="stretch">Stretch: the chorus is on stage almost continuously and never leaves to act. What does the play gain from a permanent audience of citizens who watch a girl die and do nothing?</li>
+        </ol>
+      </div>
+
+      <div class="examiner-box">
+        <h4>What an examiner sees</h4>
+        <p>Two candidates both know that Antigone's death is reported rather than shown. The first mentions it in a sentence of plot summary. The second builds a thesis on it: Sophocles subordinates the question <em>who is right</em> to the question <em>what does it cost to be wrong</em>. That candidate then proves the thesis from the play's distribution of stage time. The information is identical; the thinking is of a different order, and only the second candidate reaches the top band of Criterion A.</p>
+      </div>
+    </section>
+
+    <!-- 2. THREE ESSAYS -->
+    <section class="content-section" id="defaults">
+      <span class="section-number">Section 02</span>
+      <h2 class="section-title">Three Essays Not to Write</h2>
+
+      <p>Most <em>Antigone</em> essays are one of three essays. Examiners have read all three several hundred times. Each is defensible and true as far as it goes, and each caps out in the middle bands because the thinking stops exactly where the interesting work begins.</p>
+
+      <h3 class="sub-title">1 · "Divine law versus human law"</h3>
+      <p>This is Hegel, usually without the student knowing it is Hegel. Family against state; two irreconcilable rights; both partly justified, both destroyed. It is the most influential reading of the play ever produced and it is not stupid. But Segal's warning is exact: the approach "runs the risk of conceptualizing the protagonists too simply into antithetical 'principles' which somehow are, and dialectically must be, ultimately reconciled." The characters stop being people and become positions.</p>
+      <p><strong>The upgrade.</strong> Keep the opposition, but ask what the play does <em>to</em> it. Antigone appeals to laws whose origin she says nobody understands, and dies with no god intervening for her. Creon appeals to a state which, by the end, consists of his own corpse-strewn household. The play stages two people discovering that their principle does not contain them.</p>
+
+      <h3 class="sub-title">2 · "Antigone is a feminist heroine"</h3>
+      <p>The gender material is real and central. Creon frames the whole conflict as a man's refusal to be beaten by a woman ("no woman will get the better of me", p. 24), and cannot conceive of Antigone's motive except by reducing it to something he recognises: theft, conspiracy, calculation. But an essay that stops at "Antigone defies patriarchy" has imported a modern category and used it as a conclusion rather than a tool.</p>
+      <p><strong>The upgrade.</strong> Note the contradiction instead of resolving it. Varakis sets out both positions: feminist critics (she cites Helene Foley) argue that Antigone assumes an essentially masculine role by acting against Creon's decree; against this, Mary Lefkowitz argues that Antigone does nothing unconventional at all, since burying family members was obligatory and it is Creon who violates established custom. Both cannot be fully right, and the friction between them is where your paragraph lives. Antigone becomes transgressive by performing her traditional role with absolute seriousness, a far more unsettling proposition than rebellion, and textually supported: she places her brother above any possible husband or son ("Not even for a son would I have done this", p. 39), a loyalty to the birth-family so total that it refuses the future entirely.</p>
+
+      <h3 class="sub-title">3 · "Creon is a tyrant who learns too late"</h3>
+      <p>True, and plot summary wearing an argument's clothes. It also flattens the most interesting thing about him, which is that he is not consistent. Segal's point is sharp: Creon is the play's advocate of reason who behaves least reasonably, praising his son and then threatening to kill the boy's bride in front of him inside the same scene. "In these sudden shifts of mood Creon undermines the 'rational' bases of his action on which rests, in part, his authority."</p>
+      <p><strong>The upgrade.</strong> Attack his rationality on its own terms. Creon claims the authority of consistent policy; the text gives him wild tonal swings, conspiracy theories about bribery, and a decree he cannot defend without shouting. Varakis makes the related structural point that Creon looks like an Aristotelian tragic hero but lacks the heroic temper: he "displays every symptom of heroic stubbornness but who in the end is swayed by advice, makes major concessions until his final collapse." His fall is his own position failing internally, in public, across five scenes. The destruction is entirely self-generated.</p>
+
+      <div class="trap-box">
+        <h4>Traps</h4>
+        <ul>
+          <li><strong>Naming the god does not analyse the god.</strong> "Sophocles alludes to Zeus, showing Greek religious belief" is a fact about Greece, not a reading of the play. What matters is that <em>Creon</em> swears by Zeus constantly and Antigone opens her great speech with Zeus. They are fighting over the same god.</li>
+          <li><strong>"The chorus represents the audience."</strong> Sometimes. They also defer to Creon, call Antigone stubborn and self-willed, and only find their nerve once they see the king wavering. Varakis lists three competing explanations for their coldness towards her: fear of the ever-present Creon; the automatic distance of old men from a young woman; and the dramatic need to isolate the heroine. Treat them as characters with interests, not as a moral guide.</li>
+          <li><strong>Hamartia and catharsis.</strong> Aristotle wrote roughly a century after Sophocles and was describing a different body of plays. Borrow his terms only when they earn their place in your sentence; unearned Aristotle reads as decoration.</li>
+          <li><strong>Calling Antigone "relatable".</strong> The play's force depends on how little she yields to sympathy. She refuses her sister, spurns the chorus's comfort ("Spare me your sympathy, / Weep no false tears", p. 38), and dies convinced she is right. The play is built on that difficulty.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 3. CONTEXT -->
+    <section class="content-section" id="context">
+      <span class="section-number">Section 03</span>
+      <h2 class="section-title">Context That Earns Its Place</h2>
+
+      <p>The rule for this chapter, and for your essays: context is admissible only when it changes what a line means. If the sentence still works with the historical clause deleted, delete it. Below is the whole of what you need, each item followed by the interpretive work it does.</p>
+
+      <div class="two-col">
+        <div class="context-box">
+          <h4>Kinship replaced by locality</h4>
+          <p>Cleisthenes' reforms of 508/7 BC reorganised Athenian citizens into ten local tribes rather than family units. A man's official name stopped being "son of" and became "of such-and-such a tribe." Varakis notes that old loyalty to the family was treated as "a challenge to the new democratic institutions."</p>
+        </div>
+        <div class="context-box">
+          <h4>What it earns you</h4>
+          <p>Antigone's position is a live political anachronism, the older ideology arguing with the newer one. Creon is defending the recent settlement against something that predates it, rather than tradition against a rebel. That reverses the intuitive alignment of the two characters, and it is worth a whole paragraph.</p>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="context-box">
+          <h4>Pericles and Protagoras</h4>
+          <p>Thucydides gives Pericles a funeral speech praising Athenian democracy and dismissing citizens who mind only private business as useless. Protagoras declared that man is the measure of all things. This is the intellectual weather of the play's first performance.</p>
+        </div>
+        <div class="context-box">
+          <h4>What it earns you</h4>
+          <p>Students routinely take the Ode to Man for Sophocles' manifesto. It is a recognisable contemporary position, given to frightened old men and then dismantled over the following thousand lines. And Pericles cuts both ways: he also insists that a distinguished citizen "is preferred to the public service, not as a matter of privilege, but as a reward of merit." Segal reads Antigone as demanding exactly the individual distinctiveness Creon denies exists, something the Periclean state ought, on its own principles, to accommodate.</p>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="context-box">
+          <h4>A religious festival, in daylight</h4>
+          <p>The City Dionysia opened with a procession, the sacrifice of bulls, and the purification of the performance area with a piglet's blood. The theatre sat on the slope below the Acropolis; the market-place was over the hill; the Parthenon was under construction behind the audience.</p>
+        </div>
+        <div class="context-box">
+          <h4>What it earns you</h4>
+          <p>The play's central offence, a body left to rot and altars choked with carrion, was staged for people who had that morning watched animals sacrificed correctly. Teiresias's report that the gods now refuse Theban sacrifice lands on an audience who have just performed one. For them, pollution (<span class="greek">miasma</span>) is a literal emergency with consequences for the whole city.</p>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="context-box">
+          <h4>Women, excluded and indispensable</h4>
+          <p>Athenian women had no vote and no public role. Burial of the family dead, and the lament that accompanied it, was among the very few spheres of authority genuinely theirs.</p>
+        </div>
+        <div class="context-box">
+          <h4>What it earns you</h4>
+          <p>Creon's decree reaches into the one domain where a woman's authority was uncontested and abolishes it, so it does far more than inconvenience Antigone. Her defiance is a jurisdictional argument as much as a moral one, which is why Creon experiences it as a threat to rule itself.</p>
+        </div>
+      </div>
+
+      <div class="trap-box">
+        <h4>Context that decorates rather than deepens</h4>
+        <ul>
+          <li>Sophocles' biography. That he was elected general after <em>Antigone</em>'s success is a charming fact and has never improved anyone's paragraph.</li>
+          <li>The Theban myth cycle recounted at length. One clause is enough: the brothers killed each other, Creon inherited, this is his first day in office.</li>
+          <li>"In ancient Greece, people believed in the gods."</li>
+          <li>The date of composition, unless you are making an argument that depends on it.</li>
+        </ul>
+      </div>
+
+      <div class="task-box">
+        <h4>Task 2 · The deletion test</h4>
+        <ol>
+          <li>Take a paragraph of your own writing on <em>Antigone</em> that contains a historical statement. Delete the statement. Does the argument survive intact? If it does, the context was decoration: either cut it or make it load-bearing.</li>
+          <li>Write one sentence in which the Cleisthenic shift from kinship to locality makes a specific line of Antigone's <em>mean something different</em> from what it appears to mean on first reading.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 4. STAGING -->
+    <section class="content-section" id="stage">
+      <span class="section-number">Section 04</span>
+      <h2 class="section-title">Meaning Made by the Stage</h2>
+
+      <p>This is the most under-used source of marks on the play. Candidates who write about <em>Antigone</em> as a text about ideas are competing with thousands of others. Candidates who write about it as a designed event in a physical space are doing something examiners see rarely and reward heavily. The material below comes from Varakis's commentary on ancient performance practice.</p>
+
+      <h3 class="sub-title">Three actors, and who shares a voice</h3>
+      <p>Three masked male actors played every speaking role. Because Creon appears with everyone and speaks most, his was almost certainly the protagonist's part. Varakis sets out the likeliest distribution: the second actor takes Antigone, Haemon, Teiresias <em>and</em> Eurydice; the third takes Ismene, the soldier and the messenger.</p>
+      <p>Consider what that does. Every voice that opposes Creon comes out of one body. The girl he buries, the son he loses, the prophet he insults and the wife who kills herself are, in performance, the same performer returning again and again behind different masks. Creon is defeated by one thing that will not stop coming back, rather than by a series of separate opponents. Meanwhile the third actor carries the moderates: the sister who yields, the soldier who saves himself, the messenger who reports. Ordinary self-preserving humanity also speaks with a single consistent voice. As Varakis puts it, "all the opponents of Creon would have shared the same voice and attitude, while the third actor would have delivered the parts of those who represented a more moderate and ordinary mentality."</p>
+      <p><strong>Hedge this correctly.</strong> The distribution is a scholarly reconstruction, not a documented fact. Write <em>if the parts were distributed as most scholars suppose, then…</em> Hedged, the claim reads as scholarship; asserted flatly, it reads as invention.</p>
+
+      <h3 class="sub-title">Doors and directions</h3>
+      <p>The stage building (<span class="greek">skene</span>) had a central door representing the palace interior, the private and broadly female domain, and two side entrances used by characters arriving from elsewhere, conventionally male space.</p>
+      <p>Antigone breaks this grammar in her very first scene. She leaves by a side entrance rather than the palace door, out into the world, to bury her brother. Varakis notes the exception pointedly: women usually used the main door, "with the exception of Antigone, who is no ordinary female." She is brought back the same way, under guard, as a captive taken in male territory. When Creon arrests both sisters he sends them <em>inside</em>, through the central door, where women belong. It is from that same door, in the fourth scene, that she makes her last journey to the cave.</p>
+      <p>The play's spatial argument, then, is a sequence: she goes out, she is brought back, she is put in, she is taken under. A student who tracks that sequence is analysing form. The alternative, "Antigone is a strong female character", leaves a paragraph with nothing to examine.</p>
+
+      <h3 class="sub-title">Masks, and what they force</h3>
+      <p>The mask allowed no facial expression and no psychological flicker. Meaning had to be carried by words, voice, the disposition of bodies in space, and the relation of one masked figure to a group of fifteen. Varakis is blunt about the consequence: "The notion of psychological acting through the subtle variations of facial expression was alien to the ancient Greeks." So when you are tempted to write about a character's inner conflict, remember Sophocles had no way to show it except by making them say it. That is why Creon's one moment of visible division is <em>spoken</em>:</p>
+
+      <div class="passage">
+        <div class="passage-ref">Creon, after Teiresias's exit · p. 46 · [1095–97]</div>
+        <p class="verse">Neither have I, man! . . . I know that much
+As well as you . . . My mind's torn apart
+Like a tug of war, one way, then the other . . .
+How can I give way now? But how
+Can I stand here like a fool, and wait
+Stubbornly for whatever disaster may be coming?</p>
+        <p class="passage-note">In the Greek, the word Creon reaches for when he says that yielding is unbearable is <span class="greek">deinon</span>, the same word the chorus used of man in the Ode to Man. Segal: "when forced by confrontation with the uncontrollable to 'yield,' he echoes the lead-word in the earlier praise of man's power of control."</p>
+      </div>
+
+      <p>Notice what Taylor's ellipses are doing. They are a modern typographic resource, not a Greek one: the translator has scored Creon's speech with hesitations, giving a masked figure something like a breaking voice. That is a real interpretive decision, and you are entitled to analyse it; see Section 06.</p>
+
+      <div class="task-box">
+        <h4>Task 3 · Staging as interpretation</h4>
+        <ol>
+          <li>Block the second scene. Where are the fifteen chorus members standing while Creon interrogates Antigone? Choose a position, then justify it as a reading: what does your choice claim about the elders' relation to the king?</li>
+          <li>Count Antigone's lines against Creon's. She feels dominant; does the count agree? If it does not, what is generating the impression?</li>
+          <li class="stretch">Stretch: Eurydice has barely a dozen lines, then goes indoors and kills herself. Argue that her silence is a deliberate structural effect rather than an economy of casting.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 5. CLOSE READING LAB -->
+    <section class="content-section" id="lab">
+      <span class="section-number">Section 05</span>
+      <h2 class="section-title">Close Reading Laboratory</h2>
+
+      <p>These five passages will carry almost any argument you need to make about the play. Learn them properly, as pieces of writing you have investigated until they stop looking obvious.</p>
+
+      <p>Every paragraph you write about them should be able to answer the seven questions below, in order. Treat the list as a diagnostic rather than a template to be filled in. If a paragraph of yours cannot answer one of them, that is where it is weak.</p>
+
+      <div class="examiner-box">
+        <h4>The seven moves of an analytical paragraph</h4>
+        <ol>
+          <li><strong>Claim.</strong> What do you assert about meaning rather than about content?</li>
+          <li><strong>Evidence.</strong> The smallest quotation that will do the work.</li>
+          <li><strong>Close reading.</strong> What is actually happening in the words, syntax, rhythm, placement?</li>
+          <li><strong>Analysis.</strong> How does that construction produce the meaning you claimed?</li>
+          <li><strong>Effect.</strong> What does it do to an audience, in a theatre, at that moment?</li>
+          <li><strong>Evaluation.</strong> How well does it work, what does it cost, where is the ambiguity?</li>
+          <li><strong>Link.</strong> How far has your central interpretation <em>moved forward</em> from where the paragraph began?</li>
+        </ol>
+        <p>Move 6 is the one candidates skip, and it is the one that separates the middle from the top of Criterion B. Analysis explains how a text works. Evaluation judges it.</p>
+      </div>
+
+      <!-- PASSAGE A -->
+      <h3 class="sub-title" id="pass-a">Passage A · The Ode to Man (first stasimon)</h3>
+      <p>The most famous chorus in Greek tragedy and the interpretive key to the whole play. Sung by fifteen old men immediately after Creon has raged about bribery and conspiracy, and ending, crucially, the instant before Antigone is dragged on stage under guard.</p>
+
+      <div class="passage">
+        <div class="passage-ref">Chorus, first stasimon · pp. 17–18 · [332–375]</div>
+        <p class="verse">Is there anything more wonderful on earth,
+Our marvellous planet,
+Than the miracle of man!
+With what arrogant ease
+He rides the dangerous seas,
+From the waves' towering summit
+To the yawning trough beneath.
+The earth mother herself, before time began,
+The oldest of the ageless gods,
+Learned to endure his driving plough,
+Turning the earth and breaking the clods
+Till by the sweat of his brow
+She yielded up her fruitfulness.
+                    …
+He has mastered the mysteries of language:
+And thought, which moves faster than the wind,
+He has tamed, and made rational.
+Political wisdom too, all the knowledge
+Of people and States, all the practical
+Arts of government he has studied and refined,
+Built cities to shelter his head
+Against rain and danger and cold
+And ordered all things in his mind.
+There is no problem he cannot resolve
+By the exercise of his brains or his breath,
+And the only disease he cannot salve
+Or cure, is death.
+
+In action he is subtle beyond imagination,
+Limitless in his skill, and these gifts
+Are both enemies and friends,
+As he applies them, with equal determination,
+To good or to evil ends.
+All men honour, and the State uplifts
+That man to the heights of glory, whose powers
+Uphold the constitution, and the gods, and their laws.
+His city prospers. But if he shifts
+His ground, and takes the wrong path,
+Despising morality, and blown up with pride,
+Indulges himself and his power, at my hearth
+May he never warm himself, or sit at my side.</p>
+        <p class="passage-note"><em>Stage direction immediately following:</em> "<span class="sp">Antigone</span> is brought in by the guards, the <span class="sp">Soldier</span> is with her, a triumphant smile on his face."</p>
+      </div>
+
+      <h4 style="font-family:'Helvetica Neue',sans-serif;font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin:1.5rem 0 0.5rem;">What to investigate</h4>
+      <div class="investigate">
+        <div class="inv-item">
+          <p><strong>The syntax of accumulation.</strong> Count the verbs of mastery: rides, learned to endure, submit, has mastered, has tamed, has studied and refined, built, ordered. The ode is a list, and a list is a form in which nothing is ever weighed, only added. Ask what an argument loses when delivered as an inventory.</p>
+        </div>
+        <div class="inv-item">
+          <p><strong>Where the momentum stops.</strong> Three stanzas of expanding conquest arrive at four flat, almost entirely monosyllabic words: "Or cure, is death." The single item that cannot join the list is the one that will govern the remaining thousand lines. Ask why Sophocles puts the limit <em>inside</em> the praise rather than after it.</p>
+        </div>
+        <div class="inv-item">
+          <p><strong>The turn in the final stanza.</strong> The ode does not conclude that man is good. It concludes that his gifts "Are both enemies and friends, / As he applies them, with equal determination, / To good or to evil ends." That is a declaration of moral neutrality, a far more frightening proposition than praise, because it means the capacities just catalogued guarantee nothing.</p>
+        </div>
+        <div class="inv-item">
+          <p><strong>The exclusion formula, and who walks on.</strong> The elders end by ritually excluding the transgressor from their hearth, and Sophocles immediately produces a transgressor. The audience must decide in real time whether the ode has just described Creon or condemned Antigone, and the play refuses to say. Either way, the juxtaposition indicts somebody.</p>
+        </div>
+      </div>
+
+      <div class="trap-box">
+        <h4>What the Greek has that the translation does not</h4>
+        <ul style="list-style:none">
+          <li style="padding-left:0"><span style="display:none">·</span>The opening line is <span class="greek">pollà tà deinà koudèn anthrṓpou deinóteron pélei</span>. The word <span class="greek">deinos</span> means <em>wonderful</em> and <em>terrible</em> at once: awe in both directions. Segal insists on it: "The adjective which describes man, <span class="greek">deinos</span>, means not only 'wonderful,' but also 'terrible,' 'fearful'… But the greatest ambiguity lies in man himself."</li>
+          <li style="padding-left:0">Taylor gives three positives in three lines ("wonderful", "marvellous", "miracle") and no shadow at all. The ambiguity on which Segal builds an entire reading has been translated out.</li>
+          <li style="padding-left:0">Two further losses in the same ode. The Greek word for man's civic <em>temper</em> (<span class="greek">orgas</span>, 356) also means <em>anger</em>, and had been used of Creon's rage moments earlier. The word for his <em>thought</em> (<span class="greek">phronema</span>, 354) also means <em>pride</em>. Taylor renders both as neutral competence: "Political wisdom", "ordered all things in his mind."</li>
+          <li style="padding-left:0"><strong>Turn this to your advantage.</strong> You are not expected to know Greek. You are expected to know you are reading a translation, and to write accordingly; see Section 06.</li>
+        </ul>
+      </div>
+
+      <div class="task-box">
+        <h4>Task 4 · The ode</h4>
+        <ol>
+          <li>The ode praises man for catching birds and taming animals. Later, birds carry the gods' warning to Teiresias, and the guard compares the captured Antigone to a mother bird screaming over an emptied nest. Write a paragraph arguing that the ode's catalogue of conquests is systematically reversed by the play. Do the tracing yourself first, then read Section 07 and see how much you found.</li>
+          <li>Antigone enters on the ode's last syllable. Write two contradictory one-sentence readings of that juxtaposition: one in which the ode condemns her, one in which it condemns Creon. Then say which is better supported, and why the play might want both available at once.</li>
+          <li class="stretch">Stretch: the ode is sung and danced in unison by fifteen men. What does communal performance do to a claim about individual human greatness?</li>
+        </ol>
+      </div>
+
+      <!-- PASSAGE B -->
+      <h3 class="sub-title" id="pass-b">Passage B · Antigone on the Unwritten Laws</h3>
+      <p>Her answer to Creon's simple legal question. It is simultaneously a confession, a defence and a piece of self-praise, and it introduces a distinction the play has not previously been able to make.</p>
+
+      <div class="passage">
+        <div class="passage-ref">Antigone to Creon · pp. 21–22 · [450–470]</div>
+        <p class="verse"><span class="sp">Creon.</span> And yet you dared to disobey the law?
+<span class="sp">Antigone.</span> Yes, I did. Because it's your law,
+Not the law of god. Natural justice,
+Which is of all times and places, numinous,
+Not material, a quality of Zeus,
+Not of kings, recognises no such law.
+You are merely a man, mortal,
+Like me, and laws that you enact
+Cannot overturn ancient moralities
+Or common human decency.
+They speak the language of eternity,
+Are not written down, and never change.
+They are for today, yesterday, and all time.
+No one understands where they came from,
+But everyone recognises their force:
+And no man's arrogance or power
+Can make me disobey them. I would rather
+Suffer the disapproval and punishment
+Of men, than dishonour such ancient truths.
+                    …
+                    By your judgement
+Of course, I'm a fool. But by mine,
+It's the judge, not the accused who's behaving foolishly.</p>
+      </div>
+
+      <h4 style="font-family:'Helvetica Neue',sans-serif;font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin:1.5rem 0 0.5rem;">What to investigate</h4>
+      <div class="investigate">
+        <div class="inv-item">
+          <p><strong>The lexical split.</strong> Antigone separates two words Creon has been using interchangeably. In Greek she opposes his <span class="greek">kerygmata</span> (proclamations, decrees, things announced by a herald) to the <span class="greek">nomima</span> of the gods, what is customary and established. Taylor marks it as "your law, / Not the law of god." Varakis: from this point, "justice in private life can no longer be identified with justice in relation to the polis or state." One woman's speech splits a vocabulary, and the play's central conflict becomes articulable for the first time.</p>
+        </div>
+        <div class="inv-item">
+          <p><strong>The admission at the centre.</strong> "No one understands where they came from, / But everyone recognises their force." Antigone's foundation is explicitly unknowable. Her claim is that the unknowability <em>is</em> the ground of authority, and knowledge of the gods' will is precisely what she declines to assert. Set that beside Creon, who assumes he knows exactly what the gods want: "Is it likely, / Remotely likely, that the gods will think twice / Over that pile of stinking meat?" (p. 15). Segal: "Creon understands nothing of the limits on human power and control. For him to know the ways of men is also to know the ways of the gods."</p>
+        </div>
+        <div class="inv-item">
+          <p><strong>The reversal in the last line.</strong> She takes Creon's word, folly, and returns it. The move does more than score a point: it establishes the pattern by which the play's key words keep changing owners. Watch <em>folly</em>, <em>profit</em>, <em>piety</em>, <em>terrible</em> and <em>nothing</em> pass back and forth between them until the end, when Creon is left holding all of them.</p>
+        </div>
+      </div>
+
+      <table class="concept-table">
+        <thead>
+          <tr><th>Greek term</th><th>What it means, and why it matters</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="greek">nomos / kerygma</span></td><td>Established law versus announced decree. Antigone forces them apart at [450ff]; Creon had used both words for the same thing.</td></tr>
+          <tr><td><span class="greek">kerdos</span></td><td>Profit, gain. Creon's default explanation for all human motive: bribery, corruption, the fee. Antigone uses the same word to say she <em>profits</em> by dying [461–64], emptying it out.</td></tr>
+          <tr><td><span class="greek">autonomos</span></td><td>"A law to herself", the chorus's description of Antigone [821]. The compliment and the accusation are one word.</td></tr>
+          <tr><td><span class="greek">philein</span></td><td>To love, and also to be politically allied. Creon collapses the two; Antigone insists on the first. Their whole quarrel sits in this verb.</td></tr>
+          <tr><td><span class="greek">deinos</span></td><td>Wonderful and terrible. The Ode to Man's first word about humanity, and Creon's word for yielding at [1096].</td></tr>
+          <tr><td><span class="greek">miasma</span></td><td>Pollution. Not a metaphor: an infectious taint, the physical manifestation of a violated religious sanction, and a threat to the whole city.</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:0.85rem;">Use these sparingly and only where the English cannot carry the point. One Greek term deployed precisely impresses; four sprinkled decoratively suggest you are quoting a glossary.</p>
+
+      <div class="task-box">
+        <h4>Task 5 · The speech</h4>
+        <ol>
+          <li>Antigone spends nineteen lines on eternal law and then says she will be glad to die because "My life has been misery." Is that consistent? Write the strongest available defence of her consistency, then the strongest attack. Do not resolve it.</li>
+          <li>Track every use of <em>fool</em>, <em>foolish</em> and <em>folly</em> in the play, noting who applies it to whom. Write one sentence stating what the pattern argues.</li>
+          <li class="stretch">Stretch: Antigone begins her defence with Zeus, and Creon swears by Zeus throughout. Write a paragraph on what it means that both characters claim the same god.</li>
+        </ol>
+      </div>
+
+      <!-- PASSAGE C -->
+      <h3 class="sub-title" id="pass-c">Passage C · Creon and Haemon: A Rational Position Collapsing</h3>
+      <p>The play's formal centre and its finest piece of construction. Creon's long speech on obedience gives way to <span class="greek">stichomythia</span>, line-for-line exchange, and the relationship disintegrates at the rate of one line each.</p>
+
+      <div class="passage">
+        <div class="passage-ref">Creon, then the exchange with Haemon · pp. 30, 32–33 · [663–751]</div>
+        <p class="verse"><span class="sp">Creon.</span> Unquestioning obedience to whomsoever the State
+Appoints to be its ruler is the law
+As far as I'm concerned, and this applies
+To small things as well as great ones,
+Just or unjust, right or wrong.
+                    …
+Whereas the well-drilled regiment
+That asks no questions stands firm,
+Knows nothing, and needs to know nothing, and wins,
+Thus saving the lives of millions of honest people.
+                    …
+There will be no yielding to female fantasies,
+Not by so much as an inch. And if we must be deposed,
+Let it be by a man's hand, eh son?
+Not by a conspiracy of women!
+
+<span class="sp">Haemon.</span> You see it when a river floods, the trees
+That bend, survive, those whose trunks
+Are inflexible, are snapped off short
+By the weight of water. And a sailor in a storm
+Who refuses to reef his sail, and run
+With the wind, is likely to end up capsized.
+                    …
+Absolute certainty is fine, if a man
+Can be certain that his wisdom is absolute.
+
+<span class="sp">Creon.</span> Is there indeed? Am I expected to listen
+And take lessons in political tactics
+At my age, from a mere boy?
+<span class="sp">Haemon.</span> I'm a man, Father, and my arguments are just.
+                    …
+<span class="sp">Haemon.</span> When the State becomes one man it ceases to be a State!
+<span class="sp">Creon.</span> The State is the statesman who rules it, it reflects
+His judgement, it belongs to him!
+<span class="sp">Haemon.</span> Go and rule in the desert then! There's nobody there
+To argue with you! What a king you'll be there!
+<span class="sp">Creon.</span> This boy of mine is on the woman's side!
+<span class="sp">Haemon.</span> Yes, if you are a woman, I am.
+I'm on your side Father, I'm fighting for you.</p>
+      </div>
+
+      <h4 style="font-family:'Helvetica Neue',sans-serif;font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin:1.5rem 0 0.5rem;">What to investigate</h4>
+      <div class="investigate">
+        <div class="inv-item">
+          <p><strong>"Just or unjust, right or wrong."</strong> Creon has just conceded the entire argument. He is no longer claiming his decree is right; he is claiming that rightness is irrelevant to obedience. Once you notice this, every later appeal he makes to justice is self-refuting, and you have a thesis about Creon that does not depend on calling him a tyrant.</p>
+        </div>
+        <div class="inv-item">
+          <p><strong>The regiment that knows nothing.</strong> Taylor's Creon praises an army that "Knows nothing, and needs to know nothing", two scenes after the chorus praised man precisely for knowledge. Creon's ideal citizen is the exact inverse of the ode's ideal human.</p>
+        </div>
+        <div class="inv-item">
+          <p><strong>Haemon argues in the play's own images.</strong> Trees in flood, a sailor in a storm: the natural world the ode claimed man had mastered, returning as the source of instruction. Segal notes that Haemon's plea to <em>yield</em> introduces the motif on which Creon will finally break, and that his word for human <em>wisdom</em> (<span class="greek">sophos</span>, 710) echoes the ode's praise of skill.</p>
+        </div>
+        <div class="inv-item">
+          <p><strong>Where the lines start splitting.</strong> Find the exact point at which speeches shorten into single lines. In performance the acceleration is audible: the metre becomes a countdown. Then note that Haemon's "I'm on your side Father, I'm fighting for you" arrives after Creon has stopped being able to hear anything as support.</p>
+        </div>
+        <div class="inv-item">
+          <p><strong>Whose voice is Haemon's?</strong> If the doubling reconstruction holds, the actor who played Antigone has changed masks and returned as the boy arguing for her. Creon is opposed twice by the same performer and does not know it. The audience does.</p>
+        </div>
+      </div>
+
+      <div class="task-box">
+        <h4>Task 6 · The agon</h4>
+        <ol>
+          <li>Creon's speech turns on <em>obedience, authority, law, State, discipline</em>. Haemon's turns on <em>bend, listen, learn, reason, survive</em>. Neither man mentions Polynices or burial. Write a paragraph on what the scene is <em>actually</em> about, given that its ostensible subject never appears in it.</li>
+          <li>The chorus responds to both speeches with "you are both in the right, / And there's a good deal to be said for either" (p. 32). Wisdom, cowardice, or a joke at the audience's expense? Defend one reading using evidence from elsewhere in their part.</li>
+        </ol>
+      </div>
+
+      <!-- PASSAGE D -->
+      <h3 class="sub-title" id="pass-d">Passage D · Antigone's Last Speech</h3>
+      <p>Her final appearance. Notice how little consolation the play allows her, and how strange Taylor's diction becomes here.</p>
+
+      <div class="passage">
+        <div class="passage-ref">Antigone · pp. 38–40 · [891–943]</div>
+        <p class="verse">To my grave then. My honeymoon bed.
+My prison. My crypt, under the mountain.
+My home for the rest of time. I shall meet
+So many of my relations there:
+We shall all be guests of the sad-faced queen
+Of the shadows, Persephone, in that bleak hotel
+That is never short of a room. I am the last,
+The unhappiest, I think, and the youngest,
+Booking in too soon.
+                    …
+Not for a husband, you understand,
+Not even for a son would I have done this.
+If the law had forbidden it, I would have bowed
+My head, and let them rot. Does that
+Make sense? I could have married again,
+Another husband, and had more children
+By him, if the first had died. Do you see?
+Do you understand me? But my mother and father
+Are dead. There will be no more brothers,
+Never again. My love had to speak
+At Polynices' grave, or nowhere.
+                    …
+                    And I die his victim,
+Unjustly, for upholding justice
+And the humanity of humankind.</p>
+      </div>
+
+      <h4 style="font-family:'Helvetica Neue',sans-serif;font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin:1.5rem 0 0.5rem;">What to investigate</h4>
+      <div class="investigate">
+        <div class="inv-item">
+          <p><strong>The four appositions.</strong> "My grave… My honeymoon bed. / My prison. My crypt." Marriage and burial are made the same event by grammar alone: no simile, no explanation, four nouns claiming one referent. This is the play's dominant figure. Segal traces the whole sequence: Creon's threat to kill her in her bridegroom's presence, her own lament that she is wedding Acheron and that her tomb is her bridal chamber, and finally Haemon's "marriage" to her in death, "having got his marriage portion in Hades' house."</p>
+        </div>
+        <div class="inv-item">
+          <p><strong>The hotel.</strong> Taylor gives the Greek underworld the vocabulary of a modern traveller: "that bleak hotel / That is never short of a room", "Booking in too soon". It is a startling and arguably indefensible choice. Decide what it does. One case: it strips death of grandeur and makes it administrative, which fits a girl killed by a decree. Another: it trivialises the most solemn speech in the play. Either view is available. What is not available is having no view, because Move 6 requires one.</p>
+        </div>
+        <div class="inv-item">
+          <p><strong>The argument nobody likes.</strong> Antigone justifies herself by replaceability: husbands and children can be replaced, brothers cannot. Some scholars have found the passage so cold they doubted Sophocles wrote it. Do not smooth it over. This is where her position stops being warm family feeling and becomes something more rigorous and less comfortable: a calculation about irreplaceability. If your reading of Antigone cannot accommodate these lines, your reading is too kind.</p>
+        </div>
+        <div class="inv-item">
+          <p><strong>Three questions to people who cannot answer.</strong> "Does that / Make sense? … Do you see? / Do you understand me?" She is asking the chorus, who have just told her she connives at her own fate. The questions go unanswered. Whatever else Antigone is, she is unheard.</p>
+        </div>
+      </div>
+
+      <div class="task-box">
+        <h4>Task 7 · The lament</h4>
+        <ol>
+          <li>Write the paragraph that defends "that bleak hotel" as the best line in Taylor's translation. Then write the paragraph that condemns it. Which do you actually believe? That belief, defended, is Criterion B evaluation.</li>
+          <li>Antigone claims she dies "for upholding justice / And the humanity of humankind." Is that what she has been doing? Test the claim against her refusal of Ismene in the second scene.</li>
+        </ol>
+      </div>
+
+      <!-- PASSAGE E -->
+      <h3 class="sub-title" id="pass-e">Passage E · Teiresias, and Pollution Made Physical</h3>
+      <p>The turn of the play. The warning arrives not as moral argument but as a description of failed sacrifice: the gods are made present through disgust.</p>
+
+      <div class="passage">
+        <div class="passage-ref">Teiresias · pp. 42–43 · [988–1032]</div>
+        <p class="verse">You're like a man balanced on a razor,
+Likely to fall – or cut himself to pieces.
+                    …
+                    At once
+I went to my altar to see what I could learn
+From the sacrifice by fire. But nothing would burn.
+A filthy liquid ran from the flesh
+And dropped on the embers – and sizzled and bubbled
+Among the ashes. Then the gall bladder burst,
+Spurting stinking acid across the meat,
+And all the fat melted, and was rendered down
+Till the bone was left bare. I saw all this –
+Or my boy saw it. He sees for me
+What my eyes cannot, just as I see
+Things to which other people are blind.
+                    …
+The man who can recognise what he has done,
+See that he was mistaken, or morally wrong,
+Admit it, and put it right, that man
+Proves that it is never too late to become
+Wise, and no one will condemn him.</p>
+      </div>
+
+      <h4 style="font-family:'Helvetica Neue',sans-serif;font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin:1.5rem 0 0.5rem;">What to investigate</h4>
+      <div class="investigate">
+        <div class="inv-item">
+          <p><strong>The gods arrive as a smell.</strong> Sophocles puts no god on stage. He puts rot on the altars and lets a blind man describe it. The divine enters the play as the failure of a technology: sacrifice stops working. Set this against Creon's earlier confidence that no human act "Can stain the purity of the ever-living gods" (p. 44). Segal calls that line hybristic, and it is answered within two hundred lines.</p>
+        </div>
+        <div class="inv-item">
+          <p><strong>Sight and its distribution.</strong> The blind prophet sees; the boy sees for him; Creon, with working eyes, sees nothing. Go past the label "irony." Say what it argues: in this play knowledge is never held by the person with the power to act on it.</p>
+        </div>
+        <div class="inv-item">
+          <p><strong>An exit is offered and taken too late.</strong> The speech contains an explicit, generous escape route: admit the mistake, and no one will condemn you. Creon was told, in plain terms, with the door held open, and he walked past it anyway.</p>
+        </div>
+        <div class="inv-item">
+          <p><strong>Prophecy as a rival craft.</strong> Segal's finest small observation: prophecy is itself a <span class="greek">techne</span>, a skill or an art, but one that works by listening to the natural world rather than subduing it, standing "apart from the more systematic 'arts' of control and device… that man has 'taught himself.'" Teiresias is the Ode to Man's refutation in human form: a technique of submission.</p>
+        </div>
+      </div>
+
+      <div class="task-box">
+        <h4>Task 8 · The prophet</h4>
+        <ol>
+          <li>Creon accuses Teiresias of being bought, the same accusation he made against the guard. Write a paragraph on Creon's theory of human motive and what it reveals about him, using <span class="greek">kerdos</span> precisely once.</li>
+          <li>The birds that scream at Teiresias were listed among man's conquests in the Ode to Man. Trace the birds through the play, from the exposed corpse to Teiresias's altar. What has the play done to the ode's claim?</li>
+          <li class="stretch">Stretch: after Teiresias leaves, Creon asks the chorus for advice and follows it immediately. Why does Sophocles make the reversal so fast, and what does the speed cost Creon?</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 6. TRANSLATION -->
+    <section class="content-section" id="translation">
+      <span class="section-number">Section 06</span>
+      <h2 class="section-title">Reading a Play You Cannot Read</h2>
+
+      <p><em>Antigone</em> is a work in translation, and that is a condition of your study rather than a footnote to it. Most candidates handle it in one of two bad ways: they ignore it entirely and write as if analysing Sophocles' Greek word choice, or they mention it apologetically in an introduction and never return. Both are avoidable.</p>
+
+      <h3 class="sub-title">What Taylor says he was doing</h3>
+      <p>Taylor's translator's note is unusually candid, and worth knowing. He distinguishes four kinds of translation: the literal crib, "written in an execrable alien English"; the ambitious attempt to reproduce meaning, verse form and music together, which "can easily collapse into a twisted unidiomatic mish-mash"; the free version that pursues "the spirit rather than the letter"; and outright imitation, effectively a new work. He places himself nearest the third, and then adds the detail that matters most:</p>
+
+      <div class="quote-block">
+        <p class="quote-text">"What differentiates it from that third section… is that I have no Greek, and have worked from one specially commissioned literal translation, and a consideration of the work of many of my distinguished predecessors."</p>
+        <p class="quote-speaker">Don Taylor · Translator's Note, p. xlviii</p>
+        <div class="quote-analysis"><strong>Why this is useful, not damaging.</strong> Taylor's version was made for the BBC in 1986, conceived alongside a production, for actors to speak aloud on television. That explains both its greatest strength (it is superbly speakable) and its most contested features (its modern political vocabulary). You are analysing a piece of English dramatic writing with a documented purpose, and you can say so.</div>
+      </div>
+
+      <p>Taylor also quotes Brecht, hauled before the House Un-American Activities Committee and shown a translation of his own poem: "'Mr Brecht, did you write this poem?' 'No,' replied Brecht, 'I wrote a very similar poem, in German.'" Keep that joke in mind whenever you are about to attribute a word choice to Sophocles.</p>
+
+      <h3 class="sub-title">Taylor's modern political idiom</h3>
+      <p>Track the vocabulary Taylor gives Creon and the play's institutions. It is loaded, and it is deliberate:</p>
+
+      <table class="lens-table">
+        <thead><tr><th>Taylor's phrase</th><th>Where</th><th>What it imports</th></tr></thead>
+        <tbody>
+          <tr><td>"the security police"</td><td>p. 16</td><td>Twentieth-century state apparatus; interrogation as an institution, not a king's whim.</td></tr>
+          <tr><td>"The whole repertoire of special techniques / At which we excel so much"</td><td>p. 16</td><td>Euphemism for torture, in the bureaucratic register of modern authoritarianism.</td></tr>
+          <tr><td>"A subversive faction… A cell of oppositionists"</td><td>p. 15</td><td>Cold War political vocabulary. Creon's paranoia becomes recognisably modern.</td></tr>
+          <tr><td>"homeless refugees"</td><td>p. 15</td><td>Post-war humanitarian language, absent from the Greek.</td></tr>
+          <tr><td>"like terrorists / You laid undercover plans"</td><td>pp. 24–25</td><td>A 1980s British word, applied by a ruler to two young women.</td></tr>
+          <tr><td>"that bleak hotel / That is never short of a room"</td><td>p. 39</td><td>The underworld as administration; death made banal and procedural.</td></tr>
+        </tbody>
+      </table>
+
+      <p>A candidate who notices this pattern has something genuinely arguable to say: Taylor's <em>Antigone</em> is a play about the modern security state, and its Creon is a recognisable twentieth-century official rather than a Bronze Age king. Whether that is a gain or a distortion is your judgement to make, and making it is evaluation.</p>
+
+      <h3 class="sub-title">How to write about it without faking Greek</h3>
+      <div class="checklist">
+        <h4>Rules that keep you safe and sound sophisticated</h4>
+        <ul>
+          <li>Attribute to the translator what belongs to the translator: <em>"Taylor renders the line as…"</em> not <em>"Sophocles writes…"</em></li>
+          <li>Attribute structure, plot, staging and sequence to Sophocles; a translator does not move the Ode to Man.</li>
+          <li>Where a Greek term genuinely matters (<span class="greek">deinos</span>, <span class="greek">nomos</span>, <span class="greek">kerdos</span>), cite the scholarship that told you: <em>"as Segal notes…"</em> Never imply first-hand knowledge of a language you do not read.</li>
+          <li>Compare renderings when you can. Taylor's "the miracle of man" against a version giving "terrible" or "formidable" opens the ambiguity for the reader without any claim to Greek at all.</li>
+          <li>Say what the translation's choice <em>does</em> to the meaning. That is the analysis; the fact of translation is only the occasion for it.</li>
+        </ul>
+      </div>
+
+      <div class="task-box">
+        <h4>Task 9 · Translation</h4>
+        <ol>
+          <li>Find any other translation of the Ode to Man's opening line. Write a paragraph comparing it with Taylor's, arguing what each version makes possible and what each forecloses.</li>
+          <li>Choose one of Taylor's modern words from the table above. Write a paragraph arguing that it is the right choice, then a sentence conceding the strongest objection to it.</li>
+          <li class="stretch">Stretch: Taylor's version was written to be spoken on television by actors, unmasked, in close-up. Ancient performance had masks, daylight and fifteen dancers. Write a paragraph on what his translation has to do differently as a result.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 7. CRITICAL PERSPECTIVES -->
+    <section class="content-section" id="critics">
+      <span class="section-number">Section 07</span>
+      <h2 class="section-title">Critical Perspectives</h2>
+
+      <p>Criticism is a tool. The test of whether you have used a critic well is simple: has your reading of a specific passage changed? If you could delete the critic's name and the paragraph would say the same thing, you have quoted rather than thought.</p>
+
+      <div class="critic-card" id="hegel">
+        <div class="critic-header">
+          <div>
+            <div class="critic-name">G. W. F. Hegel</div>
+            <div class="critic-work">The dialectical reading · family versus state</div>
+          </div>
+          <div class="critic-badge">Foundational</div>
+        </div>
+        <p>Hegel used <em>Antigone</em> to illustrate his own philosophy of dialectics: two opposing principles, each valid, each blind to the limits of its own claim, colliding and destroying their representatives, after which a higher synthesis becomes possible. Varakis notes that his reading made the play enormously popular in the nineteenth century, and that he took the chorus's closing lines as proof of the synthesis: "Today it has happened here. With our own eyes / We have seen an old man, through suffering, become wise."</p>
+        <p><strong>Use it for:</strong> the architecture of the conflict, and for the play's ending: is Creon's suffering genuinely instructive, or is the chorus consoling itself?</p>
+        <p><strong>Push against it with:</strong> Segal's objection that turning the protagonists into principles "runs the risk of oversimplification and ultimately a misunderstanding of Sophocles' sense of the tragic." Also note that a synthesis requires a survivor capable of acting on the lesson, and Creon ends the play saying he is nothing.</p>
+        <div class="quote-analysis"><strong>Cross-reference:</strong> Hegel's master–slave dialectic is already set out in the <a href="master_harold.html#hegel" style="color:var(--gold)">"Master Harold"</a> chapter. The two Hegelian ideas are distinct: the master–slave dialectic concerns recognition, while the <em>Antigone</em> reading concerns colliding ethical claims. Do not conflate them. Read both, and you will use each more precisely.</div>
+      </div>
+
+      <div class="critic-card" id="knox">
+        <div class="critic-header">
+          <div>
+            <div class="critic-name">B. M. W. Knox &amp; C. H. Whitman</div>
+            <div class="critic-work">The heroic temper · the double centre of gravity</div>
+          </div>
+          <div class="critic-badge">Character</div>
+        </div>
+        <p>Knox's <em>The Heroic Temper</em> defines the Sophoclean hero as a figure who, faced with human opposition, makes a decision arising from his or her own nature and then maintains it to the point of self-destruction, refusing compromise and remaining true to an inherited identity. The heroic qualities, in Varakis's summary of Knox, are "stubbornness, outspokenness and above all courage."</p>
+        <p>The productive move is to apply the definition to Creon and watch it fail. He has every symptom of heroic stubbornness and then yields to advice, makes concessions, and collapses. Varakis's conclusion: "while two characters assume the heroic attitude in this tragedy only one of them in the end is exposed as heroic."</p>
+        <p>Whitman supplies the formulation worth memorising: <em>"Antigone is the balance in which Creon is weighed, and found wanting"</em>, with the corollary that "Antigone's harshness would make no sense without Creon's authoritarian wilfulness." Neither character is legible alone. Varakis calls this the play's "double centre of gravity."</p>
+        <p><strong>Use it for:</strong> any question about heroism, character, or who the protagonist is. <strong>Push against it with:</strong> the fact that Antigone's heroic consistency is also what makes her cruel to Ismene.</p>
+      </div>
+
+      <div class="critic-card" id="segal">
+        <div class="critic-header">
+          <div>
+            <div class="critic-name">Charles Paul Segal</div>
+            <div class="critic-work">'Sophocles' Praise of Man and the Conflicts of the <em>Antigone</em>' (1964)</div>
+          </div>
+          <div class="critic-badge">Essential</div>
+        </div>
+        <p>The most useful single essay you can read on this play, because it is built on close reading rather than on a philosophical framework. Segal's argument is that the Ode to Man is a hypothesis, and that the rest of the tragedy tests it to destruction. Every conquest the ode lists is picked up later and turned around.</p>
+
+        <table class="concept-table">
+          <thead><tr><th>The ode claims</th><th>The play answers</th></tr></thead>
+          <tbody>
+            <tr><td>Man masters the sea</td><td>The sea returns in later odes as an image of irrational suffering; Creon finally calls his disaster a "harbour" [1284].</td></tr>
+            <tr><td>Man snares birds</td><td>Birds carry the gods' warning to Teiresias; the guard likens the captured Antigone to a screaming mother-bird [423–25].</td></tr>
+            <tr><td>Man has mastered speech</td><td>Speech degenerates into insult, then into Haemon's animal silence at the end.</td></tr>
+            <tr><td>Man builds shelter from storms</td><td>The guards stand exposed on the open hillside; the corpse lies unsheltered; Antigone is walled into a cave in a deserted (<span class="greek">eremos</span>) place.</td></tr>
+            <tr><td>Man cures disease</td><td>The city "is diseased" as a direct result of Creon's <em>intelligence</em> [1015].</td></tr>
+            <tr><td>Man devises arts (<span class="greek">techne</span>)</td><td>Teiresias's prophecy is also a <span class="greek">techne</span>, but one that listens to nature instead of subduing it.</td></tr>
+            <tr><td>Only death defeats him</td><td>Death becomes the entire subject: "It is only death, that alone which man cannot control or 'flee'… which proves the fullest touchstone of man's greatness."</td></tr>
+          </tbody>
+        </table>
+
+        <p>Segal's second move is to show that Creon's crushing of Antigone is a debasement of man in general, not just of a woman. Creon replies to her speech on divine law with images of metallurgy, the taming of horses, and slavery: "the progression of the thought is highly significant, for it reveals the link between man's proud conquest of nature and Creon's debasement of man."</p>
+
+        <p>The third move is the ending. Creon, who used death as an instrument of control, "as a king, has dismissed or 'used' death, only to discover and experience it as a man", entering finally carrying a corpse that is "not another's" but his own. Segal's summary of the reversal is the sentence to remember: <em>"the purely man-centered magnification of human achievement may involve, paradoxically, a debasement of man."</em></p>
+
+        <div class="quote-analysis"><strong>How to use Segal without ventriloquising him.</strong> Do not write "Segal argues that the ode is ironic, which shows the play is complex." Instead: take one of his links (birds, shelter, <span class="greek">techne</span>), verify it yourself in the text, and then extend it to a passage he does not discuss. An examiner can tell the difference instantly between a candidate who has absorbed a critic and one who has borrowed a sentence.</div>
+      </div>
+
+      <div class="critic-card" id="gender-crit">
+        <div class="critic-header">
+          <div>
+            <div class="critic-name">Feminist readings</div>
+            <div class="critic-work">Foley · Lefkowitz · the argument about what Antigone is doing</div>
+          </div>
+          <div class="critic-badge">Contested</div>
+        </div>
+        <p>Two incompatible positions, both cited in Varakis's commentary, and the disagreement is more useful to you than either position alone.</p>
+        <ul style="color:var(--muted);font-size:0.9rem;padding-left:1.2rem;">
+          <li style="margin-bottom:0.5rem;"><strong style="color:var(--gold-light);font-weight:normal;">Helene Foley:</strong> in defying her sister's advice and the king's decree, Antigone "assumes an essentially masculine role"; she is destroyed by venturing into the male sphere of public action, while Ismene, who does not disrupt male order, survives into invisibility and silence.</li>
+          <li style="margin-bottom:0.5rem;"><strong style="color:var(--gold-light);font-weight:normal;">Mary Lefkowitz:</strong> Antigone does nothing unconventional at all. Burying family members was obligatory in fifth-century Athens; it is Creon who violates established custom and misuses his power. "Far from being unconventional, Antigone is only doing what her family might have expected of her as a woman."</li>
+        </ul>
+        <p>Segal adds a third angle: the element in Antigone that Creon cannot grasp is precisely the womanly one. Her line "It is my nature to share not in hating but in loving" [523], which Taylor gives as "I was born with love enough / To share: no hate for anyone", answers Creon's entire framework, and his reply ("Go below then and love them, if you must love; but no woman will rule me while I live" [524–25]) shows he has heard it only as insubordination.</p>
+        <p><strong>The strong move:</strong> do not choose. Show that the play generates both readings because Antigone's act is simultaneously the most traditional and the most transgressive thing she could do, and that this is the source of her power over audiences for two and a half thousand years.</p>
+      </div>
+    </section>
+
+    <!-- 8. PAPER 2 -->
+    <section class="content-section" id="paper2">
+      <span class="section-number">Section 08</span>
+      <h2 class="section-title">Paper 2: The Comparative Essay</h2>
+      <div id="p2-gate">
+        <div class="lock-box">
+          <div class="lock-icon">&#128274;</div>
+          <h4>This section is locked</h4>
+          <p>The Paper 2 comparative material, covering the pairings, thesis building, the annotated model paragraph and the criteria, is released by your teacher. Enter the access code to unlock it.</p>
+          <form id="p2-form" autocomplete="off">
+            <input type="password" id="p2-code" placeholder="Access code" aria-label="Access code" autocomplete="off" spellcheck="false" />
+            <button type="submit" id="p2-btn">Unlock</button>
+          </form>
+          <p id="p2-msg" class="lock-msg" role="status" aria-live="polite"></p>
+        </div>
+      </div>
+      <div id="p2-content" hidden></div>
+      <script>
+      (function(){
+        var SALT="/EeLT/ACGcuXmChJaEcqLQ==", IV="8kp46W32+FeIjZLd", CT="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", ITER=250000;
+        var form=document.getElementById('p2-form'), input=document.getElementById('p2-code'),
+            msg=document.getElementById('p2-msg'), btn=document.getElementById('p2-btn'),
+            gate=document.getElementById('p2-gate'), out=document.getElementById('p2-content');
+        function b2a(s){var r=atob(s),a=new Uint8Array(r.length);for(var i=0;i<r.length;i++)a[i]=r.charCodeAt(i);return a;}
+        if(!(window.crypto&&window.crypto.subtle)){
+          msg.textContent='This browser cannot unlock the section here. Open the site through the local server (http://localhost:3000) rather than as a file.';
+          msg.className='lock-msg err'; input.disabled=true; btn.disabled=true; return;
+        }
+        form.addEventListener('submit', function(e){
+          e.preventDefault(); var code=input.value.trim(); if(!code) return;
+          btn.disabled=true; msg.className='lock-msg'; msg.textContent='Checking\u2026';
+          crypto.subtle.importKey('raw', new TextEncoder().encode(code), 'PBKDF2', false, ['deriveKey'])
+          .then(function(km){ return crypto.subtle.deriveKey({name:'PBKDF2', salt:b2a(SALT), iterations:ITER, hash:'SHA-256'}, km, {name:'AES-GCM', length:256}, false, ['decrypt']); })
+          .then(function(k){ return crypto.subtle.decrypt({name:'AES-GCM', iv:b2a(IV)}, k, b2a(CT)); })
+          .then(function(buf){ out.innerHTML=new TextDecoder().decode(buf); out.hidden=false; gate.remove();
+            if(location.hash){ var t=document.querySelector(location.hash); if(t) t.scrollIntoView(); } })
+          .catch(function(){ msg.textContent='That code is not correct.'; msg.className='lock-msg err';
+            btn.disabled=false; input.select(); });
+        });
+      })();
+      </script>
+
+    </section>
+
+
+    <!-- 9. PARAGRAPH SURGERY -->
+    <section class="content-section" id="surgery">
+      <span class="section-number">Section 09</span>
+      <h2 class="section-title">Paragraph Surgery</h2>
+
+      <p>Three paragraphs on the same passage, the close of the Ode to Man. Same knowledge and same quotation, at three different levels of thinking. Read the diagnosis under each before moving on, and be honest about which one your own writing most resembles.</p>
+
+      <div class="rung">
+        <div class="grade">Level 1 · Feature spotting</div>
+        <p class="sample">Sophocles uses a rhetorical question in the Ode to Man: "Is there anything more wonderful on earth… Than the miracle of man!" This makes the reader think about how great man is. He also uses imagery of the sea and the plough to show man's power over nature, and a metaphor of taming animals. The use of the word "miracle" has connotations of something amazing and divine, which emphasises the theme of human achievement.</p>
+        <p class="why"><strong>Diagnosis.</strong> Every sentence names a device and then asserts an effect that does not follow from it. "Makes the reader think about" is a phrase that appears when there is no analysis to report. Nothing is claimed, so nothing can be proved. Note also that the paragraph attributes Taylor's word "miracle" to Sophocles.</p>
+      </div>
+
+      <div class="rung mid">
+        <div class="grade">Level 2 · Thematic, unevaluated</div>
+        <p class="sample">The Ode to Man celebrates human achievement, listing man's mastery of the sea, the earth, animals and language. However, the chorus also acknowledges human limitation: "the only disease he cannot salve / Or cure, is death." This creates a contrast between human power and human mortality, which is ironic because Creon believes he can control life and death but is ultimately powerless. The ode therefore foreshadows Creon's downfall and develops the theme of hubris.</p>
+        <p class="why"><strong>Diagnosis.</strong> Genuinely better: there is a claim, the quotation is well chosen, and the reading is defensible. But it stops at theme. "Creates a contrast", "is ironic", "foreshadows", "develops the theme": these are labels for relationships, not accounts of how the writing produces them. And "hubris" is doing the work a sentence of the candidate's own should be doing. Solid middle bands; it will not move higher, because it never examines <em>how</em> the ode is built.</p>
+      </div>
+
+      <div class="rung good">
+        <div class="grade">Level 3 · Interpretive and evaluative</div>
+        <p class="sample">Sophocles builds the first stasimon as a catalogue and then, at the last moment, refuses to let the catalogue mean what it has spent four stanzas promising. Man's achievements accumulate by simple addition (seas, plough, birds, beasts, language, thought, cities), a syntax in which nothing is ever weighed, only appended, so that mastery comes to feel like an inventory being read out. The single arrest comes in the flat, almost wholly monosyllabic close of the third movement: "the only disease he cannot salve / Or cure, is death." The rhythm stops where the list stops, and the one item that cannot be appended is the one that will govern the next thousand lines. The final stanza then makes the trap explicit: these gifts "Are both enemies and friends, / As he applies them, with equal determination, / To good or to evil ends." The chorus has not praised man at all; it has praised a capacity and then declared it morally neutral, which is a far more disturbing proposition, since it means that everything just catalogued guarantees nothing. The staging drives the point home with almost brutal economy: the elders end by excluding the transgressor from their hearth, and Sophocles brings Antigone on under guard in the same breath, leaving an audience to decide, in real time, which of the two figures before them the ode has just described. That refusal to specify is the ode's real achievement and also its cost: it purchases permanent ambiguity at the price of any consolation, and the play spends the rest of its length declining to resolve what it has opened here.</p>
+        <p class="why"><strong>Diagnosis.</strong> A claim about construction, not content. Close reading of syntax and rhythm that earns the interpretive conclusion. A judgement about the ode's effect on an audience at a particular moment. An evaluation with a cost attached ("purchases permanent ambiguity at the price of any consolation"), and a link that moves the argument forward rather than restating it. No named device is required anywhere; the analysis is doing what device-naming only gestures at.</p>
+      </div>
+
+      <details>
+        <summary>Exercise · rewrite the Level 2 paragraph yourself before reading further</summary>
+        <div class="inner">
+          <p>Take the Level 2 paragraph above and rewrite it in three stages. First, delete every phrase that labels a relationship instead of explaining it: "creates a contrast", "is ironic", "foreshadows", "develops the theme". Second, replace each deletion with a sentence describing what the writing actually does at that point. Third, add one sentence of evaluation containing a cost, a formulation of the shape "this works, but at the price of X."</p>
+          <p>Then compare with Level 3. Do not copy it; the goal is to feel what the missing moves cost you when you had to supply them yourself.</p>
+        </div>
+      </details>
+
+      <div class="examiner-box">
+        <h4>Seven sentences to stop writing</h4>
+        <ol>
+          <li>"This makes the reader think about…" The reader thinks whatever you can demonstrate. Demonstrate it.</li>
+          <li>"Sophocles uses X to show Y." The verb <em>show</em> hides the whole analytical problem.</li>
+          <li>"This is very effective." Effective at what, for whom, at what cost?</li>
+          <li>"This links to the theme of…" Themes are where analysis begins, not where it lands.</li>
+          <li>"The audience feels sympathy for Antigone." Which audience, at which line, and how do you know?</li>
+          <li>"In Ancient Greece, people believed…" Unless the belief changes the line's meaning, cut it.</li>
+          <li>"As Segal argues, the play is complex." A critic's name is not an argument.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 10. QUOTATION BANK -->
+    <section class="content-section" id="bank">
+      <span class="section-number">Section 10</span>
+      <h2 class="section-title">Quotation Bank</h2>
+
+      <p>Organised by the argument each quotation can support, not by scene. Under exam conditions three exactly remembered short quotations analysed closely will outperform a dozen half-remembered long ones. Learn the short ones.</p>
+
+      <h3 class="sub-title">Law, state and obedience</h3>
+      <table class="plot-table">
+        <thead><tr><th>Speaker</th><th>Quotation</th><th>Ref</th></tr></thead>
+        <tbody>
+          <tr><td>Creon</td><td>"Crimes / Against the State and its laws, you'll find, / Are very unprofitable in the end."</td><td>p. 16</td></tr>
+          <tr><td>Creon</td><td>"Unquestioning obedience to whomsoever the State / Appoints to be its ruler is the law… / Just or unjust, right or wrong."</td><td>p. 30</td></tr>
+          <tr><td>Creon</td><td>"the well-drilled regiment / That asks no questions stands firm, / Knows nothing, and needs to know nothing, and wins"</td><td>p. 30</td></tr>
+          <tr><td>Haemon</td><td>"When the State becomes one man it ceases to be a State!"</td><td>p. 32</td></tr>
+          <tr><td>Creon</td><td>"The State is the statesman who rules it, it reflects / His judgement, it belongs to him!"</td><td>p. 33</td></tr>
+          <tr><td>Haemon</td><td>"Go and rule in the desert then! There's nobody there / To argue with you!"</td><td>p. 33</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="sub-title">Divine law, piety and the limits of knowledge</h3>
+      <table class="plot-table">
+        <thead><tr><th>Speaker</th><th>Quotation</th><th>Ref</th></tr></thead>
+        <tbody>
+          <tr><td>Antigone</td><td>"Because it's your law, / Not the law of god."</td><td>p. 21</td></tr>
+          <tr><td>Antigone</td><td>"They speak the language of eternity, / Are not written down, and never change."</td><td>p. 21</td></tr>
+          <tr><td>Antigone</td><td>"No one understands where they came from, / But everyone recognises their force"</td><td>p. 22</td></tr>
+          <tr><td>Creon</td><td>"Is it likely, / Remotely likely, that the gods will think twice / Over that pile of stinking meat?"</td><td>p. 15</td></tr>
+          <tr><td>Creon</td><td>"no single human act, / However much it may degrade the earth… / Can stain the purity of the ever-living gods!"</td><td>p. 44</td></tr>
+          <tr><td>Teiresias</td><td>"You're like a man balanced on a razor, / Likely to fall – or cut himself to pieces."</td><td>p. 42</td></tr>
+          <tr><td>Teiresias</td><td>"He sees for me / What my eyes cannot, just as I see / Things to which other people are blind."</td><td>p. 43</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="sub-title">Gender and authority</h3>
+      <table class="plot-table">
+        <thead><tr><th>Speaker</th><th>Quotation</th><th>Ref</th></tr></thead>
+        <tbody>
+          <tr><td>Creon</td><td>"There will be no exchanging of roles here, / Me playing the woman while she plays the king!"</td><td>p. 23</td></tr>
+          <tr><td>Creon</td><td>"Law is law / And will remain so while I am alive – / And no woman will get the better of me"</td><td>p. 24</td></tr>
+          <tr><td>Creon</td><td>"There will be no yielding to female fantasies, / Not by so much as an inch."</td><td>p. 30</td></tr>
+          <tr><td>Creon</td><td>"This boy of mine is on the woman's side!"</td><td>p. 33</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="sub-title">Love, kinship and the irreplaceable</h3>
+      <table class="plot-table">
+        <thead><tr><th>Speaker</th><th>Quotation</th><th>Ref</th></tr></thead>
+        <tbody>
+          <tr><td>Antigone</td><td>"No, I was born with love enough / To share: no hate for anyone."</td><td>p. 24</td></tr>
+          <tr><td>Creon</td><td>"Very well. Share your love by all means, / Share it with the dead. I wish them well of it."</td><td>p. 24</td></tr>
+          <tr><td>Antigone</td><td>"Not for a husband, you understand, / Not even for a son would I have done this."</td><td>p. 39</td></tr>
+          <tr><td>Antigone</td><td>"My love had to speak / At Polynices' grave, or nowhere."</td><td>p. 39</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="sub-title">Death, marriage and the tomb</h3>
+      <table class="plot-table">
+        <thead><tr><th>Speaker</th><th>Quotation</th><th>Ref</th></tr></thead>
+        <tbody>
+          <tr><td>Antigone</td><td>"I shall go alone / And in silence to my house of stone."</td><td>p. 38</td></tr>
+          <tr><td>Antigone</td><td>"To my grave then. My honeymoon bed. / My prison. My crypt, under the mountain."</td><td>p. 38</td></tr>
+          <tr><td>Antigone</td><td>"that bleak hotel / That is never short of a room… / Booking in too soon."</td><td>p. 39</td></tr>
+          <tr><td>Antigone</td><td>"And I die his victim, / Unjustly, for upholding justice / And the humanity of humankind."</td><td>p. 40</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="sub-title">The Ode to Man, and the reckoning</h3>
+      <table class="plot-table">
+        <thead><tr><th>Speaker</th><th>Quotation</th><th>Ref</th></tr></thead>
+        <tbody>
+          <tr><td>Chorus</td><td>"Is there anything more wonderful on earth, / Our marvellous planet, / Than the miracle of man!"</td><td>p. 17</td></tr>
+          <tr><td>Chorus</td><td>"the only disease he cannot salve / Or cure, is death."</td><td>p. 18</td></tr>
+          <tr><td>Chorus</td><td>"these gifts / Are both enemies and friends, / As he applies them… / To good or to evil ends."</td><td>p. 18</td></tr>
+          <tr><td>Creon</td><td>"My mind's torn apart / Like a tug of war, one way, then the other…"</td><td>p. 46</td></tr>
+          <tr><td>Creon</td><td>"All the guilt is mine! / I am the murderer."</td><td>p. 54</td></tr>
+          <tr><td>Creon</td><td>"I am nothing now. I have become nothing. / Nothing can happen to a man who is nothing."</td><td>p. 55</td></tr>
+          <tr><td>Chorus</td><td>"Today it has happened here. With our own eyes / We have seen an old man, through suffering, become wise."</td><td>p. 55</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 11. QUESTION BANK -->
+    <section class="content-section" id="questions">
+      <span class="section-number">Section 11</span>
+      <h2 class="section-title">Question Bank</h2>
+
+      <h3 class="sub-title">Comparative questions, in the style of Paper 2</h3>
+      <p>Each requires two works. Practise choosing which of your pairings can actually sustain the question; half the skill of Paper 2 is knowing, within ninety seconds, which question your texts can answer best.</p>
+      <div class="essay-q">
+        <p class="q-text">1. Compare the ways in which two works you have studied use endings to shape the reader's understanding of an act of defiance.</p>
+        <p class="q-text">2. "Conflict in drama is most revealing when neither side can be dismissed." Discuss with reference to two works you have studied.</p>
+        <p class="q-text">3. Compare how two works you have studied use a confined or enclosed setting to expose the pressures acting on their characters.</p>
+        <p class="q-text">4. In what ways, and to what effect, do two works you have studied present characters who claim to speak for a community?</p>
+        <p class="q-text">5. Compare the presentation of ritual, ceremony or repeated action in two works you have studied.</p>
+        <p class="q-text">6. "Literary works are shaped as much by what they withhold as by what they show." Discuss with reference to two works.</p>
+        <p class="q-text">7. Compare the ways in which two works you have studied represent the relationship between individual conscience and public authority.</p>
+        <p class="q-text">8. To what extent, and by what means, do two works you have studied invite the reader to judge a character the text also asks them to understand?</p>
+      </div>
+
+      <h3 class="sub-title">Close-reading tasks (Paper 1 technique, practised on a studied text)</h3>
+      <p>Your studied works never appear on Paper 1, which sets unseen extracts. But the analytical habit is identical, and drilling it on a text you know well removes the anxiety of unfamiliarity so you can concentrate on method. Give yourself a strict twenty minutes for each, and write a guiding question of your own before you begin.</p>
+      <div class="essay-q">
+        <p class="q-text">A. The Ode to Man (pp. 17–18): how does the ode's structure qualify its own praise?</p>
+        <div class="essay-step"><div class="step-num">1</div><p>Map the movement before you write anything. Where does the syntax change? Where does the rhythm slow?</p></div>
+        <div class="essay-step"><div class="step-num">2</div><p>Decide what the ode is <em>for</em> at this point in the play, then write your guiding question.</p></div>
+        <div class="essay-step"><div class="step-num">3</div><p>Twenty minutes, one continuous argument, no device-listing.</p></div>
+      </div>
+      <div class="essay-q">
+        <p class="q-text">B. Creon and Haemon, from "Is there indeed?" to "I'm fighting for you" (pp. 32–33): how does the shift into line-for-line exchange dramatise the collapse of a relationship?</p>
+        <p class="q-text">C. Antigone's last speech (pp. 38–40): how does Taylor's diction shape our final impression of her?</p>
+        <p class="q-text">D. Teiresias's account of the failed sacrifice (pp. 42–43): how does the play make the gods present without putting one on stage?</p>
+        <p class="q-text">E. The play's closing forty lines (pp. 54–55): is Creon's reduction to "nothing" a punishment, an education, or neither?</p>
+      </div>
+
+      <h3 class="sub-title">Discussion and revision questions</h3>
+      <p>Adapted from the study questions in Varakis's edition, which are worth reading in full.</p>
+      <div class="checklist">
+        <h4>For seminar, revision notes, or an HL essay line of inquiry</h4>
+        <ul>
+          <li>Antigone leaves the stage at line 943 but does not die until some unwitnessed moment before line 1220. Why does Sophocles separate her disappearance from her death, and report the second rather than staging it?</li>
+          <li>Is there a true hero in this play, and how far does each character's final destiny affect their heroic status?</li>
+          <li>Even though no god appears on stage, the gods affect the dramatic action. How?</li>
+          <li>How do the representations of gender in Creon, Antigone and Ismene shape the characters' attitudes to one another?</li>
+          <li>What are the major patterns of imagery in the play, and how are they attached to Antigone and to Creon?</li>
+          <li>Could the exchange of speeches in <em>Antigone</em> be compared to a modern political debate?</li>
+          <li>How would you describe the chorus, as commentator or as participant, and how would you stage it to make that reading visible?</li>
+          <li>Does the play present a clear view of what is morally right or wrong?</li>
+          <li>Can a modern spectator identify with these characters? If so, how far, and by what means?</li>
+          <li>How would you highlight the play's political dimension on stage for a contemporary audience?</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- REFERENCES -->
+    <section class="content-section" id="refs">
+      <span class="section-number">References</span>
+      <h2 class="section-title">Sources</h2>
+
+      <h3 class="sub-title">Primary text</h3>
+      <ul class="refs">
+        <li>Sophocles. <em>Antigone</em>. Translated by Don Taylor, with commentary and notes by Angie Varakis. London: Bloomsbury Methuen Drama, Student Editions, 2006. Translation first published 1986 in <em>Sophocles: The Theban Plays</em> (Eyre Methuen); commentary and notes © Angie Varakis, 2006. All page references in this chapter are to this edition.</li>
+        <li>Taylor, Don. 'Sophocles English'd' (Translator's Note), in the edition above, pp. xlvi–xlix.</li>
+        <li>Varakis, Angie. 'Commentary' and 'Questions for Further Study', in the edition above, pp. xv–xli and pp. 65–66. The material in this chapter on the myth, the City Dionysia, the political context, ancient performance practice, characterisation and the play's modern reception is drawn from this commentary.</li>
+      </ul>
+
+      <h3 class="sub-title">Criticism</h3>
+      <ul class="refs">
+        <li>Segal, Charles Paul. 'Sophocles' Praise of Man and the Conflicts of the <em>Antigone</em>'. <em>Arion</em> III, no. 2 (Summer 1964): 46–66. Reprinted in Thomas Woodard (ed.), <em>Sophocles: A Collection of Critical Essays</em>, Englewood Cliffs, NJ: Prentice-Hall, 1966. All Segal quotations in this chapter are from this essay.</li>
+        <li>Knox, B. M. W. <em>The Heroic Temper: Studies in Sophoclean Tragedy</em>. Berkeley: University of California Press, 1964. Cited here as summarised in Varakis's commentary.</li>
+        <li>Whitman, C. H. <em>Sophocles: A Study of Heroic Humanism</em>. Cambridge, MA: Harvard University Press, 1951, p. 86. Quoted in Varakis's commentary.</li>
+        <li>Hegel, G. W. F. On <em>Antigone</em>, in <em>Hegel on Tragedy</em>. Discussed in Varakis's commentary, pp. xxvi and xxxii.</li>
+        <li>Foley, Helene. 'The Conception of Women in Athenian Drama', in H. Foley (ed.), <em>Reflections of Women in Antiquity</em>, 1981, pp. 127–67. Cited in Varakis's commentary.</li>
+        <li>Lefkowitz, Mary. <em>Women in Greek Myth</em>. London: Duckworth, 1986. Cited in Varakis's commentary.</li>
+        <li>Rehm, Rush. <em>Greek Tragic Theatre</em>. London: Routledge, 1992, p. 54. Quoted in Varakis's commentary on the chorus.</li>
+        <li>Thucydides. <em>History of the Peloponnesian War</em>, II.37.1 (Pericles' Funeral Oration), trans. Benjamin Jowett, Oxford University Press, 1900. Quoted by both Varakis and Segal.</li>
+      </ul>
+
+      <h3 class="sub-title">A note on quotation and academic honesty</h3>
+      <p style="font-size:0.88rem;">Where this chapter quotes Segal or Varakis, the quotation is marked and attributed. Where it summarises them, the attribution is given in the sentence. Do the same in your own work: in an HL essay or coursework, every idea taken from a critic must be cited even when you have put it in your own words. In examinations you cannot cite formally, so name the critic in the sentence ("as Segal argues") and make clear which part of the thought is yours. An examiner will always prefer a candidate who has read one critic honestly to one who has borrowed six.</p>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  <p><em>Antigone</em> · Sophocles, translated by Don Taylor · DP English A: Literature HL · <a href="index.html">← Back to course index</a></p>
+</footer>
+
+</body>
+</html>
